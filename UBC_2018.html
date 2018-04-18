@@ -9031,7 +9031,7 @@ $$</pre>
 &lt;&lt;toc-selective-expandable 'Model'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20180417222836324" modified="20180418044821892" tags="Analysis" title="phi = 0.80">
+<div created="20180417222836324" modified="20180418210252916" tags="Analysis" title="phi = 0.80">
 <pre>From the [[expected phase diagram|Expected phase diagram]] of our system, we have that the point $$(\phi=0.80, \tilde{v}=1\cdot10^{-2}, \tilde{\nu}_r=5\cdot10^{-4})$$ should be in the homogeneous liquid domain, between the phase separated and glass domains. We then investigated a system at $$\phi=0.80$$ and $$\tilde{v}=1\cdot10^{-2}$$ for different values of the diffusion rotation constant.
 
 We computed $$C_{uu}(\Delta r, \Delta t)$$ for a maximul number of $$S_{max}$$ intervals of time $$[t, t+\Delta t]$$ with $$t$$ greater of equal to the $$S_{init}$$-th frame. Displacement [[field auto-correlation|Discrete field auto-correlation]] was performed from a $$N_{cases}$$ per $$N_{cases}$$ grid of displacements, derived from the original discrete field.
@@ -9039,9 +9039,18 @@ We computed $$C_{uu}(\Delta r, \Delta t)$$ for a maximul number of $$S_{max}$$ i
 [img [Figures/Cuu_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLOG.png]]
 [ext[(original image)|Figures/.eps/Cuu_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLOG.eps]]
 
-We have that the displacement correlation at a 1-particle-diameter distance, $$C_{uu}(r \approx a, \Delta t)$$, decreases to less than 50%. Furthermore, we have that the slope of the correlation function at this distance, $$\frac{\partial}{\partial r}C_{uu}(r \approx a, \Delta t)$$, varies way more dramatically with diffusion rotation constant $$\tilde{\nu}_r$$ and average number of rotations $$\tilde{\nu}_r \Delta t$$ than its value, thus indicating that the integral of this function -- the [[cooperativity|Cooperativity]] -- may be more interesting than the function itself.
+We have that the [[displacement correlation|Displacement correlations]] at a 1-particle-diameter distance, $$C_{uu}(r \approx a, \Delta t)$$, decreases to less than 50%. Furthermore, we have that the slope of the correlation function at this distance, $$\frac{\partial}{\partial r}C_{uu}(r \approx a, \Delta t)$$, varies way more dramatically with diffusion rotation constant $$\tilde{\nu}_r$$ and average number of rotations $$\tilde{\nu}_r \Delta t$$ than its value, thus indicating that the integral of this function -- the [[cooperativity|Cooperativity]] -- may be more interesting than the function itself.
 
-From the previous plot, we have $$C_{uu}(r &gt; 20, \Delta t) &lt; 10^{-2}$$ in most cases, we then use $$r_{max}=20$$ as the upper bound of the [[cooperativity|Cooperativity]] integral.
+Displacement correlations account for both displacement direction and amplitude correlations. We can also separate both contribution to determine which is the most prominent in this previous plot.
+
+[img [Figures/Cee_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLOG.png]]
+[ext[(original image)|Figures/.eps/Cee_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLOG.eps]]
+[img [Figures/Cdd_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLIN.png]]
+[ext[(original image)|Figures/.eps/Cdd_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLIN.eps]]
+
+We have that $$C_{|u||u||}$$ reaches a plateau at a few particle diameters, and the value of this plateau is not dramatically changed by the diffusion rotation constant, $$\tilde{\nu}_r$$, at least after a few rotations. On the contrary, $$C_{\hat{u}\hat{u}}$$ reproduces more closely the shape of $$C_{uu}$$, showing that what is well correlated at short and not at long distances is the direction of the displacements and not 
+
+We have seen that $$C_{uu}(r &gt; 20, \Delta t) &lt; 10^{-2}$$ in most cases, we then use $$r_{max}=20$$ as the upper bound of the [[cooperativity|Cooperativity]] integral.
 
 [img [Figures/intCuu_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.png]]
 [ext[(original image)|Figures/.eps/intCuu_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]]
@@ -9050,7 +9059,12 @@ In this plot, $$dt$$ denotes the integration time step of the simulations from w
 
 Furthermore, we have that the &quot;average number of coherently moving neighbors&quot; (interpretation of the [[cooperativity|Cooperativity]] value) is an increasing function of the persistence time $$\tau_r$$ -- and this increase is increasingly fast with increasing $$\tau_r$$.
 
-This transition is reminiscent of the one described in [[Wysocki et al., 2014|http://iopscience.iop.org/article/10.1209/0295-5075/105/48004]] (see [[Expected cooperative behaviour]]) which is related to the transition between phase separated (glass and gas) and homogeneous fluid regimes -- although this non-monotonic behabiour of $$\tilde{\nu}_r \Delta t^*$$ remains intriguing. To test this hypothetic explanation of the change in behaviour, we made a histogram of the local densities $$\phi_{loc}$$, calculated in square boxes of size $$r_{max}$$ centred on $$N_{cases}^2$$ linearly spaced points in $$S_{max}$$ different frames from the $$S_{init}$$-th frame, as a function of the persistence time $$\tau_r$$.
+[img [Figures/intCee_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.png]]
+[ext[(original image)|Figures/.eps/intCee_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]]
+
+We observe for $$C_{\hat{u}\hat{u}}$$ the same increase of the average number of coherently moving neighbors, with the same transition at $$\tau_{r,c}$$. However, in this case the average number of rotations at which this cooperativity is maximum is a monotonously decreasing function of the persistence time.
+
+This transition is reminiscent of the one described in [[Wysocki et al., 2014|http://iopscience.iop.org/article/10.1209/0295-5075/105/48004]] (see [[Expected cooperative behaviour]]) which is related to the transition between phase separated (glass and gas) and homogeneous fluid regimes -- although this non-monotonic behabiour of $$\tilde{\nu}_r \Delta t^*$$ in the case of the raw displacement correlation remains intriguing. To test this hypothetic explanation of the change in behaviour, we made a histogram of the local densities $$\phi_{loc}$$, calculated in square boxes of size $$r_{max}$$ centred on $$N_{cases}^2$$ linearly spaced points in $$S_{max}$$ different frames from the $$S_{init}$$-th frame, as a function of the persistence time $$\tau_r$$.
 
 [img [Figures/Pphiloc_Dk8000_Vj1000_Nq1000_Io5000_Ml1000_Cn5000.png]]
 [ext[(original image)|Figures/.eps/Pphiloc_Dk8000_Vj1000_Nq1000_Io5000_Ml1000_Cn5000.eps]]
