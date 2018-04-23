@@ -8729,7 +8729,7 @@ Error message and password prompt
 <div created="20180417222853075" modified="20180417222853075" title="$:/state/toc/TableOfContents/Measurements/Displacement correlations-Cooperativity--81657105">
 <pre>open</pre>
 </div>
-<div list="Model [[phi = 0.80, v = 1e-2]] [[phi = 1.00, v = 1e-1]]" title="$:/StoryList">
+<div list="[[(phi = 0.80, v = 1e-2) vs. (phi = 1.00, v = 1e-1)]] Model [[phi = 0.80, v = 1e-2]] [[phi = 1.00, v = 1e-1]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9047,7 +9047,7 @@ $$</pre>
 &lt;&lt;toc-selective-expandable 'Model'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20180417222836324" modified="20180423220312453" tags="Analysis" title="phi = 0.80, v = 1e-2">
+<div created="20180417222836324" modified="20180423232609562" tags="Analysis" title="phi = 0.80, v = 1e-2">
 <pre>From the [[expected phase diagram|Expected phase diagram]] of our system, we have that the point $$(\phi=0.80, \tilde{v}=1\cdot10^{-2}, \tilde{\nu}_r=5\cdot10^{-4})$$ should be in the homogeneous liquid domain, between the phase separated and glass domains. We then investigated a system at $$\phi=0.80$$ and $$\tilde{v}=1\cdot10^{-2}$$ for different values of the diffusion rotation constant.
 
 We computed $$C_{uu}(\Delta r, \Delta t)$$ for a maximul number of $$S_{max}$$ intervals of time $$[t, t+\Delta t]$$ with $$t$$ greater of equal to the $$S_{init}$$-th frame. Displacement [[field auto-correlation|Discrete field auto-correlation]] was performed from a $$N_{cases}$$ per $$N_{cases}$$ grid of displacements, derived from the original discrete field.
@@ -9146,7 +9146,20 @@ This last plot seems to indicate that in the high persistence regime, the time o
 We can finally look at videos of the actual system. In these videos, $$r_{max}$$ corresponds to the size of the rendered square box of particles which has the same centre as the original system, the colors of the particles are linked to their respective displacement amplitude between the times $$t$$ and $$t + \Delta t$$ and the arrow on particle $$i$$ has the direction of $$\vec{r}_i(t+\Delta t) - \vec{r}_i(t)$$.
 
 * At [ext[low persistence time|Videos/u_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mn1500_Pl1000_MOVEl1000.mp4]], we have that the directions of the displacements appear as swirl patterns. However, the particles do not revolve around the centres of these swirls. Looking at the particle trajectories ([ext[dt=1e1|Videos/t_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mo1000_Pl1000.mp4]], [ext[dt=1e2|Videos/t_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mo1000_Pm1000.mp4]], [ext[dt=1e3|Videos/t_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mo1000_Pn1000.mp4]]), we have that the individual displacements over $$\Delta t = 10^3$$ have a few particle diameters amplitude but are generally uncorrelated, leading to an overall small and uncorrelated displacement of the particles.
-* At [ext[high persistence time|Videos/u_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Io5000_Mn1500_Pl1000_MOVEl1000.mp4]], particles are clustered in blocks which slide on each another, the displacements are correlated over large distances and periods of time. Looking at the particle trajectories ([ext[dt=1e3|Videos/t_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Io5000_Mo1000_Pl1000.mp4]]), we see that rearrangements appear as suddent bursts in the system. Moreover, the system is denser than in the lower persistence time case and the overall displacement is also greater.</pre>
+* At [ext[high persistence time|Videos/u_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Io5000_Mn1500_Pl1000_MOVEl1000.mp4]], particles are clustered in blocks which slide on each another, the displacements are correlated over large distances and periods of time. Looking at the particle trajectories ([ext[dt=1e3|Videos/t_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Io5000_Mo1000_Pl1000.mp4]]), we see that rearrangements appear as suddent bursts in the system. Moreover, the system is denser than in the lower persistence time case and the overall displacement is also greater.
+
+---
+
+|Trajectory videos|c
+|! $$\tilde{\nu}_r$$|! $$\Delta t$$|
+|$$7\cdot10^{-3}$$| [ext[1e1|Videos/t_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mo1000_Pl1000.mp4]], [ext[1e2|Videos/t_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mo1000_Pm1000.mp4]], [ext[1e3|Videos/t_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mo1000_Pn1000.mp4]]|
+|$$2\cdot10^{-3}$$| [ext[1e1|Videos/t_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000_Io5000_Mo1000_Pl1000.mp4]], [ext[1e2|Videos/t_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000_Io5000_Mo1000_Pm1000.mp4]], [ext[1e3|Videos/t_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000_Io5000_Mo1000_Pn1000.mp4]]|
+|$$7\cdot10^{-4}$$| [ext[1e2|Videos/t_Dk8000_Vj1000_Rh7000_Nq1000_Ll0000_Io5000_Mo1000_Pl1000.mp4]], [ext[1e3|Videos/t_Dk8000_Vj1000_Rh7000_Nq1000_Ll0000_Io5000_Mo1000_Pm1000.mp4]]|
+|$$2\cdot10^{-4}$$| [ext[1e3|Videos/t_Dk8000_Vj1000_Rh2000_Nq1000_Ll0000_Io5000_Mo1000_Pl1000.mp4]]|
+|$$7\cdot10^{-5}$$| [ext[1e3|Videos/t_Dk8000_Vj1000_Rg7000_Nq1000_Ll0000_Io5000_Mo1000_Pl1000.mp4]]|
+|$$2\cdot10^{-5}$$| [ext[1e3|Videos/t_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Io5000_Mo1000_Pl1000.mp4]]|
+
+$$\Delta t$$ denotes the time step between each frame.</pre>
 </div>
 <div created="20180420010218374" modified="20180423220435925" tags="Analysis" title="phi = 1.00, v = 1e-1">
 <pre>From the [[expected phase diagram|Expected phase diagram]] of our system, we have that the point $$(\phi=1.00, \tilde{v}=1\cdot10^{-1}, \tilde{\nu}_r=5\cdot10^{-4})$$ should be in the phase separated domain. We investigated a system at $$\phi=1.00$$ and $$\tilde{v}=1\cdot10^{-1}$$ for different values of the diffusion rotation constant.
