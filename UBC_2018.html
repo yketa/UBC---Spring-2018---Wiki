@@ -120,6 +120,8 @@ Error message and password prompt
 
 <p>This <a class="tc-tiddlylink-external" href="https://tiddlywiki.com" rel="noopener noreferrer" target="_blank">TiddlyWiki</a> contains the following tiddlers:</p><p><ul>
 
+<li>(phi = 0.80, v = 1e-2) vs. (phi = 1.00, v = 1e-1)</li>
+
 <li>$:/config/RelinkOnRename</li>
 
 <li>$:/core</li>
@@ -236,6 +238,14 @@ Error message and password prompt
 <!--~~ Ordinary tiddlers ~~-->
 
 <div id="storeArea" style="display:none;">
+<div created="20180423185822864" modified="20180423213402687" tags="Analysis" title="(phi = 0.80, v = 1e-2) vs. (phi = 1.00, v = 1e-1)">
+<pre>[img [Figures/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000.png]]
+( [ext[original image|Figures/.eps/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000.py]]
+)
+
+[img [Figures/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000_dt.png]]
+( [ext[original image|Figures/.eps/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000_dt.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000.py]] )</pre>
+</div>
 <div created="20180417005834520" modified="20180417005834520" title="$:/config/RelinkOnRename">
 <pre>yes</pre>
 </div>
@@ -8719,7 +8729,7 @@ Error message and password prompt
 <div created="20180417222853075" modified="20180417222853075" title="$:/state/toc/TableOfContents/Measurements/Displacement correlations-Cooperativity--81657105">
 <pre>open</pre>
 </div>
-<div list="[[phi = 1.00, v = 1e-1]]" title="$:/StoryList">
+<div list="Model [[phi = 0.80, v = 1e-2]] [[phi = 1.00, v = 1e-1]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9030,36 +9040,40 @@ $$</pre>
 &lt;&lt;toc-selective-expandable 'Measurements'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20180416014921399" list="" modified="20180417231422575" tags="TableOfContents" title="Model" type="text/vnd.tiddlywiki">
-<pre>&lt;div class=&quot;tc-table-of-contents&quot;&gt;
+<div created="20180416014921399" list="" modified="20180423220351394" tags="TableOfContents" title="Model" type="text/vnd.tiddlywiki">
+<pre>[[Simulation script|https://github.com/yketa/UBC---Spring-2018---code/tree/master/simulation]]
+
+&lt;div class=&quot;tc-table-of-contents&quot;&gt;
 &lt;&lt;toc-selective-expandable 'Model'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20180417222836324" modified="20180420025115894" tags="Analysis" title="phi = 0.80, v = 1e-2">
+<div created="20180417222836324" modified="20180423220312453" tags="Analysis" title="phi = 0.80, v = 1e-2">
 <pre>From the [[expected phase diagram|Expected phase diagram]] of our system, we have that the point $$(\phi=0.80, \tilde{v}=1\cdot10^{-2}, \tilde{\nu}_r=5\cdot10^{-4})$$ should be in the homogeneous liquid domain, between the phase separated and glass domains. We then investigated a system at $$\phi=0.80$$ and $$\tilde{v}=1\cdot10^{-2}$$ for different values of the diffusion rotation constant.
 
 We computed $$C_{uu}(\Delta r, \Delta t)$$ for a maximul number of $$S_{max}$$ intervals of time $$[t, t+\Delta t]$$ with $$t$$ greater of equal to the $$S_{init}$$-th frame. Displacement [[field auto-correlation|Discrete field auto-correlation]] was performed from a $$N_{cases}$$ per $$N_{cases}$$ grid of displacements, derived from the original discrete field.
 
 [img [Figures/Cuu_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLOG.png]]
-[ext[(original image)|Figures/.eps/Cuu_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLOG.eps]]
+( [ext[original image|Figures/.eps/Cuu_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLOG.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/Cuu_comparison.py]] )
 
 We have that the [[displacement correlation|Displacement correlations]] at a 1-particle-diameter distance, $$C_{uu}(r \approx a, \Delta t)$$, decreases to less than 50%. Furthermore, we have that the slope of the correlation function at this distance, $$\frac{\partial}{\partial r}C_{uu}(r \approx a, \Delta t)$$, varies way more dramatically with diffusion rotation constant $$\tilde{\nu}_r$$ and average number of rotations $$\tilde{\nu}_r \Delta t$$ than its value, thus indicating that the integral of this function -- the [[cooperativity|Cooperativity]] -- may be more interesting than the function itself.
 
 Displacement correlations account for both displacement direction and amplitude correlations. We can also separate both contribution to determine which is the most prominent in this previous plot.
 
 [img [Figures/Cdd_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLIN.png]]
-[ext[(original image)|Figures/.eps/Cdd_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLIN.eps]]
+( [ext[original image|Figures/.eps/Cdd_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLIN.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/Cuu_comparison.py]] )
+
 [img [Figures/Cee_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLOG.png]]
-[ext[(original image)|Figures/.eps/Cee_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLOG.eps]]
+( [ext[original image|Figures/.eps/Cee_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLOG.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/Cuu_comparison.py]] )
+
 
 We have that $$C_{|u||u||}$$ reaches a plateau at a few particle diameters, and the value of this plateau is not dramatically changed by the diffusion rotation constant, $$\tilde{\nu}_r$$, at least after a few rotations -- except for the lower diffusion rotation constant $$\tilde{\nu}_r = 1\cdot10^{-4}$$. On the contrary, $$C_{\hat{u}\hat{u}}$$ reproduces more closely the shape of $$C_{uu}$$, showing that what is well correlated at short and not at long distances is the direction of the displacements and not the displacement itself.
 
 We have seen that $$C_{uu}(r &gt; 20, \Delta t) &lt; 10^{-2}$$ in most cases, we then use $$r_{max}=20$$ as the upper bound of the [[cooperativity|Cooperativity]] integral.
 
 [img [Figures/intCuu_dt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.png]]
-[ext[(original image)|Figures/.eps/intCuu_dt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]]
+( [ext[original image|Figures/.eps/intCuu_dt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/Cuu_intCuu_msd.py]] )
 [img [Figures/intCuu_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.png]]
-[ext[(original image)|Figures/.eps/intCuu_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]]
+( [ext[original image|Figures/.eps/intCuu_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/Cuu_intCuu_msd.py]] )
 
 In this plot, $$dt$$ denotes the integration time step of the simulations from which the data is calculated and $$\Delta t^*$$ is the time lag of maximum cooperativity, which indicates the characteristic time scale of cooperative behaviour (citation?).
 
@@ -9072,16 +9086,16 @@ It is hard to tell from the available data if the shape of $$\chi(\Delta t)$$ is
 This transition occurs at $$\tau_{r, c} \approx 3\cdot10^3$$.
 
 [img [Figures/intCee_dt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.png]]
-[ext[(original image)|Figures/.eps/intCee_dt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]]
+( [ext[original image|Figures/.eps/intCee_dt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/Cuu_intCuu_msd.py]] )
 [img [Figures/intCee_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.png]]
-[ext[(original image)|Figures/.eps/intCee_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]]
+( [ext[original image|Figures/.eps/intCee_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/Cuu_intCuu_msd.py]] )
 
 We observe for $$C_{\hat{u}\hat{u}}$$ the same increase of the average number of coherently moving neighbors and of the time scale at which it occurs, with the same transition at $$\tau_{r,c}$$. However, in this case the average number of rotations at which this cooperativity is maximum is a monotonously decreasing function of the persistence time.
 
 This transition is reminiscent of the one described in [[Wysocki et al., 2014|http://iopscience.iop.org/article/10.1209/0295-5075/105/48004]] (see [[Expected cooperative behaviour]]) which is related to the transition between phase separated (glass and gas) and homogeneous fluid regimes -- although this non-monotonic behabiour of $$\tilde{\nu}_r \Delta t^*$$ in the case of the raw displacement correlation remains intriguing. To test this hypothetic explanation of the change in behaviour, we made a histogram of the local densities $$\phi_{loc}$$, calculated in square boxes of size $$r_{max}$$ centred on $$N_{cases}^2$$ linearly spaced points in $$S_{max}$$ different frames from the $$S_{init}$$-th frame, as a function of the persistence time $$\tau_r$$.
 
 [img [Figures/Pphiloc_Dk8000_Vj1000_Nq1000_Io5000_Ml1000_Cn5000.png]]
-[ext[(original image)|Figures/.eps/Pphiloc_Dk8000_Vj1000_Nq1000_Io5000_Ml1000_Cn5000.eps]]
+( [ext[original image|Figures/.eps/Pphiloc_Dk8000_Vj1000_Nq1000_Io5000_Ml1000_Cn5000.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/Pphiloc.py]] )
 
 This plot shows that for $$\tau_r &lt; 10^3$$ the system's local density histogram is centred around the global system density, consistent with what would be observed for an homogeneous fluid, while for $$\tau_r &gt; 10^4$$ we have regions of high densities ($$\phi_{loc} &gt; \phi = 0.8$$) and very low densities ($$\phi_{loc} &lt; 0.2$$), consitent with what would be observed for a phase separated system. Moreover, the interval of the transition persistence time, $$10^3 \leq \tau_{r,c} \leq 10^4$$, is consistent with the $$\chi(\Delta t^*)$$ versus $$\tau_r$$ plot, such strongly suggesting that the change in behaviour of the cooperativity is due to a structural transition.
 
@@ -9090,7 +9104,7 @@ This transition from a homogeneous fluid to a phase separated system could have 
 This transition can also be investigated with the observation of the [[mean square displacement|Mean square displacement]] behaviour.
 
 [img [Figures/intCuu_msd_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_Io5000_RMINl1000_RMAXm2000.png]]
-[ext[(original image)|Figures/.eps/intCuu_msd_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_Io5000_RMINl1000_RMAXm2000.eps]]
+( [ext[original image|Figures/.eps/intCuu_msd_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_Io5000_RMINl1000_RMAXm2000.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/Pphiloc.py]] )
 
 We had excluded data for $$\tilde{\nu}_r &lt; 1\cdot10^{-5}$$ and $$\tilde{\nu}_r &gt; 1\cdot10^{-2}$$ (grey curves) from the previous analyis because the shapes, maximums and maximum positions of $$\chi(\Delta t)$$ for these data were non-consistent with the rest, as can be seen in the left panel.
 
@@ -9101,40 +9115,40 @@ For the very low activity regime ($$\tilde{\nu}_r &gt; 1\cdot10^{-2}$$), particl
 Curves for the low activity regime ($$1\cdot10^{-2} \leq \tilde{\nu}_r \leq \tau_{r, c}^{-1}$$) seem to transition from the ballistic regime to the diffusive regime after a few rotation. To support this, we can plot the ratio of the mean square displacement and the lag time.
 
 [img [Figures/intCuu_msdt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.png]]
-[ext[(original image)|Figures/.eps/intCuu_msdt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]]
+( [ext[original image|Figures/.eps/intCuu_msdt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/Cuu_intCuu_msd.py]] )
 
 This plot also enables us to see that the transition from a homogeneous fluid to a phase separated system also coincides with the emergence of a (transient?) subdiffusive regime after a few rotations for $$\tilde{\nu}_r &gt; \tau_{r,c}^{-1}$$ and an appreciable dependence of the mean square displacement on the initial time.
 
 To know if the transition from from a homogeneous fluid to a phase separated system also changes the [[directionality of the displacement correlations|Displacement correlation directionality]], we plot the ratio of the transverse and longitudinal displacement correlation as function of the average number of rotations and persistence time.
 
 [img [Figures/CuuLCuuT_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000.png]]
-[ext[(original image)|Figures/.eps/CuuLCuuT_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000.eps]]
+( [ext[original image|Figures/.eps/CuuLCuuT_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/CuuLCuuT.py]] )
 
 We observe a transition from a regime with $$C_{uu}^T(r/a \approx 1, \Delta t^*) &gt; C_{uu}^L(r/a \approx 1, \Delta t^*)$$ and $$C_{uu}^T(r/a \approx 1, \Delta t^*)/C_{uu}^L(r/a \approx 1, \Delta t^*)$$ a decreasing function of the persistence time at low persistence time, to a regime with$$ C_{uu}^T(r/a \approx 1, \Delta t^*) \approx C_{uu}^L(r/a \approx 1, \Delta t^*)$$. This transition occurs at a persistence time in the interval $$[10^3;10^4]$$, which is consistent with the homogeneous fluid to phase separated transition at $$\tau_{r,c}$$.
 
 Looking seperately at the longitudinal and transversal displacement correlation might give more insights into this transition.
 
 [img [Figures/CuuLCuuT_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_separate.png]]
-[ext[(original image)|Figures/.eps/CuuLCuuT_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_separate.eps]]
+( [ext[original image|Figures/.eps/CuuLCuuT_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_separate.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/CuuLCuuT.py]] )
 
 For now, it is hard to have a clear understanding of these curves -- especially since the points of the curves corresponding to the average number of rotations at maximum cooperativity, $$\tilde{\nu}_r\Delta t^*$$, do not seem to be particularly relevant at first sight.
 
 [img [Figures/CeeLCeeT_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000.png]]
-[ext[(original image)|Figures/.eps/CeeLCeeT_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000.eps]]
+( [ext[original image|Figures/.eps/CeeLCeeT_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/CuuLCuuT.py]] )
 
 We have the same behaviour for the ratio of the transversal and longitudinal components of the displacement orientation correlation and displacemement correlation. Furthermore, the slopes of this ratio in the low persitence regime is the same for both variables.
 
 [img [Figures/CeeLCeeT_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_separate.png]]
-[ext[(original image)|Figures/.eps/CeeLCeeT_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_separate.eps]]
+( [ext[original image|Figures/.eps/CeeLCeeT_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_separate.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/CuuLCuuT.py]] )
 
 This last plot seems to indicate that in the high persistence regime, the time of maximum cooperation coincides with the time of maximum longitudinal displacement orientation correlation. Furthermore, we have in both regimes that the longitudinal displacement orientation correlation is an increasing function of the persistence time.
 
 We can finally look at videos of the actual system. In these videos, $$r_{max}$$ corresponds to the size of the rendered square box of particles which has the same centre as the original system, the colors of the particles are linked to their respective displacement amplitude between the times $$t$$ and $$t + \Delta t$$ and the arrow on particle $$i$$ has the direction of $$\vec{r}_i(t+\Delta t) - \vec{r}_i(t)$$.
 
-* At [ext[low persistence time|Videos/u_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mn1500_Pl1000_MOVEl1000.mp4]], we have that the directions of the displacements appear as swirl patterns. However, the particles do not revolve around the centres of these swirls.
-* At [ext[high persistence time|Videos/u_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Io5000_Mn1500_Pl1000_MOVEl1000.mp4]], particles are clustered in blocks which slide on each another, the displacements are correlated over large distances and periods of time.</pre>
+* At [ext[low persistence time|Videos/u_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mn1500_Pl1000_MOVEl1000.mp4]], we have that the directions of the displacements appear as swirl patterns. However, the particles do not revolve around the centres of these swirls. Looking at the particle trajectories ([ext[dt=1e1|Videos/t_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mo1000_Pl1000.mp4]], [ext[dt=1e2|Videos/t_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mo1000_Pm1000.mp4]], [ext[dt=1e3|Videos/t_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mo1000_Pn1000.mp4]]), we have that the individual displacements over $$\Delta t = 10^3$$ have a few particle diameters amplitude but are generally uncorrelated, leading to an overall small and uncorrelated displacement of the particles.
+* At [ext[high persistence time|Videos/u_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Io5000_Mn1500_Pl1000_MOVEl1000.mp4]], particles are clustered in blocks which slide on each another, the displacements are correlated over large distances and periods of time. Looking at the particle trajectories ([ext[dt=1e3|Videos/t_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Io5000_Mo1000_Pl1000.mp4]]), we see that rearrangements appear as suddent bursts in the system. Moreover, the system is denser than in the lower persistence time case and the overall displacement is also greater.</pre>
 </div>
-<div created="20180420010218374" modified="20180420030835894" tags="Analysis" title="phi = 1.00, v = 1e-1">
+<div created="20180420010218374" modified="20180423220435925" tags="Analysis" title="phi = 1.00, v = 1e-1">
 <pre>From the [[expected phase diagram|Expected phase diagram]] of our system, we have that the point $$(\phi=1.00, \tilde{v}=1\cdot10^{-1}, \tilde{\nu}_r=5\cdot10^{-4})$$ should be in the phase separated domain. We investigated a system at $$\phi=1.00$$ and $$\tilde{v}=1\cdot10^{-1}$$ for different values of the diffusion rotation constant.
 
 We computed $$C_{uu}(\Delta r, \Delta t)$$ for a maximul number of $$S_{max}$$ intervals of time $$[t, t+\Delta t]$$ with $$t$$ greater of equal to the $$S_{init}$$-th frame. Displacement [[field auto-correlation|Discrete field auto-correlation]] was performed from a $$N_{cases}$$ per $$N_{cases}$$ grid of displacements, derived from the original discrete field.
@@ -9231,7 +9245,7 @@ This last plot might suggest that in the high persistence regime, the time of ma
 
 We can finally look at videos of the actual system. In these videos, $$r_{max}$$ corresponds to the size of the rendered square box of particles which has the same centre as the original system, the colors of the particles are linked to their respective displacement amplitude between the times $$t$$ and $$t + \Delta t$$ and the arrow on particle $$i$$ has the direction of $$\vec{r}_i(t+\Delta t) - \vec{r}_i(t)$$.
 
-* At [ext[low persistence time|Videos/u_Dl1000_Vk1000_Rj2000_Nq1000_Ll0000_Io5000_Mn1500_Pl1000_MOVEl1000.mp4]], we have that the directions of the displacements appear as swirl patterns. However, the particles do not revolve around the centres of these swirls.
+* At [ext[low persistence time|Videos/u_Dl1000_Vk1000_Rj2000_Nq1000_Ll0000_Io5000_Mo1000_Pl1000_MOVEl1000.mp4]], we have that the directions of the displacements appear as swirl patterns. However, the particles do not revolve around the centres of these swirls.
 * At [ext[high persistence time|Videos/u_Dl1000_Vk1000_Rh2000_Nq1000_Ll0000_Io5000_Mn1500_Pl1000_MOVEl1000.mp4]], particles are clustered in blocks which slide on each another.</pre>
 </div>
 <div created="20180419234005870" modified="20180420013826467" tags="Analysis" title="phi = 1.00, v = 5e-2">
