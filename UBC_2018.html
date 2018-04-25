@@ -224,6 +224,8 @@ Error message and password prompt
 
 <li>phi = 1.00, v = 5e-2</li>
 
+<li>Smooth strain field</li>
+
 <li>System</li>
 
 <li>TableOfContents</li>
@@ -8723,13 +8725,13 @@ Error message and password prompt
 <div created="20180417010842396" modified="20180417010842396" title="$:/state/toc/TableOfContents/Measurements-Cooperativity--81657105">
 <pre>open</pre>
 </div>
-<div created="20180417013345743" modified="20180417013345743" title="$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105">
+<div created="20180417013345743" modified="20180424223751239" title="$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105">
 <pre>open</pre>
 </div>
 <div created="20180417222853075" modified="20180417222853075" title="$:/state/toc/TableOfContents/Measurements/Displacement correlations-Cooperativity--81657105">
 <pre>open</pre>
 </div>
-<div list="[[phi = 1.00, v = 1e-1]] [[phi = 0.80, v = 1e-2]]" title="$:/StoryList">
+<div list="[[Smooth strain field]] [[Displacement correlations]] [[phi = 1.00, v = 1e-1]] [[phi = 0.80, v = 1e-2]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9362,6 +9364,96 @@ We have the same behaviour for the ratio of the transversal and longitudinal com
 § [ext[original image|Figures/.eps/CeeLCeeT_Dl1000_Vj5000_Nq1000_Io5000_Mn1000_Cn5000_separate.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/CuuLCuuT.py]] )
 
 As in the [[lower density case|phi = 0.80, v = 1e-2]], this last plot seems to indicate that in the time of maximum cooperation coincides with the time of maximum longitudinal displacement orientation correlation.</pre>
+</div>
+<div created="20180424224046740" modified="20180425042745520" tags="Measurements" title="Smooth strain field">
+<pre>We first derive the expression of the 2D strain tensor. Our demonstration is based on [[Theory of Elasticity, chapter 1|https://archive.org/details/TheoryOfElasticity]] from the Landau and Lifshitz series.
+
+Consider a 2D continuous body, we will denote $$x$$ and $$y$$ the 2 coordinates of space. If this body is deformed, we have that a point initially at $$\vec{r}$$ will be at $$\vec{r}^{\prime}$$ after the deformation, we will denote $$\vec{u} = \vec{r}^{\prime} - \vec{r}$$ the displacement vector.
+
+Let us now take two points in this body, which are initially very close together and separated by vector $$\vec{dr}$$, then these points are separated by vector $$\vec{dr}^{\prime} = \vec{dr} + \vec{du}$$ after the deformation. Their initial distance $$dl = \sqrt{dr_x^2 + dr_y^2}$$ then becomes $$dl^{\prime} = \sqrt{dr^{\prime2}_x + dr^{\prime2}_y}$$. With $$du_{\alpha} = \sum_{\beta} \frac{\partial u_{\alpha}}{\partial x_{\beta}}dx_{\beta}$$, we can then write
+$$
+\begin{aligned}
+dl^{\prime2} &amp;= dr^{\prime2}_x + dr^{\prime2}_y = (dr_x + du_x)^2 + (dr_y + du_y)^2\\
+&amp;= dr_x^2 + dr_y^2 + 2(dr_x du_x + dr_y du_y) + du_x^2 + du_y^2\\
+&amp;= dl^2 + 2 \sum_{\alpha, \beta} \frac{\partial u_{\alpha}}{\partial x_{\beta}}dx_{\alpha}dx_{\beta} + \sum_{\alpha, \beta, \gamma} \frac{\partial u_{\alpha}}{\partial x_{\beta}}\frac{\partial u_{\alpha}}{\partial x_{\gamma}} dx_{\beta} dx_{\gamma}
+\end{aligned}
+$$
+where $$\forall \alpha, \beta, \gamma,  \frac{\partial u_{\alpha}}{\partial x_{\beta}}\frac{\partial u_{\alpha}}{\partial x_{\gamma}}$$ is negligible if the deformation is sufficiently small. Therefore, with
+$$
+\varepsilon = \begin{pmatrix} \frac{\partial u_x}{\partial x} &amp; \frac{1}{2} \left(\frac{\partial u_x}{\partial y} + \frac{\partial u_y}{\partial x}\right) \\ \frac{1}{2} \left(\frac{\partial u_x}{\partial y} + \frac{\partial u_y}{\partial x}\right) &amp;  \frac{\partial u_y}{\partial y} \end{pmatrix}
+$$
+we have $$dl^{\prime2} = dl^2 + 2\sum_{\alpha\beta} \varepsilon_{\alpha\beta} dx_{\alpha} dx_{\beta}$$. This tensor $$\varepsilon$$ is called the //strain tensor// and characterises the deformation of the body.
+
+---
+
+We will now describe how to calculate a tranversal shear strain field $$\varepsilon_{xy}(\vec{r})$$ from discrete particle positions, $$\vec{r}_i, i=1,\ldots,N$$.
+
+Inspired by [[Illing et al., 2016|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.117.208002]], [[Chattoraj et al., 2013|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.111.066001]] and [[Goldhirsch et al., 2002|https://link.springer.com/article/10.1140%2Fepje%2Fi2002-10073-5]], we define the coarse-graining operator $$\mathcal{A}(\vec{r}, r_c, \sigma)$$ which associates to any particle-dependent variable $$c_i(t)$$ its coarse-grained version $$\bar{c}(\vec{r}, t)$$ such that
+$$
+\bar{c}(\vec{r}, t) = \mathcal{A}(\vec{r}, r_c, \sigma)\{c_i(t)\} = \sum_{i=1}^N c_i(t) \phi(|\vec{r}-\vec{r}_i(t)|, r_c, \sigma)
+$$
+where
+$$
+\begin{aligned}
+\phi(r, r_c, \sigma) &amp;= \frac{1}{D_g(r_c, \sigma)}\begin{cases} \exp\left(-\frac{r^2}{2\sigma^2}\right) &amp; \text{ if } r &lt; r_c \\ 0 &amp; \text{ otherwise} \end{cases}\\
+D_g(r_c, \sigma) &amp;= 2\pi\sigma^2\left(1 - \exp\left(-\frac{r_c^2}{2\sigma^2}\right)\right)
+\end{aligned}
+$$
+are the Gaussian coarse-graining function and its normalisation factor respectively.
+
+We will then calculate the transversal shear strain field for the displacement field
+$$
+\begin{aligned}
+\vec{u}(\vec{r}, t, t+\Delta t) &amp;= \frac{1}{\bar{\rho}(\vec{r}, t)} \mathcal{A}(\vec{r}, r_c, \sigma)\{\vec{u}_i(t, t+\Delta t)\} \\
+&amp;= \frac{1}{\bar{\rho}(\vec{r}, t)} \sum_{i=1}^N \vec{u}_i(t, t+\Delta t) \phi(|\vec{r}-\vec{r}_i(t)|, r_c, \sigma)\\
+\bar{\rho}(\vec{r}, t) &amp;= \mathcal{A}(\vec{r}, r_c, \sigma)\{m_i\}\\
+&amp;= \sum_{i=1}^N m_i \phi(|\vec{r}-\vec{r}_i(t)|, r_c, \sigma)
+\end{aligned}
+$$
+where $$m_i$$ is the mass of particle $$i$$.
+
+We are looking for $$\varepsilon_{xy}(\vec{r}) = \frac{1}{2} \left(\frac{\partial u_x}{\partial y} + \frac{\partial u_y}{\partial x}\right)$$, //i.e.//
+$$
+\begin{aligned}
+\varepsilon_{xy}(\vec{r}) = \frac{1}{2} \Bigg[ &amp;\frac{\partial}{\partial y}\left(\frac{1}{\bar{\rho}(\vec{r}, t)}\right)\mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,x}(t, t + \Delta t)\} + \frac{1}{\bar{\rho}(\vec{r}, t)}\sum_{i=1}^Nu_{i,x}(t, t+\Delta t)\frac{\partial}{\partial y}\left(\phi(|\vec{r} - \vec{r}_i(t)|, r_c, \sigma)\right)\\
+&amp;\frac{\partial}{\partial x}\left(\frac{1}{\bar{\rho}(\vec{r}, t)}\right)\mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,y}(t, t + \Delta t)\} + \frac{1}{\bar{\rho}(\vec{r}, t)}\sum_{i=1}^Nu_{i,y}(t, t+\Delta t)\frac{\partial}{\partial x}\left(\phi(|\vec{r} - \vec{r}_i(t)|, r_c, \sigma)\right)\Bigg]
+\end{aligned}
+$$
+where we have $$\forall r &lt; r_c$$
+$$
+\begin{aligned}
+\frac{\partial}{\partial x_{\alpha}}\phi(|\vec{r}-\vec{r}_i(t)|, r_c, \sigma) &amp;= \frac{1}{D_g(r_c, \sigma)} \frac{\partial}{\partial x_{\alpha}} \exp\left(-\frac{|\vec{r} - \vec{r}_i(t)|^2}{2\sigma^2}\right)\\
+&amp;= - \frac{x_{\alpha} - x_{i, \alpha}(t)}{D_g(r_c, \sigma)\sigma^2} \exp\left(-\frac{|\vec{r} - \vec{r}_i(t)|^2}{2\sigma^2}\right)\\
+&amp;= - \frac{x_{\alpha} - x_{i, \alpha}(t)}{\sigma^2} \phi(|\vec{r}-\vec{r}_i(t)|, r_c, \sigma)
+\end{aligned}
+$$
+from which it directly follows for any particle-dependent variable $$c_i(t)$$
+$$
+\begin{aligned}
+\sum_{i=1}^N c_i(t) \frac{\partial}{\partial x_{\alpha}}(\phi(|\vec{r}-\vec{r}_i(t)|, r_c, \sigma) &amp;= - \frac{1}{\sigma^2}\sum_{i=1}^N c_i(t)(x_{\alpha} - x_{i, \alpha}(t))\phi(|\vec{r}-\vec{r}_i(t)|, r_c, \sigma)\\
+&amp;= - \frac{1}{\sigma^2}\mathcal{A}(\vec{r}, r_c, \sigma)\{c_i(t)(x_{\alpha} - x_{i, \alpha}(t))\}
+\end{aligned}
+$$
+therefore
+$$
+\begin{aligned}
+\frac{\partial}{\partial x_{\alpha}}\left(\frac{1}{\bar{\rho}(\vec{r}, t)}\right) &amp;= - \frac{1}{\bar{\rho}^2(\vec{r},t)}\frac{\partial}{\partial x_{\alpha}}\bar{\rho}(\vec{r}, t)\\
+&amp;= - \frac{1}{\bar{\rho}^2(\vec{r},t)}\sum_{i=1}^N m_i \frac{\partial}{\partial x_{\alpha}}(\phi(|\vec{r}-\vec{r}_i(t)|, r_c, \sigma)\\
+&amp;= \frac{1}{\bar{\rho}^2(\vec{r},t)\sigma^2}\mathcal{A}(\vec{r}, r_c, \sigma)\{m_i(x_{\alpha} - x_{i, \alpha}(t))\}
+\end{aligned}
+$$
+and to conclude
+$$
+\begin{aligned}
+\varepsilon_{xy}(\vec{r}) = \frac{1}{2} \Bigg[&amp;\frac{1}{\bar{\rho}^2(\vec{r},t)\sigma^2}\Big(\mathcal{A}(\vec{r}, r_c, \sigma)\{m_i(y - y_i(t))\} \times \mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,x}(t, t+\Delta t)\}\\
+&amp;+ \mathcal{A}(\vec{r}, r_c, \sigma)\{m_i(x - x_i(t))\} \times \mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,y}(t, t+\Delta t)\}\Big)\\
+&amp;-\frac{1}{\bar{\rho}(\vec{r},t)\sigma^2}\Big(\mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,x}(t, t+\Delta t)(y - y_i(t))\} + \mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,y}(t, t+\Delta t)(x - x_i(t))\}\Big)\Bigg]
+\end{aligned}
+$$
+
+From a computational point of view, it is then easy to compute the strain in any point $$\vec{r}$$ from the positions and displacements of particles and with operator $$\mathcal{A}(\vec{r}, r_c, \sigma)$$. It is then also easy to compute the [[auto-correlation|Discrete field auto-correlation]] of this field.
+
+[[Computation script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/analysis/_colmig_DPD_P_A_Css]]</pre>
 </div>
 <div created="20180417013424708" modified="20180417220103760" tags="Model" title="System">
 <pre>Model from [[Fily et al., 2014|http://pubs.rsc.org/-/content/articlelanding/2014/sm/c3sm52469h/]]. (see [[phase diagram|Expected phase diagram]], [[phase boundaries shifting|Expected phase boundaries shifting]]) 
