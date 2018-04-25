@@ -224,7 +224,7 @@ Error message and password prompt
 
 <li>phi = 1.00, v = 5e-2</li>
 
-<li>Smooth strain field</li>
+<li>Smooth strain and vorticity fields</li>
 
 <li>System</li>
 
@@ -8731,7 +8731,7 @@ Error message and password prompt
 <div created="20180417222853075" modified="20180417222853075" title="$:/state/toc/TableOfContents/Measurements/Displacement correlations-Cooperativity--81657105">
 <pre>open</pre>
 </div>
-<div list="[[Smooth strain field]] [[Displacement correlations]] [[phi = 1.00, v = 1e-1]] [[phi = 0.80, v = 1e-2]]" title="$:/StoryList">
+<div list="[[(phi = 0.80, v = 1e-2) vs. (phi = 1.00, v = 1e-1)]] [[Smooth strain and vorticity fields]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9365,7 +9365,7 @@ We have the same behaviour for the ratio of the transversal and longitudinal com
 
 As in the [[lower density case|phi = 0.80, v = 1e-2]], this last plot seems to indicate that in the time of maximum cooperation coincides with the time of maximum longitudinal displacement orientation correlation.</pre>
 </div>
-<div created="20180424224046740" modified="20180425042745520" tags="Measurements" title="Smooth strain field">
+<div created="20180424224046740" modified="20180425193050430" tags="Measurements" title="Smooth strain and vorticity fields">
 <pre>We first derive the expression of the 2D strain tensor. Our demonstration is based on [[Theory of Elasticity, chapter 1|https://archive.org/details/TheoryOfElasticity]] from the Landau and Lifshitz series.
 
 Consider a 2D continuous body, we will denote $$x$$ and $$y$$ the 2 coordinates of space. If this body is deformed, we have that a point initially at $$\vec{r}$$ will be at $$\vec{r}^{\prime}$$ after the deformation, we will denote $$\vec{u} = \vec{r}^{\prime} - \vec{r}$$ the displacement vector.
@@ -9386,7 +9386,7 @@ we have $$dl^{\prime2} = dl^2 + 2\sum_{\alpha\beta} \varepsilon_{\alpha\beta} dx
 
 ---
 
-We will now describe how to calculate a tranversal shear strain field $$\varepsilon_{xy}(\vec{r})$$ from discrete particle positions, $$\vec{r}_i, i=1,\ldots,N$$.
+We will now describe how to calculate a tranversal shear strain field $$\varepsilon_{xy}(\vec{r}, t, t+\Delta t)$$ from discrete particle positions, $$\vec{r}_i, i=1,\ldots,N$$.
 
 Inspired by [[Illing et al., 2016|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.117.208002]], [[Chattoraj et al., 2013|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.111.066001]] and [[Goldhirsch et al., 2002|https://link.springer.com/article/10.1140%2Fepje%2Fi2002-10073-5]], we define the coarse-graining operator $$\mathcal{A}(\vec{r}, r_c, \sigma)$$ which associates to any particle-dependent variable $$c_i(t)$$ its coarse-grained version $$\bar{c}(\vec{r}, t)$$ such that
 $$
@@ -9412,11 +9412,13 @@ $$
 $$
 where $$m_i$$ is the mass of particle $$i$$.
 
-We are looking for $$\varepsilon_{xy}(\vec{r}) = \frac{1}{2} \left(\frac{\partial u_x}{\partial y} + \frac{\partial u_y}{\partial x}\right)$$, //i.e.//
+We are looking for $$\varepsilon_{xy}(\vec{r}, t, t+\Delta t) = \frac{1}{2} \left(\frac{\partial u_x}{\partial y}(\vec{r}, t, t+\Delta t) + \frac{\partial u_y}{\partial x}(\vec{r}, t, t+\Delta t)\right)$$, //i.e.//
 $$
 \begin{aligned}
-\varepsilon_{xy}(\vec{r}) = \frac{1}{2} \Bigg[ &amp;\frac{\partial}{\partial y}\left(\frac{1}{\bar{\rho}(\vec{r}, t)}\right)\mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,x}(t, t + \Delta t)\} + \frac{1}{\bar{\rho}(\vec{r}, t)}\sum_{i=1}^Nu_{i,x}(t, t+\Delta t)\frac{\partial}{\partial y}\left(\phi(|\vec{r} - \vec{r}_i(t)|, r_c, \sigma)\right)\\
-&amp;\frac{\partial}{\partial x}\left(\frac{1}{\bar{\rho}(\vec{r}, t)}\right)\mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,y}(t, t + \Delta t)\} + \frac{1}{\bar{\rho}(\vec{r}, t)}\sum_{i=1}^Nu_{i,y}(t, t+\Delta t)\frac{\partial}{\partial x}\left(\phi(|\vec{r} - \vec{r}_i(t)|, r_c, \sigma)\right)\Bigg]
+\varepsilon_{xy}(\vec{r}, t, t+\Delta t) = \frac{1}{2} \Bigg[ &amp;\frac{\partial}{\partial y}\left(\frac{1}{\bar{\rho}(\vec{r}, t)}\right)\mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,x}(t, t + \Delta t)\}\\
+&amp;+ \frac{1}{\bar{\rho}(\vec{r}, t)}\sum_{i=1}^Nu_{i,x}(t, t+\Delta t)\frac{\partial}{\partial y}\left(\phi(|\vec{r} - \vec{r}_i(t)|, r_c, \sigma)\right)\\
+&amp;\frac{\partial}{\partial x}\left(\frac{1}{\bar{\rho}(\vec{r}, t)}\right)\mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,y}(t, t + \Delta t)\}\\
+&amp;+ \frac{1}{\bar{\rho}(\vec{r}, t)}\sum_{i=1}^Nu_{i,y}(t, t+\Delta t)\frac{\partial}{\partial x}\left(\phi(|\vec{r} - \vec{r}_i(t)|, r_c, \sigma)\right)\Bigg]
 \end{aligned}
 $$
 where we have $$\forall r &lt; r_c$$
@@ -9445,13 +9447,32 @@ $$
 and to conclude
 $$
 \begin{aligned}
-\varepsilon_{xy}(\vec{r}) = \frac{1}{2} \Bigg[&amp;\frac{1}{\bar{\rho}^2(\vec{r},t)\sigma^2}\Big(\mathcal{A}(\vec{r}, r_c, \sigma)\{m_i(y - y_i(t))\} \times \mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,x}(t, t+\Delta t)\}\\
-&amp;+ \mathcal{A}(\vec{r}, r_c, \sigma)\{m_i(x - x_i(t))\} \times \mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,y}(t, t+\Delta t)\}\Big)\\
-&amp;-\frac{1}{\bar{\rho}(\vec{r},t)\sigma^2}\Big(\mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,x}(t, t+\Delta t)(y - y_i(t))\} + \mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,y}(t, t+\Delta t)(x - x_i(t))\}\Big)\Bigg]
+\varepsilon_{xy}(\vec{r}, t, t+\Delta t) = \frac{1}{2} \Bigg[\frac{1}{\bar{\rho}^2(\vec{r},t)\sigma^2}&amp;\Big(&amp;&amp;\mathcal{A}(\vec{r}, r_c, \sigma)\{m_i(y - y_i(t))\} \times \mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,x}(t, t+\Delta t)\}\\
+&amp; &amp;&amp;+ \mathcal{A}(\vec{r}, r_c, \sigma)\{m_i(x - x_i(t))\} \times \mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,y}(t, t+\Delta t)\}\Big)\\
+-\frac{1}{\bar{\rho}(\vec{r},t)\sigma^2}&amp;\Big(&amp;&amp;\mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,x}(t, t+\Delta t)(y - y_i(t))\}\\
+&amp; &amp;&amp;+ \mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,y}(t, t+\Delta t)(x - x_i(t))\}\Big)\Bigg]
 \end{aligned}
 $$
 
 From a computational point of view, it is then easy to compute the strain in any point $$\vec{r}$$ from the positions and displacements of particles and with operator $$\mathcal{A}(\vec{r}, r_c, \sigma)$$. It is then also easy to compute the [[auto-correlation|Discrete field auto-correlation]] of this field.
+
+---
+
+We have that vorticity
+$$
+\omega(\vec{r}, t, t+\Delta t) = \left(\vec{\nabla}\times\vec{u}(\vec{r}, t, t+\Delta t)\right)\cdot\vec{e}_z = \frac{\partial u_y}{\partial x}(\vec{r}, t, t+\Delta t) - \frac{\partial u_x}{\partial y}(\vec{r}, t, t+\Delta t)
+$$
+is also a function of derivatives of the displacement field, we can then use our previous calculations to write
+$$
+\begin{aligned}
+\omega(\vec{r}, t, t+\Delta t) = \frac{1}{\bar{\rho}^2(\vec{r},t)\sigma^2}&amp;\Big(&amp;&amp; \mathcal{A}(\vec{r}, r_c, \sigma)\{m_i(x - x_i(t))\} \times \mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,y}(t, t+\Delta t)\}\\
+&amp; &amp;&amp;-\mathcal{A}(\vec{r}, r_c, \sigma)\{m_i(y - y_i(t))\} \times \mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,x}(t, t+\Delta t)\}\Big)\\
+-\frac{1}{\bar{\rho}(\vec{r},t)\sigma^2}&amp;\Big(&amp;&amp;\mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,y}(t, t+\Delta t)(x - x_i(t))\}\\
+&amp; &amp;&amp;-
+ \mathcal{A}(\vec{r}, r_c, \sigma)\{u_{i,x}(t, t+\Delta t)(y - y_i(t))\}\Big)
+\end{aligned}
+$$
+and compute both variables at the same time.
 
 [[Computation script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/analysis/_colmig_DPD_P_A_Css]]</pre>
 </div>
