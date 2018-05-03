@@ -224,7 +224,9 @@ Error message and password prompt
 
 <li>phi = 1.00, v = 5e-2</li>
 
-<li>Smooth strain and vorticity fields</li>
+<li>Strain and vorticity fields</li>
+
+<li>Strain correlations</li>
 
 <li>System</li>
 
@@ -8731,7 +8733,7 @@ Error message and password prompt
 <div created="20180417222853075" modified="20180417222853075" title="$:/state/toc/TableOfContents/Measurements/Displacement correlations-Cooperativity--81657105">
 <pre>open</pre>
 </div>
-<div list="[[(phi = 0.80, v = 1e-2) vs. (phi = 1.00, v = 1e-1)]] [[Smooth strain and vorticity fields]]" title="$:/StoryList">
+<div list="[[Strain correlations]] [[Strain and vorticity fields]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9365,7 +9367,7 @@ We have the same behaviour for the ratio of the transversal and longitudinal com
 
 As in the [[lower density case|phi = 0.80, v = 1e-2]], this last plot seems to indicate that in the time of maximum cooperation coincides with the time of maximum longitudinal displacement orientation correlation.</pre>
 </div>
-<div created="20180424224046740" modified="20180425193050430" tags="Measurements" title="Smooth strain and vorticity fields">
+<div created="20180424224046740" modified="20180503002207399" tags="Measurements" title="Strain and vorticity fields">
 <pre>We first derive the expression of the 2D strain tensor. Our demonstration is based on [[Theory of Elasticity, chapter 1|https://archive.org/details/TheoryOfElasticity]] from the Landau and Lifshitz series.
 
 Consider a 2D continuous body, we will denote $$x$$ and $$y$$ the 2 coordinates of space. If this body is deformed, we have that a point initially at $$\vec{r}$$ will be at $$\vec{r}^{\prime}$$ after the deformation, we will denote $$\vec{u} = \vec{r}^{\prime} - \vec{r}$$ the displacement vector.
@@ -9454,7 +9456,7 @@ $$
 \end{aligned}
 $$
 
-From a computational point of view, it is then easy to compute the strain in any point $$\vec{r}$$ from the positions and displacements of particles and with operator $$\mathcal{A}(\vec{r}, r_c, \sigma)$$. It is then also easy to compute the [[auto-correlation|Discrete field auto-correlation]] of this field.
+From a computational point of view, it is then easy to compute the strain in any point $$\vec{r}$$ from the positions and displacements of particles and with operator $$\mathcal{A}(\vec{r}, r_c, \sigma)$$. It is then also easy to compute the [[auto-correlation|Discrete field auto-correlation]] of this field. (see [[Strain correlations]])
 
 ---
 
@@ -9475,6 +9477,25 @@ $$
 and compute both variables at the same time.
 
 [[Computation script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/analysis/_colmig_DPD_P_A_Css]]</pre>
+</div>
+<div created="20180503001320428" modified="20180503003322671" tags="[[Strain and voriticity fields]]" title="Strain correlations">
+<pre>We can compute strain correlations
+$$
+C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t) = \frac{\int dt \int d^2\vec{r}~ \varepsilon_{xy}(\vec{r}, t, t + \Delta t) \varepsilon_{xy}(\vec{r} + \Delta \vec{r}, t, t + \Delta t) }{\int dt \int d^2\vec{r}~ \varepsilon_{xy}(\vec{r}, t, t + \Delta t)^2}
+$$
+from the [[coarse-grained strain field|Strain and vorticity fields]] and the [[discrete field auto-correlation method|Discrete field auto-correlation]]. ([[computation script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/analysis/_colmig_DPD_P_A_Css]])
+
+This correlation function has a four-fold symmetry, we can then project it on the appropriate spherical harmonics (see [[Illing et al., 2016|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.117.208002]]). With $$\Delta \vec{r} \equiv (\Delta r, \theta)$$ in polar coordinates, we define
+$$
+C_4^4(\Delta r, \Delta t) = \frac{1}{\pi} \int_0^{2\pi} d\theta~ \cos(4\theta)~ C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t)
+$$
+for which we want to characterise the decay as $$\Delta r \rightarrow +\infty$$. ([[computation script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/C44_comparison.py]])
+
+According to [[Illing et al., 2016|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.117.208002]], we should have
+$$
+C_4^4(\Delta r, \Delta t) \propto \frac{1}{\Delta r^2}
+$$
+in a certain range of $$\Delta t$$, for brownian particles in both glassy and liquid states. However, this scale-free (algebraic) correlation becomes exponential in the liquid state if the viscosity is low enough (temperature is high enough).</pre>
 </div>
 <div created="20180417013424708" modified="20180417220103760" tags="Model" title="System">
 <pre>Model from [[Fily et al., 2014|http://pubs.rsc.org/-/content/articlelanding/2014/sm/c3sm52469h/]]. (see [[phase diagram|Expected phase diagram]], [[phase boundaries shifting|Expected phase boundaries shifting]]) 
