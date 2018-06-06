@@ -44,7 +44,7 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE." />
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
-<title>UBC - 2018 — Simple model of active particles</title>
+<title>Simple model of active particles — UBC - 2018</title>
 <!--~~ This is a Tiddlywiki file. The points of interest in the file are marked with this pattern ~~--><!--~~ Raw markup ~~-->
 
 
@@ -120,6 +120,8 @@ Error message and password prompt
 
 <p>This <a class="tc-tiddlylink-external" href="https://tiddlywiki.com" rel="noopener noreferrer" target="_blank">TiddlyWiki</a> contains the following tiddlers:</p><p><ul>
 
+<li>(phi = 0.80, v = 1e-2) strain correlations</li>
+
 <li>(phi = 0.80, v = 1e-2) vs. (phi = 1.00, v = 1e-1)</li>
 
 <li>$:/config/RelinkOnRename</li>
@@ -164,6 +166,14 @@ Error message and password prompt
 
 <li>$:/state/toc/Measurements-Cooperativity--1479111847</li>
 
+<li>$:/state/toc/Measurements-Displacement correlations--1479111847</li>
+
+<li>$:/state/toc/Measurements-Shear strain and vorticity fields--1479111847</li>
+
+<li>$:/state/toc/Measurements/Displacement correlations-Cooperativity--1479111847</li>
+
+<li>$:/state/toc/Measurements/Shear strain and vorticity fields-Shear strain correlations--1479111847</li>
+
 <li>$:/state/toc/TableOfContents-Analysis--81657105</li>
 
 <li>$:/state/toc/TableOfContents-Measurements--81657105</li>
@@ -174,7 +184,15 @@ Error message and password prompt
 
 <li>$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105</li>
 
+<li>$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields--81657105</li>
+
+<li>$:/state/toc/TableOfContents/Measurements-Strain and vorticity fields--81657105</li>
+
 <li>$:/state/toc/TableOfContents/Measurements/Displacement correlations-Cooperativity--81657105</li>
+
+<li>$:/state/toc/TableOfContents/Measurements/Shear strain and vorticity fields-Shear strain correlations--81657105</li>
+
+<li>$:/state/toc/TableOfContents/Measurements/Strain and vorticity fields-Strain correlations--81657105</li>
 
 <li>$:/StoryList</li>
 
@@ -210,6 +228,8 @@ Error message and password prompt
 
 <li>Expected phase diagram</li>
 
+<li>Expected shear strain correlations</li>
+
 <li>Integration method</li>
 
 <li>Mean square displacement</li>
@@ -224,9 +244,9 @@ Error message and password prompt
 
 <li>phi = 1.00, v = 5e-2</li>
 
-<li>Strain and vorticity fields</li>
+<li>Shear strain and vorticity fields</li>
 
-<li>Strain correlations</li>
+<li>Shear strain correlations</li>
 
 <li>System</li>
 
@@ -242,13 +262,76 @@ Error message and password prompt
 <!--~~ Ordinary tiddlers ~~-->
 
 <div id="storeArea" style="display:none;">
-<div created="20180423185822864" modified="20180423213402687" tags="Analysis" title="(phi = 0.80, v = 1e-2) vs. (phi = 1.00, v = 1e-1)">
+<div created="20180606015759910" list="" modified="20180606041237448" tags="[[Shear strain correlations]]" title="(phi = 0.80, v = 1e-2) strain correlations">
+<pre>We recall the transition rotation diffusion constant, $$\tilde{\nu}_{r, c} \approx 3\cdot10^{-4}$$, between the homogeneous active fluid regime (low activity, $$\tilde{\nu}_r &gt; \tilde{\nu}_{r, c}$$) and the phase separated regime (high activity, $$\tilde{\nu}_r &lt; \tilde{\nu}_{r, c}$$), as determined in [[phi = 0.80, v = 1e-2]] for the system at density $$\phi=0.80$$ and self-propulsion velocity $$v_0=1\cdot10^{-2}$$.
+
+We investigate the behaviour of  $$C_4^4(r, nD_0\Delta t)$$ — the projection projection of the shear strain correlation fonction on $$\cos4\theta$$, as described in [[Shear strain correlations]] — at different lag times and activities, for the system at density.
+
+''Initial observation''
+
+[img [Figures/c44_comparison_Dk8000_Vj1000_Rh7000_Nq1000_Ll0000.png]]
+( [ext[original image|Figures/.eps/c44_comparison_Dk8000_Vj1000_Rh7000_Nq1000_Ll0000.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/plot/c44.py]] )
+
+At $$\tilde{\nu}_r = 7\cdot10^{-4} &gt; \tilde{\nu}_{r, c}$$, we have as expected (see [[Expected shear strain correlations]]) that the shear strain correlations has a peak at few interparticular distances before decaying.
+
+We observe that the length scale — and shape — of the shear strain correlation varies importantly and non-monotincally with displacement lag time. However, we see that $$nD_0\Delta t$$ of the order of magnitude from 1 to 10, this correlation is close to exponential. We then investigate shear strain correlations at lower displacement lag times.
+
+''Low activity''
+
+Deep in the homogeneous active fluid regime, we observe that the shear strain correlations decay close to exponentially
+
+* for $$\tilde{\nu}_r = 2\cdot10^{-3}$$,
+
+[img [Figures/c44_comparison_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000.png]]
+( [ext[original image|Figures/.eps/c44_comparison_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/plot/c44.py]] )
+
+* and $$\tilde{\nu}_r = 7\cdot10^{-3}$$
+
+[img [Figures/c44_comparison_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000.png]]
+( [ext[original image|Figures/.eps/c44_comparison_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/plot/c44.py]] )
+
+with a length scale which slowly increases with lag time and is of the order of magnitude of $$2a$$.
+
+These short ranged correlations set by the particle scale indicate simple fluid behaviour.
+
+''(Very) high activity''
+
+In this regime, we want to investigate strain correlations in the glassy phase of the system. We then have to focus on parts of the system without any gas phase which are large enough to get good statistics. This is hardly possible close to the transition rotation diffusion constant, where &quot;holes&quot; in the system are numerous and opens and closes at a high rate. We then focus on a very high activity system.
+
+[img [Figures/c44_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll2000.png]]
+( [ext[original image|Figures/.eps/c44_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll2000.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/plot/c44.py]] )
+
+At $$\tilde{\nu}_r = 2\cdot10^{-5}$$, strain correlations curves seem to collapse quite well for $$nD_0\Delta t$$ of the order of magnitude of the unity and to display an algebraic decay $$C_4^4(r) \propto r^{-2}$$. This is similar to what we would expect in a quiescent thermal glass. However, statistics are not good enough to strongly confirm this behaviour.
+
+We see in the simulation [ext[trajectory movie|Videos/t_Dk8000_Vj1000_Rg2000_Nq1000_In5000_Tm1000_Bn1000_XN1500_Yn1500_Pm1000.mp4]] that very small local rearrangements induce other rearrangements far away through elastic interactions, which is what we would expect from Eschelby physics.
+
+''Intermediate activity''
+
+Close to the transition rotation diffusion constant and in the homogeneous active fluid regime, strain correlations curves also seem to collapse well
+
+* for $$\tilde{\nu}_r = 7\cdot10^{-4}$$,
+
+[img [Figures/c44_comparison_Dk8000_Vj1000_Rh7000_Nq1000_Ll1000.png]]
+( [ext[original image|Figures/.eps/c44_comparison_Dk8000_Vj1000_Rh7000_Nq1000_Ll1000.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/plot/c44.py]] )
+
+* and $$\tilde{\nu}_r = 3\cdot10^{-4} \approx \tilde{\nu}_{r,c}$$
+
+[img [Figures/c44_comparison_Dk8000_Vj1000_Rh3000_Nq1000_Ll2000.png]]
+( [ext[original image|Figures/.eps/c44_comparison_Dk8000_Vj1000_Rh3000_Nq1000_Ll2000.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/plot/c44.py]] )
+
+for $$nD_0\Delta t$$ of order of magnitude from $$10^{-3}$$ to unity, and display a decay close to albreaic but with different slopes, both different than $$C_4^4(r) \propto r^{-2}$$ which we think we have in the high activity regime.
+
+Moreover, we observe this close-to-algebraic decay on a shorter interval than for the high activity regime. We can hypothesise a crossover from exponential to algebraic decay for these activities, with a power law at short scales which is cut-off exponentially. However, better statistics are needed before drawing any firm conclusions.
+
+We formulate for the simulation [ext[trajectory movie|Videos/t_Dk8000_Vj1000_Rh2999_Nq1000_In5000_Tm1000_Bn1000_Pm1000.mp4]] at $$\tilde{\nu}_r = 3\cdot10^{-4} \approx \tilde{\nu}_{r,c}$$ the same remarks as for the high activity regime.</pre>
+</div>
+<div created="20180423185822864" modified="20180606022605138" tags="Analysis" title="(phi = 0.80, v = 1e-2) vs. (phi = 1.00, v = 1e-1)">
 <pre>[img [Figures/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000.png]]
-( [ext[original image|Figures/.eps/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000.py]]
+( [ext[original image|Figures/.eps/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/plot/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000.py]]
 )
 
 [img [Figures/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000_dt.png]]
-( [ext[original image|Figures/.eps/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000_dt.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000.py]] )</pre>
+( [ext[original image|Figures/.eps/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000_dt.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/plot/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000.py]] )</pre>
 </div>
 <div created="20180417005834520" modified="20180417005834520" title="$:/config/RelinkOnRename">
 <pre>yes</pre>
@@ -8670,11 +8753,11 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20180416014839916" modified="20180416014847781" title="$:/SiteSubtitle">
-<pre>Simple model of active particles</pre>
-</div>
-<div created="20180416014833554" modified="20180416014837524" title="$:/SiteTitle">
+<div created="20180416014839916" modified="20180606035530674" title="$:/SiteSubtitle">
 <pre>UBC - 2018</pre>
+</div>
+<div created="20180416014833554" modified="20180606035529806" title="$:/SiteTitle">
+<pre>Simple model of active particles</pre>
 </div>
 <div created="20180416031101213" modified="20180416031105003" title="$:/state/folded/Model">
 <pre>show</pre>
@@ -8700,10 +8783,10 @@ Error message and password prompt
 <div created="20180417010438670" modified="20180417010438670" title="$:/state/tab--86143343">
 <pre>$:/core/ui/ControlPanel/Plugins/Installed/Themes</pre>
 </div>
-<div created="20180417010411725" modified="20180418024351384" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Appearance</pre>
+<div created="20180417010411725" modified="20180606035522632" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Info</pre>
 </div>
-<div created="20180416015308350" modified="20180417010612909" title="$:/state/tab/sidebar--1835078512">
+<div created="20180416015308350" modified="20180504220952720" title="$:/state/tab/sidebar--1835078512">
 <pre>TableOfContents</pre>
 </div>
 <div created="20180418024406433" modified="20180418024409040" title="$:/state/tabs/controlpanel/toolbars-1345989671">
@@ -8713,6 +8796,18 @@ Error message and password prompt
 <pre>close</pre>
 </div>
 <div created="20180417013227647" modified="20180417013227647" title="$:/state/toc/Measurements-Cooperativity--1479111847">
+<pre>open</pre>
+</div>
+<div created="20180606022145323" modified="20180606022145323" title="$:/state/toc/Measurements-Displacement correlations--1479111847">
+<pre>open</pre>
+</div>
+<div created="20180606022305355" modified="20180606022305355" title="$:/state/toc/Measurements-Shear strain and vorticity fields--1479111847">
+<pre>open</pre>
+</div>
+<div created="20180606022151034" modified="20180606022151034" title="$:/state/toc/Measurements/Displacement correlations-Cooperativity--1479111847">
+<pre>open</pre>
+</div>
+<div created="20180606022318016" modified="20180606022318016" title="$:/state/toc/Measurements/Shear strain and vorticity fields-Shear strain correlations--1479111847">
 <pre>open</pre>
 </div>
 <div created="20180417231441389" modified="20180417231441389" title="$:/state/toc/TableOfContents-Analysis--81657105">
@@ -8730,10 +8825,22 @@ Error message and password prompt
 <div created="20180417013345743" modified="20180424223751239" title="$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105">
 <pre>open</pre>
 </div>
+<div created="20180606021533806" modified="20180606021533806" title="$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields--81657105">
+<pre>open</pre>
+</div>
+<div created="20180504220944795" modified="20180504220944795" title="$:/state/toc/TableOfContents/Measurements-Strain and vorticity fields--81657105">
+<pre>open</pre>
+</div>
 <div created="20180417222853075" modified="20180417222853075" title="$:/state/toc/TableOfContents/Measurements/Displacement correlations-Cooperativity--81657105">
 <pre>open</pre>
 </div>
-<div list="Model System [[Integration method]] [[Strain correlations]] [[Strain and vorticity fields]]" title="$:/StoryList">
+<div created="20180606022208656" modified="20180606022208656" title="$:/state/toc/TableOfContents/Measurements/Shear strain and vorticity fields-Shear strain correlations--81657105">
+<pre>open</pre>
+</div>
+<div created="20180606020526389" modified="20180606020526389" title="$:/state/toc/TableOfContents/Measurements/Strain and vorticity fields-Strain correlations--81657105">
+<pre>open</pre>
+</div>
+<div list="[[phi = 0.80, v = 1e-2]] [[(phi = 0.80, v = 1e-2) strain correlations]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -8956,7 +9063,7 @@ thus showing that $$C_{vv}$$ can be easily computed with a Fast Fourier Transfor
 
 To compute the auto-correlation function of a discrete vector field with non-uniformly distributed positions $$\vec{r}$$, we first create an artificial grid and set the values of each box with the mean of the values of the field in this box, then perform the previously described algorithm.</pre>
 </div>
-<div created="20180418020559478" modified="20180423234812077" tags="[[Displacement correlations]]" title="Displacement correlation directionality">
+<div created="20180418020559478" modified="20180606022226369" tags="[[Displacement correlations]]" title="Displacement correlation directionality">
 <pre>We can investigate how the displacement of a particle can influence the displacement of an other at a distance $$\Delta r$$ and a lag time $$\Delta t$$, and we can also investigate how this displacement is affected by the relative positions of the particles.
 
 Inspired by the work of [[Vasisht et al., 2018|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.120.018001]] and [[Weeks et al., 2007|http://iopscience.iop.org/article/10.1088/0953-8984/19/20/205131]], we define
@@ -8977,9 +9084,9 @@ u^L(\vec{r}, t; t, t+\Delta t;\vec{e}) &amp;= \vec{u}(\vec{r}, t; t, t+\Delta t)
 \end{aligned}
 $$
 
-[[Computation script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/analysis/_colmig_DPD_P_A_Cuu]]</pre>
+[[Computation script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/analysis/cuu.py]]</pre>
 </div>
-<div created="20180417010744798" modified="20180423234739920" tags="Measurements" title="Displacement correlations">
+<div created="20180417010744798" modified="20180606022135523" tags="Measurements" title="Displacement correlations">
 <pre>Let us define $$\vec{u}(\vec{r}, t; t, t+\Delta t)$$ the displacement of the particle at position $$\vec{r}$$ at time $$t$$ between the times $$t$$ and $$t+\Delta t$$. It is possible to calculate the [[spatiotemportal auto-correlation|Discrete field auto-correlation]] of this field, namely the displacement correlation
 
 $$
@@ -8998,7 +9105,7 @@ We define other correlators for other displacement-related fields.
 
 We can also define [[cooperativities|Cooperativity]] from these fieds.
 
-[[Computation script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/analysis/_colmig_DPD_P_A_Cuu]]
+[[Computation script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/analysis/cuu.py]]
 
 ---
 
@@ -9006,7 +9113,7 @@ We can also define [[cooperativities|Cooperativity]] from these fieds.
 &lt;&lt;toc-selective-expandable 'Displacement correlations'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20180417231912802" modified="20180418032336485" tags="Cooperativity" title="Expected cooperative behaviour">
+<div created="20180417231912802" modified="20180606025346968" tags="Cooperativity" title="Expected cooperative behaviour">
 <pre>We have that the [[Wysocki et al., 2014|http://iopscience.iop.org/article/10.1209/0295-5075/105/48004]] model is very similar to ours, except that it is in 3D and that it also considers translationnal brownian noise.
 
 They observe for $$\phi=0.6$$ the following behaviour for the average number of coherently moving particles and average number of rotation at maximum cooperation
@@ -9028,6 +9135,19 @@ At the Peclet number $$\text{Pe}$$ marked by the dotted line, they observed a tr
 
 ([[Fily et al., 2014|http://pubs.rsc.org/-/content/articlelanding/2014/sm/c3sm52469h/]], fig. 2)</pre>
 </div>
+<div created="20180606024353576" modified="20180606030252385" tags="[[Shear strain correlations]]" title="Expected shear strain correlations">
+<pre>[[Illing et al., 2016|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.117.208002]] looked at strain correlations
+
+* experimentally in a colloidal glass former in a glass state (upper panel) and fluid state (lower panel) close to the glass transition,
+
+[img [Images/C44_experiment.png]]
+
+* and in a model quiescent thermal binary hard disk mixture (in Supplemental Material) in a glass state (upper panel) and fluid state (lower panel).
+
+[img [Images/C44_simulation.png]]
+
+In both cases, they observed a peak of the correlation close to $$r/a \approx 3$$ and $$r/a \approx 4$$ respectively, with $$a = L/\sqrt{N}$$ the average particle separation, followed by an //arguable// algebraic decay $$C_4^4(r, t) \propto r^{-2}$$ as expected in an elastic medium according to Eschelby predictions.</pre>
+</div>
 <div created="20180418020046783" modified="20180503012853118" tags="Model" title="Integration method">
 <pre>* Particles initially randomly positioned
 * FIRE energy minimisation to decrease interpenetrations
@@ -9038,7 +9158,7 @@ At the Peclet number $$\text{Pe}$$ marked by the dotted line, they observed a tr
 
 All the code developed (simulation script, analysis routine, plotting scripts, etc.) is available in the ~GitHub repository [[yketa/UBC---Spring-2018---code|https://github.com/yketa/UBC---Spring-2018---code]].</pre>
 </div>
-<div created="20180418001029718" modified="20180423234835688" tags="Measurements" title="Mean square displacement">
+<div created="20180418001029718" modified="20180606022258905" tags="Measurements" title="Mean square displacement">
 <pre>For a system of $$N$$ particles with positions $$\vec{r}_i$$, $$i = 1, \ldots, N$$, we define the mean square displacement as
 
 $$
@@ -9059,23 +9179,23 @@ $$
 &lt;&lt;toc-selective-expandable 'Model'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20180417222836324" modified="20180424002119358" tags="Analysis" title="phi = 0.80, v = 1e-2">
+<div created="20180417222836324" modified="20180606033146337" tags="Analysis" title="phi = 0.80, v = 1e-2">
 <pre>From the [[expected phase diagram|Expected phase diagram]] of our system, we have that the point $$(\phi=0.80, \tilde{v}=1\cdot10^{-2}, \tilde{\nu}_r=5\cdot10^{-4})$$ should be in the homogeneous liquid domain, between the phase separated and glass domains. We then investigated a system at $$\phi=0.80$$ and $$\tilde{v}=1\cdot10^{-2}$$ for different values of the diffusion rotation constant.
 
 We computed $$C_{uu}(\Delta r, \Delta t)$$ for a maximul number of $$S_{max}$$ intervals of time $$[t, t+\Delta t]$$ with $$t$$ greater of equal to the $$S_{init}$$-th frame. Displacement [[field auto-correlation|Discrete field auto-correlation]] was performed from a $$N_{cases}$$ per $$N_{cases}$$ grid of displacements, derived from the original discrete field.
 
 [img [Figures/Cuu_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLOG.png]]
-( [ext[original image|Figures/.eps/Cuu_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLOG.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/Cuu_comparison.py]] )
+( [ext[original image|Figures/.eps/Cuu_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLOG.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/plot/Cuu_comparison.py]] )
 
 We have that the [[displacement correlation|Displacement correlations]] at a 1-particle-diameter distance, $$C_{uu}(r \approx a, \Delta t)$$, decreases to less than 50%. Furthermore, we have that the slope of the correlation function at this distance, $$\frac{\partial}{\partial r}C_{uu}(r \approx a, \Delta t)$$, varies way more dramatically with diffusion rotation constant $$\tilde{\nu}_r$$ and average number of rotations $$\tilde{\nu}_r \Delta t$$ than its value, thus indicating that the integral of this function -- the [[cooperativity|Cooperativity]] -- may be more interesting than the function itself.
 
 Displacement correlations account for both displacement direction and amplitude correlations. We can also separate both contribution to determine which is the most prominent in this previous plot.
 
 [img [Figures/Cdd_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLIN.png]]
-( [ext[original image|Figures/.eps/Cdd_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLIN.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/Cuu_comparison.py]] )
+( [ext[original image|Figures/.eps/Cdd_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLIN.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/plot/Cuu_comparison.py]] )
 
 [img [Figures/Cee_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLOG.png]]
-( [ext[original image|Figures/.eps/Cee_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLOG.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/Cuu_comparison.py]] )
+( [ext[original image|Figures/.eps/Cee_comparison_Dk8000_Vj1000_Nq1000_Cn5000_LINLOG.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/plot/Cuu_comparison.py]] )
 
 
 We have that $$C_{|u||u||}$$ reaches a plateau at a few particle diameters, and the value of this plateau is not dramatically changed by the diffusion rotation constant, $$\tilde{\nu}_r$$, at least after a few rotations -- except for the lower diffusion rotation constant $$\tilde{\nu}_r = 1\cdot10^{-4}$$. On the contrary, $$C_{\hat{u}\hat{u}}$$ reproduces more closely the shape of $$C_{uu}$$, showing that what is well correlated at short and not at long distances is the direction of the displacements and not the displacement itself.
@@ -9083,9 +9203,9 @@ We have that $$C_{|u||u||}$$ reaches a plateau at a few particle diameters, and 
 We have seen that $$C_{uu}(r &gt; 20, \Delta t) &lt; 10^{-2}$$ in most cases, we then use $$r_{max}=20$$ as the upper bound of the [[cooperativity|Cooperativity]] integral.
 
 [img [Figures/intCuu_dt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.png]]
-( [ext[original image|Figures/.eps/intCuu_dt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/Cuu_intCuu_msd.py]] )
+( [ext[original image|Figures/.eps/intCuu_dt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/plot/Cuu_intCuu_msd.py]] )
 [img [Figures/intCuu_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.png]]
-( [ext[original image|Figures/.eps/intCuu_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/Cuu_intCuu_msd.py]] )
+( [ext[original image|Figures/.eps/intCuu_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/plot/Cuu_intCuu_msd.py]] )
 
 In this plot, $$dt$$ denotes the integration time step of the simulations from which the data is calculated and $$\Delta t^*$$ is the time lag of maximum cooperativity, which indicates the characteristic time scale of cooperative behaviour (citation?).
 
@@ -9098,16 +9218,16 @@ It is hard to tell from the available data if the shape of $$\chi(\Delta t)$$ is
 This transition occurs at $$\tau_{r, c} \approx 3\cdot10^3$$.
 
 [img [Figures/intCee_dt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.png]]
-( [ext[original image|Figures/.eps/intCee_dt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/Cuu_intCuu_msd.py]] )
+( [ext[original image|Figures/.eps/intCee_dt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/plot/Cuu_intCuu_msd.py]] )
 [img [Figures/intCee_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.png]]
-( [ext[original image|Figures/.eps/intCee_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/Cuu_intCuu_msd.py]] )
+( [ext[original image|Figures/.eps/intCee_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/plot/Cuu_intCuu_msd.py]] )
 
 We observe for $$C_{\hat{u}\hat{u}}$$ the same increase of the average number of coherently moving neighbors and of the time scale at which it occurs, with the same transition at $$\tau_{r,c}$$. However, in this case the average number of rotations at which this cooperativity is maximum is a monotonously decreasing function of the persistence time.
 
 This transition is reminiscent of the one described in [[Wysocki et al., 2014|http://iopscience.iop.org/article/10.1209/0295-5075/105/48004]] (see [[Expected cooperative behaviour]]) which is related to the transition between phase separated (glass and gas) and homogeneous fluid regimes -- although this non-monotonic behabiour of $$\tilde{\nu}_r \Delta t^*$$ in the case of the raw displacement correlation remains intriguing. To test this hypothetic explanation of the change in behaviour, we made a histogram of the local densities $$\phi_{loc}$$, calculated in square boxes of size $$r_{max}$$ centred on $$N_{cases}^2$$ linearly spaced points in $$S_{max}$$ different frames from the $$S_{init}$$-th frame, as a function of the persistence time $$\tau_r$$.
 
 [img [Figures/Pphiloc_Dk8000_Vj1000_Nq1000_Io5000_Ml1000_Cn5000.png]]
-( [ext[original image|Figures/.eps/Pphiloc_Dk8000_Vj1000_Nq1000_Io5000_Ml1000_Cn5000.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/Pphiloc.py]] )
+( [ext[original image|Figures/.eps/Pphiloc_Dk8000_Vj1000_Nq1000_Io5000_Ml1000_Cn5000.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/plot/Pphiloc.py]] )
 
 This plot shows that for $$\tau_r &lt; 10^3$$ the system's local density histogram is centred around the global system density, consistent with what would be observed for an homogeneous fluid, while for $$\tau_r &gt; 10^4$$ we have regions of high densities ($$\phi_{loc} &gt; \phi = 0.8$$) and very low densities ($$\phi_{loc} &lt; 0.2$$), consitent with what would be observed for a phase separated system. Moreover, the interval of the transition persistence time, $$10^3 \leq \tau_{r,c} \leq 10^4$$, is consistent with the $$\chi(\Delta t^*)$$ versus $$\tau_r$$ plot, such strongly suggesting that the change in behaviour of the cooperativity is due to a structural transition.
 
@@ -9116,7 +9236,7 @@ This transition from a homogeneous fluid to a phase separated system could have 
 This transition can also be investigated with the observation of the [[mean square displacement|Mean square displacement]] behaviour.
 
 [img [Figures/intCuu_msd_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_Io5000_RMINl1000_RMAXm2000.png]]
-( [ext[original image|Figures/.eps/intCuu_msd_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_Io5000_RMINl1000_RMAXm2000.eps]] | [[plot script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/Cuu_intCuu_msd.py]] )
+( [ext[original image|Figures/.eps/intCuu_msd_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_Io5000_RMINl1000_RMAXm2000.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/plot/Cuu_intCuu_msd.py]] )
 
 We had excluded data for $$\tilde{\nu}_r &lt; 1\cdot10^{-5}$$ and $$\tilde{\nu}_r &gt; 1\cdot10^{-2}$$ (grey curves) from the previous analyis because the shapes, maximums and maximum positions of $$\chi(\Delta t)$$ for these data were non-consistent with the rest, as can be seen in the left panel.
 
@@ -9369,7 +9489,7 @@ We have the same behaviour for the ratio of the transversal and longitudinal com
 
 As in the [[lower density case|phi = 0.80, v = 1e-2]], this last plot seems to indicate that in the time of maximum cooperation coincides with the time of maximum longitudinal displacement orientation correlation.</pre>
 </div>
-<div created="20180424224046740" modified="20180503002207399" tags="Measurements" title="Strain and vorticity fields">
+<div created="20180424224046740" modified="20180606021705704" tags="Measurements" title="Shear strain and vorticity fields">
 <pre>We first derive the expression of the 2D strain tensor. Our demonstration is based on [[Theory of Elasticity, chapter 1|https://archive.org/details/TheoryOfElasticity]] from the Landau and Lifshitz series.
 
 Consider a 2D continuous body, we will denote $$x$$ and $$y$$ the 2 coordinates of space. If this body is deformed, we have that a point initially at $$\vec{r}$$ will be at $$\vec{r}^{\prime}$$ after the deformation, we will denote $$\vec{u} = \vec{r}^{\prime} - \vec{r}$$ the displacement vector.
@@ -9458,7 +9578,7 @@ $$
 \end{aligned}
 $$
 
-From a computational point of view, it is then easy to compute the strain in any point $$\vec{r}$$ from the positions and displacements of particles and with operator $$\mathcal{A}(\vec{r}, r_c, \sigma)$$. It is then also easy to compute the [[auto-correlation|Discrete field auto-correlation]] of this field. (see [[Strain correlations]])
+From a computational point of view, it is then easy to compute the strain in any point $$\vec{r}$$ from the positions and displacements of particles and with operator $$\mathcal{A}(\vec{r}, r_c, \sigma)$$. It is then also easy to compute the [[auto-correlation|Discrete field auto-correlation]] of this field. (see [[Shear strain correlations]])
 
 ---
 
@@ -9478,26 +9598,34 @@ $$
 $$
 and compute both variables at the same time.
 
-[[Computation script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/analysis/_colmig_DPD_P_A_Css]]</pre>
+[[Computation script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/analysis/css.py]]</pre>
 </div>
-<div created="20180503001320428" modified="20180503003322671" tags="[[Strain and voriticity fields]]" title="Strain correlations">
-<pre>We can compute strain correlations
+<div created="20180503001320428" modified="20180606024436783" tags="[[Shear strain and vorticity fields]]" title="Shear strain correlations">
+<pre>We can compute shear strain correlations
 $$
 C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t) = \frac{\int dt \int d^2\vec{r}~ \varepsilon_{xy}(\vec{r}, t, t + \Delta t) \varepsilon_{xy}(\vec{r} + \Delta \vec{r}, t, t + \Delta t) }{\int dt \int d^2\vec{r}~ \varepsilon_{xy}(\vec{r}, t, t + \Delta t)^2}
 $$
-from the [[coarse-grained strain field|Strain and vorticity fields]] and the [[discrete field auto-correlation method|Discrete field auto-correlation]]. ([[computation script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/analysis/_colmig_DPD_P_A_Css]])
+from the [[coarse-grained strain field|Strain and vorticity fields]] and the [[discrete field auto-correlation method|Discrete field auto-correlation]]. ([[computation script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/analysis/css.py]])
+
+Far-field shear strain correlation should in an elastic medium be a solution of the Eshelby inclusion problem
+$$
+C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r} \equiv (\Delta r, \theta), \Delta t) \propto \frac{\cos(4\theta)}{\Delta r^2} \text{, for } r \gg a
+$$
+where $$a$$ is the mean interparticle distance.
 
 This correlation function has a four-fold symmetry, we can then project it on the appropriate spherical harmonics (see [[Illing et al., 2016|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.117.208002]]). With $$\Delta \vec{r} \equiv (\Delta r, \theta)$$ in polar coordinates, we define
 $$
 C_4^4(\Delta r, \Delta t) = \frac{1}{\pi} \int_0^{2\pi} d\theta~ \cos(4\theta)~ C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t)
 $$
-for which we want to characterise the decay as $$\Delta r \rightarrow +\infty$$. ([[computation script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/C44_comparison.py]])
+for which we want to characterise the decay as $$\Delta r \rightarrow +\infty$$. ([[computation script|https://github.com/yketa/UBC---Spring-2018---code/blob/master/plot/c44.py]])
 
 According to [[Illing et al., 2016|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.117.208002]], we should have
 $$
 C_4^4(\Delta r, \Delta t) \propto \frac{1}{\Delta r^2}
 $$
-in a certain range of $$\Delta t$$, for brownian particles in both glassy and liquid states. However, this scale-free (algebraic) correlation becomes exponential in the liquid state if the viscosity is low enough (temperature is high enough).</pre>
+similarily to Eshelby strain field, in a certain range of $$\Delta t$$, for brownian particles in both glassy and liquid states. However, this scale-free (algebraic) correlation becomes exponential in the liquid state if the viscosity is low enough (temperature is high enough).
+
+For comparison matters between systems with different activies, we will consider $$nD_0\Delta t$$ — with $$n = N/L^2$$ the particle density and $$D_0 = v_0^2/2\nu_r$$ the single particle diffusion constant — rather than the bare lag time $$\Delta t$$ when looking at shear strain correlations, as it has been done in [[Illing et al., 2016|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.117.208002]].</pre>
 </div>
 <div created="20180417013424708" modified="20180503014903700" tags="Model" title="System">
 <pre>Model from [[Fily et al., 2014|http://pubs.rsc.org/-/content/articlelanding/2014/sm/c3sm52469h/]]. (see [[phase diagram|Expected phase diagram]], [[phase boundaries shifting|Expected phase boundaries shifting]]) 
