@@ -8868,7 +8868,7 @@ However, we do not see the expected algebraic decay of strain correlations of a 
 <div created="20180606020526389" modified="20180606020526389" title="$:/state/toc/TableOfContents/Measurements/Strain and vorticity fields-Strain correlations--81657105">
 <pre>open</pre>
 </div>
-<div list="[[Integration method]]" title="$:/StoryList">
+<div list="[[(phi = 0.80, v = 1e-2) strain correlations]] [[Shear strain correlations from CMSD]] [[Collective mean square displacements]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9697,7 +9697,7 @@ similarily to Eshelby strain field, in a certain range of $$\Delta t$$, for brow
 
 For comparison matters between systems with different activies, we will consider $$nD_0\Delta t$$ — with $$n = N/L^2$$ the particle density and $$D_0 = v_0^2/2\nu_r$$ the single particle diffusion constant — rather than the bare lag time $$\Delta t$$ when looking at shear strain correlations, as it has been done in [[Illing et al., 2016|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.117.208002]].</pre>
 </div>
-<div created="20180609011749845" modified="20180609022516723" tags="[[Collective mean square displacements]]" title="Shear strain correlations from CMSD">
+<div created="20180609011749845" modified="20180609204307310" tags="[[Collective mean square displacements]]" title="Shear strain correlations from CMSD">
 <pre>We have first checked that
 
 $$
@@ -9725,13 +9725,17 @@ At $$\tilde{\nu}_r = 2\cdot10^{-5}$$, we tried to recompose $$C_{\varepsilon_{xy
 
 [img [Figures/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl0000.png]]
 ( [ext[original image|Figures/.eps/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl0000.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/analysis/ctt.py]] )
+[img [Figures/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl0000_grid_circle.png]]
+( [ext[original image|Figures/.eps/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl0000_grid_circle.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/analysis/ctt.py]] )
 
-Without any filter on the CMSD, we obtain a strain correlation pattern which is far from expected. In particular, the 2D correlation show concentric circles centred on the origin, similar to waves, which is the origin is yet to be discovered.
+Without any filter on the CMSD, we obtain a strain correlation pattern which is far from expected. In particular, the 2D correlation show concentric circles centred on the origin, similar to waves, which origin is yet to be discovered. Strain correlations show no clear quadrupolar symmetry.
 
 * $$r_{cut} = 1.22$$
 
 [img [Figures/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl1220.png]]
 ( [ext[original image|Figures/.eps/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl1220.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/analysis/ctt.py]] )
+[img [Figures/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl1220_grid_circle.png]]
+( [ext[original image|Figures/.eps/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl1220_grid_circle.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/analysis/ctt.py]] )
 
 Waves' amplitude has increased but the pattern shows no significant difference to the former case.
 
@@ -9739,6 +9743,8 @@ Waves' amplitude has increased but the pattern shows no significant difference t
 
 [img [Figures/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl1810.png]]
 ( [ext[original image|Figures/.eps/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl1810.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/analysis/ctt.py]] )
+[img [Figures/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl1810_grid_circle.png]]
+( [ext[original image|Figures/.eps/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl1810_grid_circle.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/analysis/ctt.py]] )
 
 Here as well, waves' amplitude has increased but the pattern shows no significant difference to the former case.
 
@@ -9746,13 +9752,17 @@ Here as well, waves' amplitude has increased but the pattern shows no significan
 
 [img [Figures/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl3170.png]]
 ( [ext[original image|Figures/.eps/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl3170.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/analysis/ctt.py]] )
+[img [Figures/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl3170_grid_circle.png]]
+( [ext[original image|Figures/.eps/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl3170_grid_circle.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/analysis/ctt.py]] )
 
-We now see a quadrupolar symmetry emerging in the strain correlation pattern. Moreover, waves' frequency seems to have dropped.
+We now see a strong quadrupolar symmetry emerging in the strain correlation pattern. Moreover, waves' frequency seems to have dropped.
 
 * $$r_{cut} = 5.8$$
 
 [img [Figures/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl5800.png]]
 ( [ext[original image|Figures/.eps/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl5800.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/analysis/ctt.py]] )
+[img [Figures/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl5800_grid_circle.png]]
+( [ext[original image|Figures/.eps/Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl5800_grid_circle.eps]] | [[plot script|https://github.com/yketa/active_particles/blob/master/analysis/ctt.py]] )
 
 For this final case, the quadrupolar symmetry is clear and we observe a highly correlated central region of characteristic length equal to $$r_{cut}$$. However, the strain correlations pattern is very different from what has been computed directly from strain (see [[(phi = 0.80, v = 1e-2) strain correlations]]).</pre>
 </div>
