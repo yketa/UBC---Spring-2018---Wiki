@@ -122,7 +122,13 @@ Error message and password prompt
 
 <li>(phi = 0.80, v = 1e-2) strain correlations</li>
 
+<li>(phi = 0.80, v = 1e-2) strain correlations from CMSD</li>
+
 <li>(phi = 0.80, v = 1e-2) vs. (phi = 1.00, v = 1e-1)</li>
+
+<li>$:/config/DefaultSidebarTab</li>
+
+<li>$:/config/Navigation/UpdateAddressBar</li>
 
 <li>$:/config/RelinkOnRename</li>
 
@@ -166,7 +172,11 @@ Error message and password prompt
 
 <li>$:/state/tab--1963855381</li>
 
+<li>$:/state/tab--2112689675</li>
+
 <li>$:/state/tab--86143343</li>
+
+<li>$:/state/tab--959111941</li>
 
 <li>$:/state/tab-1749438307</li>
 
@@ -418,8 +428,6 @@ Error message and password prompt
 
 <li>Discrete field auto-correlation</li>
 
-<li>Displacement correlation directionality</li>
-
 <li>Displacement correlations</li>
 
 <li>Draft of 'System'</li>
@@ -442,6 +450,8 @@ Error message and password prompt
 
 <li>Model</li>
 
+<li>Neighbours grids</li>
+
 <li>phi = 0.80, v = 1e-2</li>
 
 <li>phi = 1.00, v = 1e-1</li>
@@ -451,10 +461,6 @@ Error message and password prompt
 <li>Project</li>
 
 <li>Shear strain and vorticity fields</li>
-
-<li>Shear strain correlations</li>
-
-<li>Shear strain correlations from CMSD</li>
 
 <li>System</li>
 
@@ -470,10 +476,10 @@ Error message and password prompt
 <!--~~ Ordinary tiddlers ~~-->
 
 <div id="storeArea" style="display:none;">
-<div created="20180606015759910" list="" modified="20180620055021493" tags="[[Shear strain correlations]]" title="(phi = 0.80, v = 1e-2) strain correlations">
+<div created="20180606015759910" list="" modified="20180626030344504" tags="[[Shear strain and vorticity fields]]" title="(phi = 0.80, v = 1e-2) strain correlations">
 <pre>We recall the transition rotation diffusion constant, $$\tilde{\nu}_{r, c} \approx 3\cdot10^{-4}$$, between the homogeneous active fluid regime (low activity, $$\tilde{\nu}_r &gt; \tilde{\nu}_{r, c}$$) and the phase separated regime (high activity, $$\tilde{\nu}_r &lt; \tilde{\nu}_{r, c}$$), as determined in [[phi = 0.80, v = 1e-2]] for the system at density $$\phi=0.80$$ and self-propulsion velocity $$v_0=1\cdot10^{-2}$$.
 
-We investigate the behaviour of  $$C_4^4(r, nD_0\Delta t)$$ — the projection projection of the shear strain correlation fonction on $$\cos4\theta$$, as described in [[Shear strain correlations]] — at different lag times and activities, for the system at density.
+We investigate the behaviour of  $$C_4^4(r, nD_0\Delta t)$$ — the projection projection of the shear strain correlation fonction on $$\cos4\theta$$, as described in [[Shear strain and vorticity fields]] — at different lag times and activities, for the system at density.
 
 ''Initial observation''
 
@@ -543,10 +549,73 @@ At $$\tilde{\nu}_r = 5\cdot10^{-1}$$, the system should be close to a convention
 
 However, we do not see the expected algebraic decay of strain correlations of a conventionnal glass, but rather an exponetial decay with a characteristic length scale of 2 interparticle distance, as we have obtained for the active fluid.</pre>
 </div>
+<div created="20180625223915773" modified="20180625224358749" tags="[[Collective mean square displacements]]" title="(phi = 0.80, v = 1e-2) strain correlations from CMSD">
+<pre>!!! Preliminary results for $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2})$$
+
+''(Very) high activity''
+
+&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
+
+At $$\tilde{\nu}_r = 2\cdot10^{-5}$$, we expect strain correlations to decay algebraically (see [[(phi = 0.80, v = 1e-2) strain correlations]]). Collective mean square displacements analysis seems to indicate $$C^{\perp}(k), C^{||}(k) \propto k^{-2}$$, in accordance to this expectation.
+
+We tried to recompose $$C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t)$$ (see [[(phi = 0.80, v = 1e-2) strain correlations]]) from filtered collective mean square displacements, with different cut-off radii $$r_{cut}$$.
+
+* $$r_{cut} = 0$$
+
+&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl0000&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
+
+&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl0000_grid_circle&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
+
+Without any filter on the CMSD, we obtain a strain correlation pattern which is far from expected. In particular, the 2D correlation show concentric circles centred on the origin, similar to waves, which origin is yet to be discovered. Strain correlations show no clear quadrupolar symmetry.
+
+* $$r_{cut} = 1.22$$
+
+&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl1220&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
+
+&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl1220_grid_circle&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
+
+Waves' amplitude has increased but the pattern shows no significant difference to the former case.
+
+* $$r_{cut} = 1.81$$
+
+&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl1810&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
+
+&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl1810_grid_circle&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
+
+Here as well, waves' amplitude has increased but the pattern shows no significant difference to the former case.
+
+* $$r_{cut} = 3.17$$
+
+&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl3170&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
+
+&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl3170_grid_circle&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
+
+We now see a strong quadrupolar symmetry emerging in the strain correlation pattern. Moreover, waves' frequency seems to have dropped.
+
+* $$r_{cut} = 5.8$$
+
+&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl5800&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
+
+&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl5800_grid_circle&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
+
+For this final case, the quadrupolar symmetry is clear and we observe a highly correlated central region of characteristic length equal to $$r_{cut}$$. However, the strain correlations pattern is very different from what has been computed directly from strain (see [[(phi = 0.80, v = 1e-2) strain correlations]]).
+
+''Intermediate activity''
+
+&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Ri7000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
+
+At $$\tilde{\nu}_r = 7\cdot10^{-3}$$, we expect strain correlations to decay exponentially (see [[(phi = 0.80, v = 1e-2) strain correlations]]). Collective mean square displacements analysis seems to indicate $$C^{\perp}(k), C^{||}(k) \propto k^{-1}$$.</pre>
+</div>
 <div created="20180423185822864" modified="20180620040847839" tags="Analysis" title="(phi = 0.80, v = 1e-2) vs. (phi = 1.00, v = 1e-1)">
 <pre>&lt;&lt;plotwgit image:&quot;comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000&quot; path:&quot;plot/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000.py&quot;&gt;&gt;
 
 &lt;&lt;plotwgit image:&quot;comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000_dt&quot; path:&quot;plot/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000.py&quot;&gt;&gt;</pre>
+</div>
+<div created="20180625224228466" modified="20180625224228466" title="$:/config/DefaultSidebarTab">
+<pre>TableOfContents</pre>
+</div>
+<div created="20180625224313417" modified="20180625224313417" title="$:/config/Navigation/UpdateAddressBar">
+<pre>permalink</pre>
 </div>
 <div created="20180417005834520" modified="20180417005834520" title="$:/config/RelinkOnRename">
 <pre>yes</pre>
@@ -9553,13 +9622,19 @@ config.macros.bibliography = {
 <div created="20180418024355355" modified="20180418024413133" title="$:/state/tab--1963855381">
 <pre>$:/themes/tiddlywiki/vanilla/themetweaks</pre>
 </div>
+<div created="20180625224121263" modified="20180625224121263" title="$:/state/tab--2112689675">
+<pre>$:/core/ui/ControlPanel/Advanced</pre>
+</div>
 <div created="20180417010438670" modified="20180620025859862" title="$:/state/tab--86143343">
 <pre>$:/core/ui/ControlPanel/Plugins/Installed/Plugins</pre>
 </div>
-<div created="20180417010411725" modified="20180620231551683" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Info</pre>
+<div created="20180625224127195" modified="20180625224204937" title="$:/state/tab--959111941">
+<pre>$:/core/ui/ControlPanel/TiddlerFields</pre>
 </div>
-<div created="20180416015308350" modified="20180620040852118" title="$:/state/tab/sidebar--1835078512">
+<div created="20180417010411725" modified="20180625224341528" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Settings</pre>
+</div>
+<div created="20180416015308350" modified="20180623225142916" title="$:/state/tab/sidebar--1835078512">
 <pre>TableOfContents</pre>
 </div>
 <div created="20180418024406433" modified="20180418024409040" title="$:/state/tabs/controlpanel/toolbars-1345989671">
@@ -9571,47 +9646,47 @@ config.macros.bibliography = {
 <div created="20180417013227647" modified="20180417013227647" title="$:/state/toc/Measurements-Cooperativity--1479111847">
 <pre>open</pre>
 </div>
-<div created="20180606022145323" modified="20180606022145323" title="$:/state/toc/Measurements-Displacement correlations--1479111847">
-<pre>open</pre>
+<div created="20180606022145323" modified="20180625224553630" title="$:/state/toc/Measurements-Displacement correlations--1479111847">
+<pre>close</pre>
 </div>
-<div created="20180606022305355" modified="20180606022305355" title="$:/state/toc/Measurements-Shear strain and vorticity fields--1479111847">
-<pre>open</pre>
+<div created="20180606022305355" modified="20180625224604732" title="$:/state/toc/Measurements-Shear strain and vorticity fields--1479111847">
+<pre>close</pre>
 </div>
 <div created="20180606022151034" modified="20180606022151034" title="$:/state/toc/Measurements/Displacement correlations-Cooperativity--1479111847">
 <pre>open</pre>
 </div>
-<div created="20180606022318016" modified="20180606022318016" title="$:/state/toc/Measurements/Shear strain and vorticity fields-Shear strain correlations--1479111847">
-<pre>open</pre>
-</div>
-<div created="20180417231441389" modified="20180623003745375" title="$:/state/toc/TableOfContents-Analysis--81657105">
+<div created="20180606022318016" modified="20180625224602683" title="$:/state/toc/Measurements/Shear strain and vorticity fields-Shear strain correlations--1479111847">
 <pre>close</pre>
 </div>
-<div created="20180417005847401" modified="20180623003753739" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<div created="20180417231441389" modified="20180626031416489" title="$:/state/toc/TableOfContents-Analysis--81657105">
+<pre>close</pre>
+</div>
+<div created="20180417005847401" modified="20180626031422576" title="$:/state/toc/TableOfContents-Measurements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180416044344979" modified="20180623003755897" title="$:/state/toc/TableOfContents-Model--81657105">
 <pre>close</pre>
 </div>
-<div created="20180609023859864" modified="20180623003746884" title="$:/state/toc/TableOfContents/Measurements-Collective mean square displacements--81657105">
+<div created="20180609023859864" modified="20180626031417750" title="$:/state/toc/TableOfContents/Measurements-Collective mean square displacements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180417010842396" modified="20180417010842396" title="$:/state/toc/TableOfContents/Measurements-Cooperativity--81657105">
 <pre>open</pre>
 </div>
-<div created="20180417013345743" modified="20180623003750563" title="$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105">
+<div created="20180417013345743" modified="20180626031420229" title="$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105">
 <pre>close</pre>
 </div>
-<div created="20180606021533806" modified="20180623003752767" title="$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields--81657105">
+<div created="20180606021533806" modified="20180626031421308" title="$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields--81657105">
 <pre>close</pre>
 </div>
 <div created="20180504220944795" modified="20180504220944795" title="$:/state/toc/TableOfContents/Measurements-Strain and vorticity fields--81657105">
 <pre>open</pre>
 </div>
-<div created="20180417222853075" modified="20180623003749640" title="$:/state/toc/TableOfContents/Measurements/Displacement correlations-Cooperativity--81657105">
+<div created="20180417222853075" modified="20180626011938656" title="$:/state/toc/TableOfContents/Measurements/Displacement correlations-Cooperativity--81657105">
 <pre>close</pre>
 </div>
-<div created="20180606022208656" modified="20180623003752130" title="$:/state/toc/TableOfContents/Measurements/Shear strain and vorticity fields-Shear strain correlations--81657105">
-<pre>close</pre>
+<div created="20180606022208656" modified="20180625213813339" title="$:/state/toc/TableOfContents/Measurements/Shear strain and vorticity fields-Shear strain correlations--81657105">
+<pre>open</pre>
 </div>
 <div created="20180606020526389" modified="20180606020526389" title="$:/state/toc/TableOfContents/Measurements/Strain and vorticity fields-Strain correlations--81657105">
 <pre>open</pre>
@@ -10458,7 +10533,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 &lt;&lt;toc-selective-expandable 'Analysis'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20180608213646733" modified="20180620053357000" tags="Measurements" title="Collective mean square displacements">
+<div created="20180608213646733" modified="20180626030459843" tags="Measurements" title="Collective mean square displacements">
 <pre>Strain correlations are computed quite slowly. Inspired by [[Illing et al., 2016|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.117.208002]], we then turn to the calculation of transversal collective mean square displacement (TCMSD), $$C^{\perp}$$, and longitudinal collective mean square displacement (LCMSD), $$C^{||}$$, which are defined by
 
 $$
@@ -10482,21 +10557,42 @@ hence the interest of these collective mean square displacments. Authors note th
 
 Moreover, authors of [[Leonforte et al., 2005|https://journals.aps.org/prb/abstract/10.1103/PhysRevB.72.224206]] find $$S_T(k), S_L(k) \propto k^{-2}$$ in a polydisperse Lennard-Jones mixture under shear for high-enough $$k$$.
 
+---
+
+!!! Implementation
+
+Unless stated otherwise, we will always consider square grids. We introduce $$M$$ the number of grid boxes in each directions, $$(\vec{r}_{ij})_{1 \leq i, j \leq M}$$ the linearly positioned centres of these boxes and $$A(\vec{r})$$ a coarse-graining function of the position.  We also introduce $$L$$ the number of intervals of time $$\Delta t$$ considered in the averaging and $$(t_k)_{1\leq k \leq L}$$ such that these intervals are $$\{[t_k, t_k + \Delta t], 1\leq k \leq L\}$$.
+
+We then have $$L$$ grids $$(\vec{u}_{ij}(t_k, t_k + \Delta t) = [A\ast\vec{u}(t_k, t_k + \Delta t)](\vec{r}_{ij}))_{1 \leq i, j \leq M}$$ of coarse-grained values of the displacement field $$\vec{u}(\vec{r}, t_k, t_k + \Delta t)$$ uniformly distributed in space. We note that we can also replace the coarse-graining with the function $$A(\vec{r})$$ with a simple averaging over each box.
+
+It is then now possible to compute  FFT of these fields, and we obtain $$(\tilde{\vec{u}}_{ij}(t_k, t_k + \Delta t) = \text{FFT}\{(\vec{u}_{ij}(t_k, t_k + \Delta t))_{1\leq i, j \leq M}\}(\vec{k}_{ij}))_{1\leq i, j \leq M}$$ their corresponding FFT grids.
+
+We then calculate $$\forall i, j \in [|1;M|]$$,
+$$
+\begin{aligned}
+C^{\perp}(\vec{k}_{ij}, \Delta t) &amp;= \frac{1}{L||\vec{k}_{ij}||^2}\sum_{k=1}^L ||\vec{k}_{ij}\wedge\tilde{\vec{u}}_{ij}(t_k, t_k  +\Delta t) ||^2\\
+C^{||}(\vec{k}_{ij}, \Delta t) &amp;= \frac{1}{L||\vec{k}_{ij}||^2}\sum_{k=1}^L ||\vec{k}_{ij}\cdot\tilde{\vec{u}}_{ij}(t_k, t_k  +\Delta t) ||^2
+\end{aligned}
+$$
+and introduce
+$$
+F_{ij}(\Delta t, r_{cut}) = \begin{cases} -\frac{k_{ij,x}^2k_{ij,y}^2}{k_{ij}^2}\left(C^{\perp}(\vec{k}_{ij}, \Delta t) - C^{||}(\vec{k}_{ij}, \Delta t)\right) + \frac{k_{ij}^2}{4}C^{\perp}(\vec{k}_{ij}, \Delta t) &amp;\text{ if } \frac{2\pi}{k_{ij}} \geq r_{cut} \\ 0 &amp;\text{ otherwise}\end{cases}
+$$
+to obtain
+$$
+C_{\varepsilon_{xy}\varepsilon_{xy}, ij}(\Delta t, r_{cut}) = \frac{\text{FFT}^{-1}\left\{\left(F_{ij}(\Delta t, r_{cut})\right)_{1 \leq i, j \leq M}\right\}(\vec{r}_{ij})}{\text{FFT}^{-1}\left\{\left(F_{ij}(\Delta t, r_{cut})\right)_{1 \leq i, j \leq M}\right\}(\vec{0})}
+$$
+which is the corresponding grid of shear strain correlations where short range degrees of freedom have been eliminated — which is equivalent to a coarse-graining on the length scale of $$r_{cut}$$.
+
 &lt;&lt;compuscript path:&quot;analysis/ctt.py&quot;&gt;&gt;
 
-''(Very) high activity''
+---
 
-&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
-
-At $$\tilde{\nu}_r = 2\cdot10^{-5}$$, we expect strain correlations to decay algebraically (see [[(phi = 0.80, v = 1e-2) strain correlations]]). Collective mean square displacements analysis seems to indicate $$C^{\perp}(k), C^{||}(k) \propto k^{-2}$$, in accordance to this expectation.
-
-''Intermediate activity''
-
-&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Ri7000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
-
-At $$\tilde{\nu}_r = 7\cdot10^{-3}$$, we expect strain correlations to decay exponentially (see [[(phi = 0.80, v = 1e-2) strain correlations]]). Collective mean square displacements analysis seems to indicate $$C^{\perp}(k), C^{||}(k) \propto k^{-1}$$.</pre>
+&lt;div class=&quot;tc-table-of-contents&quot;&gt;
+&lt;&lt;toc-selective-expandable 'Collective mean square displacements'&gt;&gt;
+&lt;/div&gt;</pre>
 </div>
-<div created="20180416230447789" modified="20180419202512533" tags="[[Displacement correlations]]" title="Cooperativity">
+<div created="20180416230447789" modified="20180626010955666" tags="[[Displacement correlations]]" title="Cooperativity">
 <pre>Inspired by the work of [[Wysocki et al., 2014|http://iopscience.iop.org/article/10.1209/0295-5075/105/48004]] and [[Doliwa et al., 2000|https://journals.aps.org/pre/abstract/10.1103/PhysRevE.61.6898]], we define for any [[displacement-related field correlator|Displacement correlations]] $$C(r, \Delta t)$$ the cooperativity
 
 $$
@@ -10505,10 +10601,16 @@ $$
 
 where $$\phi$$ is the surface density of the particles — $$\phi=\frac{N}{L^2}$$ for a square box of size $$L$$ containing $$N$$ particles —, $$r_{min}$$ is close to the average interparticle distance and $$r_{max}$$ is such that $$C(r&gt;r_{max}, \Delta t)$$ is negligible.
 
-According to the authors of the aforementionned paper, $$\chi$$ can be interpreted as the average number of coherently moving neighbors.</pre>
+According to the authors of the aforementionned paper, $$\chi$$ can be interpreted as the average number of coherently moving neighbors.
+
+---
+
+&lt;div class=&quot;tc-table-of-contents&quot;&gt;
+&lt;&lt;toc-selective-expandable 'Cooperativity'&gt;&gt;
+&lt;/div&gt;</pre>
 </div>
-<div created="20180417005545385" modified="20180620215826591" tags="Measurements" title="Discrete field auto-correlation">
-<pre>Let $$\vec{v}(\vec{r})$$ be a vector field with $$\vec{r} \in \mathbb{R}^2$$, then we define its auto-correlation function as
+<div created="20180417005545385" modified="20180625231531454" tags="Measurements" title="Discrete field auto-correlation">
+<pre>Let $$\vec{v}(\vec{r})$$ be a vector — or scalar — field with $$\vec{r} \in \mathbb{R}^2$$, then we define its auto-correlation function as
 
 $$
 C_{vv}(\Delta \vec{r}) = \frac{\int d^2\vec{r}~ \vec{v}(\vec{r})^*\cdot\vec{v}(\vec{r}+\Delta \vec{r})}{\int d^2\vec{r}~ |\vec{v}(\vec{r})|^2}
@@ -10532,19 +10634,38 @@ $$
 \int d^2\vec{r}~ \vec{v}(\vec{r})^*\cdot\vec{v}(\vec{r}+\Delta \vec{r}) &amp;= \int d^2\vec{r} \left(\int d^2\vec{k}~ e^{i\vec{k}\cdot\vec{r}}\tilde{\vec{v}}(\vec{k})\right)^*\cdot\left(\int d^2\vec{k}^{\prime}~ e^{i\vec{k}^{\prime}\cdot(\vec{r}+\Delta \vec{r})}\tilde{\vec{v}}(\vec{k}^{\prime})\right)\\
 &amp;= \int d^2\vec{k} \int d^2\vec{k}^{\prime}~ e^{i\vec{k}^{\prime}\cdot\Delta \vec{r}} \tilde{\vec{v}}(\vec{k})^*\cdot\tilde{\vec{v}}(\vec{k}^{\prime}) \int d^2\vec{r}~ e^{-i(\vec{k}-\vec{k}^{\prime})\cdot\vec{r}}\\
 &amp;= \int d^2\vec{k} \int d^2\vec{k}^{\prime}~ e^{i\vec{k}^{\prime}\cdot\Delta \vec{r}} \tilde{\vec{v}}(\vec{k})^*\cdot\tilde{\vec{v}}(\vec{k}^{\prime}) \delta(\vec{k}-\vec{k}^{\prime})\\
-&amp;=  \int d^2\vec{k}~ e^{i\vec{k}^{\prime}\cdot\Delta \vec{r}} \tilde{\vec{v}}(\vec{k})^*\cdot\tilde{\vec{v}}(\vec{k})\\
+&amp;=  \int d^2\vec{k}~ e^{i\vec{k}\cdot\Delta \vec{r}} \tilde{\vec{v}}(\vec{k})^*\cdot\tilde{\vec{v}}(\vec{k})\\
 &amp;= \mathcal{F}^{-1}\{\mathcal{F}\{\vec{v}\}^*\cdot\mathcal{F}\{\vec{v}\}\}
 \end{aligned}
 $$
 
-thus showing that $$C_{vv}$$ can be easily computed with a Fast Fourier Transform (FFT) from a grid of the field $$\vec{v}(\vec{r})$$.
+thus showing that $$C_{vv}$$ can be easily expressed in terms of the Fourier transform of $$\vec{v}$$ field.
 
-To compute the auto-correlation function of a discrete vector field with non-uniformly distributed positions $$\vec{r}$$, we first create an artificial grid and set the values of each box with the mean of the values of the field in this box, then perform the previously described algorithm.</pre>
+---
+
+!!! Implementation
+
+This last result shows that $$C_{vv}$$ can be computed with a Fast Fourier Transform (FFT) from a grid of the field $$\vec{v}(\vec{r})$$.
+
+Unless stated otherwise, we will always consider square grids. We introduce $$M$$ the number of grid boxes in each directions, $$(\vec{r}_{ij})_{1 \leq i, j \leq M}$$ the linearly positioned centres of these boxes and $$A(\vec{r})$$ a coarse-graining function of the position. We note that we can also replace the coarse-graining with the function $$A(\vec{r})$$ with a simple averaging over each box.
+
+We then have a grid $$(\vec{v}_{ij} = [A\ast\vec{v}](\vec{r}_{ij}))_{1 \leq i, j \leq M}$$ of coarse-grained values of the field $$\vec{v}(\vec{r})$$ uniformly distributed in space. It is then now possible to compute its FFT grid $$(\tilde{\vec{v}}_{ij} = \text{FFT}\{(\vec{v}_{ij})_{1 \leq i,j \leq M}\}(\vec{k}_{ij}))_{1 \leq i,j \leq M}$$ and thus its auto-correlation grid
+$$
+C_{vv, ij} = \frac{\text{FFT}^{-1}\{(\tilde{\vec{v}}_{ij}^*\cdot\tilde{\vec{v}}_{ij})_{1 \leq i,j \leq M}\}(\vec{r}_{ij})}{\sum_{i,j = 1}^M ||\vec{v}_{ij}||^2}
+$$
+
+&lt;&lt;compuscript path:'analysis/correlations.py'&gt;&gt;</pre>
 </div>
-<div created="20180418020559478" modified="20180620053450620" tags="[[Displacement correlations]]" title="Displacement correlation directionality">
-<pre>We can investigate how the displacement of a particle can influence the displacement of an other at a distance $$\Delta r$$ and a lag time $$\Delta t$$, and we can also investigate how this displacement is affected by the relative positions of the particles.
+<div created="20180417010744798" modified="20180626030321308" tags="Measurements" title="Displacement correlations">
+<pre>Let us define $$\vec{u}(\vec{r}, t; t, t+\Delta t)$$ the displacement of the particle at position $$\vec{r}$$ at time $$t$$ between the times $$t$$ and $$t+\Delta t$$. It is possible to calculate the [[spatiotemportal auto-correlation|Discrete field auto-correlation]] of this field, namely the displacement correlation
 
-Inspired by the work of [[Vasisht et al., 2018|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.120.018001]] and [[Weeks et al., 2007|http://iopscience.iop.org/article/10.1088/0953-8984/19/20/205131]], we define
+$$
+C_{uu}(\Delta \vec{r}, \Delta t) = \frac{\int dt \int d^2\vec{r}~ \vec{u}(\vec{r}, t; t, t+\Delta t)\cdot\vec{u}(\vec{r} + \Delta \vec{r}, t; t, t+\Delta t)}{\int dt \int d^2\vec{r}~ |\vec{u}(\vec{r}, t; t, t+\Delta t)|^2}
+$$
+
+with $$C_{uu}(\Delta \vec{r}, \Delta t) \equiv C_{uu}(\Delta r, \Delta t)$$ for an isotropic system.
+
+Inspired by the work of [[Vasisht et al., 2018|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.120.018001]] and [[Weeks et al., 2007|http://iopscience.iop.org/article/10.1088/0953-8984/19/20/205131]], we also define
 
 $$
 \begin{aligned}
@@ -10562,26 +10683,74 @@ u^L(\vec{r}, t; t, t+\Delta t;\vec{e}) &amp;= \vec{u}(\vec{r}, t; t, t+\Delta t)
 \end{aligned}
 $$
 
-&lt;&lt;compuscript path:&quot;analysis/cuu.py&quot;&gt;&gt;</pre>
-</div>
-<div created="20180417010744798" modified="20180620054152884" tags="Measurements" title="Displacement correlations">
-<pre>Let us define $$\vec{u}(\vec{r}, t; t, t+\Delta t)$$ the displacement of the particle at position $$\vec{r}$$ at time $$t$$ between the times $$t$$ and $$t+\Delta t$$. It is possible to calculate the [[spatiotemportal auto-correlation|Discrete field auto-correlation]] of this field, namely the displacement correlation
-
-$$
-C_{uu}(\Delta \vec{r}, \Delta t) = \frac{\int dt \int d^2\vec{r}~ \vec{u}(\vec{r}, t; t, t+\Delta t)\cdot\vec{u}(\vec{r} + \Delta \vec{r}, t; t, t+\Delta t)}{\int dt \int d^2\vec{r}~ |\vec{u}(\vec{r}, t; t, t+\Delta t)|^2}
-$$
-
-with $$C_{uu}(\Delta \vec{r}, \Delta t) \equiv C_{uu}(\Delta r, \Delta t)$$ for an isotropic system.
+---
 
 We define other correlators for other displacement-related fields.
 
 | !Correlator | !Field |
 | $$C_{uu}$$ | $$\vec{u}$$ |
 | $$C_{\delta u \delta u}$$ | $$\vec{u} - \left&lt;\vec{u}\right&gt;$$ |
-| $$C_{|u||u|}$$ | $$|\vec{u}|$$ |
 | $$C_{\hat{u}\hat{u}}$$ | $$\vec{u}/|\vec{u}|$$ |
+| $$C_{|u||u|}$$ | $$|\vec{u}|$$ |
+
+It is also possible to calculate for all of these fields transversal and longitudinal correlations, except for the last one which is a scalar field.
+
+---
 
 We can also define [[cooperativities|Cooperativity]] from these fieds.
+
+---
+
+!!! Implementation
+
+We detail here our implementation for the field $$\vec{u}(\vec{r}, t, t + \Delta t) \equiv \vec{u}(\vec{r}, t ; t, t + \Delta t)$$, which is identical for other correlators defined above.
+
+Unless stated otherwise, we will always consider square grids. We introduce $$M$$ the number of grid boxes in each directions, $$(\vec{r}_{ij})_{1 \leq i, j \leq M}$$ the linearly positioned centres of these boxes and $$A(\vec{r})$$ a coarse-graining function of the position.  We also introduce $$L$$ the number of intervals of time $$\Delta t$$ considered in the averaging and $$(t_k)_{1\leq k \leq L}$$ such that these intervals are $$\{[t_k, t_k + \Delta t], 1\leq k \leq L\}$$.
+
+We then have $$L$$ grids $$(\vec{u}_{ij}(t_k, t_k + \Delta t) = [A\ast\vec{u}(t_k, t_k + \Delta t)](\vec{r}_{ij}))_{1 \leq i, j \leq M}$$ of coarse-grained values of the displacement field $$\vec{u}(\vec{r}, t_k, t_k + \Delta t)$$ uniformly distributed in space. We note that we can also replace the coarse-graining with the function $$A(\vec{r})$$ with a simple averaging over each box.
+
+It is then now possible to compute  FFT of these fields, and we obtain $$(\tilde{\vec{u}}_{ij}(t_k, t_k + \Delta t) = \text{FFT}\{(\vec{u}_{ij}(t_k, t_k + \Delta t))_{1\leq i, j \leq M}\}(\vec{k}_{ij}))_{1\leq i, j \leq M}$$ their corresponding FFT grids, enabling us to calculate this [[field auto-correlation|Discrete field auto-correlation]].
+
+With
+$$
+C_{ijk}(\Delta t) = \text{FFT}^{-1}\{(\tilde{\vec{u}}_{ij}^*(t_k, t_k + \Delta t)\cdot\tilde{\vec{u}}_{ij}(t_k, t_k + \Delta t))_{1 \leq i,j \leq M}\}(\vec{r}_{ij})
+$$
+we then calculate on the one hand the displacement correlation grid
+$$
+C_{uu, ij}(\Delta t) = \frac{\sum_{k=1}^LC_{ijk}(\Delta t)}{\sum_{k=1}^L\sum_{i,j = 1}^M ||\vec{u}_{ij}(t_k, t_k + \Delta t)||^2}
+$$
+and by considering //WLOG// that $$\forall i, j \in [|1;M|]$$, $$\vec{r}_{ij} = i\vec{r}_{10} + j\vec{r}_{01}$$ with $$\vec{r}_{10}\cdot\vec{r}_{01}=0$$, we can calculate on the other hand the transversal and longitudinal displacement correlations
+$$
+\begin{aligned}
+C_{uu}^L(\Delta t) &amp;= \frac{\sum_{k=1}^L\left(C_{10k}(\Delta t)\cdot\vec{r}_{10} + C_{01k}(\Delta t)\cdot\vec{r}_{01}\right)}{2\sum_{k=1}^L\sum_{i,j = 1}^M ||\vec{u}_{ij}(t_k, t_k + \Delta t)||^2}\\
+C_{uu}^T(\Delta t) &amp;= \frac{\sum_{k=1}^L\left(C_{10k}(\Delta t)\cdot\vec{r}_{01} + C_{01k}(\Delta t)\cdot\vec{r}_{10}\right)}{2\sum_{k=1}^L\sum_{i,j = 1}^M ||\vec{u}_{ij}(t_k, t_k + \Delta t)||^2}
+\end{aligned}
+$$
+
+Finally, in the hypothesis of isotropy, we calculate the cylindrically averaged displacement correlation
+$$
+C_{uu}(r \in \mathcal{R}, \Delta t) = \left&lt;C_{uu, ij}(\Delta t)\right&gt;_{\vec{r}_{ij}, ||\vec{r}_{ij}||=r}
+$$
+where $$\mathcal{R} = \{||\vec{r}_{ij}||, \forall i, j \in [|1;M|]\}$$.
+
+!!! Correction with density correlation
+
+In the case of a high number of grid boxes compared to the number of particles ($$M^2 &gt; N$$), we have that some $$\vec{u}_{ij}$$ are equal to 0, and our method then probes the microscopic structure which will distort the result as shown in the figure below.
+
+&lt;&lt;plotwgit image:&quot;Cuub_Dk8000_Vj1000_Rh7000_Nq1000_Io5000_Tn2000_Mn1000_Cn5000_LINLOG&quot; path:&quot;analysis/cuu.py&quot;&gt;&gt;
+
+We have found empirically that if $$M$$ is not too high, we obtained smooth and consistent displacement correlations by dividing the grid $$(C_{uu, ij}(\Delta t))_{1 \leq i,j \leq M}$$ by $$(C_{\rho\rho, ij}(\Delta t))_{1 \leq i,j \leq M}$$ where the field $$\rho$$ is defined by
+$$
+\begin{aligned}
+\rho_{ijk}(\Delta t) &amp;= \begin{cases} 1 &amp;\text{ if } \vec{u}_{ij}(t_k, t_k + \Delta t) \neq \vec{0} \\ 0 &amp;\text{ otherwise} \end{cases}\\
+\tilde{\rho}_{ijk}(\Delta t) &amp;= \text{FFT}\{(\rho_{ijk})_{1 \leq i,j \leq M}\}_{ij}
+\end{aligned}
+$$
+thus leading to
+$$
+C_{\rho\rho, ij}(\Delta t) = \frac{\sum_{k=1}^L \text{FFT}^{-1}\{(\tilde{\rho}^*_{ijk}(\Delta t)\tilde{\rho}_{ijk}(\Delta t))_{1 \leq i,j \leq M}\}_{ij}}{\sum_{k=1}^L\sum_{i,j = 1}^M \rho_{ijk}^2(\Delta t)}
+$$
+Moreover, we have the the cylindrical average of $$(C_{\rho\rho, ij}(\Delta t))_{1 \leq i,j \leq M}$$ is proportionnal to the radial distribution function for $$||\vec{r}_{ij}|| &gt; 0$$, and the factor of proportionnality is $$\left&lt;\sum_{i, j = 1}^M \rho_{ijk}(\Delta t)/M\right&gt;_k$$.
 
 &lt;&lt;compuscript path:&quot;analysis/cuu.py&quot;&gt;&gt;
 
@@ -10643,7 +10812,7 @@ At the Peclet number $$\text{Pe}$$ marked by the dotted line, they observed a tr
 
 ([[Fily et al., 2014|http://pubs.rsc.org/-/content/articlelanding/2014/sm/c3sm52469h/]], fig. 2)</pre>
 </div>
-<div created="20180606024353576" modified="20180606030252385" tags="[[Shear strain correlations]]" title="Expected shear strain correlations">
+<div created="20180606024353576" modified="20180626011931036" tags="[[Shear strain and vorticity fields]]" title="Expected shear strain correlations">
 <pre>[[Illing et al., 2016|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.117.208002]] looked at strain correlations
 
 * experimentally in a colloidal glass former in a glass state (upper panel) and fluid state (lower panel) close to the glass transition,
@@ -10733,11 +10902,22 @@ For scripts in the project ~GitHub [[yketa/active_particles|https://github.com/y
 
 &lt;&lt;compuscript path:&quot;analysis/cuu.py&quot;&gt;&gt;</pre>
 </div>
-<div created="20180418001029718" modified="20180620053541853" tags="Measurements" title="Mean square displacement">
+<div created="20180418001029718" modified="20180623095528564" tags="Measurements" title="Mean square displacement">
 <pre>For a system of $$N$$ particles with positions $$\vec{r}_i$$, $$i = 1, \ldots, N$$, we define the mean square displacement as
 
 $$
-&lt;|\Delta r(\Delta t)|^2&gt; = \frac{\int dt~ \sum_{i=1}^N |(\vec{r}_i(t+\Delta t) - \sum_{i=1}^N \frac{\vec{r}_i(t+\Delta t)}{N}) - (\vec{r}_i(t) - \sum_{i=1}^N \frac{\vec{r}_i(t)}{N})|^2}{N\int dt}
+&lt;|\Delta r(\Delta t)|^2&gt; = \frac{\int dt~ \sum_{i=1}^N |(\vec{r}_i(t+\Delta t) - \frac{1}{N} \sum_{i=1}^N \vec{r}_i(t+\Delta t)) - (\vec{r}_i(t) - \frac{1}{N} \sum_{i=1}^N \vec{r}_i(t))|^2}{N\int dt}
+$$
+
+---
+
+!!! Implementation
+
+We introduce $$M$$ the number of intervals of time $$\Delta t$$ considered in the averaging and $$(t_i)_{1\leq i \leq M}$$ such that these intervals are $$\{[t_i, t_i + \Delta t], 1\leq i \leq M\}$$.
+
+It is then straightforward to write
+$$
+&lt;|\Delta r(\Delta t)|^2&gt;_{(t_i)_{1\leq i \leq M}} = \frac{1}{NM} \sum_{i=1}^N \sum_{j=1}^M |(\vec{r}_i(t_j +\Delta t) - \frac{1}{N} \sum_{i=1}^N \vec{r}_i(t_j +\Delta t)) - (\vec{r}_i(t_j) - \frac{1}{N} \sum_{i=1}^N \vec{r}_i(t_j))|^2
 $$
 
 &lt;&lt;compuscript path:&quot;analysis/msd.py&quot;&gt;&gt;</pre>
@@ -10751,6 +10931,21 @@ $$
 <pre>&lt;div class=&quot;tc-table-of-contents&quot;&gt;
 &lt;&lt;toc-selective-expandable 'Model'&gt;&gt;
 &lt;/div&gt;</pre>
+</div>
+<div created="20180626015736848" modified="20180626031313023" tags="Measurements" title="Neighbours grids">
+<pre>In order to speed up calculations, we implement neighbours grids to access more rapidly neighbouring particles of a given point in space, //i.e.// without looping through all particles.
+
+Neighbours grids are computed according to a parameter distance $$r_{cut}$$, their goal is then quickly to determine which particles are in a radius $$r_{cut}$$ of any point.
+
+---
+
+!!! Implementation
+
+Considering a 2D square box, a grid is built by dividing the box in smaller  boxes of length at least equal to $$r_{cut}$$. We then loop through all particles and associate to each smaller box the indexes of particles within it.
+
+Thus, from the position of any point, we can determine the smaller box it belongs to and thus return the indexes of the particles in all neighbouring boxes since all particles within a distance $$r_{cut}$$ of our point must be in this ensemble.
+
+&lt;&lt;compuscript path:&quot;analysis/neighbours.py&quot;&gt;&gt;</pre>
 </div>
 <div created="20180417222836324" modified="20180622210447498" tags="Analysis" title="phi = 0.80, v = 1e-2">
 <pre>From the [[expected phase diagram|Expected phase diagram]] of our system, we have that the point $$(\phi=0.80, \tilde{v}=1\cdot10^{-2}, \tilde{\nu}_r=5\cdot10^{-4})$$ should be in the homogeneous liquid domain, between the phase separated and glass domains. We then investigated a system at $$\phi=0.80$$ and $$\tilde{v}=1\cdot10^{-2}$$ for different values of the diffusion rotation constant.
@@ -11053,8 +11248,10 @@ This project focuses on a model system of polydisperse active Brownian disks wit
 &lt;/a&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20180424224046740" modified="20180620053622439" tags="Measurements" title="Shear strain and vorticity fields">
-<pre>We first derive the expression of the 2D strain tensor. Our demonstration is based on [[Theory of Elasticity, chapter 1|https://archive.org/details/TheoryOfElasticity]] from the Landau and Lifshitz series.
+<div created="20180424224046740" modified="20180626030214330" tags="Measurements" title="Shear strain and vorticity fields">
+<pre>!!! Strain tensor
+
+We first derive the expression of the 2D strain tensor. Our demonstration is based on [[Theory of Elasticity, chapter 1|https://archive.org/details/TheoryOfElasticity]] from the Landau and Lifshitz series.
 
 Consider a 2D continuous body, we will denote $$x$$ and $$y$$ the 2 coordinates of space. If this body is deformed, we have that a point initially at $$\vec{r}$$ will be at $$\vec{r}^{\prime}$$ after the deformation, we will denote $$\vec{u} = \vec{r}^{\prime} - \vec{r}$$ the displacement vector.
 
@@ -11073,6 +11270,8 @@ $$
 we have $$dl^{\prime2} = dl^2 + 2\sum_{\alpha\beta} \varepsilon_{\alpha\beta} dx_{\alpha} dx_{\beta}$$. This tensor $$\varepsilon$$ is called the //strain tensor// and characterises the deformation of the body.
 
 ---
+
+!!! Coarse-grained shear strain field
 
 We will now describe how to calculate a tranversal shear strain field $$\varepsilon_{xy}(\vec{r}, t, t+\Delta t)$$ from discrete particle positions, $$\vec{r}_i, i=1,\ldots,N$$.
 
@@ -11142,9 +11341,11 @@ $$
 \end{aligned}
 $$
 
-From a computational point of view, it is then easy to compute the strain in any point $$\vec{r}$$ from the positions and displacements of particles and with operator $$\mathcal{A}(\vec{r}, r_c, \sigma)$$. It is then also easy to compute the [[auto-correlation|Discrete field auto-correlation]] of this field. (see [[Shear strain correlations]])
+From a computational point of view, it is then easy to compute the strain in any point $$\vec{r}$$ from the positions and displacements of particles and with the operator $$\mathcal{A}(\vec{r}, r_c, \sigma)$$.
 
 ---
+
+!!! Coarse-grained displacement vorticity field
 
 We have that vorticity
 $$
@@ -11164,15 +11365,13 @@ and compute both variables at the same time.
 
 ---
 
-&lt;&lt;compuscript path:&quot;analysis/css.py&quot;&gt;&gt;</pre>
-</div>
-<div created="20180503001320428" modified="20180620053832693" tags="[[Shear strain and vorticity fields]]" title="Shear strain correlations">
-<pre>We can compute shear strain correlations
+!!! Shear strain correlations
+
+We can compute shear strain correlations
 $$
 C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t) = \frac{\int dt \int d^2\vec{r}~ \varepsilon_{xy}(\vec{r}, t, t + \Delta t) \varepsilon_{xy}(\vec{r} + \Delta \vec{r}, t, t + \Delta t) }{\int dt \int d^2\vec{r}~ \varepsilon_{xy}(\vec{r}, t, t + \Delta t)^2}
 $$
 from the [[coarse-grained strain field|Shear strain and vorticity fields]] and the [[discrete field auto-correlation method|Discrete field auto-correlation]].
-&lt;&lt;compuscript path:&quot;analysis/css.py&quot;&gt;&gt;
 
 Far-field shear strain correlation should in an elastic medium be a solution of the Eshelby inclusion problem
 $$
@@ -11185,7 +11384,6 @@ $$
 C_4^4(\Delta r, \Delta t) = \frac{1}{\pi} \int_0^{2\pi} d\theta~ \cos(4\theta)~ C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t)
 $$
 for which we want to characterise the decay as $$\Delta r \rightarrow +\infty$$.
-&lt;&lt;compuscript path:&quot;plot/c44.py&quot;&gt;&gt;
 
 According to [[Illing et al., 2016|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.117.208002]], we should have
 $$
@@ -11193,75 +11391,103 @@ C_4^4(\Delta r, \Delta t) \propto \frac{1}{\Delta r^2}
 $$
 similarily to Eshelby strain field, in a certain range of $$\Delta t$$, for brownian particles in both glassy and liquid states. However, this scale-free (algebraic) correlation becomes exponential in the liquid state if the viscosity is low enough (temperature is high enough).
 
-For comparison matters between systems with different activies, we will consider $$nD_0\Delta t$$ — with $$n = N/L^2$$ the particle density and $$D_0 = v_0^2/2\nu_r$$ the single particle diffusion constant — rather than the bare lag time $$\Delta t$$ when looking at shear strain correlations, as it has been done in [[Illing et al., 2016|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.117.208002]].</pre>
-</div>
-<div created="20180609011749845" modified="20180620052651578" tags="[[Collective mean square displacements]]" title="Shear strain correlations from CMSD">
-<pre>We have first checked that
+For comparison matters between systems with different activities, we will consider $$nD_0\Delta t$$ — with $$n = N/L^2$$ the particle density and $$D_0 = v_0^2/2\nu_r$$ the single particle diffusion constant for an active system, and $$D_0 = 2k_BT/\gamma$$ for a thermal Brownian system where $$\gamma$$ is the Brownian dumping coefficient — rather than the bare lag time $$\Delta t$$ when looking at shear strain correlations, as it has been done in [[Illing et al., 2016|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.117.208002]].
 
+---
+
+!!! Implementation (real space)
+
+Unless stated otherwise, we will always consider square grids. We introduce $$M$$ the number of grid boxes in each directions, $$(\vec{r}_{ij})_{1 \leq i, j \leq M}$$ the linearly positioned centres of these boxes. We also introduce $$L$$ the number of intervals of time $$\Delta t$$ considered in the averaging and $$(t_k)_{1\leq k \leq L}$$ such that these intervals are $$\{[t_k, t_k + \Delta t], 1\leq k \leq L\}$$.
+
+We then have $$L$$ grids $$(\varepsilon_{xy,ij}(t_k, t_k + \Delta t))_{1 \leq i, j \leq M}$$, defined $$\forall i, j \in [|1;M|]$$ as
 $$
 \begin{aligned}
-&amp;\mathcal{F}^{-1}\left\{-\frac{k_x^2k_y^2}{k^2}\left(C^{\perp}(k, \Delta t) - C^{||}(k, \Delta t)\right) + \frac{k^2}{4}C^{\perp}(k, \Delta t)\right\}(\Delta \vec{r})\\
-\text{and } &amp;\mathcal{F}^{-1}\left\{-\frac{k_x^2k_y^2}{k^2}\left(C^{\perp}(\vec{k}, \Delta t) - C^{||}(\vec{k}, \Delta t)\right) + \frac{k^2}{4}C^{\perp}(\vec{k}, \Delta t)\right\}(\Delta \vec{r})
+\varepsilon_{xy,ij}(t_k, t_k+\Delta t) = \frac{1}{2} \Bigg[&amp;\frac{1}{\bar{\rho}^2(\vec{r}_{ij},t_k)\sigma^2}\\
+\times&amp;\Big(\mathcal{A}(\vec{r}_{ij}, r_c, \sigma)\{m_l(y_{ij} - y_l(t_k))\} \times \mathcal{A}(\vec{r}_{ij}, r_c, \sigma)\{u_{l,x}(t_k, t_k+\Delta t)\}\\
++&amp;\mathcal{A}(\vec{r}_{ij}, r_c, \sigma)\{m_l(x_{ij} - x_l(t))\} \times \mathcal{A}(\vec{r}_{ij}, r_c, \sigma)\{u_{l,y}(t_k, t_k+\Delta t)\}\Big)\\
+-&amp;\frac{1}{\bar{\rho}(\vec{r}_{ij},t_k)\sigma^2}\\
+\times&amp;\Big(\mathcal{A}(\vec{r}_{ij}, r_c, \sigma)\{u_{l,x}(t_k, t_k+\Delta t)(y_{ij} - y_l(t))\}\\
++&amp;\mathcal{A}(\vec{r}_{ij}, r_c, \sigma)\{u_{l,y}(t_k, t_k+\Delta t)(x_{ij} - x_l(t))\}\Big)\Bigg]
+\end{aligned}
+$$
+and $$L$$ grids $$(\omega_{ij}(t_k, t_k + \Delta t))_{1 \leq i, j \leq M}$$, defined $$\forall i, j \in [|1;M|]$$ as
+$$
+\begin{aligned}
+\omega_{ij}(t_k, t_k+\Delta t) = &amp;\frac{1}{\bar{\rho}^2(\vec{r}_{ij},t_k)\sigma^2}\\
+\times&amp;\Big(\mathcal{A}(\vec{r}_{ij}, r_c, \sigma)\{m_l(x_{ij} - x_l(t_k))\} \times \mathcal{A}(\vec{r}_{ij}, r_c, \sigma)\{u_{l,y}(t_k, t_k+\Delta t)\}\\
+-&amp;\mathcal{A}(\vec{r}_{ij}, r_c, \sigma)\{m_l(y_{ij} - y_l(t_k))\} \times \mathcal{A}(\vec{r}_{ij}, r_c, \sigma)\{u_{l,x}(t_k, t_k+\Delta t)\}\Big)\\
+-&amp;\frac{1}{\bar{\rho}(\vec{r}_{ij},t_k)\sigma^2}\\
+\times&amp;\Big(\mathcal{A}(\vec{r}_{ij}, r_c, \sigma)\{u_{l,y}(t_k, t_k+\Delta t)(x_{ij} - x_l(t_k))\}\\
+-&amp;
+ \mathcal{A}(\vec{r}_{ij}, r_c, \sigma)\{u_{l,x}(t_k, t_k+\Delta t)(y_{ij} - y_l(t_k))\}\Big)
+\end{aligned}
+$$
+of coarse-grained shear strain and displacement vorticity respectively, at linearly spaced positions of space.
+
+We resort to [[neighbours grids|Neighbours grids]] to speed up calculations when using the coarse-graining operator.
+
+We can now calculate fast Fourier transform of these grids,  $$(\tilde{\varepsilon}_{xy,ij}(t_k, t_k + \Delta t) = \text{FFT}\{(\varepsilon_{xy,ij}(t_k, t_k + \Delta t))_{1\leq i, j \leq M}\}(\vec{k}_{ij}))_{1\leq i, j \leq M}$$ and $$(\tilde{\omega}_{ij}(t_k, t_k + \Delta t) = \text{FFT}\{(\omega_{ij}(t_k, t_k + \Delta t))_{1\leq i, j \leq M}\}(\vec{k}_{ij}))_{1\leq i, j \leq M}$$, and thus with
+$$
+\begin{aligned}
+C_{ijk}^{(\varepsilon_{xy})}(\Delta t) &amp;= \text{FFT}^{-1}\{(\tilde{\varepsilon}_{xy,ij}^*(t_k, t_k + \Delta t)\tilde{\varepsilon}_{xy,ij}(t_k, t_k + \Delta t))_{1 \leq i,j \leq M}\}(\vec{r}_{ij})\\
+C_{ijk}^{(\omega)}(\Delta t) &amp;= \text{FFT}^{-1}\{(\tilde{\omega}_{ij}^*(t_k, t_k + \Delta t)\tilde{\omega}_{ij}(t_k, t_k + \Delta t))_{1 \leq i,j \leq M}\}(\vec{r}_{ij})
+\end{aligned}
+$$
+we can compute the correlations grids
+$$
+\begin{aligned}
+C_{\varepsilon_{xy}\varepsilon_{xy}, ij}(\Delta t) &amp;= \frac{\sum_{k=1}^L C_{ijk}^{(\varepsilon_{xy})}(\Delta t)}{\sum_{k=1}^L \sum_{i, j = 1}^M \varepsilon_{xy, ij}^2(t_k, t_k + \Delta t)}\\
+C_{\omega\omega, ij}(\Delta t) &amp;= \frac{\sum_{k=1}^L C_{ijk}^{(\omega)}(\Delta t)}{\sum_{k=1}^L \sum_{i, j = 1}^M \omega_{ij}^2(t_k, t_k + \Delta t)}
 \end{aligned}
 $$
 
-gave similar results, we will then use the latter expression as definition of $$C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t)$$ for computation matters.
+&lt;&lt;compuscript path:&quot;analysis/css.py&quot;&gt;&gt;
 
-We introduce $$r_{cut}$$ such that we artificially set in the expression above
+---
+
+!!! Implementation (Fourier space)
+
+Unless stated otherwise, we will always consider square grids. We introduce $$M$$ the number of grid boxes in each directions, $$(\vec{r}_{ij})_{1 \leq i, j \leq M}$$ the linearly positioned centres of these boxes and $$A(\vec{r})$$ a coarse-graining function of the position.  We also introduce $$L$$ the number of intervals of time $$\Delta t$$ considered in the averaging and $$(t_k)_{1\leq k \leq L}$$ such that these intervals are $$\{[t_k, t_k + \Delta t], 1\leq k \leq L\}$$.
+
+We then have $$L$$ grids $$(\vec{u}_{ij}(t_k, t_k + \Delta t) = [A\ast\vec{u}(t_k, t_k + \Delta t)](\vec{r}_{ij}))_{1 \leq i, j \leq M}$$ of coarse-grained values of the displacement field $$\vec{u}(\vec{r}, t_k, t_k + \Delta t)$$ uniformly distributed in space. We note that we can also replace the coarse-graining with the function $$A(\vec{r})$$ with a simple averaging over each box.
+
+It is then now possible to compute  FFT of these fields, and we obtain $$(\tilde{\vec{u}}_{ij}(t_k, t_k + \Delta t) = \text{FFT}\{(\vec{u}_{ij}(t_k, t_k + \Delta t))_{1\leq i, j \leq M}\}(\vec{k}_{ij}))_{1\leq i, j \leq M}$$ their corresponding FFT grids.
+
+From the definitions of the linearised shear strain and of the displacement vorticity, we should have in Fourier space
 $$
-\forall \vec{k},~ 2\pi/||\vec{k}|| &lt; r_{cut} \Rightarrow \mathcal{F}\{C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t)\}(\vec{k}) = 0
+\begin{aligned}
+\mathcal{F}\{\varepsilon_{xy}\}(\vec{k}, t, t + \Delta t) &amp;= \frac{1}{2}\left(ik_x\mathcal{F}\{u_y\}(\vec{k}, t, t + \Delta t) + ik_y\mathcal{F}\{u_x\}(\vec{k}, t, t + \Delta t)\right)\\
+\mathcal{F}\{\omega\}(\vec{k}, t, t + \Delta t) &amp;= ik_x\mathcal{F}\{u_y\}(\vec{k}, t, t + \Delta t) - ik_y\mathcal{F}\{u_x\}(\vec{k}, t, t + \Delta t)
+\end{aligned}
 $$
-hence eliminating short range degrees of freedom, which is equivalent to coarse-graining strain on a characterisic distance $$r_{cut}$$.
 
-&lt;div style=&quot;font-size:0.7em&quot;&gt;
-&lt;a href=&quot;https://github.com/yketa/active_particles/blob/master/analysis/ctt.py&quot; class=&quot;tc-btn-big-green&quot; style=&quot;background-color:#444;&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;
-{{$:/core/images/github}} &lt;b&gt;Computation script&lt;/b&gt; on ~GitHub
-&lt;/a&gt;
-&lt;/div&gt;
+Since we compute fast Fourier transforms which are discrete Fourier transforms, we will use $$\exp(ik) - 1$$ — which simplifies to $$ik$$ for high wave length modes in which we are interested — instead of $$ik$$, so that it implements precisely an index shift. We thus define $$\forall i, j \in [|1; M|]$$
+$$
+\begin{aligned}
+\tilde{\varepsilon}_{xy, ij}(t_k, t_k  +\Delta t) &amp;= \frac{1}{2}\left((e^{ik_{ij,x}} - 1)\tilde{u}_{ij,y}(t_k, t_k  +\Delta t) + (e^{ik_{ij,y}} - 1)\tilde{u}_{ij,x}(t_k, t_k  +\Delta t)\right)\\
+\tilde{\omega}_{ij}(t_k, t_k  +\Delta t) &amp;=(e^{ik_{ij,x}} - 1)\tilde{u}_{ij,y}(t_k, t_k  +\Delta t) - (e^{ik_{ij,y}} - 1)\tilde{u}_{ij,x}(t_k, t_k  +\Delta t)
+\end{aligned}
+$$
+and introduce
+$$
+F_{ij}^{(\tilde{A})}(\Delta t, r_{cut}) = \begin{cases} \sum_{k=1}^L \tilde{A}^*_{ij}(t_k, t_k + \Delta t)\tilde{A}_{ij}(t_k, t_k + \Delta t) &amp;\text{ if } \frac{2\pi}{k_{ij}} \geq r_{cut} \\ 0 &amp;\text{ otherwise}\end{cases}
+$$
+with $$\tilde{A} = \tilde{\varepsilon}_{xy}, \tilde{\omega}$$, to obtain
+$$
+\begin{aligned}
+C_{\varepsilon_{xy}\varepsilon_{xy}, ij}(\Delta t, r_{cut}) &amp;= \frac{\text{FFT}^{-1}\left\{\left(F_{ij}^{(\tilde{\varepsilon}_{xy})}(\Delta t, r_{cut})\right)_{1 \leq i, j \leq M}\right\}(\vec{r}_{ij})}{\text{FFT}^{-1}\left\{\left(F_{ij}^{(\tilde{\varepsilon}_{xy})}(\Delta t, r_{cut})\right)_{1 \leq i, j \leq M}\right\}(\vec{0})}\\
+C_{\omega\omega, ij}(\Delta t, r_{cut}) &amp;= \frac{\text{FFT}^{-1}\left\{\left(F_{ij}^{(\tilde{\omega})}(\Delta t, r_{cut})\right)_{1 \leq i, j \leq M}\right\}(\vec{r}_{ij})}{\text{FFT}^{-1}\left\{\left(F_{ij}^{(\tilde{\omega})}(\Delta t, r_{cut})\right)_{1 \leq i, j \leq M}\right\}(\vec{0})}
+\end{aligned}
+$$
+which are the corresponding grids of shear strain and displacement vorticity correlations respectively, where short range degrees of freedom have been eliminated — which is equivalent to a coarse-graining on the length scale of $$r_{cut}$$.
 
-''(Very) high activity''
+&lt;&lt;compuscript path:&quot;analysis/css.py&quot;&gt;&gt;
 
-At $$\tilde{\nu}_r = 2\cdot10^{-5}$$, we tried to recompose $$C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t)$$ (see [[(phi = 0.80, v = 1e-2) strain correlations]]) from filtered collective mean square displacements, with different cut-off radii $$r_{cut}$$.
+---
 
-* $$r_{cut} = 0$$
-
-&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl0000&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
-
-&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl0000_grid_circle&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
-
-Without any filter on the CMSD, we obtain a strain correlation pattern which is far from expected. In particular, the 2D correlation show concentric circles centred on the origin, similar to waves, which origin is yet to be discovered. Strain correlations show no clear quadrupolar symmetry.
-
-* $$r_{cut} = 1.22$$
-
-&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl1220&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
-
-&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl1220_grid_circle&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
-
-Waves' amplitude has increased but the pattern shows no significant difference to the former case.
-
-* $$r_{cut} = 1.81$$
-
-&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl1810&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
-
-&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl1810_grid_circle&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
-
-Here as well, waves' amplitude has increased but the pattern shows no significant difference to the former case.
-
-* $$r_{cut} = 3.17$$
-
-&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl3170&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
-
-&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl3170_grid_circle&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
-
-We now see a strong quadrupolar symmetry emerging in the strain correlation pattern. Moreover, waves' frequency seems to have dropped.
-
-* $$r_{cut} = 5.8$$
-
-&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl5800&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
-
-&lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl5800_grid_circle&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
-
-For this final case, the quadrupolar symmetry is clear and we observe a highly correlated central region of characteristic length equal to $$r_{cut}$$. However, the strain correlations pattern is very different from what has been computed directly from strain (see [[(phi = 0.80, v = 1e-2) strain correlations]]).</pre>
+&lt;div class=&quot;tc-table-of-contents&quot;&gt;
+&lt;&lt;toc-selective-expandable 'Shear strain and vorticity fields'&gt;&gt;
+&lt;/div&gt;</pre>
 </div>
 <div created="20180417013424708" modified="20180503014903700" tags="Model" title="System">
 <pre>Model from [[Fily et al., 2014|http://pubs.rsc.org/-/content/articlelanding/2014/sm/c3sm52469h/]]. (see [[phase diagram|Expected phase diagram]], [[phase boundaries shifting|Expected phase boundaries shifting]]) 
