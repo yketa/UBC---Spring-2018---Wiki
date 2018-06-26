@@ -456,6 +456,8 @@ Error message and password prompt
 
 <li>phi = 0.80, v = 1e-2</li>
 
+<li>phi = 1.00, dr = 3e-4</li>
+
 <li>phi = 1.00, v = 1e-1</li>
 
 <li>phi = 1.00, v = 5e-2</li>
@@ -608,7 +610,7 @@ For this final case, the quadrupolar symmetry is clear and we observe a highly c
 
 At $$\tilde{\nu}_r = 7\cdot10^{-3}$$, we expect strain correlations to decay exponentially (see [[(phi = 0.80, v = 1e-2) strain correlations]]). Collective mean square displacements analysis seems to indicate $$C^{\perp}(k), C^{||}(k) \propto k^{-1}$$.</pre>
 </div>
-<div created="20180626040130851" modified="20180626040903697" tags="[[Shear strain and vorticity fields]]" title="(phi = 0.80, v = 1e-2) strain correlations from Fourier space">
+<div created="20180626040130851" modified="20180626185003290" tags="[[Shear strain and vorticity fields]]" title="(phi = 0.80, v = 1e-2) strain correlations from Fourier space">
 <pre>!!! Preliminary results for $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2})$$
 
 As we have done from [[collective mean square displacements|(phi = 0.80, v = 1e-2) strain correlations from CMSD]], we investigate the influence of the cut-off radius $$r_{cut}$$ on the shear strain correlations $$C_{\varepsilon_{xy}\varepsilon_{xy}}$$ calculated from Fourier space (see [[Shear strain and vorticity fields]]).
@@ -629,9 +631,15 @@ As we have done from [[collective mean square displacements|(phi = 0.80, v = 1e-
 
 &lt;&lt;plotwgit image:&quot;Cssftb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl3160_grid_circle&quot; path:&quot;analysis/css.py&quot;&gt;&gt;
 
+&lt;&lt;plotwgit image:&quot;Cssftb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl3160_c44&quot; path:&quot;analysis/css.py&quot;&gt;&gt;
+
+We have somewhat of an algebraic decay over a decade, $$5 \leq r/a \leq 50$$. Our signal is however polluted by an oscillation of unknown origin.
+
 * $$r_{cut} = 5.07$$
 
 &lt;&lt;plotwgit image:&quot;Cssftb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl5070_grid_circle&quot; path:&quot;analysis/css.py&quot;&gt;&gt;
+
+&lt;&lt;plotwgit image:&quot;Cssftb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl5070_c44&quot; path:&quot;analysis/css.py&quot;&gt;&gt;
 
 We qualitatively observe the exact same behaviour as for the [[calculation from collective mean square displacements|(phi = 0.80, v = 1e-2) strain correlations from CMSD]], we then refer to this tiddler for comments. This shows that these methods are consistent.</pre>
 </div>
@@ -9687,10 +9695,10 @@ config.macros.bibliography = {
 <div created="20180606022318016" modified="20180625224602683" title="$:/state/toc/Measurements/Shear strain and vorticity fields-Shear strain correlations--1479111847">
 <pre>close</pre>
 </div>
-<div created="20180417231441389" modified="20180626032440124" title="$:/state/toc/TableOfContents-Analysis--81657105">
+<div created="20180417231441389" modified="20180626190302683" title="$:/state/toc/TableOfContents-Analysis--81657105">
 <pre>close</pre>
 </div>
-<div created="20180417005847401" modified="20180626040940442" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<div created="20180417005847401" modified="20180626190305482" title="$:/state/toc/TableOfContents-Measurements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180416044344979" modified="20180623003755897" title="$:/state/toc/TableOfContents-Model--81657105">
@@ -9702,10 +9710,10 @@ config.macros.bibliography = {
 <div created="20180417010842396" modified="20180417010842396" title="$:/state/toc/TableOfContents/Measurements-Cooperativity--81657105">
 <pre>open</pre>
 </div>
-<div created="20180417013345743" modified="20180626031420229" title="$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105">
+<div created="20180417013345743" modified="20180626065613538" title="$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105">
 <pre>close</pre>
 </div>
-<div created="20180606021533806" modified="20180626040937879" title="$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields--81657105">
+<div created="20180606021533806" modified="20180626190304640" title="$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields--81657105">
 <pre>close</pre>
 </div>
 <div created="20180504220944795" modified="20180504220944795" title="$:/state/toc/TableOfContents/Measurements-Strain and vorticity fields--81657105">
@@ -11078,6 +11086,13 @@ We can finally look at videos of the actual system. In these videos, $$r_{max}$$
 |$$2\cdot10^{-5}$$| [ext[1e3|Videos/t_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Io5000_Mo1000_Pl1000.mp4]]|
 
 $$\Delta t$$ denotes the time step between each frame.</pre>
+</div>
+<div created="20180626184931247" modified="20180626185953861" tags="Analysis" title="phi = 1.00, dr = 3e-4">
+<pre>We have been interested in the transition between the active fluid regime and the phase separated regime with varying diffusion rotation constant $$\tilde{\nu}_r$$ and fixed self-propulsion velocity $$\tilde{v}$$ (see [[(phi = 0.80, v = 1e-2) vs. (phi = 1.00, v = 1e-1)]]). We can also study this transition with varying $$\tilde{v}$$ and fixed $$\tilde{\nu}_r$$.
+
+&lt;&lt;plotwgit image:&quot;Pphiloc_Dl1000_Rh3000_Nq1000_Io5000_Ml1000_Cn5000&quot; path:&quot;plot/pphiloc.py&quot;&gt;&gt;
+
+At $$\phi = 1.00$$ and $$\tilde{\nu}_r = 3\cdot10^{-4}$$, we observe with increaing $$\tilde{v}$$ in the range $$[10^{-2}; 10^{-1}]$$ a transition from an homogeneous density state — characterised by a monomodal local density histogram — to a phase separated state — characterised by a bimodal local density histogram.</pre>
 </div>
 <div created="20180420010218374" modified="20180622210501557" tags="Analysis" title="phi = 1.00, v = 1e-1">
 <pre>From the [[expected phase diagram|Expected phase diagram]] of our system, we have that the point $$(\phi=1.00, \tilde{v}=1\cdot10^{-1}, \tilde{\nu}_r=5\cdot10^{-4})$$ should be in the phase separated domain. We investigated a system at $$\phi=1.00$$ and $$\tilde{v}=1\cdot10^{-1}$$ for different values of the diffusion rotation constant.
