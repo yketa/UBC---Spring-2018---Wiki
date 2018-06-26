@@ -124,6 +124,8 @@ Error message and password prompt
 
 <li>(phi = 0.80, v = 1e-2) strain correlations from CMSD</li>
 
+<li>(phi = 0.80, v = 1e-2) strain correlations from Fourier space</li>
+
 <li>(phi = 0.80, v = 1e-2) vs. (phi = 1.00, v = 1e-1)</li>
 
 <li>$:/config/DefaultSidebarTab</li>
@@ -605,6 +607,33 @@ For this final case, the quadrupolar symmetry is clear and we observe a highly c
 &lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Ri7000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
 
 At $$\tilde{\nu}_r = 7\cdot10^{-3}$$, we expect strain correlations to decay exponentially (see [[(phi = 0.80, v = 1e-2) strain correlations]]). Collective mean square displacements analysis seems to indicate $$C^{\perp}(k), C^{||}(k) \propto k^{-1}$$.</pre>
+</div>
+<div created="20180626040130851" modified="20180626040903697" tags="[[Shear strain and vorticity fields]]" title="(phi = 0.80, v = 1e-2) strain correlations from Fourier space">
+<pre>!!! Preliminary results for $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2})$$
+
+As we have done from [[collective mean square displacements|(phi = 0.80, v = 1e-2) strain correlations from CMSD]], we investigate the influence of the cut-off radius $$r_{cut}$$ on the shear strain correlations $$C_{\varepsilon_{xy}\varepsilon_{xy}}$$ calculated from Fourier space (see [[Shear strain and vorticity fields]]).
+
+* $$r_{cut} = 0$$
+
+&lt;&lt;plotwgit image:&quot;Cssftb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl0000_grid_circle&quot; path:&quot;analysis/css.py&quot;&gt;&gt;
+
+* $$r_{cut} = 1.24$$
+
+&lt;&lt;plotwgit image:&quot;Cssftb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl1240_grid_circle&quot; path:&quot;analysis/css.py&quot;&gt;&gt;
+
+* $$r_{cut} = 1.80$$
+
+&lt;&lt;plotwgit image:&quot;Cssftb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl1800_grid_circle&quot; path:&quot;analysis/css.py&quot;&gt;&gt;
+
+* $$r_{cut} = 3.16$$
+
+&lt;&lt;plotwgit image:&quot;Cssftb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl3160_grid_circle&quot; path:&quot;analysis/css.py&quot;&gt;&gt;
+
+* $$r_{cut} = 5.07$$
+
+&lt;&lt;plotwgit image:&quot;Cssftb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl5070_grid_circle&quot; path:&quot;analysis/css.py&quot;&gt;&gt;
+
+We qualitatively observe the exact same behaviour as for the [[calculation from collective mean square displacements|(phi = 0.80, v = 1e-2) strain correlations from CMSD]], we then refer to this tiddler for comments. This shows that these methods are consistent.</pre>
 </div>
 <div created="20180423185822864" modified="20180620040847839" tags="Analysis" title="(phi = 0.80, v = 1e-2) vs. (phi = 1.00, v = 1e-1)">
 <pre>&lt;&lt;plotwgit image:&quot;comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000&quot; path:&quot;plot/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000.py&quot;&gt;&gt;
@@ -9658,16 +9687,16 @@ config.macros.bibliography = {
 <div created="20180606022318016" modified="20180625224602683" title="$:/state/toc/Measurements/Shear strain and vorticity fields-Shear strain correlations--1479111847">
 <pre>close</pre>
 </div>
-<div created="20180417231441389" modified="20180626031416489" title="$:/state/toc/TableOfContents-Analysis--81657105">
+<div created="20180417231441389" modified="20180626032440124" title="$:/state/toc/TableOfContents-Analysis--81657105">
 <pre>close</pre>
 </div>
-<div created="20180417005847401" modified="20180626031422576" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<div created="20180417005847401" modified="20180626040940442" title="$:/state/toc/TableOfContents-Measurements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180416044344979" modified="20180623003755897" title="$:/state/toc/TableOfContents-Model--81657105">
 <pre>close</pre>
 </div>
-<div created="20180609023859864" modified="20180626031417750" title="$:/state/toc/TableOfContents/Measurements-Collective mean square displacements--81657105">
+<div created="20180609023859864" modified="20180626040939176" title="$:/state/toc/TableOfContents/Measurements-Collective mean square displacements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180417010842396" modified="20180417010842396" title="$:/state/toc/TableOfContents/Measurements-Cooperativity--81657105">
@@ -9676,7 +9705,7 @@ config.macros.bibliography = {
 <div created="20180417013345743" modified="20180626031420229" title="$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105">
 <pre>close</pre>
 </div>
-<div created="20180606021533806" modified="20180626031421308" title="$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields--81657105">
+<div created="20180606021533806" modified="20180626040937879" title="$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields--81657105">
 <pre>close</pre>
 </div>
 <div created="20180504220944795" modified="20180504220944795" title="$:/state/toc/TableOfContents/Measurements-Strain and vorticity fields--81657105">
