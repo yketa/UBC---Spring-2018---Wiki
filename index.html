@@ -128,6 +128,8 @@ Error message and password prompt
 
 <li>(phi = 0.80, v = 1e-2) vs. (phi = 1.00, v = 1e-1)</li>
 
+<li>(phi = 1.00, v = 1e-1) vs. (phi = 1.00, dr = 3e-4)</li>
+
 <li>$:/config/DefaultSidebarTab</li>
 
 <li>$:/config/Navigation/UpdateAddressBar</li>
@@ -167,6 +169,8 @@ Error message and password prompt
 <li>$:/state/plugin-info--896887961-$:/core</li>
 
 <li>$:/state/plugin-info--896887961-$:/core---553713294</li>
+
+<li>$:/state/SampleReveal1</li>
 
 <li>$:/state/showeditpreview</li>
 
@@ -432,8 +436,6 @@ Error message and password prompt
 
 <li>Displacement correlations</li>
 
-<li>Draft of 'System'</li>
-
 <li>Expected cooperative behaviour</li>
 
 <li>Expected phase boundaries shifting</li>
@@ -480,7 +482,7 @@ Error message and password prompt
 <!--~~ Ordinary tiddlers ~~-->
 
 <div id="storeArea" style="display:none;">
-<div created="20180606015759910" list="" modified="20180626030344504" tags="[[Shear strain and vorticity fields]]" title="(phi = 0.80, v = 1e-2) strain correlations">
+<div created="20180606015759910" list="" modified="20180710053112515" tags="[[Shear strain and vorticity fields]]" title="(phi = 0.80, v = 1e-2) strain correlations">
 <pre>We recall the transition rotation diffusion constant, $$\tilde{\nu}_{r, c} \approx 3\cdot10^{-4}$$, between the homogeneous active fluid regime (low activity, $$\tilde{\nu}_r &gt; \tilde{\nu}_{r, c}$$) and the phase separated regime (high activity, $$\tilde{\nu}_r &lt; \tilde{\nu}_{r, c}$$), as determined in [[phi = 0.80, v = 1e-2]] for the system at density $$\phi=0.80$$ and self-propulsion velocity $$v_0=1\cdot10^{-2}$$.
 
 We investigate the behaviour of  $$C_4^4(r, nD_0\Delta t)$$ — the projection projection of the shear strain correlation fonction on $$\cos4\theta$$, as described in [[Shear strain and vorticity fields]] — at different lag times and activities, for the system at density.
@@ -515,7 +517,11 @@ These short ranged correlations set by the particle scale indicate simple fluid 
 
 ''(Very) high activity''
 
-In this regime, we want to investigate strain correlations in the glassy phase of the system. We then have to focus on parts of the system without any gas phase which are large enough to get good statistics. This is hardly possible close to the transition rotation diffusion constant, where &quot;holes&quot; in the system are numerous and opens and closes at a high rate. We then focus on a very high activity system.
+&lt;&lt;plotwgit image:&quot;Cssb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Ml1000_Cn5000_RCUTl2000_SIGMl2000&quot; path:&quot;analysis/css.py&quot;&gt;&gt;
+
+In this regime, where the system phase separates, we have that the higher values of strains are located at the border of the gas phases, we then expect that these regions contribute the most to the strain correlations.
+
+If we want to investigate strain correlations in the glassy phase of the system, we then have to focus on parts of the system without any gas phase which are large enough to get good statistics. This is hardly possible close to the transition rotation diffusion constant, where &quot;holes&quot; in the system are numerous and opens and closes at a high rate. We then focus on a very high activity system.
 
 &lt;&lt;plotwgit image:&quot;Cssb_Dk8000_Vj1000_Rg2000_Nq1000_In5000_Tl1000_Ml1000_Co1000_Bn3000_XN1500_Yn1500_grid_circle&quot; path:&quot;analysis/css.py&quot;&gt;&gt;
 
@@ -610,8 +616,15 @@ For this final case, the quadrupolar symmetry is clear and we observe a highly c
 
 At $$\tilde{\nu}_r = 7\cdot10^{-3}$$, we expect strain correlations to decay exponentially (see [[(phi = 0.80, v = 1e-2) strain correlations]]). Collective mean square displacements analysis seems to indicate $$C^{\perp}(k), C^{||}(k) \propto k^{-1}$$.</pre>
 </div>
-<div created="20180626040130851" modified="20180626185003290" tags="[[Shear strain and vorticity fields]]" title="(phi = 0.80, v = 1e-2) strain correlations from Fourier space">
-<pre>!!! Preliminary results for $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2})$$
+<div created="20180626040130851" modified="20180710091644804" tags="[[Shear strain and vorticity fields]]" title="(phi = 0.80, v = 1e-2) strain correlations from Fourier space">
+<pre>\define plot_sc(image:&quot;&quot;)
+
+&lt;&lt;plotwgit image:&quot;$image$_loglog&quot; path:&quot;analysis/css.py&quot;&gt;&gt;
+&lt;&lt;plotwgit image:&quot;$image$_linlog&quot; path:&quot;analysis/css.py&quot;&gt;&gt;
+
+\end
+
+!!! Preliminary results for $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2}, \tilde{\nu}_r = 2\cdot10^{-5})$$
 
 As we have done from [[collective mean square displacements|(phi = 0.80, v = 1e-2) strain correlations from CMSD]], we investigate the influence of the cut-off radius $$r_{cut}$$ on the shear strain correlations $$C_{\varepsilon_{xy}\varepsilon_{xy}}$$ calculated from Fourier space (see [[Shear strain and vorticity fields]]).
 
@@ -641,12 +654,283 @@ We have somewhat of an algebraic decay over a decade, $$5 \leq r/a \leq 50$$. Ou
 
 &lt;&lt;plotwgit image:&quot;Cssftb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl5070_c44&quot; path:&quot;analysis/css.py&quot;&gt;&gt;
 
-We qualitatively observe the exact same behaviour as for the [[calculation from collective mean square displacements|(phi = 0.80, v = 1e-2) strain correlations from CMSD]], we then refer to this tiddler for comments. This shows that these methods are consistent.</pre>
+We qualitatively observe the exact same behaviour as for the [[calculation from collective mean square displacements|(phi = 0.80, v = 1e-2) strain correlations from CMSD]], we then refer to this tiddler for comments. This shows that these methods are consistent.
+
+!!! Preliminary comparison of $$C_4^4(r)$$ for different $$\tilde{\nu}_r$$
+
+First of all, it has been necessary to adjust the number of boxes considered to compute displacement grids ($$N_{cases}$$) in order to delete waves observed in the precedent 2D strain correlations plots. We note that this operation of putting discrete particles displacements onto a grid is a kind of coarse-graining, what was necessary then is to find to correct coarse-graining length scale in order not to be disturbed by the microscopic distribution of particles.
+
+* High activity (phase separated regime — $$\tilde{\nu}_r &lt; \tilde{\nu}_{r, c}$$)&lt;div&gt;
+
+In this regime, it is plausible that strain correlations decay algebraically on a radius interval of increasing length with increasing persistence time and proportionally to $$r^{-2}$$ (scaling we expect in a conventional glass, see [[Shear strain and vorticity fields]]) and have an exponential cut-off.
+
+From the comparison of $$(\tilde{\nu}_r = 2\cdot10^{-5}, \Delta t = 1\cdot10^0)$$ and $$(\tilde{\nu}_r = 2\cdot10^{-5}, \Delta t = 1\cdot10^3)$$, and $$(\tilde{\nu}_r = 1\cdot10^{-4}, \Delta t = 1\cdot10^1)$$ and $$(\tilde{\nu}_r = 1\cdot10^{-4}, \Delta t = 1\cdot10^3)$$, we can hypothesise that these algebraic correlations appear after a certain time.
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 5.00\cdot10^{-6}$$
+
+*** $$\Delta t = 1.00\cdot10^3, \tilde{\nu}_r\Delta t = 5.00\cdot10^{-3}, nD_0\Delta t = 2.51\cdot10^{3}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rf5000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 1.00\cdot10^{-5}$$
+
+*** $$\Delta t = 1.00\cdot10^3, \tilde{\nu}_r\Delta t = 1.00\cdot10^{-2}, nD_0\Delta t = 1.26\cdot10^{3}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rg1000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 2.00\cdot10^{-5}$$
+
+*** $$\Delta t = 1.00\cdot10^0, \tilde{\nu}_r\Delta t = 2.00\cdot10^{-5}, nD_0\Delta t = 6.28\cdot10^{-1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rg2000_Nq1000_Ll1000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 1.00\cdot10^3, \tilde{\nu}_r\Delta t = 2.00\cdot10^{-2}, nD_0\Delta t = 6.28\cdot10^{2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 2.00\cdot10^3, \tilde{\nu}_r\Delta t = 4.00\cdot10^{-2}, nD_0\Delta t = 1.26\cdot10^{3}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Io5000_Tl2000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 3.00\cdot10^{-5}$$
+
+*** $$\Delta t = 1.00\cdot10^3, \tilde{\nu}_r\Delta t = 3.00\cdot10^{-2}, nD_0\Delta t = 4.19\cdot10^{2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rg3000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 4.00\cdot10^{-5}$$
+
+*** $$\Delta t = 1.00\cdot10^3, \tilde{\nu}_r\Delta t = 4.00\cdot10^{-2}, nD_0\Delta t = 3.14\cdot10^{2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rg4000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 5.00\cdot10^{-5}$$
+
+*** $$\Delta t = 1.00\cdot10^3, \tilde{\nu}_r\Delta t = 5.00\cdot10^{-2}, nD_0\Delta t = 2.51\cdot10^{2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rg5000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 6.00\cdot10^{-5}$$
+
+*** $$\Delta t = 1.00\cdot10^3, \tilde{\nu}_r\Delta t = 6.00\cdot10^{-2}, nD_0\Delta t = 2.09\cdot10^{2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rg6000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 7.00\cdot10^{-5}$$
+
+*** $$\Delta t = 1.00\cdot10^3, \tilde{\nu}_r\Delta t = 7.00\cdot10^{-2}, nD_0\Delta t = 1.79\cdot10^{2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rg7000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 2.00\cdot10^3, \tilde{\nu}_r\Delta t = 1.40\cdot10^{-1}, nD_0\Delta t = 3.59\cdot10^{2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rg7000_Nq1000_Ll0000_Io5000_Tl2000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 8.00\cdot10^{-5}$$
+
+*** $$\Delta t = 1.00\cdot10^3, \tilde{\nu}_r\Delta t = 8.00\cdot10^{-2}, nD_0\Delta t = 1.57\cdot10^{2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rg8000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 9.00\cdot10^{-5}$$
+
+*** $$\Delta t = 1.00\cdot10^3, \tilde{\nu}_r\Delta t = 9.00\cdot10^{-2}, nD_0\Delta t = 1.40\cdot10^{2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rg9000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 1.00\cdot10^{-4}$$
+
+*** $$\Delta t = 1.00\cdot10^1, \tilde{\nu}_r\Delta t = 1.00\cdot10^{-3}, nD_0\Delta t = 1.26\cdot10^{0}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rh1000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 1.00\cdot10^3, \tilde{\nu}_r\Delta t = 1.00\cdot10^{-1}, nD_0\Delta t = 1.26\cdot10^{2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rh1000_Nq1000_Ll1000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+
+** $$\tilde{\nu}_r = 2.00\cdot10^{-4}$$
+
+*** $$\Delta t = 1.00\cdot10^3, \tilde{\nu}_r\Delta t = 2.00\cdot10^{-1}, nD_0\Delta t = 6.28\cdot10^{1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rh1000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 2.00\cdot10^3, \tilde{\nu}_r\Delta t = 4.00\cdot10^{-1}, nD_0\Delta t = 1.26\cdot10^{2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rh2000_Nq1000_Ll0000_Io5000_Tl2000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 5.00\cdot10^3, \tilde{\nu}_r\Delta t = 1.00\cdot10^{0}, nD_0\Delta t = 3.14\cdot10^{2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rh2000_Nq1000_Ll0000_Io5000_Tl5000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 3.00\cdot10^{-4}$$
+
+*** $$\Delta t = 1.00\cdot10^0, \tilde{\nu}_r\Delta t = 3.00\cdot10^{-4}, nD_0\Delta t = 4.19\cdot10^{-2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rh3000_Nq1000_Ll1000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 1.00\cdot10^3, \tilde{\nu}_r\Delta t = 3.00\cdot10^{-1}, nD_0\Delta t = 4.19\cdot10^{1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rh3000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+* Low activity (homogeneous active fluid — $$\tilde{\nu}_r &gt; \tilde{\nu}_{r, c}$$)&lt;div&gt;
+
+We have in this regime that strain correlations projected on $$\cos4\theta$$ are approximately decaying exponentially on $$r/a \in [2; 10]$$, with a length scale approximately equal to $$2 a$$.
+
+Furthermore, we have at fixed persistence time that this length scale increases with lag time — we would indeed expect that correlations increase with time.
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r =4.00\cdot10^{-4}$$
+
+*** $$\Delta t = 1.00\cdot10^3, \tilde{\nu}_r\Delta t = 4.00\cdot10^{-1}, nD_0\Delta t = 3.14\cdot10^{1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rh4000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r =5.00\cdot10^{-4}$$
+
+*** $$\Delta t = 1.00\cdot10^3, \tilde{\nu}_r\Delta t = 5.00\cdot10^{-1}, nD_0\Delta t = 2.51\cdot10^{1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rh5000_Nq1000_Ll1000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r =6.00\cdot10^{-4}$$
+
+*** $$\Delta t = 1.00\cdot10^2, \tilde{\nu}_r\Delta t = 6.00\cdot10^{-2}, nD_0\Delta t = 2.09\cdot10^{0}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rh6000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 7.00\cdot10^{-4}$$
+
+*** $$\Delta t = 1.00\cdot10^2, \tilde{\nu}_r\Delta t = 7.00\cdot10^{-2}, nD_0\Delta t = 1.79\cdot10^{0}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rh7000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 2.00\cdot10^2, \tilde{\nu}_r\Delta t = 1.40\cdot10^{-1}, nD_0\Delta t = 3.59\cdot10^{0}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rh7000_Nq1000_Ll0000_Io5000_Tl2000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 5.00\cdot10^2, \tilde{\nu}_r\Delta t = 3.50\cdot10^{-1}, nD_0\Delta t = 8.97\cdot10^{0}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rh7000_Nq1000_Ll0000_Io5000_Tl5000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 1.00\cdot10^3, \tilde{\nu}_r\Delta t = 7.00\cdot10^{-1}, nD_0\Delta t = 1.79\cdot10^{1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rh7000_Nq1000_Ll0000_Io5000_Tm1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 2.00\cdot10^3, \tilde{\nu}_r\Delta t = 1.40\cdot10^{0}, nD_0\Delta t = 3.59\cdot10^{1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rh7000_Nq1000_Ll0000_Io5000_Tm2000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 5.00\cdot10^3, \tilde{\nu}_r\Delta t = 3.50\cdot10^{0}, nD_0\Delta t = 8.97\cdot10^{1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rh7000_Nq1000_Ll0000_Io5000_Tm5000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 8.00\cdot10^{-4}$$
+
+*** $$\Delta t = 1.00\cdot10^2, \tilde{\nu}_r\Delta t = 8.00\cdot10^{-2}, nD_0\Delta t = 1.57\cdot10^{0}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rh8000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 9.00\cdot10^{-4}$$
+
+*** $$\Delta t = 1.00\cdot10^2, \tilde{\nu}_r\Delta t = 9.00\cdot10^{-2}, nD_0\Delta t = 1.40\cdot10^{0}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Rh9000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 1.00\cdot10^{-3}$$
+
+*** $$\Delta t = 1.00\cdot10^1, \tilde{\nu}_r\Delta t = 1.00\cdot10^{-2}, nD_0\Delta t = 1.26\cdot10^{-1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri1000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 1.00\cdot10^3, \tilde{\nu}_r\Delta t = 1.00\cdot10^{0}, nD_0\Delta t = 1.26\cdot10^{1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri1000_Nq1000_Ll1000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 2.00\cdot10^{-3}$$
+
+*** $$\Delta t = 1.00\cdot10^1, \tilde{\nu}_r\Delta t = 2.00\cdot10^{-2}, nD_0\Delta t = 6.28\cdot10^{-2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 2.00\cdot10^1, \tilde{\nu}_r\Delta t = 4.00\cdot10^{-2}, nD_0\Delta t = 1.26\cdot10^{-1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000_Io5000_Tl2000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 5.00\cdot10^1, \tilde{\nu}_r\Delta t = 1.00\cdot10^{-1}, nD_0\Delta t = 3.14\cdot10^{-1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000_Io5000_Tl5000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 1.00\cdot10^2, \tilde{\nu}_r\Delta t = 2.00\cdot10^{-1}, nD_0\Delta t = 6.28\cdot10^{-1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000_Io5000_Tm1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 2.00\cdot10^2, \tilde{\nu}_r\Delta t = 4.00\cdot10^{-1}, nD_0\Delta t = 1.26\cdot10^{0}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000_Io5000_Tm2000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 5.00\cdot10^2, \tilde{\nu}_r\Delta t = 1.00\cdot10^{0}, nD_0\Delta t = 3.14\cdot10^{0}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000_Io5000_Tm5000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 1.00\cdot10^3, \tilde{\nu}_r\Delta t = 2.00\cdot10^{0}, nD_0\Delta t = 6.28\cdot10^{0}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000_Io5000_Tn1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 2.00\cdot10^3, \tilde{\nu}_r\Delta t = 4.00\cdot10^{0}, nD_0\Delta t = 1.26\cdot10^{1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000_Io5000_Tn2000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 5.00\cdot10^3, \tilde{\nu}_r\Delta t = 1.00\cdot10^{1}, nD_0\Delta t = 3.14\cdot10^{1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000_Io5000_Tn5000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 1.00\cdot10^4, \tilde{\nu}_r\Delta t = 2.00\cdot10^{1}, nD_0\Delta t = 6.28\cdot10^{1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000_Io5000_To1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 4.00\cdot10^{-3}$$
+
+*** $$\Delta t = 1.00\cdot10^1, \tilde{\nu}_r\Delta t = 4.00\cdot10^{-2}, nD_0\Delta t = 3.14\cdot10^{-2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri4000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 5.00\cdot10^{-3}$$
+
+*** $$\Delta t = 1.00\cdot10^1, \tilde{\nu}_r\Delta t = 5.00\cdot10^{-2}, nD_0\Delta t = 2.51\cdot10^{-2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri5000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 6.00\cdot10^{-3}$$
+
+*** $$\Delta t = 1.00\cdot10^1, \tilde{\nu}_r\Delta t = 6.00\cdot10^{-2}, nD_0\Delta t = 2.09\cdot10^{-2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri6000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+
+** $$\tilde{\nu}_r = 7.00\cdot10^{-3}$$
+
+*** $$\Delta t = 1.00\cdot10^1, \tilde{\nu}_r\Delta t = 7.00\cdot10^{-2}, nD_0\Delta t = 1.79\cdot10^{-2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 2.00\cdot10^1, \tilde{\nu}_r\Delta t = 1.40\cdot10^{-1}, nD_0\Delta t = 3.59\cdot10^{-2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Tl2000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 5.00\cdot10^1, \tilde{\nu}_r\Delta t = 3.50\cdot10^{-1}, nD_0\Delta t = 8.97\cdot10^{-2}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Tl5000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 1.00\cdot10^2, \tilde{\nu}_r\Delta t = 7.00\cdot10^{-1}, nD_0\Delta t = 1.79\cdot10^{-1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Tm1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 2.00\cdot10^2, \tilde{\nu}_r\Delta t = 1.40\cdot10^{0}, nD_0\Delta t = 3.59\cdot10^{-1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Tm2000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 5.00\cdot10^2, \tilde{\nu}_r\Delta t = 3.50\cdot10^{0}, nD_0\Delta t = 8.97\cdot10^{-1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Tm5000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 1.00\cdot10^3, \tilde{\nu}_r\Delta t = 7.00\cdot10^{0}, nD_0\Delta t = 1.79\cdot10^{0}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Tn1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 2.00\cdot10^3, \tilde{\nu}_r\Delta t = 1.40\cdot10^{1}, nD_0\Delta t = 3.59\cdot10^{0}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Tn2000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 5.00\cdot10^3, \tilde{\nu}_r\Delta t = 3.50\cdot10^{1}, nD_0\Delta t = 8.97\cdot10^{0}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Tn5000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 1.00\cdot10^4, \tilde{\nu}_r\Delta t = 7.00\cdot10^{1}, nD_0\Delta t = 1.79\cdot10^{1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_To1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 2.00\cdot10^4, \tilde{\nu}_r\Delta t = 1.40\cdot10^{2}, nD_0\Delta t = 3.59\cdot10^{1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_To2000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;
+*** $$\Delta t = 4.00\cdot10^4, \tilde{\nu}_r\Delta t = 2.80\cdot10^{2}, nD_0\Delta t = 7.18\cdot10^{1}$$&lt;div&gt;
+&lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_To4000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
+&lt;/div&gt;</pre>
 </div>
 <div created="20180423185822864" modified="20180620040847839" tags="Analysis" title="(phi = 0.80, v = 1e-2) vs. (phi = 1.00, v = 1e-1)">
 <pre>&lt;&lt;plotwgit image:&quot;comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000&quot; path:&quot;plot/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000.py&quot;&gt;&gt;
 
 &lt;&lt;plotwgit image:&quot;comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000_dt&quot; path:&quot;plot/comparison_plot_Dk8000_Vj1000_Dl1000_Vk1000.py&quot;&gt;&gt;</pre>
+</div>
+<div created="20180710001447608" modified="20180710001551223" tags="Analysis" title="(phi = 1.00, v = 1e-1) vs. (phi = 1.00, dr = 3e-4)">
+<pre>&lt;&lt;plotwgit image:&quot;comparison_plot_Dl1000_Vj1000_Dl1000_Rh3000&quot; path:&quot;plot/comparison.py&quot;&gt;&gt;</pre>
 </div>
 <div created="20180625224228466" modified="20180625224228466" title="$:/config/DefaultSidebarTab">
 <pre>TableOfContents</pre>
@@ -9650,6 +9934,9 @@ config.macros.bibliography = {
 <div created="20180619231419878" modified="20180619231419878" title="$:/state/plugin-info--896887961-$:/core---553713294">
 <pre>contents</pre>
 </div>
+<div created="20180710071331364" modified="20180710071334515" title="$:/state/SampleReveal1">
+<pre>hide</pre>
+</div>
 <div created="20180416015000250" modified="20180620053247988" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
@@ -9668,8 +9955,8 @@ config.macros.bibliography = {
 <div created="20180625224127195" modified="20180625224204937" title="$:/state/tab--959111941">
 <pre>$:/core/ui/ControlPanel/TiddlerFields</pre>
 </div>
-<div created="20180417010411725" modified="20180625224341528" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Settings</pre>
+<div created="20180417010411725" modified="20180703011514345" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Appearance</pre>
 </div>
 <div created="20180416015308350" modified="20180623225142916" title="$:/state/tab/sidebar--1835078512">
 <pre>TableOfContents</pre>
@@ -9695,31 +9982,31 @@ config.macros.bibliography = {
 <div created="20180606022318016" modified="20180625224602683" title="$:/state/toc/Measurements/Shear strain and vorticity fields-Shear strain correlations--1479111847">
 <pre>close</pre>
 </div>
-<div created="20180417231441389" modified="20180626190302683" title="$:/state/toc/TableOfContents-Analysis--81657105">
+<div created="20180417231441389" modified="20180710091849913" title="$:/state/toc/TableOfContents-Analysis--81657105">
 <pre>close</pre>
 </div>
-<div created="20180417005847401" modified="20180626190305482" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<div created="20180417005847401" modified="20180710091858705" title="$:/state/toc/TableOfContents-Measurements--81657105">
 <pre>close</pre>
 </div>
-<div created="20180416044344979" modified="20180623003755897" title="$:/state/toc/TableOfContents-Model--81657105">
+<div created="20180416044344979" modified="20180710091859731" title="$:/state/toc/TableOfContents-Model--81657105">
 <pre>close</pre>
 </div>
-<div created="20180609023859864" modified="20180626040939176" title="$:/state/toc/TableOfContents/Measurements-Collective mean square displacements--81657105">
+<div created="20180609023859864" modified="20180710091851073" title="$:/state/toc/TableOfContents/Measurements-Collective mean square displacements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180417010842396" modified="20180417010842396" title="$:/state/toc/TableOfContents/Measurements-Cooperativity--81657105">
 <pre>open</pre>
 </div>
-<div created="20180417013345743" modified="20180626065613538" title="$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105">
+<div created="20180417013345743" modified="20180710091855621" title="$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105">
 <pre>close</pre>
 </div>
-<div created="20180606021533806" modified="20180626190304640" title="$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields--81657105">
+<div created="20180606021533806" modified="20180710091856850" title="$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields--81657105">
 <pre>close</pre>
 </div>
 <div created="20180504220944795" modified="20180504220944795" title="$:/state/toc/TableOfContents/Measurements-Strain and vorticity fields--81657105">
 <pre>open</pre>
 </div>
-<div created="20180417222853075" modified="20180626011938656" title="$:/state/toc/TableOfContents/Measurements/Displacement correlations-Cooperativity--81657105">
+<div created="20180417222853075" modified="20180710091854431" title="$:/state/toc/TableOfContents/Measurements/Displacement correlations-Cooperativity--81657105">
 <pre>close</pre>
 </div>
 <div created="20180606022208656" modified="20180625213813339" title="$:/state/toc/TableOfContents/Measurements/Shear strain and vorticity fields-Shear strain correlations--81657105">
@@ -10435,7 +10722,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20180620032354454" modified="20180620032356781" title="$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary">
 <pre>bibtex</pre>
 </div>
-<div created="20180416033117939" modified="20180620233021207" title="$:/temp/search">
+<div created="20180416033117939" modified="20180710083414610" title="$:/temp/search">
 <pre></pre>
 </div>
 <div created="20180620031722320" modified="20180620031722320" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.15/index.html" url="https://tiddlywiki.com/library/v5.1.15/index.html">
@@ -10550,7 +10837,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
     }
 }</pre>
 </div>
-<div created="20180620021207498" modified="20180620021211808" title="$:/themes/tiddlywiki/vanilla/metrics/fontsize">
+<div created="20180620021207498" modified="20180703011541937" title="$:/themes/tiddlywiki/vanilla/metrics/fontsize">
 <pre>14px</pre>
 </div>
 <div created="20180418024429731" modified="20180418024524583" title="$:/themes/tiddlywiki/vanilla/metrics/storyright">
@@ -10570,7 +10857,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 &lt;&lt;toc-selective-expandable 'Analysis'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20180608213646733" modified="20180626030459843" tags="Measurements" title="Collective mean square displacements">
+<div created="20180608213646733" modified="20180626235056273" tags="Measurements" title="Collective mean square displacements">
 <pre>Strain correlations are computed quite slowly. Inspired by [[Illing et al., 2016|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.117.208002]], we then turn to the calculation of transversal collective mean square displacement (TCMSD), $$C^{\perp}$$, and longitudinal collective mean square displacement (LCMSD), $$C^{||}$$, which are defined by
 
 $$
@@ -10613,7 +10900,8 @@ C^{||}(\vec{k}_{ij}, \Delta t) &amp;= \frac{1}{L||\vec{k}_{ij}||^2}\sum_{k=1}^L 
 $$
 and introduce
 $$
-F_{ij}(\Delta t, r_{cut}) = \begin{cases} -\frac{k_{ij,x}^2k_{ij,y}^2}{k_{ij}^2}\left(C^{\perp}(\vec{k}_{ij}, \Delta t) - C^{||}(\vec{k}_{ij}, \Delta t)\right) + \frac{k_{ij}^2}{4}C^{\perp}(\vec{k}_{ij}, \Delta t) &amp;\text{ if } \frac{2\pi}{k_{ij}} \geq r_{cut} \\ 0 &amp;\text{ otherwise}\end{cases}
+F_{ij}(\Delta t, r_{cut}) = \begin{cases} -\frac{k_{ij,x}^2k_{ij,y}^2}{k_{ij}^2}\left(C^{\perp}(\vec{k}_{ij}, \Delta t) - C^{||}(\vec{k}_{ij}, \Delta t)\right) &amp;\text{ if } \frac{2\pi}{k_{ij}} \geq r_{cut} \\
++ \frac{k_{ij}^2}{4}C^{\perp}(\vec{k}_{ij}, \Delta t) &amp;\\ &amp; \\ 0 &amp;\text{ otherwise}\end{cases}
 $$
 to obtain
 $$
@@ -10629,16 +10917,16 @@ which is the corresponding grid of shear strain correlations where short range d
 &lt;&lt;toc-selective-expandable 'Collective mean square displacements'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20180416230447789" modified="20180626010955666" tags="[[Displacement correlations]]" title="Cooperativity">
+<div created="20180416230447789" modified="20180703012623201" tags="[[Displacement correlations]]" title="Cooperativity">
 <pre>Inspired by the work of [[Wysocki et al., 2014|http://iopscience.iop.org/article/10.1209/0295-5075/105/48004]] and [[Doliwa et al., 2000|https://journals.aps.org/pre/abstract/10.1103/PhysRevE.61.6898]], we define for any [[displacement-related field correlator|Displacement correlations]] $$C(r, \Delta t)$$ the cooperativity
 
 $$
 \chi(\Delta t, r_{min}, r_{max}) = \phi \int_{r=r_{min}}^{r=r_{max}}  dr~ 2\pi r C(r, \Delta t)
 $$
 
-where $$\phi$$ is the surface density of the particles — $$\phi=\frac{N}{L^2}$$ for a square box of size $$L$$ containing $$N$$ particles —, $$r_{min}$$ is close to the average interparticle distance and $$r_{max}$$ is such that $$C(r&gt;r_{max}, \Delta t)$$ is negligible.
+where $$\phi$$ is the number density of the particles — $$\phi=\frac{1}{L^2}$$ for a square box of size $$L$$ —, $$r_{min}$$ is close to the average interparticle distance and $$r_{max}$$ is such that $$C(r&gt;r_{max}, \Delta t)$$ is negligible.
 
-According to the authors of the aforementionned paper, $$\chi$$ can be interpreted as the average number of coherently moving neighbors.
+According to the authors of the aforementionned paper, $$\chi$$ can be interpreted as the average proportion of particles acting as coherently moving neighbors.
 
 ---
 
@@ -10797,36 +11085,6 @@ Moreover, we have the the cylindrical average of $$(C_{\rho\rho, ij}(\Delta t))_
 &lt;&lt;toc-selective-expandable 'Displacement correlations'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20180417013424708" draft.of="System" draft.title="System" modified="20180619221329674" tags="Model" title="Draft of 'System'">
-<pre>Model from [[Fily et al., 2014|http://pubs.rsc.org/-/content/articlelanding/2014/sm/c3sm52469h/]]. (see [[phase diagram|Expected phase diagram]], [[phase boundaries shifting|Expected phase boundaries shifting]]) 
-
-* 2D disks, 20% polydispersity, mean radius $$a$$
-* Purely repulsive interparticle harmonic potential
-
-$$
-\vec{F}_{ij} =
-\begin{cases}
-k(a_i + a_j - |\vec{r}_i - \vec{r}_j|)\hat{r}_{ij} &amp; \text{ if } a_i + a_j + - |\vec{r}_i - \vec{r}_j| \geq 0
-\\ 0 &amp; \text{ otherwise}
-\end{cases}
-$$
-
-* Brownian (overdamped) dynamics
-* Single particle self-propulsion
-
-$$
-\begin{aligned}
-\frac{d\vec{r}_i}{dt} &amp;= v_0 \vec{n}_i + \sum_{j \neq i} \vec{F}_{ij} &amp; \vec{n}_i = \begin{pmatrix} \cos\theta_i \\ \sin\theta_i \end{pmatrix} \\
-\frac{d\theta_i}{dt} &amp;= \eta_i(t)\\
-&lt;\eta_i(t)\eta_j(t^{\prime})&gt; &amp;= 2 \nu_r \delta_{ij} \delta(t-t^{\prime})
-\end{aligned}
-$$
-
-* 3 control parameters: $$\phi$$ (packing fraction), $$\tilde{v}=\frac{v_0}{ak}$$ (packing fraction), $$\tilde{\nu}_r=\frac{\nu_r}{k}$$ (rotation diffusion constant)
-* Persistence time: $$\tau_r = \tilde{\nu}_r^{-1}$$
-** $$\tilde{\nu}_r \Delta t \equiv$$ average number of rotation in an interval of time $$\Delta t$$
-** particles perform a persistent random walk, we can associate to this random walk an active temperature (equivalent to the temperature in pure Brownian diffusion) $$T_a = \frac{v_0^2}{2k_B\nu_r}$$ and diffusion constant $$D_0 = \frac{v_0^2}{2\nu_r}$$</pre>
-</div>
 <div created="20180417231912802" modified="20180606025346968" tags="Cooperativity" title="Expected cooperative behaviour">
 <pre>We have that the [[Wysocki et al., 2014|http://iopscience.iop.org/article/10.1209/0295-5075/105/48004]] model is very similar to ours, except that it is in 3D and that it also considers translationnal brownian noise.
 
@@ -10984,7 +11242,7 @@ Thus, from the position of any point, we can determine the smaller box it belong
 
 &lt;&lt;compuscript path:&quot;analysis/neighbours.py&quot;&gt;&gt;</pre>
 </div>
-<div created="20180417222836324" modified="20180622210447498" tags="Analysis" title="phi = 0.80, v = 1e-2">
+<div created="20180417222836324" modified="20180703020627510" tags="Analysis" title="phi = 0.80, v = 1e-2">
 <pre>From the [[expected phase diagram|Expected phase diagram]] of our system, we have that the point $$(\phi=0.80, \tilde{v}=1\cdot10^{-2}, \tilde{\nu}_r=5\cdot10^{-4})$$ should be in the homogeneous liquid domain, between the phase separated and glass domains. We then investigated a system at $$\phi=0.80$$ and $$\tilde{v}=1\cdot10^{-2}$$ for different values of the diffusion rotation constant.
 
 We computed $$C_{uu}(\Delta r, \Delta t)$$ for a maximul number of $$S_{max}$$ intervals of time $$[t, t+\Delta t]$$ with $$t$$ greater of equal to the $$S_{init}$$-th frame. Displacement [[field auto-correlation|Discrete field auto-correlation]] was performed from a $$N_{cases}$$ per $$N_{cases}$$ grid of displacements, derived from the original discrete field.
@@ -11004,9 +11262,9 @@ We have that $$C_{|u||u||}$$ reaches a plateau at a few particle diameters, and 
 
 We have seen that $$C_{uu}(r &gt; 20, \Delta t) &lt; 10^{-2}$$ in most cases, we then use $$r_{max}=20$$ as the upper bound of the [[cooperativity|Cooperativity]] integral.
 
-&lt;&lt;plotwgit image:&quot;intCuu_dt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000&quot; path:&quot;plot/Cuu_intCuu_msd.py&quot;&gt;&gt;
+&lt;&lt;plotwgit image:&quot;intCuu_dt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000&quot; path:&quot;plot/chi_msd.py&quot;&gt;&gt;
 
-&lt;&lt;plotwgit image:&quot;intCuu_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000&quot; path:&quot;plot/Cuu_intCuu_msd.py&quot;&gt;&gt;
+&lt;&lt;plotwgit image:&quot;intCuu_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000&quot; path:&quot;plot/chi_msd.py&quot;&gt;&gt;
 
 In this plot, $$dt$$ denotes the integration time step of the simulations from which the data is calculated and $$\Delta t^*$$ is the time lag of maximum cooperativity, which indicates the characteristic time scale of cooperative behaviour (citation?).
 
@@ -11018,9 +11276,9 @@ It is hard to tell from the available data if the shape of $$\chi(\Delta t)$$ is
 
 This transition occurs at $$\tau_{r, c} \approx 3\cdot10^3$$.
 
-&lt;&lt;plotwgit image:&quot;intCee_dt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000&quot; path:&quot;plot/Cuu_intCuu_msd.py&quot;&gt;&gt;
+&lt;&lt;plotwgit image:&quot;intCee_dt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000&quot; path:&quot;plot/chi_msd.py&quot;&gt;&gt;
 
-&lt;&lt;plotwgit image:&quot;intCee_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000&quot; path:&quot;plot/Cuu_intCuu_msd.py&quot;&gt;&gt;
+&lt;&lt;plotwgit image:&quot;intCee_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000&quot; path:&quot;plot/chi_msd.py&quot;&gt;&gt;
 
 We observe for $$C_{\hat{u}\hat{u}}$$ the same increase of the average number of coherently moving neighbors and of the time scale at which it occurs, with the same transition at $$\tau_{r,c}$$. However, in this case the average number of rotations at which this cooperativity is maximum is a monotonously decreasing function of the persistence time.
 
@@ -11034,7 +11292,7 @@ This transition from a homogeneous fluid to a phase separated system could have 
 
 This transition can also be investigated with the observation of the [[mean square displacement|Mean square displacement]] behaviour.
 
-&lt;&lt;plotwgit image:&quot;intCuu_msd_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_Io5000_RMINl1000_RMAXm2000&quot; path:&quot;plot/Cuu_intCuu_msd.py&quot;&gt;&gt;
+&lt;&lt;plotwgit image:&quot;intCuu_msd_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_Io5000_RMINl1000_RMAXm2000&quot; path:&quot;plot/chi_msd.py&quot;&gt;&gt;
 
 We had excluded data for $$\tilde{\nu}_r &lt; 1\cdot10^{-5}$$ and $$\tilde{\nu}_r &gt; 1\cdot10^{-2}$$ (grey curves) from the previous analyis because the shapes, maximums and maximum positions of $$\chi(\Delta t)$$ for these data were non-consistent with the rest, as can be seen in the left panel.
 
@@ -11044,7 +11302,7 @@ For the very low activity regime ($$\tilde{\nu}_r &gt; 1\cdot10^{-2}$$), particl
 
 Curves for the low activity regime ($$1\cdot10^{-2} \leq \tilde{\nu}_r \leq \tau_{r, c}^{-1}$$) seem to transition from the ballistic regime to the diffusive regime after a few rotation. To support this, we can plot the ratio of the mean square displacement and the lag time.
 
-&lt;&lt;plotwgit image:&quot;intCuu_msdt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000&quot; path:&quot;plot/Cuu_intCuu_msd.py&quot;&gt;&gt;
+&lt;&lt;plotwgit image:&quot;intCuu_msdt_Dk8000_Vj1000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000&quot; path:&quot;plot/chi_msd.py&quot;&gt;&gt;
 
 This plot also enables us to see that the transition from a homogeneous fluid to a phase separated system also coincides with the emergence of a (transient?) subdiffusive regime after a few rotations for $$\tilde{\nu}_r &gt; \tau_{r,c}^{-1}$$ and an appreciable dependence of the mean square displacement on the initial time.
 
@@ -11087,12 +11345,16 @@ We can finally look at videos of the actual system. In these videos, $$r_{max}$$
 
 $$\Delta t$$ denotes the time step between each frame.</pre>
 </div>
-<div created="20180626184931247" modified="20180626185953861" tags="Analysis" title="phi = 1.00, dr = 3e-4">
+<div created="20180626184931247" modified="20180703022809784" tags="Analysis" title="phi = 1.00, dr = 3e-4">
 <pre>We have been interested in the transition between the active fluid regime and the phase separated regime with varying diffusion rotation constant $$\tilde{\nu}_r$$ and fixed self-propulsion velocity $$\tilde{v}$$ (see [[(phi = 0.80, v = 1e-2) vs. (phi = 1.00, v = 1e-1)]]). We can also study this transition with varying $$\tilde{v}$$ and fixed $$\tilde{\nu}_r$$.
 
 &lt;&lt;plotwgit image:&quot;Pphiloc_Dl1000_Rh3000_Nq1000_Io5000_Ml1000_Cn5000&quot; path:&quot;plot/pphiloc.py&quot;&gt;&gt;
 
-At $$\phi = 1.00$$ and $$\tilde{\nu}_r = 3\cdot10^{-4}$$, we observe with increaing $$\tilde{v}$$ in the range $$[10^{-2}; 10^{-1}]$$ a transition from an homogeneous density state — characterised by a monomodal local density histogram — to a phase separated state — characterised by a bimodal local density histogram.</pre>
+At $$\phi = 1.00$$ and $$\tilde{\nu}_r = 3\cdot10^{-4}$$, we observe with increaing $$\tilde{v}$$ in the range $$[10^{-2}; 10^{-1}]$$ a transition from an homogeneous density state — characterised by a monomodal local density histogram — to a phase separated state — characterised by a bimodal local density histogram.
+
+&lt;&lt;plotwgit image:&quot;intCuu_Dk8000_Rh3000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000&quot; path:&quot;plot/chi_msd.py&quot;&gt;&gt;
+
+&lt;&lt;plotwgit image:&quot;intCuu_msdt_Dk8000_Rh3000_Nq1000_Io5000_Mn1000_Cn5000_RMINl1000_RMAXm2000&quot; path:&quot;plot/chi_msd.py&quot;&gt;&gt;</pre>
 </div>
 <div created="20180420010218374" modified="20180622210501557" tags="Analysis" title="phi = 1.00, v = 1e-1">
 <pre>From the [[expected phase diagram|Expected phase diagram]] of our system, we have that the point $$(\phi=1.00, \tilde{v}=1\cdot10^{-1}, \tilde{\nu}_r=5\cdot10^{-4})$$ should be in the phase separated domain. We investigated a system at $$\phi=1.00$$ and $$\tilde{v}=1\cdot10^{-1}$$ for different values of the diffusion rotation constant.
@@ -11267,7 +11529,7 @@ We have the same behaviour for the ratio of the transversal and longitudinal com
 
 As in the [[lower density case|phi = 0.80, v = 1e-2]], this last plot seems to indicate that in the time of maximum cooperation coincides with the time of maximum longitudinal displacement orientation correlation.</pre>
 </div>
-<div created="20180619220822377" modified="20180623034606261" tags="TableOfContents" title="Project">
+<div created="20180619220822377" modified="20180706214937469" tags="TableOfContents" title="Project">
 <pre>&lt;div style=&quot;font-size:0.7em;text-align:center;margin-top:3em;margin-bottom:3em;&quot;&gt;
 [img [Images/header.png]] 
 &lt;/div&gt;
@@ -11290,9 +11552,17 @@ This project focuses on a model system of polydisperse active Brownian disks wit
 &lt;a href=&quot;https://github.com/yketa/active_particles&quot; class=&quot;tc-btn-big-green&quot; style=&quot;background-color:#444;&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;
 {{$:/core/images/github}} &lt;b&gt;Project code&lt;/b&gt; on ~GitHub
 &lt;/a&gt;
+&lt;/div&gt;
+
+---
+
+''Contents''
+
+&lt;div class=&quot;tc-table-of-contents&quot;&gt;
+&lt;&lt;toc-selective-expandable 'TableOfContents'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20180424224046740" modified="20180626030214330" tags="Measurements" title="Shear strain and vorticity fields">
+<div created="20180424224046740" modified="20180626234044579" tags="Measurements" title="Shear strain and vorticity fields">
 <pre>!!! Strain tensor
 
 We first derive the expression of the 2D strain tensor. Our demonstration is based on [[Theory of Elasticity, chapter 1|https://archive.org/details/TheoryOfElasticity]] from the Landau and Lifshitz series.
@@ -11505,7 +11775,7 @@ $$
 \end{aligned}
 $$
 
-Since we compute fast Fourier transforms which are discrete Fourier transforms, we will use $$\exp(ik) - 1$$ — which simplifies to $$ik$$ for high wave length modes in which we are interested — instead of $$ik$$, so that it implements precisely an index shift. We thus define $$\forall i, j \in [|1; M|]$$
+Since we compute fast Fourier transforms, which are discrete Fourier transforms, we will use $$\exp(ik) - 1$$ — which simplifies to $$ik$$ for high wave length modes in which we are interested — instead of $$ik$$. This is because discrete derivatives are differences between elements of the grid separated by a single index, then $$\exp(ik)$$ is used to implement precisely the index shitt according to the [[shift theorem|https://en.wikipedia.org/wiki/Discrete_Fourier_transform#Shift_theorem]]. We thus define $$\forall i, j \in [|1; M|]$$
 $$
 \begin{aligned}
 \tilde{\varepsilon}_{xy, ij}(t_k, t_k  +\Delta t) &amp;= \frac{1}{2}\left((e^{ik_{ij,x}} - 1)\tilde{u}_{ij,y}(t_k, t_k  +\Delta t) + (e^{ik_{ij,y}} - 1)\tilde{u}_{ij,x}(t_k, t_k  +\Delta t)\right)\\
@@ -11533,7 +11803,7 @@ which are the corresponding grids of shear strain and displacement vorticity cor
 &lt;&lt;toc-selective-expandable 'Shear strain and vorticity fields'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20180417013424708" modified="20180503014903700" tags="Model" title="System">
+<div created="20180417013424708" modified="20180703010449874" tags="Model" title="System">
 <pre>Model from [[Fily et al., 2014|http://pubs.rsc.org/-/content/articlelanding/2014/sm/c3sm52469h/]]. (see [[phase diagram|Expected phase diagram]], [[phase boundaries shifting|Expected phase boundaries shifting]]) 
 
 * 2D disks, 20% polydispersity, mean radius $$a$$
@@ -11561,7 +11831,8 @@ $$
 * 3 control parameters: $$\phi$$ (packing fraction), $$\tilde{v}=\frac{v_0}{ak}$$ (packing fraction), $$\tilde{\nu}_r=\frac{\nu_r}{k}$$ (rotation diffusion constant)
 * Persistence time: $$\tau_r = \tilde{\nu}_r^{-1}$$
 ** $$\tilde{\nu}_r \Delta t \equiv$$ average number of rotation in an interval of time $$\Delta t$$
-** particles perform a persistent random walk, we can associate to this random walk an active temperature (equivalent to the temperature in pure Brownian diffusion) $$T_a = \frac{v_0^2}{2k_B\nu_r}$$ and diffusion constant $$D_0 = \frac{v_0^2}{2\nu_r}$$</pre>
+** particles perform a persistent random walk, we can associate to this random walk an active temperature (equivalent to the temperature in pure Brownian diffusion) $$T_a = \frac{v_0^2}{2k_B\nu_r}$$ and diffusion constant $$D_0 = \frac{v_0^2}{2\nu_r}$$
+* An important dimensionless quantity is the Péclet number $$\text{Pe} = \frac{\tilde{v}}{\tilde{\nu}_r}$$, which represents the dimensionless distance which individual particles travel before losing their orientation.</pre>
 </div>
 <div caption="Contents" created="20180416043645812" list-after="$:/core/ui/SideBar/Open" modified="20180417010609928" tags="$:/tags/SideBar" title="TableOfContents">
 <pre>&lt;div class=&quot;tc-table-of-contents&quot;&gt;
