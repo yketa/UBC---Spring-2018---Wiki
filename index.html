@@ -172,6 +172,8 @@ Error message and password prompt
 
 <li>$:/state/SampleReveal1</li>
 
+<li>$:/state/SampleReveal2</li>
+
 <li>$:/state/showeditpreview</li>
 
 <li>$:/state/sidebar</li>
@@ -206,7 +208,11 @@ Error message and password prompt
 
 <li>$:/state/toc/TableOfContents-Measurements--81657105</li>
 
+<li>$:/state/toc/TableOfContents-Measurements-1351528465</li>
+
 <li>$:/state/toc/TableOfContents-Model--81657105</li>
+
+<li>$:/state/toc/TableOfContents-Model-1351528465</li>
 
 <li>$:/state/toc/TableOfContents/Measurements-Collective mean square displacements--81657105</li>
 
@@ -215,6 +221,8 @@ Error message and password prompt
 <li>$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105</li>
 
 <li>$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields--81657105</li>
+
+<li>$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields-1351528465</li>
 
 <li>$:/state/toc/TableOfContents/Measurements-Strain and vorticity fields--81657105</li>
 
@@ -468,6 +476,8 @@ Error message and password prompt
 
 <li>Shear strain and vorticity fields</li>
 
+<li>Smoothing strain correlations</li>
+
 <li>System</li>
 
 <li>TableOfContents</li>
@@ -616,7 +626,7 @@ For this final case, the quadrupolar symmetry is clear and we observe a highly c
 
 At $$\tilde{\nu}_r = 7\cdot10^{-3}$$, we expect strain correlations to decay exponentially (see [[(phi = 0.80, v = 1e-2) strain correlations]]). Collective mean square displacements analysis seems to indicate $$C^{\perp}(k), C^{||}(k) \propto k^{-1}$$.</pre>
 </div>
-<div created="20180626040130851" modified="20180710091644804" tags="[[Shear strain and vorticity fields]]" title="(phi = 0.80, v = 1e-2) strain correlations from Fourier space">
+<div created="20180626040130851" modified="20180712204106392" tags="[[Shear strain and vorticity fields]]" title="(phi = 0.80, v = 1e-2) strain correlations from Fourier space">
 <pre>\define plot_sc(image:&quot;&quot;)
 
 &lt;&lt;plotwgit image:&quot;$image$_loglog&quot; path:&quot;analysis/css.py&quot;&gt;&gt;
@@ -887,6 +897,10 @@ Furthermore, we have at fixed persistence time that this length scale increases 
 
 ** $$\tilde{\nu}_r = 7.00\cdot10^{-3}$$
 
+*** comparison&lt;div&gt;
+&lt;&lt;plotwgit image:&quot;c44_max_fourier_comparison_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000&quot; path:&quot;plot/c44.py&quot;&gt;&gt;
+As we have seen for displacement correlations and their cooperativities (see [[phi = 0.80, v = 1e-2]]), we have that strain correlations decay exponentially with a slope which increases with lag time $$\Delta t$$ from an initial value which is a non-monotonic function of the lag time.
+&lt;/div&gt;
 *** $$\Delta t = 1.00\cdot10^1, \tilde{\nu}_r\Delta t = 7.00\cdot10^{-2}, nD_0\Delta t = 1.79\cdot10^{-2}$$&lt;div&gt;
 &lt;&lt;plot_sc image:&quot;Cssftb_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Tl1000_Mn2500_Cn4000_strain_correlations_RCUTl0000_c44&quot;&gt;&gt;
 &lt;/div&gt;
@@ -9937,6 +9951,9 @@ config.macros.bibliography = {
 <div created="20180710071331364" modified="20180710071334515" title="$:/state/SampleReveal1">
 <pre>hide</pre>
 </div>
+<div created="20180712224137117" modified="20180712224142030" title="$:/state/SampleReveal2">
+<pre>hide</pre>
+</div>
 <div created="20180416015000250" modified="20180620053247988" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
@@ -9982,16 +9999,22 @@ config.macros.bibliography = {
 <div created="20180606022318016" modified="20180625224602683" title="$:/state/toc/Measurements/Shear strain and vorticity fields-Shear strain correlations--1479111847">
 <pre>close</pre>
 </div>
-<div created="20180417231441389" modified="20180710091849913" title="$:/state/toc/TableOfContents-Analysis--81657105">
+<div created="20180417231441389" modified="20180713040642012" title="$:/state/toc/TableOfContents-Analysis--81657105">
 <pre>close</pre>
 </div>
-<div created="20180417005847401" modified="20180710091858705" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<div created="20180417005847401" modified="20180713040646703" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<pre>close</pre>
+</div>
+<div created="20180710220316722" modified="20180712224446152" title="$:/state/toc/TableOfContents-Measurements-1351528465">
 <pre>close</pre>
 </div>
 <div created="20180416044344979" modified="20180710091859731" title="$:/state/toc/TableOfContents-Model--81657105">
 <pre>close</pre>
 </div>
-<div created="20180609023859864" modified="20180710091851073" title="$:/state/toc/TableOfContents/Measurements-Collective mean square displacements--81657105">
+<div created="20180710220313043" modified="20180710220316107" title="$:/state/toc/TableOfContents-Model-1351528465">
+<pre>close</pre>
+</div>
+<div created="20180609023859864" modified="20180713040644531" title="$:/state/toc/TableOfContents/Measurements-Collective mean square displacements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180417010842396" modified="20180417010842396" title="$:/state/toc/TableOfContents/Measurements-Cooperativity--81657105">
@@ -10000,7 +10023,10 @@ config.macros.bibliography = {
 <div created="20180417013345743" modified="20180710091855621" title="$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105">
 <pre>close</pre>
 </div>
-<div created="20180606021533806" modified="20180710091856850" title="$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields--81657105">
+<div created="20180606021533806" modified="20180713040643348" title="$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields--81657105">
+<pre>close</pre>
+</div>
+<div created="20180710220318202" modified="20180712224445136" title="$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields-1351528465">
 <pre>close</pre>
 </div>
 <div created="20180504220944795" modified="20180504220944795" title="$:/state/toc/TableOfContents/Measurements-Strain and vorticity fields--81657105">
@@ -10722,7 +10748,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20180620032354454" modified="20180620032356781" title="$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary">
 <pre>bibtex</pre>
 </div>
-<div created="20180416033117939" modified="20180710083414610" title="$:/temp/search">
+<div created="20180416033117939" modified="20180713035747952" title="$:/temp/search">
 <pre></pre>
 </div>
 <div created="20180620031722320" modified="20180620031722320" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.15/index.html" url="https://tiddlywiki.com/library/v5.1.15/index.html">
@@ -11802,6 +11828,46 @@ which are the corresponding grids of shear strain and displacement vorticity cor
 &lt;div class=&quot;tc-table-of-contents&quot;&gt;
 &lt;&lt;toc-selective-expandable 'Shear strain and vorticity fields'&gt;&gt;
 &lt;/div&gt;</pre>
+</div>
+<div created="20180713034828748" modified="20180713040520903" tags="[[Shear strain and vorticity fields]]" title="Smoothing strain correlations">
+<pre>At high activity, and despite good statistics, the discrete nature of our computation in Fourier space hinders the smoothness of $$C_4^4(r)$$ curves (see [[(phi = 0.80, v = 1e-2) strain correlations from Fourier space]]).
+
+We then introduce for any $$\sigma &gt; 0$$ the Gaussian smoothing function
+$$
+\mathcal{G}_{\sigma}(r) = \exp\left(-\left(\frac{r}{\sigma}\right)^2\right)
+$$
+such that we can smooth $$C_4^4(r)$$ to
+$$
+\tilde{C}_4^4(r, \sigma) = \left[\mathcal{G}_{\sigma} \ast C_4^4\right](r)/\left(\int dr~ \mathcal{G}_{\sigma}(r) \right)
+$$
+
+With $$\sigma_{smooth} \equiv \sigma$$ and $$dL$$ the length of each square box used to compute displacement grids, we show the effect of such a smoothing on a particular $$C_4^4(r)$$ curve.
+
+&lt;div style=&quot;font-size:0.6em;text-align:center;&quot;&gt;
+    [img [miscellaneous/smooth_c44/smooth_c44.png]]&lt;br&gt;
+    &lt;a
+        href=&quot;miscellaneous/smooth_c44/smooth_c44.eps&quot;
+        class=&quot;tc-btn-big-green&quot;
+        style=&quot;background-color:green&quot;
+        target=&quot;_blank&quot;
+        rel=&quot;noopener noreferrer&quot;
+    &gt;
+            {{$:/core/images/file}}
+            &lt;b&gt;Original image&lt;/b&gt;
+    &lt;/a&gt;
+    &lt;a
+        href=&quot;https://github.com/yketa/UBC_2018_Wiki/blob/master/miscellaneous/smooth_c44/smooth_c44.py&quot;
+        class=&quot;tc-btn-big-green&quot;
+        style=&quot;background-color:#444&quot;
+        target=&quot;_blank&quot;
+        rel=&quot;noopener noreferrer&quot;
+    &gt;
+            {{$:/core/images/github}}
+            &lt;b&gt;Plot script&lt;/b&gt; on ~GitHub
+    &lt;/a&gt;
+&lt;/div&gt;
+
+With a parameter $$\sigma \sim dL$$, this smoothing technique succesfully attenuates the oscillations while staying close to the original curve.</pre>
 </div>
 <div created="20180417013424708" modified="20180703010449874" tags="Model" title="System">
 <pre>Model from [[Fily et al., 2014|http://pubs.rsc.org/-/content/articlelanding/2014/sm/c3sm52469h/]]. (see [[phase diagram|Expected phase diagram]], [[phase boundaries shifting|Expected phase boundaries shifting]]) 
