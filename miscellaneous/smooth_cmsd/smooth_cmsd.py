@@ -105,7 +105,8 @@ if __name__ == '__main__':
 		% (dt*parameters['period_dump']*parameters['time_step'],
 		nD0*dt*parameters['period_dump']*parameters['time_step'])
 		+ '\n' +  r'$S_{init}=%.2e$' % init_frame
-		+ r'$, S_{max}=%.2e, N_{cases}=%.2e$' % (int_max, Ncases)
+		+ r'$, S_{max}=%.2e, N_{cases}=%.2e, dL/a=%.2e$'
+        % (int_max, Ncases, np.sqrt(parameters['N'])/Ncases)
         + '\n' + r'$\tilde{\mathcal{G}}^2_{r_{cut}}(\vec{k}) \equiv$'
 		+ r'$\exp(-r_{cut}^2 |\vec{k}|^2)$')
     fig.subplots_adjust(wspace=0.25)
