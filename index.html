@@ -444,6 +444,8 @@ Error message and password prompt
 
 <li>Displacement correlations</li>
 
+<li>Draft of 'New Tiddler 1'</li>
+
 <li>Expected cooperative behaviour</li>
 
 <li>Expected phase boundaries shifting</li>
@@ -451,6 +453,10 @@ Error message and password prompt
 <li>Expected phase diagram</li>
 
 <li>Expected shear strain correlations</li>
+
+<li>Gaussian coarse-graining and CMSD</li>
+
+<li>Gaussian coarse-graining and correlations</li>
 
 <li>Integration method</li>
 
@@ -476,7 +482,7 @@ Error message and password prompt
 
 <li>Shear strain and vorticity fields</li>
 
-<li>Smoothing strain correlations</li>
+<li>Smoothing projection of strain correlations</li>
 
 <li>System</li>
 
@@ -569,8 +575,8 @@ At $$\tilde{\nu}_r = 5\cdot10^{-1}$$, the system should be close to a convention
 
 However, we do not see the expected algebraic decay of strain correlations of a conventionnal glass, but rather an exponetial decay with a characteristic length scale of 2 interparticle distance, as we have obtained for the active fluid.</pre>
 </div>
-<div created="20180625223915773" modified="20180625224358749" tags="[[Collective mean square displacements]]" title="(phi = 0.80, v = 1e-2) strain correlations from CMSD">
-<pre>!!! Preliminary results for $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2})$$
+<div created="20180625223915773" modified="20180720033937947" tags="[[Collective mean square displacements]]" title="(phi = 0.80, v = 1e-2) strain correlations from CMSD">
+<pre>!!! Preliminary results for $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2})$$ and band-limiting filter
 
 ''(Very) high activity''
 
@@ -586,7 +592,7 @@ We tried to recompose $$C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \De
 
 &lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl0000_grid_circle&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
 
-Without any filter on the CMSD, we obtain a strain correlation pattern which is far from expected. In particular, the 2D correlation show concentric circles centred on the origin, similar to waves, which origin is yet to be discovered. Strain correlations show no clear quadrupolar symmetry.
+Without any filter on the CMSD, we obtain a strain correlation pattern which is far from expected. In particular, the 2D correlation show concentric circles centred on the origin, similar to waves, which is due to the discrete miscroscopic distribution of the particles. Strain correlations show no clear quadrupolar symmetry.
 
 * $$r_{cut} = 1.22$$
 
@@ -610,7 +616,7 @@ Here as well, waves' amplitude has increased but the pattern shows no significan
 
 &lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl3170_grid_circle&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
 
-We now see a strong quadrupolar symmetry emerging in the strain correlation pattern. Moreover, waves' frequency seems to have dropped.
+We now see a strong quadrupolar symmetry emerging in the strain correlation pattern. Moreover, waves' frequency has dropped: we have filtered the short-wavelengths part of the Fourier spectrum which resolved the microscopic structure of the system, the waves we see now are ringing artifacts due to the band-limiting filter.
 
 * $$r_{cut} = 5.8$$
 
@@ -624,9 +630,16 @@ For this final case, the quadrupolar symmetry is clear and we observe a highly c
 
 &lt;&lt;plotwgit image:&quot;Cttb_Dk8000_Vj1000_Ri7000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
 
-At $$\tilde{\nu}_r = 7\cdot10^{-3}$$, we expect strain correlations to decay exponentially (see [[(phi = 0.80, v = 1e-2) strain correlations]]). Collective mean square displacements analysis seems to indicate $$C^{\perp}(k), C^{||}(k) \propto k^{-1}$$.</pre>
+At $$\tilde{\nu}_r = 7\cdot10^{-3}$$, we expect strain correlations to decay exponentially (see [[(phi = 0.80, v = 1e-2) strain correlations]]). Collective mean square displacements analysis seems to indicate $$C^{\perp}(k), C^{||}(k) \propto k^{-1}$$.
+
+!!! Preliminary results for $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2}, \tilde{\nu}_r = 2\cdot10^{-5})$$ and Gaussian filter
+
+&lt;&lt;plotwgit image:&quot;c44_max_cmsd_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_loglog&quot; path:&quot;plot/c44.py&quot;&gt;&gt;
+&lt;&lt;plotwgit image:&quot;c44_max_cmsd_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_linlog&quot; path:&quot;plot/c44.py&quot;&gt;&gt;
+
+We observe a crossover from an algebraic decay $$C_4^4(r) \propto r^{-2}$$ at low lag time to an exponential decay at high lag time.</pre>
 </div>
-<div created="20180626040130851" modified="20180713042250175" tags="[[Shear strain and vorticity fields]]" title="(phi = 0.80, v = 1e-2) strain correlations from Fourier space">
+<div created="20180626040130851" modified="20180719215522595" tags="[[Shear strain and vorticity fields]]" title="(phi = 0.80, v = 1e-2) strain correlations from Fourier space">
 <pre>\define plot_sc(image:&quot;&quot;)
 
 &lt;&lt;plotwgit image:&quot;$image$_loglog&quot; path:&quot;analysis/css.py&quot;&gt;&gt;
@@ -634,7 +647,7 @@ At $$\tilde{\nu}_r = 7\cdot10^{-3}$$, we expect strain correlations to decay exp
 
 \end
 
-!!! Preliminary results for $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2}, \tilde{\nu}_r = 2\cdot10^{-5})$$
+!!! Preliminary results for $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2}, \tilde{\nu}_r = 2\cdot10^{-5})$$ and band-limiting filter
 
 As we have done from [[collective mean square displacements|(phi = 0.80, v = 1e-2) strain correlations from CMSD]], we investigate the influence of the cut-off radius $$r_{cut}$$ on the shear strain correlations $$C_{\varepsilon_{xy}\varepsilon_{xy}}$$ calculated from Fourier space (see [[Shear strain and vorticity fields]]).
 
@@ -656,7 +669,7 @@ As we have done from [[collective mean square displacements|(phi = 0.80, v = 1e-
 
 &lt;&lt;plotwgit image:&quot;Cssftb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl3160_c44&quot; path:&quot;analysis/css.py&quot;&gt;&gt;
 
-We have somewhat of an algebraic decay over a decade, $$5 \leq r/a \leq 50$$. Our signal is however polluted by an oscillation of unknown origin.
+We have somewhat of an algebraic decay over a decade, $$5 \leq r/a \leq 50$$. Our signal is however polluted by ringing artifacts.
 
 * $$r_{cut} = 5.07$$
 
@@ -693,7 +706,7 @@ From the comparison of $$(\tilde{\nu}_r = 2\cdot10^{-5}, \Delta t = 1\cdot10^0)$
 
 *** comparison&lt;div&gt;
 &lt;&lt;plotwgit image:&quot;c44_max_fourier_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000&quot; path:&quot;plot/c44.py&quot;&gt;&gt;
-At high activity, it seems that the discrete nature of our computation in Fourier space hinders the smoothness of $$C_4^4(r)$$. We try smoothing these curves (see [[Smoothing strain correlations]]) in the following plot.
+At high activity, it seems that the discrete nature of our computation in Fourier space hinders the smoothness of $$C_4^4(r)$$. We try smoothing these curves (see [[Smoothing projection of strain correlations]]) in the following plot.
 &lt;&lt;plotwgit image:&quot;c44_max_fourier_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_SMOOTHl1000&quot; path:&quot;plot/c44.py&quot;&gt;&gt;
 Our smoothing technique does not completely suppress oscillations but nevertheless makes the plot a little clearer. Still, we do not discern great differences between the different curves.
 &lt;/div&gt;
@@ -10008,7 +10021,7 @@ config.macros.bibliography = {
 <div created="20180417231441389" modified="20180713041053274" title="$:/state/toc/TableOfContents-Analysis--81657105">
 <pre>close</pre>
 </div>
-<div created="20180417005847401" modified="20180716184838616" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<div created="20180417005847401" modified="20180720034559007" title="$:/state/toc/TableOfContents-Measurements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180710220316722" modified="20180712224446152" title="$:/state/toc/TableOfContents-Measurements-1351528465">
@@ -10020,7 +10033,7 @@ config.macros.bibliography = {
 <div created="20180710220313043" modified="20180710220316107" title="$:/state/toc/TableOfContents-Model-1351528465">
 <pre>close</pre>
 </div>
-<div created="20180609023859864" modified="20180713040644531" title="$:/state/toc/TableOfContents/Measurements-Collective mean square displacements--81657105">
+<div created="20180609023859864" modified="20180720034558262" title="$:/state/toc/TableOfContents/Measurements-Collective mean square displacements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180417010842396" modified="20180417010842396" title="$:/state/toc/TableOfContents/Measurements-Cooperativity--81657105">
@@ -10029,7 +10042,7 @@ config.macros.bibliography = {
 <div created="20180417013345743" modified="20180713042604958" title="$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105">
 <pre>close</pre>
 </div>
-<div created="20180606021533806" modified="20180716184837708" title="$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields--81657105">
+<div created="20180606021533806" modified="20180720034556352" title="$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields--81657105">
 <pre>close</pre>
 </div>
 <div created="20180710220318202" modified="20180712224445136" title="$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields-1351528465">
@@ -10889,7 +10902,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 &lt;&lt;toc-selective-expandable 'Analysis'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20180608213646733" modified="20180626235056273" tags="Measurements" title="Collective mean square displacements">
+<div created="20180608213646733" modified="20180719222301832" tags="Measurements" title="Collective mean square displacements">
 <pre>Strain correlations are computed quite slowly. Inspired by [[Illing et al., 2016|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.117.208002]], we then turn to the calculation of transversal collective mean square displacement (TCMSD), $$C^{\perp}$$, and longitudinal collective mean square displacement (LCMSD), $$C^{||}$$, which are defined by
 
 $$
@@ -10930,12 +10943,16 @@ C^{\perp}(\vec{k}_{ij}, \Delta t) &amp;= \frac{1}{L||\vec{k}_{ij}||^2}\sum_{k=1}
 C^{||}(\vec{k}_{ij}, \Delta t) &amp;= \frac{1}{L||\vec{k}_{ij}||^2}\sum_{k=1}^L ||\vec{k}_{ij}\cdot\tilde{\vec{u}}_{ij}(t_k, t_k  +\Delta t) ||^2
 \end{aligned}
 $$
-and introduce
+and introduce either
 $$
-F_{ij}(\Delta t, r_{cut}) = \begin{cases} -\frac{k_{ij,x}^2k_{ij,y}^2}{k_{ij}^2}\left(C^{\perp}(\vec{k}_{ij}, \Delta t) - C^{||}(\vec{k}_{ij}, \Delta t)\right) &amp;\text{ if } \frac{2\pi}{k_{ij}} \geq r_{cut} \\
-+ \frac{k_{ij}^2}{4}C^{\perp}(\vec{k}_{ij}, \Delta t) &amp;\\ &amp; \\ 0 &amp;\text{ otherwise}\end{cases}
+\begin{aligned}
+\text{band-limiting filter: } &amp;F_{ij}(\Delta t, r_{cut}) = \begin{cases} \begin{aligned} &amp;-\frac{k_{ij,x}^2k_{ij,y}^2}{k_{ij}^2}\left(C^{\perp}(\vec{k}_{ij}, \Delta t) - C^{||}(\vec{k}_{ij}, \Delta t)\right) \\ &amp;+ \frac{k_{ij}^2}{4}C^{\perp}(\vec{k}_{ij}, \Delta t) \end{aligned} &amp;\text{ if } \frac{2\pi}{k_{ij}} \geq r_{cut} \\
+0 &amp;\text{ otherwise}\end{cases} \\
+\text{or, Gaussian filter: } &amp;F_{ij}(\Delta t, r_{cut}) = \begin{aligned} &amp;-\frac{k_{ij,x}^2k_{ij,y}^2}{k_{ij}^2}\left(\tilde{\mathcal{G}}_{r_{cut}}^2(\vec{k}_{ij})C^{\perp}(\vec{k}_{ij}, \Delta t) - \tilde{\mathcal{G}}_{r_{cut}}^2(\vec{k}_{ij})C^{||}(\vec{k}_{ij}, \Delta t)\right) \\ &amp;+ \frac{k_{ij}^2}{4}\tilde{\mathcal{G}}_{r_{cut}}^2(\vec{k}_{ij})C^{\perp}(\vec{k}_{ij}, \Delta t) \end{aligned}\\
+&amp;\text{ with } \tilde{\mathcal{G}}_{r_{cut}}^2(\vec{k}_{ij}) = \exp\left(-r_{cut}^2|\vec{k}_{ij}|^2\right)
+\end{aligned}
 $$
-to obtain
+(see [[Gaussian coarse-graining and correlations]] for Gaussian filter), to obtain
 $$
 C_{\varepsilon_{xy}\varepsilon_{xy}, ij}(\Delta t, r_{cut}) = \frac{\text{FFT}^{-1}\left\{\left(F_{ij}(\Delta t, r_{cut})\right)_{1 \leq i, j \leq M}\right\}(\vec{r}_{ij})}{\text{FFT}^{-1}\left\{\left(F_{ij}(\Delta t, r_{cut})\right)_{1 \leq i, j \leq M}\right\}(\vec{0})}
 $$
@@ -11117,6 +11134,9 @@ Moreover, we have the the cylindrical average of $$(C_{\rho\rho, ij}(\Delta t))_
 &lt;&lt;toc-selective-expandable 'Displacement correlations'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
+<div created="20180719201719477" draft.of="New Tiddler 1" draft.title="New Tiddler 1" modified="20180719201719477" tags="" title="Draft of 'New Tiddler 1'">
+<pre></pre>
+</div>
 <div created="20180417231912802" modified="20180606025346968" tags="Cooperativity" title="Expected cooperative behaviour">
 <pre>We have that the [[Wysocki et al., 2014|http://iopscience.iop.org/article/10.1209/0295-5075/105/48004]] model is very similar to ours, except that it is in 3D and that it also considers translationnal brownian noise.
 
@@ -11151,6 +11171,74 @@ At the Peclet number $$\text{Pe}$$ marked by the dotted line, they observed a tr
 [img [Images/C44_simulation.png]]
 
 In both cases, they observed a peak of the correlation close to $$r/a \approx 3$$ and $$r/a \approx 4$$ respectively, with $$a = L/\sqrt{N}$$ the average particle separation, followed by an //arguable// algebraic decay $$C_4^4(r, t) \propto r^{-2}$$ as expected in an elastic medium according to Eschelby predictions.</pre>
+</div>
+<div created="20180720033959982" modified="20180720034537269" tags="[[Collective mean square displacements]]" title="Gaussian coarse-graining and CMSD">
+<pre>We investigate the effect of the Gaussian coarse-graining of shear strain correlations via the collective mean square displacements.
+
+&lt;div style=&quot;font-size:0.6em;text-align:center;&quot;&gt;
+    [img [miscellaneous/smooth_cmsd/smooth_cmsd.png]]&lt;br&gt;
+    &lt;a
+        href=&quot;miscellaneous/smooth_cmsd/smooth_cmsd.eps&quot;
+        class=&quot;tc-btn-big-green&quot;
+        style=&quot;background-color:green&quot;
+        target=&quot;_blank&quot;
+        rel=&quot;noopener noreferrer&quot;
+    &gt;
+            {{$:/core/images/file}}
+            &lt;b&gt;Original image&lt;/b&gt;
+    &lt;/a&gt;
+    &lt;a
+        href=&quot;https://github.com/yketa/UBC_2018_Wiki/blob/master/miscellaneous/smooth_cmsd/smooth_cmsd.py&quot;
+        class=&quot;tc-btn-big-green&quot;
+        style=&quot;background-color:#444&quot;
+        target=&quot;_blank&quot;
+        rel=&quot;noopener noreferrer&quot;
+    &gt;
+            {{$:/core/images/github}}
+            &lt;b&gt;Plot script&lt;/b&gt; on ~GitHub
+    &lt;/a&gt;
+&lt;/div&gt;</pre>
+</div>
+<div created="20180719203247336" modified="20180720011201468" tags="Measurements" title="Gaussian coarse-graining and correlations">
+<pre>For $$\vec{v}(\vec{r})$$ a vector — or scalar — field with $$\vec{r} \in \mathbb{R}^2$$, we have showed in [[Discrete field auto-correlation]] that its auto-correlation function can be written as
+$$
+C_{vv}(\Delta \vec{r}) = \frac{1}{\int d^2\vec{r}~ |\vec{v}(\vec{r})|^2} \mathcal{F}^{-1}\left\{\mathcal{F}\{\vec{v}\}^*\cdot\mathcal{F}\{\vec{v}\}\right\}(\Delta \vec{r}) = \frac{\mathcal{F}^{-1}\left\{\mathcal{F}\{\vec{v}\}^*\cdot\mathcal{F}\{\vec{v}\}\right\}(\Delta \vec{r})}{\mathcal{F}^{-1}\left\{\mathcal{F}\{\vec{v}\}^*\cdot\mathcal{F}\{\vec{v}\}\right\}(\vec{0})}
+$$
+with $$\mathcal{F}$$ the Fourier transform operator such that
+$$
+\begin{aligned}
+\mathcal{F} : \cdot \mapsto \int d^2\vec{k}~ e^{-i\vec{k}\cdot\vec{r}} ~\cdot  &amp;\Leftrightarrow \mathcal{F}^{-1} : \cdot \mapsto \int d^2\vec{k}~ e^{i\vec{k}\cdot\vec{r}}\\
+\tilde{\vec{v}} = \mathcal{F}\{\vec{v}\} &amp;\Leftrightarrow \vec{v} = \mathcal{F}^{-1}\{\tilde{\vec{v}}\}
+\end{aligned}
+$$
+
+We are interested in eliminating short range degrees of freedom of $$\vec{v}$$ in order to coarse-grain it. Setting short wave length Fourier components to 0 — which is equivalent to multiplying the Fourier transform with a step function — causes [[ringing artifacts|https://en.wikipedia.org/wiki/Ringing_artifacts]] — due to a convultion of the original signal with a $$\text{sinc}$$ function.
+
+We introduce the Gaussian filter $$\mathcal{G}_{\sigma}$$
+$$
+\mathcal{G}_{\sigma}(\vec{r}) = \frac{1}{2\pi\sigma^2} \exp\left(-\frac{|\vec{r}|^2}{2\sigma^2}\right)
+$$
+such that its convolution with $$\vec{v}(\vec{r})$$ — $$\left[\mathcal{G}_{\sigma}\ast\vec{v}\right](\vec{r})$$ — is a Gaussian coarse-graining of $$\vec{v}(\vec{r})$$ over the length scale $$\sigma$$.
+
+We have that the Fourier transform of $$\mathcal{G}_{\sigma}$$ is
+$$
+\tilde{\mathcal{G}}_{\sigma}(\vec{k}) = \frac{1}{2\pi\sigma^2} \int d^2\vec{r}~ e^{-i\vec{k}\cdot\vec{r}}\exp\left(-\frac{|\vec{r}|^2}{2\sigma^2}\right) = \exp\left(-\frac{1}{2}\sigma^2|\vec{k}|^2\right) \in \mathbb{R}
+$$
+therefore, we have from the [[convolution theorem|http://mathworld.wolfram.com/ConvolutionTheorem.html]] that
+$$
+\mathcal{F}\{\mathcal{G}_{\sigma}\ast\vec{v}\} = \tilde{\mathcal{G}}_{\sigma} \times \mathcal{F}\{\vec{v}\}
+$$
+and we can thus write the auto-correlation function of the coarse-grained field $$\mathcal{G}_{\sigma}\ast\vec{v}$$
+$$
+\begin{aligned}
+C_{[\mathcal{G}_{\sigma}\ast\vec{v}][\mathcal{G}_{\sigma}\ast\vec{v}]}(\Delta\vec{r}) &amp;= \frac{\mathcal{F}^{-1}\left\{\mathcal{F}\{\mathcal{G}_{\sigma}\ast\vec{v}\}^*\cdot\mathcal{F}\{\mathcal{G}_{\sigma}\ast\vec{v}\}\right\}(\Delta \vec{r})}{\mathcal{F}^{-1}\left\{\mathcal{F}\{\mathcal{G}_{\sigma}\ast\vec{v}\}^*\cdot\mathcal{F}\{\mathcal{G}_{\sigma}\ast\vec{v}\}\right\}(\vec{0})}\\
+&amp;= \frac{\mathcal{F}^{-1}\left\{\tilde{\mathcal{G}}_{\sigma}^2\times\left(\mathcal{F}\{\vec{v}\}^*\cdot\mathcal{F}\{\vec{v}\}\right)\right\}(\Delta \vec{r})}{\mathcal{F}^{-1}\left\{\tilde{\mathcal{G}}_{\sigma}^2\times\left(\mathcal{F}\{\vec{v}\}^*\cdot\mathcal{F}\{\vec{v}\}\right)\right\}(\vec{0})}
+\end{aligned}
+$$
+which, with $$\tilde{\mathcal{G}}_{\sigma}^2 = \tilde{\mathcal{G}}_{\sqrt{2}\sigma}$$, gives
+$$
+C_{[\mathcal{G}_{\sigma}\ast\vec{v}][\mathcal{G}_{\sigma}\ast\vec{v}]}(\Delta\vec{r}) = \frac{\left[\mathcal{G}_{\sqrt{2}\sigma}\ast C_{vv}\right](\Delta \vec{r})}{\left[\mathcal{G}_{\sqrt{2}\sigma}\ast C_{vv}\right](\vec{0})}
+$$</pre>
 </div>
 <div created="20180418020046783" modified="20180609024007138" tags="Model" title="Integration method">
 <pre>* Particles initially randomly positioned
@@ -11594,7 +11682,7 @@ This project focuses on a model system of polydisperse active Brownian disks wit
 &lt;&lt;toc-selective-expandable 'TableOfContents'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20180424224046740" modified="20180626234044579" tags="Measurements" title="Shear strain and vorticity fields">
+<div created="20180424224046740" modified="20180719220913068" tags="Measurements" title="Shear strain and vorticity fields">
 <pre>!!! Strain tensor
 
 We first derive the expression of the 2D strain tensor. Our demonstration is based on [[Theory of Elasticity, chapter 1|https://archive.org/details/TheoryOfElasticity]] from the Landau and Lifshitz series.
@@ -11814,11 +11902,14 @@ $$
 \tilde{\omega}_{ij}(t_k, t_k  +\Delta t) &amp;=(e^{ik_{ij,x}} - 1)\tilde{u}_{ij,y}(t_k, t_k  +\Delta t) - (e^{ik_{ij,y}} - 1)\tilde{u}_{ij,x}(t_k, t_k  +\Delta t)
 \end{aligned}
 $$
-and introduce
+and introduce either
 $$
-F_{ij}^{(\tilde{A})}(\Delta t, r_{cut}) = \begin{cases} \sum_{k=1}^L \tilde{A}^*_{ij}(t_k, t_k + \Delta t)\tilde{A}_{ij}(t_k, t_k + \Delta t) &amp;\text{ if } \frac{2\pi}{k_{ij}} \geq r_{cut} \\ 0 &amp;\text{ otherwise}\end{cases}
+\begin{aligned}
+\text{band-limiting filter: }&amp; F_{ij}^{(\tilde{A})}(\Delta t, r_{cut}) = \begin{cases} \sum_{k=1}^L \tilde{A}^*_{ij}(t_k, t_k + \Delta t)\tilde{A}_{ij}(t_k, t_k + \Delta t) &amp;\text{ if } \frac{2\pi}{k_{ij}} \geq r_{cut} \\ 0 &amp;\text{ otherwise}\end{cases}\\
+\text{or, Gaussian filter: }&amp; F_{ij}^{(\tilde{A})}(\Delta t, r_{cut}) = \exp\left(-r_{cut}^2|\vec{k}_{ij}|^2\right)\sum_{k=1}^L \tilde{A}^*_{ij}(t_k, t_k + \Delta t)\tilde{A}_{ij}(t_k, t_k + \Delta t)
+\end{aligned}
 $$
-with $$\tilde{A} = \tilde{\varepsilon}_{xy}, \tilde{\omega}$$, to obtain
+(see [[Gaussian coarse-graining and correlations]] for Gaussian filter), and with $$\tilde{A} = \tilde{\varepsilon}_{xy}, \tilde{\omega}$$, to obtain
 $$
 \begin{aligned}
 C_{\varepsilon_{xy}\varepsilon_{xy}, ij}(\Delta t, r_{cut}) &amp;= \frac{\text{FFT}^{-1}\left\{\left(F_{ij}^{(\tilde{\varepsilon}_{xy})}(\Delta t, r_{cut})\right)_{1 \leq i, j \leq M}\right\}(\vec{r}_{ij})}{\text{FFT}^{-1}\left\{\left(F_{ij}^{(\tilde{\varepsilon}_{xy})}(\Delta t, r_{cut})\right)_{1 \leq i, j \leq M}\right\}(\vec{0})}\\
@@ -11835,7 +11926,7 @@ which are the corresponding grids of shear strain and displacement vorticity cor
 &lt;&lt;toc-selective-expandable 'Shear strain and vorticity fields'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20180713034828748" modified="20180713040520903" tags="[[Shear strain and vorticity fields]]" title="Smoothing strain correlations">
+<div created="20180713034828748" modified="20180719215416327" tags="[[Shear strain and vorticity fields]]" title="Smoothing projection of strain correlations">
 <pre>At high activity, and despite good statistics, the discrete nature of our computation in Fourier space hinders the smoothness of $$C_4^4(r)$$ curves (see [[(phi = 0.80, v = 1e-2) strain correlations from Fourier space]]).
 
 We then introduce for any $$\sigma &gt; 0$$ the Gaussian smoothing function

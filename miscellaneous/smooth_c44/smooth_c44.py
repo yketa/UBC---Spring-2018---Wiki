@@ -1,14 +1,16 @@
 """
-This script shows the relevance of the gaussian smoothing of the projection of
+This script shows the relevance of the Gaussian smoothing of the projection of
 cos(4 \\theta) of strain correlations (C44) in a special case. (see
 https://yketa.github.io/UBC_2018_Wiki/#Smoothing%20strain%20correlations)
 
 File c44_to_smooth.pickle contains a list of radii divided by average particle
 separation and the corresponding list of values of C44 at these radii.
 
-Execution of this script necessitates the active_particles package (see
+Execution of this script requires the active_particles package (see
 https://github.com/yketa/active_particles).
 """
+
+import os
 
 import pickle
 
@@ -28,8 +30,11 @@ if __name__ == '__main__':
     Ncases = 300        # number of square boxes in one dimensions used for displacement grid computation
     dL = sqrt(N)/Ncases # length of each square box in units of average particle separation
 
-    with open('c44_to_smooth.pickle', 'rb') as c44_file:
-        x_c44, c44 = pickle.load(c44_file)
+    with open(
+        os.path.join(os.path.dirname(os.path.realpath(__file__)),
+            'c44_to_smooth.pickle'),
+        'rb') as c44_file:
+        x_c44, c44 = pickle.load(c44_file)  # ratio of radii and average particle separation and C44 at these radii
 
     # PLOT
 
