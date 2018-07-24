@@ -575,7 +575,7 @@ At $$\tilde{\nu}_r = 5\cdot10^{-1}$$, the system should be close to a convention
 
 However, we do not see the expected algebraic decay of strain correlations of a conventionnal glass, but rather an exponetial decay with a characteristic length scale of 2 interparticle distance, as we have obtained for the active fluid.</pre>
 </div>
-<div created="20180625223915773" modified="20180720033937947" tags="[[Collective mean square displacements]]" title="(phi = 0.80, v = 1e-2) strain correlations from CMSD">
+<div created="20180625223915773" modified="20180724012631407" tags="[[Collective mean square displacements]]" title="(phi = 0.80, v = 1e-2) strain correlations from CMSD">
 <pre>!!! Preliminary results for $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2})$$ and band-limiting filter
 
 ''(Very) high activity''
@@ -634,10 +634,16 @@ At $$\tilde{\nu}_r = 7\cdot10^{-3}$$, we expect strain correlations to decay exp
 
 !!! Preliminary results for $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2}, \tilde{\nu}_r = 2\cdot10^{-5})$$ and Gaussian filter
 
-&lt;&lt;plotwgit image:&quot;c44_max_cmsd_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_loglog&quot; path:&quot;plot/c44.py&quot;&gt;&gt;
-&lt;&lt;plotwgit image:&quot;c44_max_cmsd_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_linlog&quot; path:&quot;plot/c44.py&quot;&gt;&gt;
+&lt;&lt;plotwgit image:&quot;c44_max_cmsd_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_RCUTk4200_loglog&quot; path:&quot;plot/c44.py&quot;&gt;&gt;
+&lt;&lt;plotwgit image:&quot;c44_max_cmsd_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_RCUTk4200_linlog&quot; path:&quot;plot/c44.py&quot;&gt;&gt;
 
-We observe a crossover from an algebraic decay $$C_4^4(r) \propto r^{-2}$$ at low lag time to an exponential decay at high lag time.</pre>
+We observe a crossover from an algebraic decay $$C_4^4(r) \propto r^{-2}$$ at low lag time to an exponential decay at high lag time.
+
+!!! Preliminary results for $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2}, \tilde{\nu}_r = 7\cdot10^{-3})$$ and Gaussian filter
+
+&lt;&lt;plotwgit image:&quot;c44_max_cmsd_comparison_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_RCUTk4200_linlog&quot; path:&quot;plot/c44.py&quot;&gt;&gt;
+
+We roughly have the same results than with the direct Fourier space method (see [[(phi = 0.80, v = 1e-2) strain correlations from Fourier space]]).</pre>
 </div>
 <div created="20180626040130851" modified="20180719215522595" tags="[[Shear strain and vorticity fields]]" title="(phi = 0.80, v = 1e-2) strain correlations from Fourier space">
 <pre>\define plot_sc(image:&quot;&quot;)
@@ -10021,7 +10027,7 @@ config.macros.bibliography = {
 <div created="20180417231441389" modified="20180713041053274" title="$:/state/toc/TableOfContents-Analysis--81657105">
 <pre>close</pre>
 </div>
-<div created="20180417005847401" modified="20180720034559007" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<div created="20180417005847401" modified="20180724012645061" title="$:/state/toc/TableOfContents-Measurements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180710220316722" modified="20180712224446152" title="$:/state/toc/TableOfContents-Measurements-1351528465">
@@ -10033,7 +10039,7 @@ config.macros.bibliography = {
 <div created="20180710220313043" modified="20180710220316107" title="$:/state/toc/TableOfContents-Model-1351528465">
 <pre>close</pre>
 </div>
-<div created="20180609023859864" modified="20180720034558262" title="$:/state/toc/TableOfContents/Measurements-Collective mean square displacements--81657105">
+<div created="20180609023859864" modified="20180724012643660" title="$:/state/toc/TableOfContents/Measurements-Collective mean square displacements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180417010842396" modified="20180417010842396" title="$:/state/toc/TableOfContents/Measurements-Cooperativity--81657105">
@@ -10042,7 +10048,7 @@ config.macros.bibliography = {
 <div created="20180417013345743" modified="20180713042604958" title="$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105">
 <pre>close</pre>
 </div>
-<div created="20180606021533806" modified="20180720034556352" title="$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields--81657105">
+<div created="20180606021533806" modified="20180724012642415" title="$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields--81657105">
 <pre>close</pre>
 </div>
 <div created="20180710220318202" modified="20180712224445136" title="$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields-1351528465">
@@ -11172,32 +11178,12 @@ At the Peclet number $$\text{Pe}$$ marked by the dotted line, they observed a tr
 
 In both cases, they observed a peak of the correlation close to $$r/a \approx 3$$ and $$r/a \approx 4$$ respectively, with $$a = L/\sqrt{N}$$ the average particle separation, followed by an //arguable// algebraic decay $$C_4^4(r, t) \propto r^{-2}$$ as expected in an elastic medium according to Eschelby predictions.</pre>
 </div>
-<div created="20180720033959982" modified="20180720034537269" tags="[[Collective mean square displacements]]" title="Gaussian coarse-graining and CMSD">
+<div created="20180720033959982" modified="20180724012357858" tags="[[Collective mean square displacements]]" title="Gaussian coarse-graining and CMSD">
 <pre>We investigate the effect of the Gaussian coarse-graining of shear strain correlations via the collective mean square displacements.
 
-&lt;div style=&quot;font-size:0.6em;text-align:center;&quot;&gt;
-    [img [miscellaneous/smooth_cmsd/smooth_cmsd.png]]&lt;br&gt;
-    &lt;a
-        href=&quot;miscellaneous/smooth_cmsd/smooth_cmsd.eps&quot;
-        class=&quot;tc-btn-big-green&quot;
-        style=&quot;background-color:green&quot;
-        target=&quot;_blank&quot;
-        rel=&quot;noopener noreferrer&quot;
-    &gt;
-            {{$:/core/images/file}}
-            &lt;b&gt;Original image&lt;/b&gt;
-    &lt;/a&gt;
-    &lt;a
-        href=&quot;https://github.com/yketa/UBC_2018_Wiki/blob/master/miscellaneous/smooth_cmsd/smooth_cmsd.py&quot;
-        class=&quot;tc-btn-big-green&quot;
-        style=&quot;background-color:#444&quot;
-        target=&quot;_blank&quot;
-        rel=&quot;noopener noreferrer&quot;
-    &gt;
-            {{$:/core/images/github}}
-            &lt;b&gt;Plot script&lt;/b&gt; on ~GitHub
-    &lt;/a&gt;
-&lt;/div&gt;</pre>
+&lt;&lt;plotwgit image:&quot;cmsd_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Tl1000&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;
+
+&lt;&lt;plotwgit image:&quot;cmsd_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Tm1000&quot; path:&quot;analysis/ctt.py&quot;&gt;&gt;</pre>
 </div>
 <div created="20180719203247336" modified="20180720011201468" tags="Measurements" title="Gaussian coarse-graining and correlations">
 <pre>For $$\vec{v}(\vec{r})$$ a vector — or scalar — field with $$\vec{r} \in \mathbb{R}^2$$, we have showed in [[Discrete field auto-correlation]] that its auto-correlation function can be written as
