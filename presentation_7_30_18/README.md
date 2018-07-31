@@ -23,7 +23,7 @@ and the file `presentation.pdf` to be opened with [Adobe Reader](https://get.ado
 
 Compiling this document requires [Font Awesome 5](https://ctan.org/tex-archive/fonts/fontawesome5).
 
-You can use the [`Makefile`](https://github.com/yketa/cv/blob/master/src/Makefile) to compile it.
+You can use the [`Makefile`](https://github.com/yketa/UBC_2018_Wiki/blob/master/presentation_7_30_18/Makefile) to compile it.
 ```bash
 # git clone https://github.com/yketa/UBC_2018_Wiki
 # cd UBC_2018_Wiki/presentation_7_30_18
