@@ -1,0 +1,162 @@
+\usetheme{Warsaw}
+% \usecolortheme{spruce}
+
+%%%%% PACKAGES
+
+\usepackage{graphicx} % figures
+\usepackage{multimedia} % videos
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\everymath{\displaystyle}
+\usepackage{epstopdf} % conversion from .eps to .pdf
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{upgreek}
+\usepackage{nameref}
+\usepackage{url}
+\usepackage{pgf, tikz}
+\usepackage{float}
+\usepackage[english]{babel}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+
+\usepackage{biblatex}
+\addbibresource{references/biblio.bib}
+
+%%%%% TEMPLATE
+
+\captionsetup{font=scriptsize,labelfont={scriptsize, color=blue}}
+
+\AtBeginSubsection[]
+{
+ \begin{frame}<beamer>{}
+   \tableofcontents[currentsection,currentsubsection]
+ \end{frame}
+}
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>{}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\defbeamertemplate*{footline}{mytheme}%
+{  \begin{beamercolorbox}[ht=2.5ex]{bordure}
+\begin{beamercolorbox}[wd=0.2\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}%
+\usebeamerfont{author in head}\insertshortauthor
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=0.57\paperwidth,ht=2.5ex,dp=1ex,center]{title in head/foot}%
+\usebeamerfont{title in head/foot}\insertshorttitle
+\end{beamercolorbox}%
+% \begin{beamercolorbox}[wd=0.4\paperwidth,ht=2.5ex,dp=1ex,center]{title in head/foot}%
+% \usebeamerfont{title in head/foot}\insertdate
+% \end{beamercolorbox}%
+\begin{beamercolorbox}[wd=0.12\paperwidth,ht=2.5ex,dp=1ex,center]{title in head/foot}%
+\usebeamerfont{title in head/foot}\insertdate
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=0.11\paperwidth,ht=2.5ex,dp=1ex,center]{date in head/foot}%
+\usebeamerfont{date in head/foot}\insertframenumber /\inserttotalframenumber{}\hspace{2ex}
+\end{beamercolorbox}%
+
+  \end{beamercolorbox}
+}
+
+% \defbeamertemplate*{headline}{mytheme}%
+% {  \begin{beamercolorbox}[ht=2.5ex]{bordure}
+% \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=2ex]{author in head/foot}%
+% \usebeamerfont{author in head}\vskip6pt\insertsectionnumber.~\insertsection \hfill \insertsubsection
+% \end{beamercolorbox}%
+%
+%   \end{beamercolorbox}
+% }
+
+\makeatletter
+\let\insertsupervisor\relax
+\newcommand\supervisortitle{supervised by}
+\mode<all>
+{
+  \newcommand\supervisor[1]{\def\insertsupervisor{#1}}
+  \titlegraphic{}
+}
+\defbeamertemplate*{title page}{supdefault}[1][]
+{
+  \vbox{}
+  \vfill
+  \begingroup
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center,#1]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty\relax%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%
+    \end{beamercolorbox}%
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=8pt,center,#1]{author}
+      \usebeamerfont{author}\textbf{\insertauthor}
+    \end{beamercolorbox}
+    \vspace{-10pt}
+    \ifx\insertsupervisor\relax\relax\else
+    \begin{beamercolorbox}[sep=8pt,center,#1]{author}
+      \usebeamerfont{author}{\footnotesize \supervisortitle}~{\small\insertsupervisor}
+    \end{beamercolorbox}\fi
+    \vspace{-5pt}
+    \begin{beamercolorbox}[sep=8pt,center,#1]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}\vskip0.5em
+    {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+  \endgroup
+  \vfill
+}
+\setbeamertemplate{title page}[supdefault][colsep=-4bp,rounded=true,shadow=\beamer@themerounded@shadow]\makeatother
+
+\setbeamerfont{footnote}{size=\tiny}
+
+\makeatletter
+\newlength\beamerleftmargin
+\setlength\beamerleftmargin{\Gm@lmargin}
+\makeatother
+
+%%%%% COMMANDS
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+\providecommand\encircle[1]{%
+  \tikz[baseline=(X.base)]
+    \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
+
+\providecommand{\appropto}{\mathrel{\vcenter{
+  \offinterlineskip\halign{\hfil$##$\cr
+    \propto\cr\noalign{\kern2pt}\sim\cr\noalign{\kern-2pt}}}}}
+
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+\providecommand{\isEquivTo}[1]{\underset{#1}{\sim}}
+
+\providecommand{\appropto}{\mathrel{\vcenter{
+  \offinterlineskip\halign{\hfil$##$\cr
+    \propto\cr\noalign{\kern2pt}\sim\cr\noalign{\kern-2pt}}}}}
+
+\makeatletter
+\providecommand{\subalign}[1]{%
+  \vcenter{%
+    \Let@ \restore@math@cr \default@tag
+    \baselineskip\fontdimen10 \scriptfont\tw@
+    \advance\baselineskip\fontdimen12 \scriptfont\tw@
+    \lineskip\thr@@\fontdimen8 \scriptfont\thr@@
+    \lineskiplimit\lineskip
+    \ialign{\hfil$\m@th\displaystyle##$&$\m@th\displaystyle{}##$\crcr
+      #1\crcr
+    }%
+  }
+}
+\makeatother

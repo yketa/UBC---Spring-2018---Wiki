@@ -1,6 +1,4 @@
-.DS_Store
+*.DS_Store
 index.html_backup
-Figures/.DS_Store
-Figures/.eps/.DS_Store
-Images/.DS_Store
-Videos/.DS_Store
+presentation_7_30_18/aux
+presentation_7_30_18/**/*-eps-converted-to.pdf
