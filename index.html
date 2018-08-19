@@ -579,7 +579,7 @@ At $$\tilde{\nu}_r = 5\cdot10^{-1}$$, the system should be close to a convention
 
 However, we do not see the expected algebraic decay of strain correlations of a conventionnal glass, but rather an exponetial decay with a characteristic length scale of 2 interparticle distance, as we have obtained for the active fluid.</pre>
 </div>
-<div created="20180625223915773" modified="20180818215401142" tags="[[Collective mean square displacements]]" title="(phi = 0.80, v = 1e-2) strain correlations from CMSD">
+<div created="20180625223915773" modified="20180819125324873" tags="[[Collective mean square displacements]]" title="(phi = 0.80, v = 1e-2) strain correlations from CMSD">
 <pre>!!! Preliminary results for $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2})$$ and band-limiting filter
 
 ''(Very) high activity''
@@ -644,6 +644,8 @@ This susceptibility is by definition equivalent to the [[cooperativity|Cooperati
 
 We notice that this susceptibility rescaling is relevant since we observe for the activity we have tested that $$C_4^4(r, \Delta t)/\chi(\Delta t)$$ curves //almost// all cross at the same value of $$r/a$$.
 
+To smooth jumps in $$C_4^4(r)$$ due to the discrete nature of the grid, we //sometimes// calculate each point on the strain correlation grid by linear interpolation of the neighbouring grid boxes' values and calculate from these $$C_4^4(r)$$ — figures with such interpolation have &quot;interpolated&quot; in their filename. We do not completely get rid of the jumps but we have that this method is definitely efficient to smooth them and get cleaner curves.
+
 !!! Preliminary results for $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2}, \tilde{\nu}_r = 2\cdot10^{-5})$$ with Gaussian filter
 
 &lt;&lt;plotwgit image:&quot;c44_max_cmsd_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_RCUTk4200_loglog&quot; path:&quot;plot/c44.py&quot;&gt;&gt;
@@ -656,18 +658,16 @@ We observe a crossover from an algebraic decay $$C_4^4(r) \propto r^{-2}$$ at lo
 
 We see from these last plots that the projection on $$\cos(4\theta)$$ is necessary to get clean curves and furthermore that they are in agreement with the hypothesis that the jumps of $$C_4^4(r)$$ are due to the discrete nature of the grid.
 
-!!! Preliminary results for $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2}, \tilde{\nu}_r = 2\cdot10^{-5})$$ with Gaussian filter and linear grid interpolation
-
-To smooth jumps in $$C_4^4(r)$$ due to the discrete nature of the grid, we now calculate each point on the strain correlation grid by linear interpolation of the neighbouring grid boxes' values and calculate from these $$C_4^4(r)$$.
+!!! Preliminary results for $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2}, \tilde{\nu}_r = 2\cdot10^{-5})$$ with Gaussian filter and linear interpolation
 
 &lt;&lt;plotwgit image:&quot;c44_max_cmsd_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Mo1000_RCUTk4200_interpolated_loglog&quot; path:&quot;plot/c44.py&quot;&gt;&gt;
 &lt;&lt;plotwgit image:&quot;c44_chi_cmsd_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Mo1000_RCUTk4200_interpolated_loglog&quot; path:&quot;plot/c44.py&quot;&gt;&gt;
 
 &lt;&lt;plotwgit image:&quot;c44_max_cmsd_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Mo1000_RCUTk4200_interpolated_linlog&quot; path:&quot;plot/c44.py&quot;&gt;&gt;
 
-We do not completely get rid of the jumps but we see that this method is definitely efficient to smooth them and get cleaner curves.
-
 &lt;&lt;plotwgit image:&quot;c44_max_cmsd_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll2000_RCUTk4200_interpolated_loglog&quot; path:&quot;plot/c44.py&quot;&gt;&gt;
+
+&lt;&lt;plotwgit image:&quot;c44_chi_cmsd_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll3000_RCUTk4200_interpolated_loglog&quot; path:&quot;plot/c44.py&quot;&gt;&gt;
 
 !!! Preliminary results for $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2}, \tilde{\nu}_r = 7\cdot10^{-5})$$ with Gaussian filter
 
@@ -10080,10 +10080,10 @@ config.macros.bibliography = {
 <div created="20180606022318016" modified="20180625224602683" title="$:/state/toc/Measurements/Shear strain and vorticity fields-Shear strain correlations--1479111847">
 <pre>close</pre>
 </div>
-<div created="20180417231441389" modified="20180817192839425" title="$:/state/toc/TableOfContents-Analysis--81657105">
+<div created="20180417231441389" modified="20180819124126238" title="$:/state/toc/TableOfContents-Analysis--81657105">
 <pre>close</pre>
 </div>
-<div created="20180417005847401" modified="20180818224048343" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<div created="20180417005847401" modified="20180819125329721" title="$:/state/toc/TableOfContents-Measurements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180710220316722" modified="20180712224446152" title="$:/state/toc/TableOfContents-Measurements-1351528465">
@@ -10095,7 +10095,7 @@ config.macros.bibliography = {
 <div created="20180710220313043" modified="20180710220316107" title="$:/state/toc/TableOfContents-Model-1351528465">
 <pre>close</pre>
 </div>
-<div created="20180609023859864" modified="20180818224047673" title="$:/state/toc/TableOfContents/Measurements-Collective mean square displacements--81657105">
+<div created="20180609023859864" modified="20180819125328813" title="$:/state/toc/TableOfContents/Measurements-Collective mean square displacements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180417010842396" modified="20180417010842396" title="$:/state/toc/TableOfContents/Measurements-Cooperativity--81657105">
