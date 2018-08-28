@@ -1,0 +1,18 @@
+\documentclass[crop,tikz]{standalone}
+\usepackage[subpreambles=true]{standalone}
+
+\input{figures/tikz/preamble}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=2.8]
+
+  \node[inner sep=0pt] (start) at (0, 0)
+      {\includegraphics[width=0.7\textwidth]{figures/figs/u_Dk5000_Vj1000_Rf5000_No2000_Il0000_Tl5000.eps}};
+  \node[inner sep=0pt] (end) at (0, -3)
+      {\includegraphics[width=0.7\textwidth]{figures/figs/u_Dk5000_Vj1000_Rf5000_No2000_In4950_Tl5000.eps}};
+  \draw[->,thick] (start.east) to[out=0, in=0] node[midway, fill=white]{activity} (end.east);
+
+\end{tikzpicture}
+
+\end{document}

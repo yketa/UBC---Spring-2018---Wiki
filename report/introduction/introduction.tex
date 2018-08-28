@@ -1,0 +1,38 @@
+\documentclass[class=report, float=false, crop=false]{standalone}
+
+\input{preamble}
+
+\graphicspath{{introduction}}
+
+\begin{document}
+
+\chapter*{Introduction}
+\label{introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+
+We can distinguish three general classes of non-equilibrium systems \cite{cates2015motility}:
+\begin{itemize}
+  \item systems relaxing towards equilibrium (\textit{e.g.,} thermal system adapting to its thermostat), even if this relaxation is particularly slow (\textit{e.g.,} glasses),
+  \item systems with boundary conditions imposing steady currents (\textit{e.g.,} sheared liquid, metal rod between two thermostats),
+  \item and \textit{active matter}.
+\end{itemize}
+Active matter features systems composed of interacting self-propelled units, \textit{active particles}, each capable of converting stored or ambient free energy into systematic movement \cite{marchetti2013hydrodynamics}. This local energy input, at the origin of self-propulsion, drives the system far from thermodynamic equilibrium \cite{levis2014clustering}. Examples of such materials are ubiquitous in biology and span a great range of length scales, from swarms of bacteria \cite{dombrowski2004self} and cell tissues \cite{angelini2011glass}, to schools of fish \cite{calovi2014swarming} and flocks of birds \cite{cavagna2014bird} (see figure \ref{birds}).\\
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.8\textwidth]{birds}
+\caption{Flocking birds. \textit{source:} Hans Overduin/NIS/Minden/Getty, \cite{popkin2016physics}.}
+\label{birds}
+\end{figure}
+
+Moreover, in many biological phenomena, colletive motion of cells is of fundamental importance, such as in the healing of wounds \cite{haga2005collective} and cancer propagation \cite{friedl2009collective}, hence motivating fundamental and theoretical research on the topic, jointly between biologists and physicists \cite{garcia2015physics}.\\
+
+From a physicist's point of view, these systems are particulary interesting because they exhibit surprising phenomena, often defying physical intuition, despite being relatively simple in nature. Such phenomena include swarming, clustering, and non-equilibrium kinetic phase transitions \cite{vicsek1995novel, szabo2006phase}. Their study has motivated the development of artificial active particles for experimental purposes \cite{howse2007self, theurkauff2012dynamic}, as well as various computational models \cite{garcia2015physics, vicsek1995novel, levis2014clustering, wysocki2014cooperative, fily2014freezing, redner2013structure}.\\
+
+Our research project, which current development is summarised in the following report, aims at numerically analysing a model system of active matter. This system, inspired by Fily \textit{et al.} \cite{fily2012athermal, fily2014freezing}, consists of Brownian disks with purely repulsive interparticle harmonic potential, each of them performing independent persistent random walks. We will show that despite the simplicity of this model, interesting and surprising phenomena arise: motility-induced phase separation and long-range correlated displacements and shear strain, even at high times. These phenomena will be characterised and compared with current developments in supercooled liquids and glasses research.\\
+
+All computer programs with which the presented results were obtained were developed in Python \faPython~ (and occasionally in bash) and written by the author. All scripts -- for simulation and analysis purposes -- are available in the GitHub \faGithub~ repository \href{https://github.com/yketa/active_particles}{yketa/active\_particles}. This repository is organised such that it can be used as a Python \faPython~ package, usable with the provided Conda environment. Simulations and analyses were performed on the Stewart Blusson Quantum Matter Institute cluster.\\
+
+This report is organised as follows. In \hyperref[chap:model]{chapter \ref{chap:model}}, we describe our model system, as well as the methods we have used in our simulations. We then review 3 important phenomena observed in our simulations. In \hyperref[chap:mips]{chapter \ref{chap:mips}}, we characterise the motility-induced phase separation. In \hyperref[chap:displacement]{chapter \ref{chap:displacement}}, we study the displacement correlations. And in \hyperref[chap:strain]{chapter \ref{chap:strain}}, we study the shear strain correlations. In each part, we provide details on the implementation of every calculations.
+
+\end{document}

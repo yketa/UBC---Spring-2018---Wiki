@@ -1,0 +1,43 @@
+\documentclass[a4paper]{report}
+
+\usepackage[mode=buildnew,subpreambles=true]{standalone}
+\input{preamble}
+
+\begin{document}
+
+% cover page
+\import{cover/}{cover.tex}
+
+% table of contents
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+
+% introduction
+\import{introduction/}{introduction.tex}
+
+% chapters
+\import{chapters/}{model.tex}
+\import{chapters/}{mips.tex}
+\import{chapters/}{displacement.tex}
+\import{chapters/}{strain.tex}
+
+% conclusion
+\import{conclusion/}{conclusion.tex}
+
+% bibliography
+\newpage
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{unsrtnat}
+{\renewcommand{\bibname}{References}\bibliography{references/biblio}}
+
+% appendices
+\begin{appendices}
+% \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+
+\import{appendices/}{app_calculation.tex}
+
+\end{appendices}
+
+\end{document}

@@ -1,0 +1,40 @@
+\documentclass[class=report, float=false, crop=false]{standalone}
+
+\input{preamble}
+
+\graphicspath{{figures/images/}{figures/figs/}}
+
+\begin{document}
+
+\chapter{Calculation details}
+\label{appendix:calculation}
+
+\section{Field auto-correlation}
+\label{field_auto_correlation}
+
+Let $\vec{v}(\vec{r})$ be a vector -- or scalar -- field with $\vec{r} \in \mathbb{R}^2$, then we define its auto-correlation function as
+\begin{equation}
+C_{vv}(\Delta \vec{r}) = \frac{\int d^2\vec{r}~ \vec{v}(\vec{r})^*\cdot\vec{v}(\vec{r}+\Delta \vec{r})}{\int d^2\vec{r}~ |\vec{v}(\vec{r})|^2}
+\end{equation}
+which can be efficiently calculated with the help of Fourier transforms.\\
+
+We define
+\begin{equation}
+\begin{aligned}
+\mathcal{F} : \cdot \mapsto \int d^2\vec{k}~ e^{-i\vec{k}\cdot\vec{r}} ~\cdot  &\Leftrightarrow \mathcal{F}^{-1} : \cdot \mapsto \int d^2\vec{k}~ e^{i\vec{k}\cdot\vec{r}}\\
+\tilde{\vec{v}} = \mathcal{F}\{\vec{v}\} &\Leftrightarrow \vec{v} = \mathcal{F}^{-1}\{\tilde{\vec{v}}\}
+\end{aligned}
+\end{equation}
+then
+\begin{equation}
+\begin{aligned}
+\int d^2\vec{r}~ \vec{v}(\vec{r})^*\cdot\vec{v}(\vec{r}+\Delta \vec{r}) &= \int d^2\vec{r} \left(\int d^2\vec{k}~ e^{i\vec{k}\cdot\vec{r}}\tilde{\vec{v}}(\vec{k})\right)^*\cdot\left(\int d^2\vec{k}^{\prime}~ e^{i\vec{k}^{\prime}\cdot(\vec{r}+\Delta \vec{r})}\tilde{\vec{v}}(\vec{k}^{\prime})\right)\\
+&= \int d^2\vec{k} \int d^2\vec{k}^{\prime}~ e^{i\vec{k}^{\prime}\cdot\Delta \vec{r}} \tilde{\vec{v}}(\vec{k})^*\cdot\tilde{\vec{v}}(\vec{k}^{\prime}) \int d^2\vec{r}~ e^{-i(\vec{k}-\vec{k}^{\prime})\cdot\vec{r}}\\
+&= \int d^2\vec{k} \int d^2\vec{k}^{\prime}~ e^{i\vec{k}^{\prime}\cdot\Delta \vec{r}} \tilde{\vec{v}}(\vec{k})^*\cdot\tilde{\vec{v}}(\vec{k}^{\prime}) \delta(\vec{k}-\vec{k}^{\prime})\\
+&=  \int d^2\vec{k}~ e^{i\vec{k}\cdot\Delta \vec{r}} \tilde{\vec{v}}(\vec{k})^*\cdot\tilde{\vec{v}}(\vec{k})\\
+&= \mathcal{F}^{-1}\{\mathcal{F}\{\vec{v}\}^*(\vec{k})\cdot\mathcal{F}\{\vec{v}\}(\vec{k})\}(\Delta\vec{r})
+\end{aligned}
+\end{equation}
+thus showing that $C_{vv}$ can be easily expressed in terms of the Fourier transform of $\vec{v}$ field.
+
+\end{document}
