@@ -1,16 +1,15 @@
 all: dir
-	@pdflatex main
-	@biber main
-	@pdflatex main
-	@pdflatex main
-	@mv main.pdf presentation.pdf
-	@mv `ls main* | grep -v tex` aux
+	@pdflatex presentation
+	@biber presentation
+	@pdflatex presentation
+	@pdflatex presentation
+	@mv `ls presentation* | grep -v tex | grep -v pdf` aux
 
 dir:
 	@mkdir -p aux
 
 clean:
-	@rm -f `ls main* | grep -v tex`
+	@rm -f `ls presentation* | grep -v tex | grep -v pdf`
 	@rm -rf aux
 
 mrproper: clean

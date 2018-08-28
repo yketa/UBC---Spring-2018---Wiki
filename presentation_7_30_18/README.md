@@ -13,7 +13,7 @@ This slideshow presents:
   * displacement correlations and cooperativities,
   * and shear strain correlations.
 
-It can be read on the [corresponding tiddler](https://yketa.github.io/UBC_2018_Wiki/#Final%20lab%20presentation%20-%207%2F30%2F18) of this GitHub page *without videos*. To be able to read videos, this git repository has to be cloned
+It can be read on the [corresponding tiddler](https://yketa.github.io/UBC_2018_Wiki/#Final%20lab%20presentation%20-%207%2F30%2F18) on the GitHub page of this project, *without videos*. To be able to read videos, this git repository has to be cloned
 ```bash
 git clone https://github.com/yketa/UBC_2018_Wiki
 ```
