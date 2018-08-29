@@ -35,6 +35,7 @@
 \usepackage{enumitem}
 \usepackage{aligned-overset}
 \usepackage{placeins}
+\usepackage{float}
 
 %%%% TIKZ
 
@@ -103,6 +104,8 @@ hyperfigures=false} % fichiers pdf 'intelligents', avec des liens entre les réf
 %%%% COMMANDS
 
 %\renewcommand*\thesection{\arabic{section}}
+
+\providecommand{\parallelsum}{\mathbin{\!/\mkern-5mu/\!}}
 
 \providecommand{\inserttikz}[3]{
 \begin{figure}[h!]

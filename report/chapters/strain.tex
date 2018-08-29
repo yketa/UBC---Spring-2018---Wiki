@@ -12,8 +12,6 @@
 \section{Plastic deformation}
 \label{section:plastic_deformation}
 
-% explain the origin of plastic flow, the build up of shear strain correlations, their characteristics
-
 Current theories of plastic deformation of amorphous solids rely on the existence of \textit{shear transformation zones}, which are special sites, a few particles wide, where particles are able to rearrange themselves in response to applied stresses \cite{falk1998dynamics}. Plastic deformation is then the consequence of localized irreversible rearrangements, coupled by elastic strain fields \cite{nicolas2014spatiotemporal} which are solutions of the Eshelby inclusion problem \cite{eshelby1959elastic}.\\
 
 These plastic rearrangements, coupled in an elastic medium, have also been observed in supercooled liquids near the glass transition \cite{chattoraj2013elastic, illing2016strain, hassani2018long}, hence the claim that supercooled liquids are "solids that flow" \cite{dyre2006colloquium}.\\
@@ -74,6 +72,7 @@ where $a$ is the average interparticle distance.
 \section{Real space method}
 
 \subsection{Method}
+\label{subsection:real_space_method}
 
 \myparagraph{Coarse-graining}
 
@@ -182,33 +181,100 @@ Our computation script is available at \href{https://github.com/yketa/active_par
 
 \subsection{Results}
 
-\myparagraph{High activity $\text{Pe} > \text{Pe}_t$}
+\myparagraph{High activity ($\text{Pe} > \text{Pe}_t$)}
 
-We investigate shear strain correlation in a system in phase separated state at high activity.\\
+We investigate shear strain correlations in a system in phase separated state at high activity.\\
 
-We observe in the shear strain map of figure \ref{css_map_real} that the highest values shear strain in absolute value are found at the interface between the dense fluid and the active gas. This finding is not surprising since we are dealing here with an interface between phases of very different motilities.\\
+We observe in the shear strain map of figure \ref{css_map_real} that the highest values of shear strain in absolute value are found at the interface between the dense fluid and the active gas. This finding is not surprising since we are dealing here with an interface between phases of very different motilities.\\
 
-We then observe in the shear strain correlation map of figure \ref{css_map_real} that $C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t)$ effectively has a quadropular symmetry as observed in the litterature \cite{illing2016strain, hassani2018long}. This confirms the relevance of the introduction of the $C_4^4(\Delta r, \Delta t)$ function (see equation \ref{c44_definition}). Moreover, we find by comparing the shear strain correlation maps in figures \ref{css_map_real} and \ref{css_map_real_quarter} that these correlations are blurred because of the active gas hole in the system.
+We then observe in the shear strain correlation map of figure \ref{css_map_real} that $C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t)$ effectively has a quadropular symmetry as observed in the litterature \cite{illing2016strain, hassani2018long}. This confirms the relevance of the introduction of the $C_4^4(\Delta r, \Delta t)$ function (see equation \ref{c44_definition}).\\
 
-\begin{figure}[h!]
+We have graphically checked that there existed a region of the system where an active gas hole never opened and found that it was the case for a square region of centre $(x=-150, y=150)$ and length $L=300$. We have then looked at strain correlations restricted to this area only. We show in figure \ref{css_map_real_quarter} the resulting strain correlation map. By comparison with figure \ref{css_map_real}, we find that the strain correlation map is sharper if active gas holes are removed.\\
+
+We however stress that this kind of manipulation is not possible for all our systems in the phase separated regime. Indeed, just above the transition from fluid states to phase separated states, multiple smaller and transient active gas holes appear in the system. These holes get bigger as the activity increases until, as in the system we are currently strudying, a single hole appears, which size and position hardly vary during the simulation time. This observation has also already been made for other active systems \cite{wysocki2014cooperative, levis2014clustering}.\\
+
+\begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{figures/figs/Cssb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Ml1000_Cn5000_RCUTl2000_SIGMl2000.eps}
-\caption{}
+\vspace{-1cm}
+\caption{Shear strain correlations, calculated with the real space method (see section \ref{subsection:real_space_method}), at packing fraction $\phi = 0.80$, self-propelling velocity $\tilde{v} = 1\cdot10^{-2}$, and rotational diffusion rate $\tilde{\nu}_r = 2\cdot10^{—5}$ (phase separated regime). We have the average particle separation $a \approx 2$. \textbf{(left)} Shear strain map, $\varepsilon_{xy}(\vec{r} \equiv (x, y), t, t + \Delta t)$. There is an open active gas hole in the system, visible on the top and bottom right corners. \textbf{(right)} Shear strain correlation map, $C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta\vec{r} \equiv (x, y), \Delta t)$.}
 \label{css_map_real}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{figures/figs/Cssb_Dk8000_Vj1000_Rg2000_Nq1000_In5000_Tl1000_Ml1000_Co1000_Bn3000_XN1500_Yn1500_grid_circle.eps}
-\caption{}
+\caption{Shear strain correlations, calculated with the real space method (see section \ref{subsection:real_space_method}), at packing fraction $\phi = 0.80$, self-propelling velocity $\tilde{v} = 1\cdot10^{-2}$, and rotational diffusion rate $\tilde{\nu}_r = 2\cdot10^{—5}$ (phase separated regime), from the square box of centre $(x=-150, y=150)$ and length $L=300$ in the system of figure \ref{css_map_real}. We have the average particle separation $a \approx 2$. \textbf{(left)} Shear strain correlation map, $C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta\vec{r} \equiv (x, y), \Delta t)$. The black circle materialises the radial projection of the shear strain correlation. \textbf{(right)} Radial projection of the shear strain correlation on a circle of radius $r=3.09$, $C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta\vec{r} \equiv (r=3.09, \theta), \Delta t)$.}
 \label{css_map_real_quarter}
 \end{figure}
 
+We calculated shear strain correlations $C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t)$ for the subsystem of figure \ref{css_map_real_quarter} at different lag times $\Delta t$, then projected them on $\cos4\theta$ according to equation \ref{c44_definition} to obtain $C_4^4(\Delta r, \Delta t)$. These are shown in figure \ref{c44_real}.\\
+
+Our curves are quite similar to the equivalent ones reported in \cite{illing2016strain, hassani2018long}. We have a peak of $C_4^4(\Delta r, \Delta t)$ close to 2 units of average particle separation and curves collapse, at least for $nD_0\Delta t \lessapprox 30$. Our most revelant observation is that our curves are quite consistent with an algebraic decay $(r/a)^{—2}$, indicating scale free correlations reminiscent of a glass-forming material at low temperature, as discussed in section \ref{section:plastic_deformation}.\\
+
+We however have smooth but large fluctuations around this fit, which origin is still unknowsn.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{c44_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll2000.eps}
+\caption{Projection of shear strain correlations on $\cos4\theta$, $C_4^4(\Delta r, \Delta t)$, according to equation \ref{c44_definition}, at packing fraction $\phi = 0.80$, self-propelling velocity $\tilde{v} = 1\cdot10^{-2}$, and rotational diffusion rate $\tilde{\nu}_r = 2\cdot10^{—5}$ (phase separated regime), for a subsystem containing no active gas holes, for different lag times $\Delta t$. We have $n = N/L^2$ the number density of particles and $D_0 = V_0^2/2\nu_r$ the diffusion constant of a single particle, introduced for matter of comparison of lag times between different systems as suggested in \cite{illing2016strain}. The dashed line corresponds to an arbitrary fit to a power law $(r/a)^{—2}$.}
+\label{c44_real}
+\end{figure}
+
+\myparagraph{Low activity ($\text{Pe} < \text{Pe}_t$)}
+
+We calculated shear strain correlations $C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t)$ for a system in fluid state, at different lag times $\Delta t$, then projected them on $\cos4\theta$ according to equation \ref{c44_definition} to obtain $C_4^4(\Delta r, \Delta t)$. These are shown in figure \ref{c44_real_fluid}.\\
+
+We still observe a peak of $C_4^4(\Delta r, \Delta t)$ close to 2 units of average particle separation, however, contrarily to the phase separated state (see figure \ref{c44_real}), we observe here an exponential decay of the shear strain correlation, which length scale is approximately equal to 2 units of average particle separation. A simple exponential decay of correlations is indeed what we would expect in a liquid above the melting point \cite{debenedetti2001supercooled}. We finally add that the length scale of this decay increases sensitively with increasing lag time $\Delta t$.\\
+
+There must then be a transition from an exponential to an algebraic decay of shear strain correlations as activity increases which we need to characterise.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{c44_comparison_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000.eps}
+\caption{Projection of shear strain correlations on $\cos4\theta$, $C_4^4(\Delta r, \Delta t)$, according to equation \ref{c44_definition}, at packing fraction $\phi = 0.80$, self-propelling velocity $\tilde{v} = 1\cdot10^{-2}$, and rotational diffusion rate $\tilde{\nu}_r = 2\cdot10^{—3}$ (fluid regime), for different lag times $\Delta t$. We have $n = N/L^2$ the number density of particles and $D_0 = V_0^2/2\nu_r$ the diffusion constant of a single particle, introduced for matter of comparison of lag times between different systems as suggested in \cite{illing2016strain}. The dashed line corresponds to an arbitrary fit to an exponential $\exp(-r/2a)$.}
+\label{c44_real_fluid}
+\end{figure}
+
+\myparagraph{Issue}
+
+Despite this method giving interesting and encouraging results, we deplore its exceptional slowliness despite our best computational efforts. We introduce in section \ref{section:collective_mean_square_displacement_method} new quantities enabling us to compute shear strain correlations more quickly and efficiently.
+
 \section{Collective mean square displacement method}
+\label{section:collective_mean_square_displacement_method}
 
 \subsection{Collective mean square displacement}
 
-StackExchange \faStackExchange~ \cite{stackexchange}
+We take the Fourier transform of the displacement of the particle at position $\vec{r}$ at time $t$ between times $t$ and $t + \Delta t$, evaluated at wave vector $\vec{k}$ such that $k = ||\vec{k}|| \neq 0$
+\begin{equation}
+\tilde{\vec{u}}(\vec{k}, t, t + \Delta t) = \mathcal{F}\{\vec{u}(\vec{r}, t, t + \Delta t)\}(\vec{k})
+\end{equation}
+and introduce
+\begin{equation}
+\begin{aligned}
+\vec{e}_{||} &= \vec{k}/k &&~\parallelsum \vec{k}\\
+\vec{e}_{\perp} &= (\vec{e}_z\wedge\vec{k})/k &&\perp \vec{k}
+\end{aligned}
+\end{equation}
+with $\phi = (\vec{e}_x ; \vec{e}_{||})$, such that we can decompose $\tilde{\vec{u}}(\vec{k}, t, t + \Delta t)$ in this base \cite{stackexchange}
+\begin{equation}
+\begin{aligned}
+\begin{pmatrix} \tilde{u}_x(\vec{k}, t, t + \Delta t) \\ \tilde{u}_y(\vec{k}, t, t + \Delta t) \end{pmatrix} &= \begin{pmatrix} \cos\phi & -\sin\phi \\ \sin\phi & \cos\phi \end{pmatrix} \begin{pmatrix} \tilde{u}_{||}(\vec{k}, t, t + \Delta t) \\ \tilde{u}_{\perp}(\vec{k}, t, t + \Delta t) \end{pmatrix}\\
+&= \begin{pmatrix} k_x/k & -k_y/k \\ k_y/k & k_x/k \end{pmatrix} \begin{pmatrix} \tilde{u}_{||}(\vec{k}, t, t + \Delta t) \\ \tilde{u}_{\perp}(\vec{k}, t, t + \Delta t) \end{pmatrix}
+\end{aligned}
+\end{equation}
+\mbox{}\\
+
+With these notations, we introduce the longitudinal and transversal mean square displacements \cite{illing2016strain, klix2012glass}, respectively $C^{||}(k, \Delta t)$ and $C^{\perp}(k, \Delta t)$, defined by
+\begin{equation}
+\begin{aligned}
+C^{||}(k, \Delta t) &= \left<|\tilde{u}_{||}(\vec{k}, t, t + \Delta t)|^2\right>\\
+C^{\perp}(k, \Delta t) &= \left<|\tilde{u}_{\perp}(\vec{k}, t, t + \Delta t)|^2\right>
+\end{aligned}
+\end{equation}
+where $\left<\ldots\right>$ denotes an average over time $t$ and directions of $\vec{k}$ at fixed norm $k$. These functions are collective and spatially resolved generalisations of the mean square displacement \cite{illing2016strain}.
+
+
 
 \subsection{Results}
 
