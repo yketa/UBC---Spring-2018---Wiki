@@ -10,20 +10,93 @@
 \label{chap:strain}
 
 \section{Plastic deformation}
+\label{section:plastic_deformation}
 
 % explain the origin of plastic flow, the build up of shear strain correlations, their characteristics
 
 Current theories of plastic deformation of amorphous solids rely on the existence of \textit{shear transformation zones}, which are special sites, a few particles wide, where particles are able to rearrange themselves in response to applied stresses \cite{falk1998dynamics}. Plastic deformation is then the consequence of localized irreversible rearrangements, which are coupled by elastic strain fields \cite{nicolas2014spatiotemporal}.
 
+Supercooled liquids are "solids that flow" \cite{dyre2006colloquium, chattoraj2013elastic}.
+
 \section{Shear strain}
 
 \subsection{Shear strain}
 
+With $\vec{u}(\vec{r}, t, t + \Delta t) = \begin{pmatrix} u_x(\vec{r}, t, t + \Delta t) \\ u_y(\vec{r}, t, t + \Delta t) \end{pmatrix}$ the displacement of particle at position $\vec{r}$ at time $t$ between times $t$ and $t + \Delta t$, we introduce the linearised strain tensor $\rttensor{\varepsilon}$ \cite{landau1986theory}
+\begin{equation}
+\begin{aligned}
+&\rttensor{\varepsilon}(\vec{r}, t, t + \Delta t)\\
+\underset{\frac{||\vec{u}||}{L} \ll 1}{=} &\begin{pmatrix} \frac{\partial}{\partial x} u_x(\vec{r}, t, t + \Delta t) & \frac{1}{2} \left(\frac{\partial}{\partial y} u_x(\vec{r}, t, t + \Delta t) + \frac{\partial}{\partial x} u_y(\vec{r}, t, t + \Delta t)\right) \\ \frac{1}{2} \left(\frac{\partial}{\partial y} u_x(\vec{r}, t, t + \Delta t) + \frac{\partial}{\partial x} u_y(\vec{r}, t, t + \Delta t)\right) &  \frac{\partial}{\partial y} u_y(\vec{r}, t, t + \Delta t) \end{pmatrix}
+\end{aligned}
+\end{equation}
+with $L$ the characteristic length of the system, in which we will consider only the diagonal terms, $\textit{i.e.}$ the linearised shear strain
+\begin{equation}
+\varepsilon_{xy}(\vec{r}, t, t + \Delta t) = \varepsilon_{yx} = \frac{1}{2} \left(\frac{\partial}{\partial y} u_x(\vec{r}, t, t + \Delta t) + \frac{\partial}{\partial x} u_y(\vec{r}, t, t + \Delta t)\right)
+\label{linearised_shear_strain}
+\end{equation}
+which characterises the deformation of the system perpendicularly to the direction of deformation.
+
 \subsection{Shear strain correlation}
+
+We define the shear strain correlation, which is the auto-correlation function of the linearised shear strain introduced in equation \ref{linearised_shear_strain}
+\begin{equation}
+\begin{aligned}
+C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t) &= \left<\varepsilon_{xy}(\vec{r}+\Delta\vec{r}, t, t + \Delta t)\varepsilon_{xy}(\vec{r}, t, t + \Delta t)\right>_{\vec{r}, t}\\
+&= \frac{\int dt \int d^2\vec{r}~ \varepsilon_{xy}(\vec{r}, t, t+\Delta t)\varepsilon_{xy}(\vec{r} + \Delta \vec{r}, t, t+\Delta t)}{\int dt \int d^2\vec{r}~ |\varepsilon_{xy}(\vec{r}, t, t+\Delta t)|^2}\\
+&= \frac{\mathcal{F}^{-1}\{\int dt~ |\mathcal{F}\{\varepsilon_{xy}\}(\vec{k}, t, t + \Delta t)|^2\}(\Delta \vec{r}, \Delta t)}{\int dt \int d^2\vec{r}~ ||\varepsilon_{xy}(\vec{r}, t, t+\Delta t)||^2}
+\end{aligned}
+\label{Css}
+\end{equation}
+where we refer to appendix \ref{field_auto_correlation} for calculation details leading to the last line of equation \ref{Css}.\\
+
+As discussed in section \ref{section:plastic_deformation}, we expect $C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t)$ to have a four-fold symmetry. Inspired by \cite{illing2016strain}, we then introduce the projection of the shear strain correlation on $\cos4\theta$
+\begin{equation}
+C_4^4(\Delta r, \Delta t) = \frac{1}{\pi} \int_0^{2\pi} d\theta~ \cos(4\theta)~ C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta\vec{r}\equiv(\Delta r, \theta), \Delta t)
+\end{equation}
+which in a 2D elastic medium should decay algebraically far from the origin
+\begin{equation}
+C_4^4(\Delta r, \Delta t) \underset{\frac{\Delta r}{a} \gg 1}{\propto} \frac{1}{\Delta r^2}
+\end{equation}
+where $a$ is the average interparticle distance.
 
 \section{Real space method}
 
 \subsection{Method}
+
+\myparagraph{Coarse-graining}
+
+We only have access to discrete particle positions to calculate displacements. In order to obtain smooth strain fields, we then have to go through some sort of coarse-graining of these displacements.\\
+
+On the basis of a method detailed in \cite{goldhirsch2002microscopic}, we define the coarse-graining operator $\mathcal{A}(\sigma, r_c)$ which associates to any particle-dependent variable $c_i(t)$ its coarse-grained version $\bar{c}(\vec{r}, t)$ such that
+\begin{equation}
+\bar{c}(\vec{r}, t) = \mathcal{A}(\sigma, r_c)\{c_i(t)\} = \sum_{i=1}^N c_i(t) \phi(\vec{r}-\vec{r}_i(t), \sigma, r_c)
+\end{equation}
+where $\phi(\vec{r}, \sigma, r_c)$ is a normalised non-negative coarse-graining function, with a single maximum at $\vec{r} = \vec{0}$, of width $\sigma$ -- the coarse-graining scale -- and cut-off radius $r_c$.\\
+
+As has been done in \cite{illing2016strain}, we choose a Gaussian coarse-graining function $\phi(\vec{r}, \sigma, r_c)$ of width $\sigma$ with a cut-off radius $r_c$
+\begin{equation}
+\phi(\vec{r}, \sigma, r_c) = \frac{1}{\mathcal{N}(\sigma, r_c)} \begin{cases} \exp\left(-\frac{||\vec{r}||^2}{2\sigma^2}\right) &\text{ if } ||\vec{r}|| < r_c \\ 0 & \text{ otherwise} \end{cases}
+\end{equation}
+where $\mathcal{N}(\sigma, r_c)$ normalises the function, \textit{i.e.} is such that
+\begin{equation}
+\int_{\mathbb{R}^2} d^2\vec{r}~ \phi(\vec{r}, \sigma, r_c) = \frac{1}{\mathcal{N}(\sigma, r_c)}\int_0^{r_c} dr~ 2 \pi r \exp\left(-\frac{r^2}{2\sigma^2}\right) = 1 \Leftrightarrow \mathcal{N}(\sigma, r_c) = 2\pi\sigma^2\left(1 - \exp\left(-\frac{r_c^2}{2\sigma^2}\right)\right)
+\end{equation}
+It is straightforward to verify that this coarse-graining function satisfies the aforementioned conditions.\\
+
+We then define the coarse-grained displacement field \cite{illing2016strain}
+\begin{equation}
+\begin{aligned}
+\bar{\vec{u}}(\vec{r}, t, t+\Delta t) &= \frac{1}{\bar{\rho}(\vec{r}, t)} \mathcal{A}(\sigma, r_c)\{\vec{u}(\vec{r}_i(t), t, t+\Delta t)\} \\
+&= \frac{1}{\bar{\rho}(\vec{r}, t)} \sum_{i=1}^N \vec{u}(\vec{r}_i(t), t, t+\Delta t) \phi(\vec{r}-\vec{r}_i(t), \sigma, r_c)
+\end{aligned}
+\end{equation}
+where $\bar{\rho}(\vec{r}, t)$ is the coarse-grained density
+\begin{equation}
+\bar{\rho}(\vec{r}, t) = \mathcal{A}(\vec{r}, \sigma, r_c)\{m_i\} = \sum_{i=1}^N m_i \phi(\vec{r}-\vec{r}_i(t), \sigma, r_c)
+\end{equation}
+with $m_i$ the mass of particle $i$.\\
+
+It follows the expression of the linearised shear strain from the coarse-grained displacements
 
 \subsection{Results}
 
