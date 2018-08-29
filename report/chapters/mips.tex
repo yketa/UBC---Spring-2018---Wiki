@@ -124,7 +124,7 @@ where $r_{max}$ is chosen to be a few particle diameters.
 
 \myparagraph{Computation details}
 
-We divide the system square box in $N_{cases} \times N_{cases}$ square boxes with centres $(\vec{R}_{kl})_{1 \leq k, l \leq N_{cases}}$. We then choose $S_{max}$ times $(t_m)_{1 \leq m \leq S_{max}}$, with $\forall m, t_m \geq S_{init}$ and compute the local densities $(\phi_{loc}(\vec{R}_{kl}, t_m, r_{max}))_{1 \leq k, l \leq N_{cases}, 1 \leq m \leq S_{max}}$ then the histogram of the values $P(\phi_{loc})$.\\
+We divide the system square box in $N_{cases} \times N_{cases}$ linearly spaced square boxes with centres $(\vec{R}_{kl})_{1 \leq k, l \leq N_{cases}}$. We then choose $S_{max}$ times $(t_m)_{1 \leq m \leq S_{max}}$, with $\forall m, t_m \geq S_{init}$ and compute the local densities $(\phi_{loc}(\vec{R}_{kl}, t_m, r_{max}))_{1 \leq k, l \leq N_{cases}, 1 \leq m \leq S_{max}}$ then the histogram of the values $P(\phi_{loc})$.\\
 
 Our computation script is available at \href{https://github.com/yketa/active_particles/blob/master/analysis/varn.py}{{\faGithub~ yketa/active\_particles/analysis/varn.py}}.
 

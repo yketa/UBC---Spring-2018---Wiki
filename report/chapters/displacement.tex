@@ -62,7 +62,7 @@ Please not that it would also be possible to define $\vec{u}(\vec{r}, t, t + \De
 
 We work with systems with up to $N = 1\cdot10^5$ particles, it is then not computationally efficient to evaluate pairwise correlations between displacements of each particles, as done in \cite{weeks2007short}. We have in equation \ref{Cuu} that $C_{uu}(\Delta \vec{r}, \Delta t)$ can be computed from the Fourier transform of $\vec{u}(\vec{r}, t, t + \Delta t)$. We will then rather take advantage of the powerful Fast Fourier Transform algorithm to speed up our calculations. Nonetheless, to be able to use this algorithm, we have to put the displacement field on a grid, such as we describe thereafter.\\
 
-We divide the system square box in $N_{cases} \times N_{cases}$ square boxes with centres $(\vec{R}_{kl})_{1 \leq k, l \leq N_{cases}}$. With $dL$ the length of each box, we introduce
+We divide the system square box in $N_{cases} \times N_{cases}$ linearly spaced square boxes with centres $(\vec{R}_{kl})_{1 \leq k, l \leq N_{cases}}$. With $dL$ the length of each box, we introduce
 \begin{equation}
 \vec{u}_{kl}(t, t + \Delta t) = \text{mean}\left(\left\{\vec{u}(\vec{r}_i(t), t, t + \Delta t), ||\vec{r}_i(t) - \vec{R}_{kl}||_{+\infty} \leq \frac{dL}{2}\right\}\right)
 \label{u_to_grid}
@@ -71,9 +71,9 @@ the average displacement of particles in each box between times $t$ and $t + \De
 
 We now have $\forall m$, a displacement grid $(\vec{u}_{kl}(t_m, t_m + \Delta t))_{1 \leq k, l \leq N_{cases}}$ of which we can take the Fast Fourier Transform
 \begin{equation}
-(\tilde{\vec{u}}_{kl}(t_m, t_m + \Delta t))_{1 \leq k, l \leq N_{cases}} = \mathcal{F}\left\{(\vec{u}_{pq}(t_m, t_m + \Delta t))_{1 \leq p, q \leq N_{cases}}\right\}(\vec{R}_{kl}, t_m, t_m + \Delta t)
+(\tilde{\vec{u}}_{kl}(t_m, t_m + \Delta t))_{1 \leq k, l \leq N_{cases}} = \mathcal{F}\left\{(\vec{u}_{pq}(t_m, t_m + \Delta t))_{1 \leq p, q \leq N_{cases}}\right\}(\vec{K}_{kl}, t_m, t_m + \Delta t)
 \end{equation}
-then compute the displacement correlation grid
+with $(\vec{K}_{kl})_{1 \leq k, l \leq N_{cases}}$ the grid of wave vectors, then compute the displacement correlation grid
 \begin{equation}
 C_{uu}(\vec{R}_{kl}, \Delta t) = \frac{\mathcal{F}^{-1}\left\{\left(\sum_m ||\tilde{\vec{u}}_{pq}(t_m, t_m + \Delta t)||^2\right)_{1 \leq p, q \leq N_{cases}}\right\}(\vec{R_{kl})}}{\sum_m\sum_{p, q} ||\vec{u}_{pq}(t_m, t_m + \Delta t)||^2}
 \end{equation}
