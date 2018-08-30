@@ -180,6 +180,7 @@ C_{\varepsilon_{xy}\varepsilon_{xy}}(\vec{R}_{kl}, \Delta t) = \frac{\mathcal{F}
 Our computation script is available at \href{https://github.com/yketa/active_particles/blob/master/analysis/css.py}{{\faGithub~ yketa/active\_particles/analysis/css.py}}.
 
 \subsection{Results}
+\label{subsection:real_method_results}
 
 \myparagraph{High activity ($\text{Pe} > \text{Pe}_t$)}
 
@@ -245,6 +246,8 @@ Despite this method giving interesting and encouraging results, we deplore its e
 
 \subsection{Collective mean square displacement}
 
+\myparagraph{Definition}
+
 We take the Fourier transform of the displacement of the particle at position $\vec{r}$ at time $t$ between times $t$ and $t + \Delta t$, evaluated at wave vector $\vec{k}$ such that $k = ||\vec{k}|| \neq 0$
 \begin{equation}
 \tilde{\vec{u}}(\vec{k}, t, t + \Delta t) = \mathcal{F}\{\vec{u}(\vec{r}, t, t + \Delta t)\}(\vec{k})
@@ -261,6 +264,7 @@ with $\phi = (\vec{e}_x ; \vec{e}_{||})$, such that we can decompose $\tilde{\ve
 \begin{aligned}
 \begin{pmatrix} \tilde{u}_x(\vec{k}, t, t + \Delta t) \\ \tilde{u}_y(\vec{k}, t, t + \Delta t) \end{pmatrix} &= \begin{pmatrix} \cos\phi & -\sin\phi \\ \sin\phi & \cos\phi \end{pmatrix} \begin{pmatrix} \tilde{u}_{||}(\vec{k}, t, t + \Delta t) \\ \tilde{u}_{\perp}(\vec{k}, t, t + \Delta t) \end{pmatrix}\\
 &= \begin{pmatrix} k_x/k & -k_y/k \\ k_y/k & k_x/k \end{pmatrix} \begin{pmatrix} \tilde{u}_{||}(\vec{k}, t, t + \Delta t) \\ \tilde{u}_{\perp}(\vec{k}, t, t + \Delta t) \end{pmatrix}
+\label{u_cmsd}
 \end{aligned}
 \end{equation}
 \mbox{}\\
@@ -271,11 +275,186 @@ With these notations, we introduce the longitudinal and transversal mean square 
 C^{||}(k, \Delta t) &= \left<|\tilde{u}_{||}(\vec{k}, t, t + \Delta t)|^2\right>\\
 C^{\perp}(k, \Delta t) &= \left<|\tilde{u}_{\perp}(\vec{k}, t, t + \Delta t)|^2\right>
 \end{aligned}
+\label{cmsd_definition}
 \end{equation}
-where $\left<\ldots\right>$ denotes an average over time $t$ and directions of $\vec{k}$ at fixed norm $k$. These functions are collective and spatially resolved generalisations of the mean square displacement \cite{illing2016strain}.
+where $\left<\ldots\right>$ denotes an average over time $t$ and directions of $\vec{k}$ at fixed norm $k$. These functions are collective and spatially resolved generalisations of the mean square displacement \cite{illing2016strain}.\\
 
+We note in \cite{illing2016strain} that for an incompressible glass
+\begin{equation}
+\begin{aligned}
+C^{||}(k, \Delta t) &= 0\\
+C^{\perp}(k, \Delta t) \underset{\frac{2\pi}{k} \gg a}&{\propto} k^{-2}
+\end{aligned}
+\end{equation}
+with $a$ the average interparticle distance. Authors of \cite{leonforte2005continuum} also report
+\begin{equation}
+\begin{aligned}
+C^{||}(k, \Delta t) \underset{\frac{2\pi}{k} \gg a}&{\propto} k^{-2}\\
+C^{\perp}(k, \Delta t) \underset{\frac{2\pi}{k} \gg a}&{\propto} k^{-2}
+\end{aligned}
+\end{equation}
+in a polydisperse Lennard-Jones mixture under shear.
 
+\myparagraph{Shear strain correlation}
+
+We have from \cite{illing2016strain} a simple relation between shear strain correlations and collective mean square displacements
+\begin{equation}
+C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t) = \mathcal{F}^{-1}\left\{-\frac{k_x^2k_y^2}{k^2}\left(C^{\perp}(k, \Delta t) - C^{||}(k, \Delta t)\right) + \frac{k^2}{4}C^{\perp}(k, \Delta t)\right\}(\Delta \vec{r})
+\label{css_cmsd}
+\end{equation}
+hence our interest in these functions.\\
+
+This relation can be derived from
+\begin{equation}
+C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t) = \mathcal{F}^{-1}\left\{\left<|\mathcal{F}\left\{\varepsilon_{xy}(\vec{r}, t, t + \Delta t)\right\}(\vec{k})|^2\right>_t\right\}(\Delta \vec{r})
+\label{css_from_ft}
+\end{equation}
+according to appendix \ref{field_auto_correlation}, in which we can replace $u_x(\vec{r}, t, t + \Delta t)$ and $u_y(\vec{r}, t, t + \Delta t)$ by their expressions in terms of $\tilde{u}_{||}(\vec{k}, t, t + \Delta t)$ and $\tilde{u}_{\perp}(\vec{k}, t, t + \Delta t)$ with equation \ref{u_cmsd}, leading to equation \ref{css_cmsd} \cite{stackexchange}.
+
+\myparagraph{Computation details}
+
+First of all, we can note that
+\begin{equation}
+\begin{aligned}
+C^{||}(k, \Delta t) &= \frac{1}{k^2}\left<|\vec{k}\cdot\tilde{\vec{u}}(\vec{k}, t, t + \Delta t)|^2\right>\\
+C^{\perp}(k, \Delta t) &= \frac{1}{k^2}\left<||\vec{k}\wedge\tilde{\vec{u}}(\vec{k}, t, t + \Delta t)||^2\right>
+\end{aligned}
+\label{cmsd_k}
+\end{equation}
+which expression are used in \cite{leonforte2005continuum}.\\
+
+We divide the system square box in $N_{cases} \times N_{cases}$ linearly spaced square boxes with centres $(\vec{R}_{kl})_{1 \leq k, l \leq N_{cases}}$. With $dL$ the length of each box, we introduce
+\begin{equation}
+\vec{u}_{kl}(t, t + \Delta t) = \text{mean}\left(\left\{\vec{u}(\vec{r}_i(t), t, t + \Delta t), ||\vec{r}_i(t) - \vec{R}_{kl}||_{+\infty} \leq \frac{dL}{2}\right\}\right)
+\end{equation}
+the average displacement of particles in each box between times $t$ and $t + \Delta t$. We then choose $S_{max}$ times $(t_m)_{1 \leq m \leq S_{max}}$, with $\forall m, t_m \geq S_{init}$.\\
+
+We now have $\forall m$, a displacement grid $(\vec{u}_{kl}(t_m, t_m + \Delta t))_{1 \leq k, l \leq N_{cases}}$ of which we can take the Fast Fourier Transform
+\begin{equation}
+(\tilde{\vec{u}}_{kl}(t_m, t_m + \Delta t))_{1 \leq k, l \leq N_{cases}} = \mathcal{F}\left\{(\vec{u}_{pq}(t_m, t_m + \Delta t))_{1 \leq p, q \leq N_{cases}}\right\}(\vec{K}_{kl}, t_m, t_m + \Delta t)
+\end{equation}
+with $(\vec{K}_{kl})_{1 \leq k, l \leq N_{cases}}$ the grid of wave vectors, then compute the collective mean square displacements
+\begin{equation}
+\begin{aligned}
+C^{\perp}(\vec{K}_{kl}, \Delta t) &= \frac{1}{S_{max}||\vec{K}_{kl}||^2}\sum_m ||\vec{K}_{kl}\wedge\tilde{\vec{u}}_{kl}(t_m, t_m + \Delta t) ||^2\\
+C^{||}(\vec{K}_{kl}, \Delta t) &= \frac{1}{S_{max}||\vec{K}_{kl}||^2}\sum_m |\vec{K}_{kl}\cdot\tilde{\vec{u}}_{kl}(t_m, t_m + \Delta t)|^2
+\end{aligned}
+\end{equation}
+according to equation \ref{cmsd_k}. Please note that these functions are slightly different than the one introduced in equation \ref{cmsd_definition} since they now depend on the wave vector rather than its sole norm. We have verified than either definitions gave consistent results and kept this version for algorithmic simplicity.\\
+
+We can then compute the Fourier transform of the shear strain correlation
+\begin{equation}
+F_{kl}(\Delta t) = -\frac{K_{kl,x}^2K_{kl,y}^2}{K_{kl}^2}\left(C^{\perp}(\vec{K}_{kl}, \Delta t) - C^{||}(\vec{K}_{kl}, \Delta t)\right) + \frac{K_{kl}^2}{4}C^{\perp}(\vec{K}_{kl}, \Delta t)
+\label{css_ft}
+\end{equation}
+according to equation \ref{css_cmsd}, and finally obtain the shear strain correlation through inverse Fast Fourier Transform
+\begin{equation}
+C_{\varepsilon_{xy}\varepsilon_{xy}}(\vec{R}_{kl}, \Delta t) = \frac{\mathcal{F}^{-1}\left\{\left(F_{pq}(\Delta t)\right)_{1 \leq p, q \leq N_{cases}}\right\}(\vec{R}_{kl})}{\mathcal{F}^{-1}\left\{\left(F_{pq}(\Delta t)\right)_{1 \leq p, q \leq N_{cases}}\right\}(\vec{0})}
+\end{equation}
+\mbox{}
+
+Our computation script is available at \href{https://github.com/yketa/active_particles/blob/master/analysis/ctt.py}{{\faGithub~ yketa/active\_particles/analysis/ctt.py}}.
 
 \subsection{Results}
+
+\myparagraph{Preliminary results}
+
+First of all, we point out that computing collective mean square displacements is orders of magnitude quicker than computing coarse-grained displacements as described in section \ref{subsection:real_space_method}. This method then seems better suited to systematically analyse shear strain correlations within our model.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500.eps}
+\vspace{-1cm}
+\caption{Collective mean square displacements according to equation \ref{cmsd_definition}, at packing fraction $\phi = 0.80$, self-propelling velocity $\tilde{v} = 1\cdot10^{-2}$, and rotational diffusion rate $\tilde{\nu}_r = 2\cdot10^{—5}$ (phase separated regime). Dashed lines correspond to arbitrary fits to a power law $\lambda^2$. \textbf{(top left)} Transversal collective mean square displacemnt $C^{\perp}(k, \Delta t) = \left<||\vec{k}\wedge\tilde{\vec{u}}(\vec{k}, t, t + \Delta t)||^2\right>$ as function of the wavelength $\lambda = 2\pi/k$. \textbf{(bottom left)} Longitudinal collective mean square displacemnt $C^{||}(k, \Delta t) = \left<|\vec{k}\cdot\tilde{\vec{u}}(\vec{k}, t, t + \Delta t)|^2\right>$ as function of the wavelength $\lambda = 2\pi/k$. \textbf{(right)} Superimposition of the transversal \textit{(blue)} and longitudinal \textit{(orange)} collective mean square displacements.}
+\label{preliminary_cmsd}
+\end{figure}
+
+We first calculated collective mean square displacements in a system in the phase separated state. This calculation has been performed on the whole system, \textit{i.e.} including the active gas phase. We present our results in figure \ref{preliminary_cmsd}.\\
+
+We observe in figure \ref{preliminary_cmsd} that the longitudinal collective mean square displacement $C^{||}(k, \Delta t)$ is a strictly positive function, indicating that our system is compressible \cite{illing2016strain} which was an expected finding. We however note that the longitudinal part $C^{||}(k, \Delta t)$ is about an order of magnitude lesser than the transversal part $C^{\perp}(k, \Delta t)$ of the collective mean square displacement, as reported in \cite{leonforte2005continuum}.\\
+
+Both $C^{||}(k, \Delta t)$ and $C^{\perp}(k, \Delta t)$ are quite well fitted with a power law $k^{-2}$ for about a decade ($10 \lessapprox \lambda = 2\pi/k \lessapprox 20$), which was also reported in \cite{leonforte2005continuum} and may indicate elastic properties of the system. This algebraic behaviour is limited at high wavelengths by finite-size effects and at low wavelengths by the discrete microscopic structure of the system. Indeed, we have that the peak in both $C^{||}(k, \Delta t)$ and $C^{\perp}(k, \Delta t)$ at $\lambda = 2\pi/k \approx a \approx 2$ with $a$ the average particle separation is a consequence of the discreteness of the displacement field.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Cttb_Dk8000_Vj1000_Ri7000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000.eps}
+\caption{Collective mean square displacements according to equation \ref{cmsd_definition}, at packing fraction $\phi = 0.80$, self-propelling velocity $\tilde{v} = 1\cdot10^{-2}$, and rotational diffusion rate $\tilde{\nu}_r = 7\cdot10^{—3}$ (fluid regime). Dashed lines correspond to arbitrary fits to a power law $\lambda$. \textbf{(top left)} Transversal collective mean square displacemnt $C^{\perp}(k, \Delta t) = \left<||\vec{k}\wedge\tilde{\vec{u}}(\vec{k}, t, t + \Delta t)||^2\right>$ as function of the wavelength $\lambda = 2\pi/k$. \textbf{(bottom left)} Longitudinal collective mean square displacemnt $C^{||}(k, \Delta t) = \left<|\vec{k}\cdot\tilde{\vec{u}}(\vec{k}, t, t + \Delta t)|^2\right>$ as function of the wavelength $\lambda = 2\pi/k$. \textbf{(right)} Superimposition of the transversal \textit{(blue)} and longitudinal \textit{(orange)} collective mean square displacements.}
+\label{preliminary_cmsd_low_activity}
+\end{figure}
+
+We then calculated collective mean square displacements in a system in the fluid state. We present our results in figure \ref{preliminary_cmsd_low_activity}.\\
+
+As in the high activity case (see figure \ref{preliminary_cmsd}), we observe that the longitudinal collective mean square displacement $C^{||}(k, \Delta t)$ is a strictly positive function. Nonetheless, we notice in this low activity case that the values of $C^{||}(k, \Delta t)$ and $C^{\perp}(k, \Delta t)$ are of the same order of magnitude.\\
+
+Both $C^{||}(k, \Delta t)$ and $C^{\perp}(k, \Delta t)$ are quite well fitted with a power law $k^{-1}$ for about a decade ($6 \lessapprox \lambda = 2\pi/k \lessapprox 60$). However, this exponent for the power law decay of the collective mean square displacements with increasing wave vector norm is puzzling and further investigations are needed to understand it.
+
+\newpage
+\myparagraph{Necessity of filtering}
+
+We use the collective mean square displacements presented in figure \ref{preliminary_cmsd} to compute shear strain correlations $C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t)$ according to equation \ref{css_cmsd}. Our results are presented in figure \ref{non_filtered_css}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Cttb_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Mn1000_Cn5000_Bn3000_XN1500_Yn1500_strain_correlations_RCUTl0000.eps}
+\caption{}
+\label{non_filtered_css}
+\end{figure}
+
+We have that shear strain correlations are completely drowned under a pattern of concentric waves which spatial period is close to the average particle separation $a \approx 2$. As we had discussed on figure \ref{cuu_oscillations}, these waves originate from the fact that our griding is so tight that we are resolving the microscopic structure of the system. This is visible in the collective mean displacement curves (figures \ref{preliminary_cmsd} and \ref{preliminary_cmsd_low_activity}) in the form of a peak near $\lambda = a$.\\
+
+As a solution to this inconvenience, we propose to filter out low wavelengths corresponding to the microscopic structure. This is a form of coarse-graining since it means to eliminate short range degrees of freedom. A first attempt has been to set all Fourier components under a given wavelength to 0, yet this was doomed to failure since completely depriving a signal of its high frequency components is a cause of ringing artifacts \cite{ringing}. A better solution is to perform, as we have done for displacements in the real space methode (see section \ref{subsection:real_space_method}), a Gaussian coarse-graining of the shear strain.\\
+
+We introduce the Gaussian filtering function
+\begin{equation}
+\mathcal{G}(\vec{r}, r_c) = \frac{1}{2\pi\sigma^2}\exp\left(-\frac{||\vec{r}||^2}{2\sigma^2}\right)
+\end{equation}
+where $r_c$ is the spatial extent of the function, such that the coarse-grained version of the shear strain, $\varepsilon_{xy}^{(cg)}(\vec{r}, t, t + \Delta t)$, is obtained by convolution
+\begin{equation}
+\varepsilon_{xy}^{(cg)}(\vec{r}, t, t + \Delta t) = \int_{\mathbb{R}^2} d^2\vec{r}^{\prime}~ \mathcal{G}(\vec{r}^{\prime} - \vec{r}, r_c) \varepsilon_{xy}^{(cg)}(\vec{r}^{\prime}, t, t + \Delta t) = \left[\mathcal{G}\ast\varepsilon_{xy}\right](\vec{r}, t, t + \Delta t)
+\end{equation}
+\mbox{}\\
+
+We thus obtain in equation \ref{css_from_ft}, when deriving shear strain correlations from coarse-grained shear strain
+\begin{equation}
+\begin{aligned}
+C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t) &= \mathcal{F}^{-1}\left\{\left<|\mathcal{F}\left\{\varepsilon_{xy}^{(cg)}(\vec{r}, t, t + \Delta t)\right\}(\vec{k})|^2\right>_t\right\}(\Delta \vec{r})\\
+&= \mathcal{F}^{-1}\left\{\left<|\mathcal{F}\left\{\left[\mathcal{G}\ast\varepsilon_{xy}\right](\vec{r}, t, t + \Delta t)\right\}(\vec{k})|^2\right>_t\right\}(\Delta \vec{r})\\
+&= \mathcal{F}^{-1}\left\{\left<|\mathcal{F}\left\{\varepsilon_{xy}(\vec{r}, t, t + \Delta t)\right\}(\vec{k})|^2\right>_t\tilde{\mathcal{G}}(\vec{k}, r_c)^2\right\}(\Delta \vec{r})
+\end{aligned}
+\end{equation}
+where we have used the convolution theorem, and with $\tilde{\mathcal{G}}(\vec{k}, r_c)$ the Fourier transform of the Gaussian filtering function
+\begin{equation}
+\tilde{\mathcal{G}}(\vec{k}, r_c) =  \frac{1}{2\pi\sigma^2} \int_{\mathbb{R}^2} d^2\vec{r}~ e^{-i\vec{k}\cdot\vec{r}}\exp\left(-\frac{||\vec{r}||^2}{2r_c^2}\right) = \exp\left(-\frac{1}{2}r_c^2||\vec{k}||^2\right)
+\label{gaussian_filter_ft}
+\end{equation}
+\mbox{}\\
+
+Coarse-graining is then performed by multiplying the shear strain correlation Fourier transform in equation \ref{css_ft} with the square of the Gaussian filtering function Fourier transform in equation \ref{gaussian_filter_ft}.
+
+\myparagraph{Results with Gaussian filter}
+
+We use the collective mean square displacements presented in figure \ref{preliminary_cmsd} to compute shear strain correlations $C_{\varepsilon_{xy}\varepsilon_{xy}}(\Delta \vec{r}, \Delta t)$ according to equation \ref{css_cmsd}, this time using a Gaussian filter. Our results are presented in figure \ref{c44_cmsd_high}.\\
+
+For this system in phase separated state, we recover the results of figure \ref{c44_real}, \textit{i.e.} we have a peak of $C_4^4(\Delta r, \Delta t)$ close to 2 units of average particle separation and curves collapse, at least for $nD_0\Delta t \lessapprox 130$. Moreover, our curves are quite consistent with an algebraic decay $(r/a)^{-2}$, indicating scale free correlations reminiscent of a glass-forming material at low temperature.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{c44_chi_cmsd_comparison_Dk8000_Vj1000_Rg2000_Nq1000_Ll3000_RCUTk4200_interpolated_loglog.eps}
+\caption{Projection of shear strain correlations on $\cos4\theta$, $C_4^4(\Delta r, \Delta t)$ according to equation \ref{c44_definition}, normalised by its susceptibility $\chi = \int dr~ 2 \pi r~ C_4^4(r, \Delta t)$, at packing fraction $\phi = 0.80$, self-propelling velocity $\tilde{v} = 1\cdot10^{-2}$, and rotational diffusion rate $\tilde{\nu}_r = 2\cdot10^{—5}$ (phase separated regime), for different lag times $\Delta t$. A linear interpolation between grid boxes has been performed in the step from the shear strain correlation grid to the $C_4^4(\Delta r, \Delta t)$ function to smooth the curve. We have $n = N/L^2$ the number density of particles and $D_0 = V_0^2/2\nu_r$ the diffusion constant of a single particle, introduced for matter of comparison of lag times between different systems as suggested in \cite{illing2016strain}. The dashed line corresponds to an arbitrary fit to a power law $(r/a)^{—2}$.}
+\label{c44_cmsd_high}
+\end{figure}
+
+We perform the same calculations for a system of lower activity, in the fluid regime. Our results are presented in figure \ref{c44_cmsd_low}.\\
+
+For this system in fluid state, we recover the results of figure \ref{c44_real_fluid}, \textit{i.e.} we have a peak of $C_4^4(\Delta r, \Delta t)$ close to 2 units of average particle separation and curves collapse. Moreover, we observe an exponential decay of the correlations, with a length scale of a few particles and which is an increasing function of increasing lag time $\Delta t$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{c44_chi_cmsd_comparison_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000_Mo1000_RCUTk4200_interpolated_linlog.eps}
+\caption{Projection of shear strain correlations on $\cos4\theta$, $C_4^4(\Delta r, \Delta t)$ according to equation \ref{c44_definition}, normalised by its susceptibility $\chi = \int dr~ 2 \pi r~ C_4^4(r, \Delta t)$, at packing fraction $\phi = 0.80$, self-propelling velocity $\tilde{v} = 1\cdot10^{-2}$, and rotational diffusion rate $\tilde{\nu}_r = 2\cdot10^{—3}$ (fluid regime), for different lag times $\Delta t$. A linear interpolation between grid boxes has been performed in the step from the shear strain correlation grid to the $C_4^4(\Delta r, \Delta t)$ function to smooth the curve. We have $n = N/L^2$ the number density of particles and $D_0 = V_0^2/2\nu_r$ the diffusion constant of a single particle, introduced for matter of comparison of lag times between different systems as suggested in \cite{illing2016strain}. The dashed line corresponds to an arbitrary fit to an exponential $\exp(-0.362(r/a))$.}
+\label{c44_cmsd_low}
+\end{figure}
+
+We then conclude here as we have concluded in section \ref{subsection:real_method_results}: more analyses are needed to characterise the transition from exponential to algebraic decay of the shear strain correlations with increasing activity.
 
 \end{document}
