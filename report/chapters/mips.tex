@@ -14,7 +14,7 @@
 \subsection{Illustration}
 
 \vspace{-0.3cm}
-\inserttikz{spontaneous_phase_separation}{Displacement maps obtained with our model system. We denote $\vec{u}(t, t + \Delta t)$ the displacement vector of a particle between times $t$ and $t + \Delta t$. Arrows are aligned with the displacement vector of the corresponding particle (disk). Colors correspond to the amplitude of the displacement vector if the corresponding particle (disk) as reported on the color map. \textbf{(top)} Initial state of the system, after applying the FIRE algorithm. \textbf{(bottom)} Final state of the system, after integration of the equation of motion (equation \ref{equation_motion}). \href{https://github.com/yketa/UBC_2018_Wiki/blob/master/presentation_7_30_18/movies/u_Dk5000_Vj1000_Rf5000_No2000_Il0000_Tl5000_Pl5000_Mn1000/u_Dk5000_Vj1000_Rf5000_No2000_Il0000_Tl5000_Pl5000_Mn1000.mov?raw=true}{Movie on GitHub \faGithub}.}{spontaneous_phase_separation}
+\inserttikz{spontaneous_phase_separation}{Displacement maps obtained with our model system. We denote $\vec{u}(t, t + \Delta t)$ the displacement vector of a particle between times $t$ and $t + \Delta t$. Arrows are aligned with the displacement vector of the corresponding particle (disk). Colors correspond to the amplitude of the displacement vector of the corresponding particle (disk) as reported on the color map. \textbf{(top)} Initial state of the system, after applying the FIRE algorithm. \textbf{(bottom)} Final state of the system, after integration of the equation of motion (equation \ref{equation_motion}). \href{https://github.com/yketa/UBC_2018_Wiki/blob/master/presentation_7_30_18/movies/u_Dk5000_Vj1000_Rf5000_No2000_Il0000_Tl5000_Pl5000_Mn1000/u_Dk5000_Vj1000_Rf5000_No2000_Il0000_Tl5000_Pl5000_Mn1000.mov?raw=true}{Movie on GitHub \faGithub}.}{spontaneous_phase_separation}
 
 Spontaneous phase separation is undoubtedly the most visual phenomenon we can observe with our model system. As illustrated by figure \ref{spontaneous_phase_separation}, an initially homogeneous system is able to spontaneously separate into two distinct phases:
 \begin{itemize}
@@ -35,7 +35,7 @@ Its mechanism, described extensively in \cite{cates2015motility}, relies on two 
   \item[(i)] Particles tend to accumulate where they move more slowly, this being inferred directly from the master equation of a self-propelled particle of spatially varying speed.
   \item[(ii)] Particles tend to move more slowly where they accumulate. In our case, we see that coarse-graining interparticle forces in equation \ref{equation_motion} will result in an effective and lesser self-propulsion force.
 \end{enumerate}
-We then have a positive feedback loop between (i) a slowing-induced accumulation and (ii) an accumulation-induced slowing, which destabilises the uniform suspension. This destabilisation eventually leads to the phase separation we observed.
+We then have a positive feedback loop between (i) a slowing-induced accumulation and (ii) an accumulation-induced slowing, which destabilises the uniform suspension. This destabilisation eventually leads to the phase separation we have observed.
 
 \subsection{Phase diagram}
 \label{subsection:phase_diagram}
@@ -49,7 +49,7 @@ We do not observe motility-induced phase separation for every set of parameters 
 \includegraphics[width=0.49\textwidth]{figures/images/msd_Vj1000_Rh5000_No2000.png}
 \hfill
 \raisebox{-2.5mm}[0pt][0pt]{\makebox[0.49\textwidth][c]{\includegraphics[width=0.49\textwidth]{figures/figs/msd_Vj1000_Rh5000_No2000.eps}}}
-\caption{Mean square displacement as a function of time $\left<|\Delta\vec{r}(t)|^2\right>$ for a system of $N=2\cdot10^3$ particles, with dimensionless self-propulsion velocity $\tilde{v} = 1\cdot10^{-2}$ and dimensionless rotational diffusion rate $\tilde{\nu}_r = 5\cdot10^{—4}$, for different packing fractions $\phi$. \textbf{(left)} Data from Fily \textit{et al.}. Inset: Exponent $\alpha$ as a function of the packing fraction $\phi$. \textit{source:} \cite{fily2014freezing} \textbf{(right)} Data from our simulations. The upward trend at high times observed for the highest packing fractions $\phi$ is due to the lack of statistics.}
+\caption{Mean square displacement as a function of time $\left<|\Delta\vec{r}(t)|^2\right>$ for a system of $N=2\cdot10^3$ particles, with dimensionless self-propulsion velocity $\tilde{v} = 1\cdot10^{-2}$ and dimensionless rotational diffusion rate $\tilde{\nu}_r = 5\cdot10^{—4}$, for different packing fractions $\phi$. \textbf{(left)} Data from Fily \textit{et al.}. \textit{(inset)} Exponent $\alpha$ as a function of the packing fraction $\phi$. \textit{source:} \cite{fily2014freezing} \textbf{(right)} Data from our simulations. The upward trend at high times observed for the highest packing fractions $\phi$ is due to the lack of statistics.}
 \label{msd_phi}
 \end{figure}
 
@@ -80,7 +80,7 @@ With
 \end{equation}
 the authors then define phase separated states as states for which $\beta_e > \beta_x = 1.5$.\\
 
-We propose an other characterisation of phase separated regions in section \ref{mips_characterisation}.
+We propose an other characterisation of the phase separated regime in section \ref{mips_characterisation}.
 
 \myparagraph{Phase diagram}
 
@@ -94,7 +94,7 @@ We propose an other characterisation of phase separated regions in section \ref{
 
 Exponents $\alpha$ and $\beta_e$ have been systematically measured for different sets of parameters $(\phi, \tilde{v}, \tilde{\nu}_r)$ by the authors of \cite{fily2014freezing} in order to access the phase diagram of the system (see figure \ref{phase_diagram}).\\
 
-We observe that phase separated states only exist in a range of self-propelling velocities $\tilde{v}$. For $\tilde{v} \ll 1$, we expect that the effect of activity might be negligeable so that the system resembles a packing of athermal frictionless disks, which cannot phase separate and which jams at high packing fraction $\phi$ \cite{o2003jamming, olsson2007critical}. For $\tilde{v} \gg 1$, we expect the interparticle interactions to be negligeable in comparison to the self-propulsion term in equation \ref{equation_motion}, thus preventing the accumulation-induced slowing leading to phase separation.\\
+We observe that phase separated states only exist in a range of self-propulsion velocities $\tilde{v}$. For $\tilde{v} \ll 1$, we expect that the effect of activity might be negligible so that the system resembles a packing of athermal frictionless disks, which cannot phase separate and which jams at high packing fraction $\phi$ \cite{o2003jamming, olsson2007critical}. For $\tilde{v} \gg 1$, we expect the interparticle interactions to be negligible in comparison to the self-propulsion term in equation \ref{equation_motion}, thus preventing the accumulation-induced slowing leading to phase separation.\\
 
 The authors also looked at the evolution of the boundaries between the phase separated states and the liquid states and between the liquid states and the "frozen" states while varying the rotational diffusion rate (see figure \ref{phase_boundary}).
 
@@ -113,18 +113,18 @@ We observe that the domain of "frozen" states is almost not affected by the rota
 \subsection{Local density probability}
 \label{subsection:local_density_probability}
 
-Rather than characterising phase separated states with number fluctuations, we will more simply measure the distribution $P(\phi_{loc})$ of local packing fractions $\phi_{loc}$, as Wysocki \textit{et al.} \cite{wysocki2014cooperative}. This distribution must be unimodal for fluid states and centred around the system packing fraction $\phi$, while it must be bimodal for phase separated states with two local maxima at the average packing fractions of the dense fluid phase and the active gas phase.\\
+Rather than characterising phase separated states with number fluctuations, we will more simply measure the distribution $P(\phi_{loc})$ of local packing fractions $\phi_{loc}$, like Wysocki \textit{et al.} \cite{wysocki2014cooperative}. This distribution must be unimodal for fluid states and centred around the system packing fraction $\phi$, while it must be bimodal for phase separated states with two local maxima at the average packing fractions of the dense fluid phase and the active gas phase.\\
 
 We define the local density at position $\vec{r}$ and time $t$ as
 \begin{equation}
-\phi_{loc}(\vec{r}, t, r_{max}) = \frac{\pi}{4r_{max}^2} \sum_{i, ||\vec{r}_i(t) - \vec{r}||_{\infty} \leq r_{max}} a_i^2
+\phi_{loc}(\vec{r}, t, r_{max}) = \frac{1}{4r_{max}^2} \sum_{i, ||\vec{r}_i(t) - \vec{r}||_{\infty} \leq r_{max}} \pi a_i^2
 \label{philoc}
 \end{equation}
 where $r_{max}$ is chosen to be a few particle diameters.
 
 \myparagraph{Computation details}
 
-We divide the system square box in $N_{cases} \times N_{cases}$ linearly spaced square boxes with centres $(\vec{R}_{kl})_{1 \leq k, l \leq N_{cases}}$. We then choose $S_{max}$ times $(t_m)_{1 \leq m \leq S_{max}}$, with $\forall m, t_m \geq S_{init}$ and compute the local densities $(\phi_{loc}(\vec{R}_{kl}, t_m, r_{max}))_{1 \leq k, l \leq N_{cases}, 1 \leq m \leq S_{max}}$ then the histogram of the values $P(\phi_{loc})$.\\
+We divide the system square box in $N_{cases} \times N_{cases}$ linearly spaced square boxes with centres $(\vec{R}_{kl})_{1 \leq k, l \leq N_{cases}}$. We then choose $S_{max}$ times $(t_m)_{1 \leq m \leq S_{max}}$, with $\forall m, t_m \geq S_{init}$, and compute the local packing fractions at these times and positions $(\phi_{loc}(\vec{R}_{kl}, t_m, r_{max}))_{1 \leq k, l \leq N_{cases}, 1 \leq m \leq S_{max}}$ then the histogram of the values $P(\phi_{loc})$.\\
 
 Our computation script is available at \href{https://github.com/yketa/active_particles/blob/master/analysis/varn.py}{{\faGithub~ yketa/active\_particles/analysis/varn.py}}.
 
@@ -136,10 +136,10 @@ We can plot local packing fraction histograms as functions of any parameter of t
 
 As expected from the phase diagram (figure \ref{phase_diagram}), we have from figure \ref{philoc_v} that
 \begin{itemize}
-  \item at low P\'eclet number $\text{Pe}$ (\textit{i.e.}, low self-propelling velocity $\tilde{v}$), the distribution $P(\phi_{loc})$ is unimodal and centred around the system packing fraction $\phi$, thus indicating a fluid state ;
+  \item at low P\'eclet number $\text{Pe}$ (\textit{i.e.}, low self-propulsion velocity $\tilde{v}$), the distribution $P(\phi_{loc})$ is unimodal and centred around the system packing fraction $\phi$, thus indicating a fluid state ;
   \item at high P\'eclet number $\text{Pe}$ (\textit{i.e.}, high self-propulsion velocity $\tilde{v}$), the distribution $P(\phi_{loc})$ is bimodal, thus indicating a separation between regions of high packing fraction (a dense fluid) and vanishing packing fraction (an active gas).
 \end{itemize}
-This plot shows that the transition from the fluid state to the phase separated state, when varying $\tilde{v}$ and keeping $(\phi, \tilde{\nu}_r)$ constant, might be continuous. Nonetheless, we do not rule out that additional simulations at self-propelling velocities close to the transition would show a sharper change in the distribution $P(\phi_{loc})$.
+This plot shows that the transition from the fluid state to the phase separated state, when varying $\tilde{v}$ and keeping $(\phi, \tilde{\nu}_r)$ constant, might be continuous. Nonetheless, we do not rule out that additional simulations at self-propulsion velocities close to the transition would show a sharper change in the distribution $P(\phi_{loc})$.
 
 \begin{figure}[h!]
 \centering

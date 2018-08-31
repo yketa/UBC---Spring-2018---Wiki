@@ -15,20 +15,20 @@ Our model is inspired by Fily \textit{et al.} \cite{fily2012athermal, fily2014fr
 
 \subsection{System}
 
-Our system is two-dimensional and composed of $N$ disks in a square box of length $L$. To avoid crystallisation, we uniformly distribute particles radii, $(a_i)_{1 \leq i \leq N}$, in the interval $[(1-I)a; (1+I)a]$, with $a$ the mean radius and $I$ the polydispersity index, and fix $I=20\%$. From these, we obtain the system packing fraction $\phi = \sum_{i=1}^N \pi a_i^2/L^2$.\\
+Our system is two-dimensional and composed of $N$ disks in a square box of length $L$. To avoid crystallisation, we uniformly distribute the particles' radii, $(a_i)_{1 \leq i \leq N}$, in the interval $[(1-I)a; (1+I)a]$, with $a$ the mean radius and $I$ the polydispersity index, and fix $I=20\%$. From these, we obtain the system's packing fraction $\phi = \sum_{i=1}^N \pi a_i^2/L^2$.\\
 
 We impose Brownian dynamics (\textit{i.e.}, we neglect inertia) so that the equation of motion of a single particle is given by
 \begin{equation}
 \frac{d}{dt}\vec{r}_i(t) = \mu \sum\vec{F}_i(t)
 \label{brownian_dynamics}
 \end{equation}
-where $\vec{r}_i(t)$ is the radius vector of particle $i$ as a function of time $t$, $\mu$ is the mobility, and $\sum\vec{F}_i(t)$ is the sum of forces applied on particle $i$ at time $t$.
+where $\vec{r}_i(t)$ is the radius vector of particle $i$ as a function of time $t$, $\mu$ is the mobility, which is particle-independent, and $\sum\vec{F}_i(t)$ is the sum of the forces applied on particle $i$ at time $t$.
 
 \subsection{Interparticle interaction}
 
 Particles interact through a purely repulsive pairwise interparticle harmonic potential, such that the force exerted on particle $i$ by particle $j$ is
 \begin{equation}
-\vec{F}_{ij}(t) = k(a_i + a_j - ||\vec{r}_i(t) - \vec{r}_j(t)||)\frac{\vec{r}_i(t) - \vec{r}_j(t)}{||\vec{r}_i(t) - \vec{r}_j(t)||}
+\vec{F}_{ij}(t) = \begin{cases} k(a_i + a_j - ||\vec{r}_i(t) - \vec{r}_j(t)||)\frac{\vec{r}_i(t) - \vec{r}_j(t)}{||\vec{r}_i(t) - \vec{r}_j(t)||} &\text{ if } ||\vec{r}_i(t) - \vec{r}_j(t)|| < a_i + a_j \\ 0 &\text{ otherwise} \end{cases}
 \label{interparticle_force}
 \end{equation}
 where $k$ is equivalent to a spring constant.\\
@@ -40,12 +40,14 @@ Purely repulsive harmonic potentials, initially proposed by Durian \cite{durian1
 \subsection{Self-propulsion mechanism}
 \label{subsection:self_propulsion_mechanism}
 
+\myparagraph{Persistent random walk}
+
 We introduce for each particle $i$ a self-propulsion force
 \begin{equation}
 \vec{F}^{(sp)}_i(t) = \frac{\vec{v}_i(t)}{\mu} = \frac{v_0}{\mu}\vec{n}_i(t) = \frac{v_0}{\mu}\begin{pmatrix}\cos\theta_i(t)\\\sin\theta_i(t)\end{pmatrix}
 \label{self_propulsion}
 \end{equation}
-where $v_0$ is the single-particle self-propulsion speed.\\
+where $v_0$ is the single-particle self-propulsion velocity.\\
 
 We then control the angular dynamics of particle $i$ with a Gaussian white rotational noise $\eta_i(t)$ such that
 \begin{equation}
@@ -54,26 +56,24 @@ We then control the angular dynamics of particle $i$ with a Gaussian white rotat
 \end{equation}
 where $\left<\ldots\right>$ denotes an ensemble and time average, and $\nu_r$ is the rotational diffusion rate. This model of active Brownian particles \cite{romanczuk2012active} describes the behaviour of active colloids used in experiments \cite{buttinoni2013dynamical, howse2007self, bialke2015active, theurkauff2012dynamic}.\\
 
-What equations \ref{self_propulsion} and \ref{rotational_noise_correlation} describe is a persistent random walk. Particles are propelled in a direction which decorrelates smoothly via rotational diffusion with rotational diffusion rate $\nu_r$ \cite{cates2015motility}. Qualitatively, we can give the following representation to ourselves: particles follow straight lines for a time $\tau_r \equiv \nu_r^{-1}$, which is the persistence time, and then change direction at random (see Figure \ref{persistent_random_walk}).\\
+What equations \ref{self_propulsion} and \ref{rotational_noise_correlation} describe is a persistent random walk. Particles are propelled in a direction which decorrelates smoothly via rotational diffusion with rotational diffusion rate $\nu_r$ \cite{cates2015motility}. Qualitatively, we can give the following representation to ourselves: a single particle follows straight lines for a time $\tau_r \equiv \nu_r^{-1}$, which is the persistence time, and then changes direction at random (see Figure \ref{persistent_random_walk}).\\
 
-\vspace{-0.4cm}
 \inserttikz{self_propulsion}{Scheme of a persistent random walk. Particle $i$ travels straight lines at velocity $v_0$ during time $\tau_r \equiv \nu_r^{—1}$, hence travelling the distance $l_r = v_0\tau_r$ which is the persistence length.}{persistent_random_walk}
 
-It is noteworthy that at low persistence time $\tau_r \rightarrow 0$ (\textit{i.e.}, $\nu_r \rightarrow +\infty$), this self-propulsion mechanism becomes equivalent to thermal agitation \cite{fily2014freezing}.\\
+It is noteworthy that at low persistence time $\tau_r \rightarrow 0$ (\textit{i.e.}, $\nu_r \rightarrow +\infty$), this self-propulsion mechanism becomes equivalent to thermal agitation \cite{fily2014freezing}.
 
-\begin{figure}[h!]
-\centering
-\includegraphics[width=0.6\textwidth]{figures/figs/msd_Dk1000_Vj1000_No2000.eps}
-\caption{Mean square displacement as a function of time $\left<|\Delta\vec{r}(t)|^2\right>$ for a system of $N=2\cdot10^3$ particles, with packing fraction $\phi=0.1$ and dimensionless self-propulsion velocity $\tilde{v}=1\cdot10^{-2}$, for different rotational diffusion rates $\tilde{\nu}_r$. \textbf{(solid lines)} Computed mean square displacement at different dimensionless rotational diffusion rates $\tilde{\nu}_r$. \textbf{(dashed lines)} Theoretical mean square displacement.}
-\label{msd_ensemble_fit}
-\end{figure}
+\myparagraph{Mean square displacement}
 
 With $\vec{r}(t)$ the radius vector of a single particle as a function of time, we define the mean square displacement as
 \begin{equation}
 \left<|\Delta\vec{r}(t)|^2\right> = \frac{\int dt^{\prime}~ ||\vec{r}(t^{\prime} + t) - \vec{r}(t^{\prime})||^2}{\int dt^{\prime}}
 \label{msd}
 \end{equation}
-and then introduce the diffusion constant $D_0 = v_0^2/2\nu_r$ such that a single particle performing a persistent random walk described by equations \ref{self_propulsion} and \ref{rotational_noise_correlation} has the following mean square displacement at any time $t$ \cite{fily2012athermal}
+and then introduce the diffusion constant
+\begin{equation}
+D_0 = v_0^2/2\nu_r = v_0^2\tau_r/2
+\end{equation}
+such that a single particle performing a persistent random walk described by equations \ref{self_propulsion} and \ref{rotational_noise_correlation} has the following mean square displacement at any time $t$ \cite{fily2012athermal}
 \begin{equation}
 \left<|\Delta\vec{r}(t)|^2\right> = 4D_0\left(t + \frac{1}{\nu_r}\left(e^{-\nu_rt}-1\right)\right)
 \label{msd_prw}
@@ -93,13 +93,23 @@ This theoretical expression of the mean square displacement gives us a first qui
 \left<|\Delta\vec{r}(t)|^2\right> = \frac{\sum_{i=1}^N \int dt^{\prime}~ ||\left(\vec{r}_i(t^{\prime} + t) - \frac{1}{N}\sum_{j=1}^N\vec{r}_j(t^{\prime} + t)\right) - \left(\vec{r}_i(t^{\prime}) - \frac{1}{N}\sum_{j=1}^N \vec{r}_j(t^{\prime})\right)||^2}{N \int dt^{\prime}}
 \label{msd_ensemble}
 \end{equation}
-is given by equation \ref{msd_prw}. We see in figure \ref{msd_ensemble_fit} that the theoretical expression in great accordance with the numerical result, hence indicating a correct implementation.
+is given by equation \ref{msd_prw}. We see in figure \ref{msd_ensemble_fit} that the theoretical expression is in great accordance with the numerical result, hence indicating a correct implementation.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/figs/msd_Dk1000_Vj1000_No2000.eps}
+\caption{Mean square displacement as a function of time $\left<|\Delta\vec{r}(t)|^2\right>$, according to equation \ref{msd_ensemble}, for a system of $N=2\cdot10^3$ particles, with packing fraction $\phi=0.1$ and self-propulsion velocity $\tilde{v}=1\cdot10^{-2}$, for different rotational diffusion rates $\tilde{\nu}_r$. \textbf{(solid lines)} Computed mean square displacement at different rotational diffusion rates $\tilde{\nu}_r$. \textbf{(dashed lines)} Theoretical mean square displacement.}
+\label{msd_ensemble_fit}
+\end{figure}
 
 \subsection{Equation of motion and control parameters}
 
 From equations \ref{brownian_dynamics}, \ref{interparticle_force} and \ref{self_propulsion}, we can now write the equation of motion of particle $i$
 \begin{equation}
-\frac{d}{dt}\vec{r}_i(t) = \mu\left(\vec{F}_i^{(sp)}(t) + \sum_{j \neq i} \vec{F}_{ij}(t)\right) = \underbrace{v_0\vec{n}_i(t)\vphantom{\frac{\vec{r}_i(t) - \vec{r}_j(t)}{||\vec{r}_i(t) - \vec{r}_j(t)||}}}_{\displaystyle\text{self-propulsion}} + \underbrace{\mu k (a_i + a_j - ||\vec{r}_i(t) - \vec{r}_j(t)||)\frac{\vec{r}_i(t) - \vec{r}_j(t)}{||\vec{r}_i(t) - \vec{r}_j(t)||}}_{\displaystyle\text{interparticle interaction}}
+\begin{aligned}
+\frac{d}{dt}\vec{r}_i(t) &= \mu\left(\vec{F}_i^{(sp)}(t) + \sum_{j \neq i} \vec{F}_{ij}(t)\right)\\
+&= \underbrace{v_0\vec{n}_i(t)\vphantom{\sum_{\substack{j \neq i \\ ||\vec{r}_i(t) - \vec{r}_j(t)|| < a_i + a_j}}}}_{\mathclap{\displaystyle\text{self-propulsion}}} + \underbrace{\mu \sum_{\substack{j \neq i \\ ||\vec{r}_i(t) - \vec{r}_j(t)|| < a_i + a_j}} k (a_i + a_j - ||\vec{r}_i(t) - \vec{r}_j(t)||)\frac{\vec{r}_i(t) - \vec{r}_j(t)}{||\vec{r}_i(t) - \vec{r}_j(t)||}}_{\displaystyle\text{interparticle interaction}}
+\end{aligned}
 \label{equation_motion}
 \end{equation}
 which we implement in our simulations.\\
@@ -120,7 +130,7 @@ Simulations were perfomed with the HOOMD-blue molecular dynamics simulation tool
 
 \myparagraph{Initialisation}
 
-After setting the mean radius of particles $a = 1$, we choose the number $n_s$ of different radii to be taken uniformly in the interval $[0.8; 1.2]$. As the algorithm runs slower with increasing $n_s$, we set $n_s = 10$ and then attribute to each particle one of these different radii. We choose the packing fraction $\phi$ and then set the length $L$ of the square box accordingly.\\
+After setting the mean radius of particles $a = 1$, we choose the number $n_s$ of different radii of particles to be taken uniformly in the interval $[0.8; 1.2]$. As the algorithm runs slower with increasing $n_s$, we set $n_s = 10$ and then attribute to each particle one of these different radii. We choose the packing fraction $\phi$ and then set the length $L$ of the system square box accordingly.\\
 
 We start by positioning particles randomly in the system box. We then use the Fast Inertial Relaxation Engine (FIRE) algorithm \cite{bitzek2006structural} to decrease particles' interpenetrations.
 
