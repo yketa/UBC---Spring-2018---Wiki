@@ -67,12 +67,12 @@ if __name__ == '__main__':
 
     plot.ax.add_artist(plt.legend(handles=[
         Line2D([0], [0], color=line_Vj1000_Rg2000.get_color(),
-            label=r'$(\tilde{v} = %.2e, \tilde{\nu}_r = %.2e,$' % (1e-2, 2e-5)
-            + r'$\phi_{loc}^* = %1.2f, P(\phi_{loc}^* = %.2e)$'
+            label=r'$\tilde{v} = %.2e, \tilde{\nu}_r = %.2e,$' % (1e-2, 2e-5)
+            + r'$\phi_{loc}^* = %1.2f, P(\phi_{loc}^*) = %.2e$'
             % (philocmax_Vj1000_Rg2000, Pphilocmax_Vj1000_Rg2000)),
         Line2D([0], [0], color=line_Vk1000_Rh5000.get_color(),
-            label=r'$(\tilde{v} = %.2e, \tilde{\nu}_r = %.2e,$' % (1e-1, 5e-4)
-            + r'$\phi_{loc}^* = %1.2f, P(\phi_{loc}^* = %.2e)$'
+            label=r'$\tilde{v} = %.2e, \tilde{\nu}_r = %.2e,$' % (1e-1, 5e-4)
+            + r'$\phi_{loc}^* = %1.2f, P(\phi_{loc}^*) = %.2e$'
             % (philocmax_Vk1000_Rh5000, Pphilocmax_Vk1000_Rh5000))]))
 
     plot.fig.suptitle(r'$N = 1\cdot10^5, \phi = 0.80$' + '\n'
