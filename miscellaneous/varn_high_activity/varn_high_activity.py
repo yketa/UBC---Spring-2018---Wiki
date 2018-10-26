@@ -31,7 +31,7 @@ if __name__ == '__main__':
     # VARIABLES
 
     Nbins = 100     # number of bins for the histogram
-    phimax = 1.2    # maximum local density for histogram
+    phimax = 1.4    # maximum local density for histogram
 
     # PLOT
 
@@ -76,7 +76,7 @@ if __name__ == '__main__':
             % (philocmax_Vk1000_Rh5000, Pphilocmax_Vk1000_Rh5000))]))
 
     plot.fig.suptitle(r'$N = 1\cdot10^5, \phi = 0.80$' + '\n'
-        + r'$S_{init}=%.2e, S_{max}=%.2e, N_{cases}=%.2e, l=%.2e$'
-        % (5000, 1, 500, 10))
+        + r'$S_{init}=%d, S_{max}=%d, N_{cases}=%d, l=%d$'
+        % (5000, 10, 500, 10))
 
     plt.show()
