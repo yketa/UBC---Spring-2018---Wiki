@@ -10099,10 +10099,10 @@ config.macros.bibliography = {
 <div created="20180606022318016" modified="20180625224602683" title="$:/state/toc/Measurements/Shear strain and vorticity fields-Shear strain correlations--1479111847">
 <pre>close</pre>
 </div>
-<div created="20180417231441389" modified="20181108231205516" title="$:/state/toc/TableOfContents-Analysis--81657105">
+<div created="20180417231441389" modified="20181226004054223" title="$:/state/toc/TableOfContents-Analysis--81657105">
 <pre>close</pre>
 </div>
-<div created="20180417005847401" modified="20181214180757902" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<div created="20180417005847401" modified="20181226004052523" title="$:/state/toc/TableOfContents-Measurements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180710220316722" modified="20180712224446152" title="$:/state/toc/TableOfContents-Measurements-1351528465">
@@ -11493,72 +11493,57 @@ Thus, from the position of any point, we can determine the smaller box it belong
 
 &lt;&lt;compuscript path:&quot;analysis/neighbours.py&quot;&gt;&gt;</pre>
 </div>
-<div created="20181214170919303" modified="20181214174737814" tags="Measurements" title="Nonaffine squared displacement">
-<pre>We introduce the nonaffine squared displacement $$D^2_{min}$$ (see [[Falk and Langer, 2018|https://journals.aps.org/pre/abstract/10.1103/PhysRevE.57.7192]]) and wish to compare its qualitative map and distribution in our active system with that of a sheared passive glass.
+<div created="20181214170919303" modified="20181223225005188" tags="Measurements" title="Nonaffine squared displacement">
+<pre>We introduce the nonaffine squared displacement $$D^2_{min}$$ (see [[Falk and Langer, 1998|https://journals.aps.org/pre/abstract/10.1103/PhysRevE.57.7192]]), which is defined (see [[Puosi et al., 2016|https://journals.aps.org/pre/abstract/10.1103/PhysRevE.94.032604]]) for a given particle $$i$$ as the minimum over all possible linear deformation
+tensors $$\epsilon_{loc}$$ of
+$$
+D^2(i, t, \Delta t) = \sum_{j \in \mathcal{V}(i)} \left[\vec{r}_{ij}(t + \Delta t) - (\mathbb{I} + \epsilon_{loc})\vec{r}_{ij}(t)\right]^2
+$$
+where $$\mathcal{V}(i)$$ denotes the neighbours of particle $$i$$, $$\mathbb{I}$$ is the identity matrix, and $$\vec{r}_{ij}(t) = \vec{r}_j(t) - \vec{r}_i(t)$$ is the vector between the centres of particles $$i$$ and $$j$$ at time $$t$$.
 
-$$D^2_{min}$$ is computed in our system with [[OVITO|https://www.ovito.org/manual/particles.modifiers.atomic_strain.html]].
+This quantity evaluates deviations from an affine deformation on a local scale and is thus a diagnostic for identifying local irreversible shear transformations.
+
+We wish to compare qualitative maps and distributions of $$D^2_{min}$$ in our active system with that of a sheared passive glass.
+
+---
+
+We compute $$D^2_{min}$$ with OVITO (see [[modifier|https://www.ovito.org/manual/particles.modifiers.atomic_strain.html]] and corresponding [[Python class|https://ovito.org/manual/python/modules/ovito_modifiers.html#ovito.modifiers.AtomicStrainModifier]]). It is so far unclear how this program computes $$D^2_{min}$$, we thus at least checked that $$D^2_{min}$$ was not trivially proportional to the displacement norm $$||\vec{u}||$$ for a $$(\phi = 1.0, \tilde{v} = 5\cdot10^{-3}, \tilde{\nu}_r = 5\cdot10^{-4})$$ system.
+
+&lt;div style=&quot;font-size:0.6em;text-align:center;&quot;&gt;
+    &lt;a href=&quot;Figures/u_d2min_Dl1000_Vi5000_Rh5000_Nq1000_Ll2000_Io5000_Tl1000.png&quot;&gt;[img [Figures/u_d2min_Dl1000_Vi5000_Rh5000_Nq1000_Ll2000_Io5000_Tl1000.png]]&lt;/a&gt;&lt;br&gt;
+    &lt;a
+        href=&quot;Figures/eps/u_d2min_Dl1000_Vi5000_Rh5000_Nq1000_Ll2000_Io5000_Tl1000.eps&quot;
+        class=&quot;tc-btn-big-green&quot;
+        style=&quot;background-color:green&quot;
+        target=&quot;_blank&quot;
+        rel=&quot;noopener noreferrer&quot;
+    &gt;
+            {{$:/core/images/file}}
+            &lt;b&gt;Original image&lt;/b&gt;
+    &lt;/a&gt;
+&lt;/div&gt;
+
+---
 
 !!! Diffusive regime $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2}, \tilde{\nu}_r = 2\cdot10^{-3})$$
 
 &lt;&lt;plotwgit image:&quot;d_Dk8000_Vj1000_Ri2000_Nq1000_Io5000_Tl1000_Bn1500&quot; path:&quot;analysis/frame.py&quot;&gt;&gt;
 
-&lt;div style=&quot;font-size:0.6em;text-align:center;&quot;&gt;
-    &lt;a href=&quot;Figures/pd2min_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000.png&quot;&gt;[img [Figures/pd2min_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000.png]]&lt;/a&gt;&lt;br&gt;
-    &lt;a
-        href=&quot;Figures/eps/pd2min_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000.eps&quot;
-        class=&quot;tc-btn-big-green&quot;
-        style=&quot;background-color:green&quot;
-        target=&quot;_blank&quot;
-        rel=&quot;noopener noreferrer&quot;
-    &gt;
-            {{$:/core/images/file}}
-            &lt;b&gt;Original image&lt;/b&gt;
-    &lt;/a&gt;
-&lt;/div&gt;
-
-In this last plot, $$\Delta t$$ is in units of frames, with the time between two consecutive frames being $$t=10$$ in physical time.
+&lt;&lt;plotwgit image:&quot;pd2min_Dk8000_Vj1000_Ri2000_Nq1000_Ll0000&quot; path:&quot;analysis/pd2min.py&quot;&gt;&gt;
 
 !!! Activity-dominated regime $$(\phi = 0.80, \tilde{v} = 1\cdot10^{-2}, \tilde{\nu}_r = 2\cdot10^{-5})$$
 
 &lt;&lt;plotwgit image:&quot;d_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tl1000_Bn1500&quot; path:&quot;analysis/frame.py&quot;&gt;&gt;
 
-&lt;div style=&quot;font-size:0.6em;text-align:center;&quot;&gt;
-    &lt;a href=&quot;Figures/pd2min_Dk8000_Vj1000_Rg2000_Nq1000_Ll3000.png&quot;&gt;[img [Figures/pd2min_Dk8000_Vj1000_Rg2000_Nq1000_Ll3000.png]]&lt;/a&gt;&lt;br&gt;
-    &lt;a
-        href=&quot;Figures/eps/pd2min_Dk8000_Vj1000_Rg2000_Nq1000_Ll3000.eps&quot;
-        class=&quot;tc-btn-big-green&quot;
-        style=&quot;background-color:green&quot;
-        target=&quot;_blank&quot;
-        rel=&quot;noopener noreferrer&quot;
-    &gt;
-            {{$:/core/images/file}}
-            &lt;b&gt;Original image&lt;/b&gt;
-    &lt;/a&gt;
-&lt;/div&gt;
-
-In this last plot, $$\Delta t$$ is in units of frames, with the time between two consecutive frames being $$t=10$$ in physical time.
+&lt;&lt;plotwgit image:&quot;pd2min_Dk8000_Vj1000_Rg2000_Nq1000_Ll3000&quot; path:&quot;analysis/pd2min.py&quot;&gt;&gt;
 
 !!! Glassy phase $$(\phi = 1.0, \tilde{v} = 5\cdot10^{-3}, \tilde{\nu}_r = 5\cdot10^{-4})$$
 
-&lt;&lt;plotwgit image:&quot;d_Dl1000_Vi5000_Rh5000_Nq1000_Io5000_Tl1000_Bn1500&quot; path:&quot;analysis/frame.py&quot;&gt;&gt;
+&lt;&lt;plotwgit image:&quot;d_Dl1000_Vi5000_Rh5000_Nq1000_Io5000_Tn1000_Bn1500&quot; path:&quot;analysis/frame.py&quot;&gt;&gt;
 
-&lt;div style=&quot;font-size:0.6em;text-align:center;&quot;&gt;
-    &lt;a href=&quot;Figures/pd2min_Dl1000_Vi5000_Rh5000_Nq1000_Ll2000.png&quot;&gt;[img [Figures/pd2min_Dl1000_Vi5000_Rh5000_Nq1000_Ll2000.png]]&lt;/a&gt;&lt;br&gt;
-    &lt;a
-        href=&quot;Figures/eps/pd2min_Dl1000_Vi5000_Rh5000_Nq1000_Ll2000.eps&quot;
-        class=&quot;tc-btn-big-green&quot;
-        style=&quot;background-color:green&quot;
-        target=&quot;_blank&quot;
-        rel=&quot;noopener noreferrer&quot;
-    &gt;
-            {{$:/core/images/file}}
-            &lt;b&gt;Original image&lt;/b&gt;
-    &lt;/a&gt;
-&lt;/div&gt;
-
-In this last plot, $$\Delta t$$ is in units of frames, with the time between two consecutive frames being $$t=0.1$$ in physical time.</pre>
+&lt;&lt;plotwgit image:&quot;pd2min_Dl1000_Vi5000_Rh5000_Nq1000_Ll1000&quot; path:&quot;analysis/pd2min.py&quot;&gt;&gt;</pre>
 </div>
-<div created="20180417222836324" modified="20180703020627510" tags="Analysis" title="phi = 0.80, v = 1e-2">
+<div created="20180417222836324" modified="20181223231800197" tags="Analysis" title="phi = 0.80, v = 1e-2">
 <pre>From the [[expected phase diagram|Expected phase diagram]] of our system, we have that the point $$(\phi=0.80, \tilde{v}=1\cdot10^{-2}, \tilde{\nu}_r=5\cdot10^{-4})$$ should be in the homogeneous liquid domain, between the phase separated and glass domains. We then investigated a system at $$\phi=0.80$$ and $$\tilde{v}=1\cdot10^{-2}$$ for different values of the diffusion rotation constant.
 
 We computed $$C_{uu}(\Delta r, \Delta t)$$ for a maximul number of $$S_{max}$$ intervals of time $$[t, t+\Delta t]$$ with $$t$$ greater of equal to the $$S_{init}$$-th frame. Displacement [[field auto-correlation|Discrete field auto-correlation]] was performed from a $$N_{cases}$$ per $$N_{cases}$$ grid of displacements, derived from the original discrete field.
@@ -11644,8 +11629,8 @@ This last plot seems to indicate that in the high persistence regime, the time o
 
 We can finally look at videos of the actual system. In these videos, $$r_{max}$$ corresponds to the size of the rendered square box of particles which has the same centre as the original system, the colors of the particles are linked to their respective displacement amplitude between the times $$t$$ and $$t + \Delta t$$ and the arrow on particle $$i$$ has the direction of $$\vec{r}_i(t+\Delta t) - \vec{r}_i(t)$$.
 
-* At [ext[low persistence time|Videos/u_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mn1500_Pl1000_MOVEl1000.mp4]], we have that the directions of the displacements appear as swirl patterns. However, the particles do not revolve around the centres of these swirls. Looking at the particle trajectories ([ext[dt=1e1|Videos/t_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mo1000_Pl1000.mp4]], [ext[dt=1e2|Videos/t_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mo1000_Pm1000.mp4]], [ext[dt=1e3|Videos/t_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mo1000_Pn1000.mp4]]), we have that the individual displacements over $$\Delta t = 10^3$$ have a few particle diameters amplitude but are generally uncorrelated, leading to an overall small and uncorrelated displacement of the particles.
-* At [ext[high persistence time|Videos/u_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Io5000_Mn1500_Pl1000_MOVEl1000.mp4]], particles are clustered in blocks which slide on each another, the displacements are correlated over large distances and periods of time. Looking at the particle trajectories ([ext[dt=1e3|Videos/t_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Io5000_Mo1000_Pl1000.mp4]]), we see that rearrangements appear as suddent bursts in the system. Moreover, the system is denser than in the lower persistence time case and the overall displacement is also greater.
+* At low persistence time ([ext[linear|Videos/u_Dk8000_Vj1000_Ri2000_Nq1000_Io5000_Tl2000_Bn1000_Pl2000_Mm8000.mp4]] and [ext[logarithmic|Videos/u_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mn1500_Pl1000_MOVEl1000.mp4]] time scales), we have that the directions of the displacements appear as swirl patterns. However, the particles do not revolve around the centres of these swirls. Looking at the particle trajectories ([ext[dt=1e1|Videos/t_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mo1000_Pl1000.mp4]], [ext[dt=1e2|Videos/t_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mo1000_Pm1000.mp4]], [ext[dt=1e3|Videos/t_Dk8000_Vj1000_Ri7000_Nq1000_Ll0000_Io5000_Mo1000_Pn1000.mp4]]), we have that the individual displacements over $$\Delta t = 10^3$$ have a few particle diameters amplitude but are generally uncorrelated, leading to an overall small and uncorrelated displacement of the particles.
+* At high persistence time ([ext[linear|Videos/u_Dk8000_Vj1000_Rg2000_Nq1000_Io5000_Tn2000_Bn1000_Pm5000_Mm8000.mp4]] and [ext[logarithmic|Videos/u_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Io5000_Mn1500_Pl1000_MOVEl1000.mp4]] time scales), particles are clustered in blocks which slide on each another, the displacements are correlated over large distances and periods of time. Looking at the particle trajectories ([ext[dt=1e3|Videos/t_Dk8000_Vj1000_Rg2000_Nq1000_Ll0000_Io5000_Mo1000_Pl1000.mp4]]), we see that rearrangements appear as suddent bursts in the system. Moreover, the system is denser than in the lower persistence time case and the overall displacement is also greater.
 
 ---
 
