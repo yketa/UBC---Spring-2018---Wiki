@@ -10104,7 +10104,7 @@ config.macros.bibliography = {
 <div created="20180417231441389" modified="20181226004054223" title="$:/state/toc/TableOfContents-Analysis--81657105">
 <pre>close</pre>
 </div>
-<div created="20180417005847401" modified="20190204010538469" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<div created="20180417005847401" modified="20190407112636452" title="$:/state/toc/TableOfContents-Measurements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180710220316722" modified="20180712224446152" title="$:/state/toc/TableOfContents-Measurements-1351528465">
@@ -11480,10 +11480,12 @@ $$
 &lt;&lt;toc-selective-expandable 'Model'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20190204003410285" modified="20190204010528987" tags="Measurements" title="Mutual information">
+<div created="20190204003410285" modified="20190407112623198" tags="Measurements" title="Mutual information">
 <pre>We have defined [[displacement correlations|Displacement correlations]] as a [[Pearson correlation coefficient|https://en.wikipedia.org/wiki/Pearson_correlation_coefficient]] between the displacements over a lag time $$\Delta t$$ of particles separated by $$\Delta\vec{r}$$ . This correlation is a simple measure of the linear relationship between these displacements. This measure might be ineffective to quantify cooperative behaviours such as swirling swarms in which displacements of neighbouring particles are close to orthogonal with each other and might thus lessen the correlation despite being a typical example of coherently moving particles.
 
-[[Mutual information|https://en.wikipedia.org/wiki/Mutual_information]] is a measure of the mutual dependance between two variables as a measure of the information they share, and is used in computational biophysics and biochemistry (see [[Lange and Grubmüller, 2006|https://pure.mpg.de/rest/items/item_596514_3/component/file_596513/content]] and [[Rivalta et al., 2012|https://www.pnas.org/content/109/22/E1428.short]]).
+!!! Definition
+
+[[Mutual information|https://en.wikipedia.org/wiki/Mutual_information]] is a measure of the mutual dependance between two variables as a measure of the information they share, and is used in computational biophysics and biochemistry (see [[Lange and Grubmüller, 2005|https://pure.mpg.de/rest/items/item_596514_3/component/file_596513/content]] and [[Rivalta et al., 2012|https://www.pnas.org/content/109/22/E1428.short]]).
 
 In the case of two random variables $$X$$ and $$Y$$, with joint probability function $$p(x, y)$$, and respective marginal probability functions $$p(x)$$ and $$p(y)$$, mutual information is defined by
 $$
@@ -11493,12 +11495,14 @@ Only in the case of independant random variables $$X$$ and $$Y$$ we have $$p(x, 
 
 We recall the Shannon entropy of a random variable $$X$$
 $$
-H(X) = \int_{\mathcal{X}} \text{d}x\, p(x)\, \log(p(x)),
+H(X) = -\int_{\mathcal{X}} \text{d}x\, p(x)\, \log(p(x)),
 $$
 such that we can write
 $$
-I(X, Y) = H(Y) - H(Y|X).
-$$</pre>
+I(X, Y) = H(Y) - H(Y | X).
+$$
+
+In the case of $$X$$ conveying the same information as $$Y$$ then $$H(Y|X) = 0$$ and $$I(X, Y) = H(Y)$$, the mutual information is thus the uncertainty contained in $$Y$$.</pre>
 </div>
 <div created="20180626015736848" modified="20180626031313023" tags="Measurements" title="Neighbours grids">
 <pre>In order to speed up calculations, we implement neighbours grids to access more rapidly neighbouring particles of a given point in space, //i.e.// without looping through all particles.
