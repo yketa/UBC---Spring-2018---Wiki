@@ -478,7 +478,7 @@ Error message and password prompt
 
 <li>Model</li>
 
-<li>Mutual information</li>
+<li>Mutual information between displacements</li>
 
 <li>Neighbours grids</li>
 
@@ -10071,8 +10071,8 @@ config.macros.bibliography = {
 <div created="20180625224127195" modified="20180625224204937" title="$:/state/tab--959111941">
 <pre>$:/core/ui/ControlPanel/TiddlerFields</pre>
 </div>
-<div created="20180417010411725" modified="20181009080324689" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Info</pre>
+<div created="20180417010411725" modified="20190408105132490" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Plugins</pre>
 </div>
 <div created="20181009080146960" modified="20181009080146960" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/TiddlySpot</pre>
@@ -10101,10 +10101,10 @@ config.macros.bibliography = {
 <div created="20180606022318016" modified="20180625224602683" title="$:/state/toc/Measurements/Shear strain and vorticity fields-Shear strain correlations--1479111847">
 <pre>close</pre>
 </div>
-<div created="20180417231441389" modified="20181226004054223" title="$:/state/toc/TableOfContents-Analysis--81657105">
+<div created="20180417231441389" modified="20190408214731345" title="$:/state/toc/TableOfContents-Analysis--81657105">
 <pre>close</pre>
 </div>
-<div created="20180417005847401" modified="20190407112636452" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<div created="20180417005847401" modified="20190408214730539" title="$:/state/toc/TableOfContents-Measurements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180710220316722" modified="20180712224446152" title="$:/state/toc/TableOfContents-Measurements-1351528465">
@@ -11480,10 +11480,10 @@ $$
 &lt;&lt;toc-selective-expandable 'Model'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20190204003410285" modified="20190407112623198" tags="Measurements" title="Mutual information">
+<div created="20190204003410285" modified="20190408214618568" tags="Measurements" title="Mutual information between displacements">
 <pre>We have defined [[displacement correlations|Displacement correlations]] as a [[Pearson correlation coefficient|https://en.wikipedia.org/wiki/Pearson_correlation_coefficient]] between the displacements over a lag time $$\Delta t$$ of particles separated by $$\Delta\vec{r}$$ . This correlation is a simple measure of the linear relationship between these displacements. This measure might be ineffective to quantify cooperative behaviours such as swirling swarms in which displacements of neighbouring particles are close to orthogonal with each other and might thus lessen the correlation despite being a typical example of coherently moving particles.
 
-!!! Definition
+! Mutual information
 
 [[Mutual information|https://en.wikipedia.org/wiki/Mutual_information]] is a measure of the mutual dependance between two variables as a measure of the information they share, and is used in computational biophysics and biochemistry (see [[Lange and Grubmüller, 2005|https://pure.mpg.de/rest/items/item_596514_3/component/file_596513/content]] and [[Rivalta et al., 2012|https://www.pnas.org/content/109/22/E1428.short]]).
 
@@ -11499,10 +11499,163 @@ H(X) = -\int_{\mathcal{X}} \text{d}x\, p(x)\, \log(p(x)),
 $$
 such that we can write
 $$
-I(X, Y) = H(Y) - H(Y | X).
+I(X, Y) = H(X) + H(Y) - H(X, Y).
 $$
 
-In the case of $$X$$ conveying the same information as $$Y$$ then $$H(Y|X) = 0$$ and $$I(X, Y) = H(Y)$$, the mutual information is thus the uncertainty contained in $$Y$$.</pre>
+In the case of $$X$$ and $$Y$$ conveying the same information, we have $$H(X, Y) = H(X) = H(Y)$$ such that $$I(X, Y) = H(X) = H(Y) = H(X, Y)$$, the mutual information is thus the uncertainty contained in these variables.
+
+We thus propose the following //correlation// coefficient
+$$
+C_{MI}(X, Y) = \frac{I(X, Y)}{H(X, Y)},
+$$
+such that $$C_{MI}(X, Y) = 0$$ if the $$X$$ and $$Y$$ are independent and $$C_{MI}(X, Y) = 1$$ when they convey the same information. We however stress that it is not the unique way of denifing a correlation coefficient from the mutual information.
+
+! Displacement field as a stochastic process
+
+We consider the field of particle displacements between times $$t$$ and $$t + \Delta t$$, 
+$$
+\vec{u}(\vec{r}, t, t + \Delta t) \equiv (u_{\alpha}(\vec{r}, t, t + \Delta t))_{\alpha = 1, 2},
+$$
+as a sample function of a stochastic process
+$$
+\vec{U}_{t, t + \Delta t}(\vec{r}) \equiv (U^{\alpha}_{t, t + \Delta t}(\vec{r}))_{\alpha = 1, 2},
+$$
+where $$\vec{r}$$ is constained in a square box of dimensions $$L \times L$$.
+
+!! Pearson correlation coefficients
+
+!!! Probability density functions
+
+We define for $$U^{\alpha}_{t, t + \Delta t}(\vec{r})$$ the following marginal probability density function
+$$
+p^{\alpha}_{t, t  + \Delta t}(\cdot, \vec{r}) : \mathbb{R} \rightarrow [0; 1],
+$$
+which satisfies
+$$
+\int_{\mathbb{R}} \text{d}x \, p^{\alpha}_{t, t  + \Delta t}(x, \vec{r}) = 1,
+$$
+and such that the statistical average of any function $$f(U^{\alpha}_{t, t + \Delta t}(\vec{r}))$$ may be noted
+$$
+\left&lt;f(U^{\alpha}_{t, t + \Delta t}(\vec{r}))\right&gt; = \int_{\mathbb{R}} \text{d}x \, f(x) \, p^{\alpha}_{t, t  + \Delta t}(x, \vec{r}).
+$$
+
+We define for $$U^{\alpha}_{t, t + \Delta t}(\vec{r})$$ the following joint probability density function
+$$
+p^{\alpha \beta}_{t, t + \Delta t} (\cdot, \vec{r}_1 ; \cdot, \vec{r}_2) : \mathbb{R} \times \mathbb{R} \rightarrow [0; 1],
+$$
+which satisfies
+$$
+\iint_{\mathbb{R}^2} \text{d}x \, \text{d}y \, p^{\alpha \beta}_{t, t  + \Delta t}(x, \vec{r}_1; y, \vec{r}_2) = 1,
+$$
+and such that the statistical average of any function $$f(U^{\alpha}_{t, t + \Delta t}(\vec{r}_1), U^{\beta}_{t, t + \Delta t}(\vec{r}_2))$$ may be noted
+$$
+\left&lt;f(U^{\alpha}_{t, t + \Delta t}(\vec{r}_1), U^{\beta}_{t, t + \Delta t}(\vec{r}_2))\right&gt; = \iint_{\mathbb{R}^2} \text{d}x \, \text{d}y \, f(x, y) \, p^{\alpha \beta}_{t, t  + \Delta t}(x, \vec{r}_1 ; y, \vec{r}_2).
+$$
+
+We will determine through the rigorous calculation of the Pearson correlation coefficients which assumptions have been implicitly made on the stochastic process $$\vec{U}_{t, t + \Delta t}(\vec{r})$$ when caclulating [[displacement correlations|Displacement correlations]].
+
+We define the covariance matrix
+$$
+\begin{aligned}
+\kappa^{\alpha \beta}_{t, t + \Delta t}(\vec{r}_1, \vec{r}_2) &amp;= \left&lt;[U^{\alpha}_{t, t + \Delta t}(\vec{r}_1) - \left&lt;U^{\alpha}_{t, t + \Delta t}(\vec{r}_1)\right&gt;][U^{\beta}_{t, t + \Delta t}(\vec{r}_2) - \left&lt;U^{\beta}_{t, t + \Delta t}(\vec{r}_2)\right&gt;]\right&gt;\\
+&amp;= \left&lt;U^{\alpha}_{t, t + \Delta t}(\vec{r}_1)U^{\beta}_{t, t + \Delta t}(\vec{r}_2)\right&gt; - \Big&lt;U^{\alpha}_{t, t + \Delta t}(\vec{r}_1)\Big&gt;\left&lt;U^{\beta}_{t, t + \Delta t}(\vec{r}_2)\right&gt;.
+\end{aligned}
+$$
+
+!!! Stationarity in space
+
+We assume that the marginal and joint probability density functions are invariant by translations in space, //i.e.//
+$$
+\forall \vec{R} \in \mathbb{R}^2, p^{\alpha}_{t, t  + \Delta t}(x, \vec{r} + \vec{R}) = p^{\alpha}_{t, t  + \Delta t}(x, \vec{r}) = p^{\alpha}_{t, t  + \Delta t}(x),
+$$
+and
+$$
+\forall \vec{R} \in \mathbb{R}^2, p^{\alpha \beta}_{t, t  + \Delta t}(x, \vec{r}_1 + \vec{R} ; y, \vec{r}_2 + \vec{R}) = p^{\alpha \beta}_{t, t  + \Delta t}(x, \vec{r}_1 ; y, \vec{r}_2),
+$$
+with the consequence that
+$$
+\begin{aligned}
+\kappa^{\alpha \beta}_{t, t + \Delta t}(\vec{r}_1, \vec{r}_2) &amp;= \kappa^{\alpha \beta}_{t, t + \Delta t}(\vec{r}_2 - \vec{r}_1)\\
+&amp;= \left&lt;U^{\alpha}_{t, t + \Delta t}(\vec{0})U^{\beta}_{t, t + \Delta t}(\vec{r}_2 - \vec{r}_1)\right&gt; - \Big&lt;U^{\alpha}_{t, t + \Delta t}(\vec{0})\Big&gt;\left&lt;U^{\beta}_{t, t + \Delta t}(\vec{r}_2 - \vec{r}_1)\right&gt;\\
+&amp;= \left&lt;U^{\alpha}_{t, t + \Delta t}(\vec{0})U^{\beta}_{t, t + \Delta t}(\vec{r}_2 - \vec{r}_1)\right&gt; - \Big&lt;U^{\alpha}_{t, t + \Delta t}\Big&gt;\left&lt;U^{\beta}_{t, t + \Delta t}\right&gt;.
+\end{aligned}
+$$
+
+!!! Ergodicity in space
+
+We assume that a given sample function $$\vec{u}(\vec{r}, t, t + \Delta t)$$ contains the same statistical information as the process $$\vec{U}_{t, t + \Delta t}(\vec{r})$$ and will thus assume identity between the statistical and spatial average, //i.e.//
+$$
+\Big&lt;U^{\alpha}_{t, t + \Delta t}\Big&gt; = \overline{U^{\alpha}_{t, t + \Delta t}} = \frac{1}{L^2} \iint_{\mathcal{B}} \text{d}^2\vec{r} \, u_{\alpha}(\vec{r}, t, t + \Delta t)
+$$
+and
+$$
+\left&lt;U^{\alpha}_{t, t + \Delta t}(\vec{0})U^{\beta}_{t, t + \Delta t}(\vec{R})\right&gt; = \overline{U^{\alpha}_{t, t + \Delta t}(\vec{0})U^{\beta}_{t, t + \Delta t}(\vec{R})} =  \frac{1}{L^2} \iint_{\mathcal{B}} \text{d}^2\vec{r} \, u_{\alpha}(\vec{0}, t, t + \Delta t) u_{\beta}(\vec{R}, t, t + \Delta t),
+$$
+with $$\mathcal{B}$$ the system square box of dimensions $$L \times L$$.
+
+!!! Displacement correlations
+
+We now assume
+$$
+\Big&lt;U^{\alpha}_{t, t + \Delta t}\Big&gt; = 0
+$$
+which is motivated by our observations.
+
+We thus have the [[displacement correlations|Displacement correlations]]
+$$
+C_{uu}(\Delta \vec{r}, \Delta t) = \frac{\int \text{d}t \, \left(\kappa^{11}_{t, t + \Delta t}(\vec{\Delta r}) + \kappa^{22}_{t, t + \Delta t}(\vec{\Delta r})\right)}{\int \text{d}t \, \left(\kappa^{11}_{t, t + \Delta t}(\vec{0}) + \kappa^{22}_{t, t + \Delta t}(\vec{0})\right)}.
+$$
+
+!! Consequence of stationarity and ergodicity in space
+
+We define for $$\vec{U}_{t, t + \Delta t}(\vec{r})$$ the following marginal probability density function
+$$
+P^{(1)}_{t, t + \Delta t}(\cdot) : \mathbb{R}^2 \rightarrow [0; 1]
+$$
+which does not depend on $$\vec{r}$$ due to stationarity, and the following joint probability density function
+$$
+P^{(2)}_{t, t + \Delta t}(\cdot, \cdot, \Delta\vec{r}) : \mathbb{R}^2 \times \mathbb{R}^2 \rightarrow [0; 1]
+$$
+which is a function of the sole separation $$\Delta \vec{r}$$ between the points considered in space due to stationarity.
+
+We have assumed ergodicity, //i.e.// the identity of statistical and spatial averages, thus with
+$$
+f(\vec{U}_{t, t + \Delta t}(\vec{r})) = \delta(\vec{U}_{t, t + \Delta t}(\vec{r}) - \vec{u}_0)
+$$
+we have
+$$
+\begin{aligned}
+\left&lt;f(\vec{U}_{t, t + \Delta t})\right&gt; = \overline{f(\vec{U}_{t, t + \Delta t})} &amp;\Leftrightarrow \iint_{\mathbb{R}^2} \text{d}^2\vec{u} \, f(\vec{u}) \, P^{(1)}_{t, t + \Delta t}(\vec{u}) = \frac{1}{L^2} \iint_{\mathcal{B}} \text{d}^2\vec{r} \, f(\vec{u}(\vec{r}, t, t + \Delta t))\\
+&amp;\Leftrightarrow \iint_{\mathbb{R}^2} \text{d}^2\vec{u} \, \delta(\vec{u} - \vec{u}_0) \, P^{(1)}_{t, t + \Delta t}(\vec{u}) = \frac{1}{L^2} \iint_{\mathcal{B}} \text{d}^2\vec{r} \, \delta(\vec{u}(\vec{r}, t, t + \Delta t) - \vec{u}_0)\\
+&amp;\Leftrightarrow P^{(1)}_{t, t + \Delta t}(\vec{u}_0) = \frac{1}{L^2} \iint_{\mathcal{B}} \text{d}^2\vec{r} \, \delta(\vec{u}(\vec{r}, t, t + \Delta t) - \vec{u}_0).
+\end{aligned}
+$$
+We can show likewise that
+$$
+P^{(2)}_{t, t + \Delta t}(\vec{u}_1, \vec{u}_2, \Delta\vec{r}) = \frac{1}{L^2} \iint_{\mathcal{B}} \text{d}^2\vec{r} \, \delta(\vec{u}(\vec{r}, t, t + \Delta t) - \vec{u}_1) \delta(\vec{u}(\vec{r} + \Delta \vec{r}, t, t + \Delta t) - \vec{u}_2).
+$$
+Therefore, in the hypothesis of ergodicity in space, we can infer the probability distribution function as an uniform probability from a sampling of the system.
+
+! Mutual information between displacements
+
+We have now introduced the necessary notations and assumptions to define the mutual information $$\mathcal{I}_{t, t + \Delta t}(\Delta \vec{r})$$ between displacements between times $$t$$ and $$t + \Delta t$$ for particles separated by $$\Delta \vec{r}$$ in our system
+$$
+\begin{aligned}
+\mathcal{I}_{t, t + \Delta t}(\Delta \vec{r}) &amp;= I(\vec{U}_{t, t + \Delta t}(\vec{r}), \vec{U}_{t, t + \Delta t}(\vec{r} + \Delta \vec{r}))\\
+&amp;= \iint_{\mathbb{R}^2} \text{d}^2\vec{u}_1 \iint_{\mathbb{R}^2} \text{d}^2\vec{u}_2 \, P^{(2)}_{t, t + \Delta t}(\vec{u}_1, \vec{u}_2, \Delta \vec{r}) \, \log\left(\frac{P^{(2)}_{t, t + \Delta t}(\vec{u}_1, \vec{u}_2, \Delta \vec{r})}{P^{(1)}_{t, t + \Delta t}(\vec{u}_1) \, P^{(1)}_{t, t + \Delta t}(\vec{u}_2)}\right),
+\end{aligned}
+$$
+and the entropy of the joint distribution of displacements
+$$
+\begin{aligned}
+\mathcal{H}_{t, t + \Delta t}(\Delta \vec{r}) &amp;= H(\vec{U}_{t, t + \Delta t}(\vec{r}), \vec{U}_{t, t + \Delta t}(\vec{r} + \Delta \vec{r}))\\
+&amp;= \iint_{\mathbb{R}^2} \text{d}^2\vec{u}_1 \iint_{\mathbb{R}^2} \text{d}^2\vec{u}_2 \, P^{(2)}_{t, t + \Delta t}(\vec{u}_1, \vec{u}_2, \Delta \vec{r}) \, \log\left(P^{(2)}_{t, t + \Delta t}(\vec{u}_1, \vec{u}_2, \Delta \vec{r})\right),
+\end{aligned}
+$$
+such that we define the displacement correlation function as
+$$
+C_{uu, MI}(\Delta \vec{r}, \Delta t) = \frac{\int \text{d}t \, \mathcal{I}_{t, t + \Delta t}(\Delta \vec{r})}{\int \text{d}t \, \mathcal{H}_{t, t + \Delta t}(\Delta \vec{r})}.
+$$</pre>
 </div>
 <div created="20180626015736848" modified="20180626031313023" tags="Measurements" title="Neighbours grids">
 <pre>In order to speed up calculations, we implement neighbours grids to access more rapidly neighbouring particles of a given point in space, //i.e.// without looping through all particles.
