@@ -452,8 +452,6 @@ Error message and password prompt
 
 <li>Displacement correlations</li>
 
-<li>Draft of 'New Tiddler 1'</li>
-
 <li>Expected cooperative behaviour</li>
 
 <li>Expected phase boundaries shifting</li>
@@ -477,6 +475,8 @@ Error message and password prompt
 <li>Measurements</li>
 
 <li>Model</li>
+
+<li>Multivariate kernel density estimation</li>
 
 <li>Mutual information between displacements</li>
 
@@ -10104,7 +10104,7 @@ config.macros.bibliography = {
 <div created="20180417231441389" modified="20190408214731345" title="$:/state/toc/TableOfContents-Analysis--81657105">
 <pre>close</pre>
 </div>
-<div created="20180417005847401" modified="20190408214730539" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<div created="20180417005847401" modified="20190409223118131" title="$:/state/toc/TableOfContents-Measurements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180710220316722" modified="20180712224446152" title="$:/state/toc/TableOfContents-Measurements-1351528465">
@@ -10853,7 +10853,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20180620032354454" modified="20180620032356781" title="$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary">
 <pre>bibtex</pre>
 </div>
-<div created="20180416033117939" modified="20181214174741612" title="$:/temp/search">
+<div created="20180416033117939" modified="20190409223116162" title="$:/temp/search">
 <pre></pre>
 </div>
 <div created="20180620031722320" modified="20180620031722320" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.15/index.html" url="https://tiddlywiki.com/library/v5.1.15/index.html">
@@ -11284,9 +11284,6 @@ Moreover, we have the the cylindrical average of $$(C_{\rho\rho, ij}(\Delta t))_
 &lt;&lt;toc-selective-expandable 'Displacement correlations'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20180719201719477" draft.of="New Tiddler 1" draft.title="New Tiddler 1" modified="20180719201719477" tags="" title="Draft of 'New Tiddler 1'">
-<pre></pre>
-</div>
 <div created="20180417231912802" modified="20180606025346968" tags="Cooperativity" title="Expected cooperative behaviour">
 <pre>We have that the [[Wysocki et al., 2014|http://iopscience.iop.org/article/10.1209/0295-5075/105/48004]] model is very similar to ours, except that it is in 3D and that it also considers translationnal brownian noise.
 
@@ -11480,7 +11477,22 @@ $$
 &lt;&lt;toc-selective-expandable 'Model'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20190204003410285" modified="20190408214618568" tags="Measurements" title="Mutual information between displacements">
+<div created="20190409214437629" modified="20190409222827524" tags="Measurements" title="Multivariate kernel density estimation">
+<pre>[[Kernel density estimation|https://en.wikipedia.org/wiki/Kernel_density_estimation]] (KDE) is a technique for estimating probability density functions from a data sample and can thus be viewed as a generalisation of histograms. [[Multivariate KDE|https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation]] (MKDE) is the generalisation to multivariate random vectors of its univariate counterpart.
+
+!! MKDE
+
+!!! Principle
+
+!!! Optimal bandwidth matrix selection
+
+([[Wand and Jones, 1994|http://matt-wand.utsacademics.info/publicns/WandJones94.pdf]], [[Duong and Hazelton, 2003|https://www.tandfonline.com/doi/abs/10.1080/10485250306039]], [[Duong and Hazelton, 2005|https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9469.2005.00445.x]])
+
+!! Implementation
+
+[[KDEpy Python package|https://kdepy.readthedocs.io/en/latest/]] implements various KDEs.</pre>
+</div>
+<div created="20190204003410285" modified="20190409215849089" tags="Measurements" title="Mutual information between displacements">
 <pre>We have defined [[displacement correlations|Displacement correlations]] as a [[Pearson correlation coefficient|https://en.wikipedia.org/wiki/Pearson_correlation_coefficient]] between the displacements over a lag time $$\Delta t$$ of particles separated by $$\Delta\vec{r}$$ . This correlation is a simple measure of the linear relationship between these displacements. This measure might be ineffective to quantify cooperative behaviours such as swirling swarms in which displacements of neighbouring particles are close to orthogonal with each other and might thus lessen the correlation despite being a typical example of coherently moving particles.
 
 ! Mutual information
@@ -11655,7 +11667,11 @@ $$
 such that we define the displacement correlation function as
 $$
 C_{uu, MI}(\Delta \vec{r}, \Delta t) = \frac{\int \text{d}t \, \mathcal{I}_{t, t + \Delta t}(\Delta \vec{r})}{\int \text{d}t \, \mathcal{H}_{t, t + \Delta t}(\Delta \vec{r})}.
-$$</pre>
+$$
+
+! Implementation
+
+Probability density functions $$P^{(1)}_{t, t + \Delta t}(\vec{u})$$ and $$P^{(2)}_{t, t + \Delta t}(\vec{u}_1, \vec{u}_2, \Delta\vec{r})$$ can be approximated with [[multivariate kernel density estimations|Multivariate kernel density estimation]].</pre>
 </div>
 <div created="20180626015736848" modified="20180626031313023" tags="Measurements" title="Neighbours grids">
 <pre>In order to speed up calculations, we implement neighbours grids to access more rapidly neighbouring particles of a given point in space, //i.e.// without looping through all particles.
