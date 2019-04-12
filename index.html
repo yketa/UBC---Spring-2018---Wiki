@@ -10104,7 +10104,7 @@ config.macros.bibliography = {
 <div created="20180417231441389" modified="20190408214731345" title="$:/state/toc/TableOfContents-Analysis--81657105">
 <pre>close</pre>
 </div>
-<div created="20180417005847401" modified="20190409223118131" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<div created="20180417005847401" modified="20190412201459521" title="$:/state/toc/TableOfContents-Measurements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180710220316722" modified="20180712224446152" title="$:/state/toc/TableOfContents-Measurements-1351528465">
@@ -11477,18 +11477,175 @@ $$
 &lt;&lt;toc-selective-expandable 'Model'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20190409214437629" modified="20190409222827524" tags="Measurements" title="Multivariate kernel density estimation">
+<div created="20190409214437629" modified="20190412201134259" tags="Measurements" title="Multivariate kernel density estimation">
 <pre>[[Kernel density estimation|https://en.wikipedia.org/wiki/Kernel_density_estimation]] (KDE) is a technique for estimating probability density functions from a data sample and can thus be viewed as a generalisation of histograms. [[Multivariate KDE|https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation]] (MKDE) is the generalisation to multivariate random vectors of its univariate counterpart.
 
-!! MKDE
+! MKDE
 
-!!! Principle
+!! Principle
 
-!!! Optimal bandwidth matrix selection
+Let $$(\underline{X}_1, \ldots, \underline{X}_n)$$ be a random sample of an $$\mathbb{R}^d$$-valued random vector with probability density function $$f$$. We wish to estimate this density function from the random sample.
 
-([[Wand and Jones, 1994|http://matt-wand.utsacademics.info/publicns/WandJones94.pdf]], [[Duong and Hazelton, 2003|https://www.tandfonline.com/doi/abs/10.1080/10485250306039]], [[Duong and Hazelton, 2005|https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9469.2005.00445.x]])
+Kernel density estimation can be thought as making a histogram (see [[KDEpy (Introduction)|https://kdepy.readthedocs.io/en/latest/introduction.html]]). Instead of arbritrarily placing the histogram bins, we place a normalised $$d$$-variate spherically symmetric kernel function $$K(\underline{x})$$, //i.e.// such that
+$$
+\int \text{d}^d\underline{x} \, K(\underline{x}) = 1,
+$$
+on each sample point, choose a $$d \times d$$ symmetric definite positive bandwidth matrix $$\underline{\underline{H}}$$, and define the kernel density estimator $$\hat{f}(\underline{x} ; \underline{\underline{H}})$$ as ([[Wand and Jones, 1994|http://matt-wand.utsacademics.info/publicns/WandJones94.pdf]], [[Duong and Hazelton, 2005|https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9469.2005.00445.x]])
+$$
+\begin{aligned}
+\hat{f}(\underline{x} ; \underline{\underline{H}}) &amp;= \frac{1}{n} \sum_{i=1}^n K_{\underline{\underline{H}}}(\underline{x} - \underline{X}_i)\\
+&amp;= \frac{1}{n} \left|\underline{\underline{H}}\right|^{-1/2} \sum_{i=1}^n K\left(\underline{\underline{H}}^{-1/2}(\underline{x} - \underline{X}_i)\right).
+\end{aligned}
+$$
+With $$K$$ the $$\mathcal{N}(\underline{0}, \underline{\underline{\mathbb{I}}}_d)$$ density, it then follows that $$K_{\underline{\underline{H}}}(\underline{x} - \underline{X}_i)$$ is the $$\mathcal{N}(\underline{X}_i, \underline{\underline{H}})$$ density in the vector $$\underline{x}$$ ([[Wand and Jones, 1994|http://matt-wand.utsacademics.info/publicns/WandJones94.pdf]]).
 
-!! Implementation
+We stress that the choice of the bandwidth matrix $$\underline{\underline{H}}$$ — and not the kernel function $$K$$ — is crucial to the performance of the estimator $$\hat{f}$$ ([[Duong and Hazelton, 2005|https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9469.2005.00445.x]]) and will thus develop on how to optimally choose this matrix.
+
+!! Optimal bandwidth matrix selection
+
+!!! General derivation
+
+We wish to choose $$\underline{\underline{H}}$$ so that it minimises the [[mean integrated squared error|https://en.wikipedia.org/wiki/Mean_integrated_squared_error]]  (MISE) given by
+$$
+\text{MISE}\{\hat{f}(\cdot ; \underline{\underline{H}})\} = \mathbb{E}\left(\int \text{d}^d\underline{x} \, (\hat{f}(\underline{x} ; \underline{\underline{H}}) - f(\underline{x}))^2\right),
+$$
+where $$\mathbb{E}$$ denotes the expected value with respect to the sample $$(\underline{X}_1, \ldots, \underline{X}_n)$$.
+
+A common approximation MISE is the asymptotic MISE (AMISE) given by ([[Wand and Jones, 1994|http://matt-wand.utsacademics.info/publicns/WandJones94.pdf]])
+$$
+\text{AMISE}\{\hat{f}(\cdot ; \underline{\underline{H}})\} = \frac{1}{n} \left|\underline{\underline{H}}\right|^{-1/2}R(K) + \frac{1}{4} \mu_2(K)^2 \, \underline{\text{vech}}\left(\underline{\underline{H}}\right) \cdot \underline{\underline{\Psi}}_{\mathcal{F}} \underline{\text{vech}}\left(\underline{\underline{H}}\right),
+$$
+where $$R(K) = \int \text{d}^d\underline{x} \, K(\underline{x})^2$$, $$\mu_2(K) = \int \text{d}^d\underline{x} \, ||\underline{x}||^2 \, K(\underline{x})$$, $$\underline{\text{vech}}$$ denotes the [[half-vectorisation|https://en.wikipedia.org/wiki/Vectorization_(mathematics)#Half-vectorization]] of a matrix, and
+$$
+\underline{\underline{\Psi}}_{\mathcal{F}} = \int \text{d}^d\underline{x} \, \underline{\text{vech}}\left(2 \underline{\underline{\mathcal{H}}}_f(\underline{x}) - \text{dg}\underline{\underline{\mathcal{H}}}_f(\underline{x})\right) \, \underline{\text{vech}}\left(2 \underline{\underline{\mathcal{H}}}_f(\underline{x}) - \text{dg}\underline{\underline{\mathcal{H}}}_f(\underline{x})\right)^{\text{T}}
+$$
+where $$\text{dg}\underline{\underline{M}}$$ denotes the matrix $$\underline{\underline{M}}$$ with all its non-diagonal terms set to 0 and $$\underline{\underline{\mathcal{H}}}_f$$ is the [[Hessian matrix|https://en.wikipedia.org/wiki/Hessian_matrix]] of $$f$$,
+$$
+\underline{\underline{\mathcal{H}}}_f(\underline{x}) = \left(\frac{\partial^2}{\partial x_i \partial x_j} f(\underline{x})\right)_{1 \leq i, j \leq d}.
+$$
+Please refer to ([[Marron and Wand, 1992|https://www.jstor.org/stable/2241980]]) for a comparison of MISE and its asymptotic representation.
+
+We define for $$\underline{m} = (m_1, \ldots, m_d)$$, with $$m_i \geq 0$$, and a function $$g(\underline{x})$$,
+$$
+g^{(\underline{m})}(\underline{x}) = \frac{\partial^{\sum_i m_i}}{\partial x_1^{m_1} \ldots \partial x_d^{m_d}} g(\underline{x}).
+$$
+We note that
+$$
+2 \underline{\underline{\mathcal{H}}}_f(\underline{x}) - \text{dg}\underline{\underline{\mathcal{H}}}_f(\underline{x}) = \left((2 - \delta_{ij}) \frac{\partial^2}{\partial x_i \partial x_j} f(\underline{x})\right)_{1 \leq i, j \leq d},
+$$
+then the elements of $$\underline{\underline{\Psi}}_{\mathcal{F}}$$ are of the form
+$$
+\begin{aligned}
+&amp;\int \text{d}^d\underline{x} \, (2 - \delta_{\alpha\beta})(2 - \delta_{\gamma\delta}) \frac{\partial^2}{\partial x_{\alpha} \partial x_{\beta}} f(\underline{x}) \frac{\partial^2}{\partial x_{\gamma} \partial x_{\delta}} f(\underline{x})\\
+=&amp;  (2 - \delta_{\alpha\beta})(2 - \delta_{\gamma\delta})\left(\left[\frac{\partial^2}{\partial x_{\alpha} \partial x_{\beta}} f(\underline{x}) \frac{\partial}{\partial x_{\delta}} f(\underline{x})\right]_{|\underline{x}| \rightarrow +\infty} - \int \text{d}^d\underline{x} \, \frac{\partial^3}{\partial x_{\alpha} \partial x_{\beta} \partial x_{\gamma}} f(\underline{x}) \frac{\partial}{\partial x_{\delta}} f(\underline{x})\right)\\
+=&amp; (2 - \delta_{\alpha\beta})(2 - \delta_{\gamma\delta})\left(-\left[\frac{\partial^3}{\partial x_{\alpha} \partial x_{\beta} x_{\gamma}} f(\underline{x}) \, f(\underline{x})\right]_{|\underline{x}| \rightarrow +\infty} + \int \text{d}^d\underline{x} \, \frac{\partial^4}{\partial x_{\alpha} \partial x_{\beta} \partial x_{\gamma} x_{\delta}} f(\underline{x}) \, f(\underline{x})\right),
+\end{aligned}
+$$
+and thus depend on the coefficients
+$$
+\psi_{\underline{m}} = \int \text{d}^d\underline{x} \, f^{(\underline{m})}(\underline{x}) \, f(\underline{x}) = \mathbb{E}(f^{(\underline{m})}).
+$$
+We also note that by definition of $$\underline{\underline{\mathcal{H}}}_{\mathcal{F}}$$, $$\sum_{i=1}^d m_i = 4$$ for $$\psi_{\underline{m}}$$, there are thus $$\binom{4 + d - 1}{d - 1}$$ such coefficients.
+
+$$\psi_{\underline{m}}$$ are functions of the unknown probability density function $$f$$ and thus have to be estimated. [[Cross-validation|https://en.wikipedia.org/wiki/Cross-validation_(statistics)]], using the leave-one-out estimator ([[Sain et al., 1994|https://www.tandfonline.com/doi/abs/10.1080/01621459.1994.10476814]])
+$$
+\hat{f}_{-i}(\underline{X}_i ; \underline{\underline{H}}) = \frac{1}{n - 1} \sum_{j \neq i} K_{\underline{\underline{H}}}(\underline{X}_i - \underline{X}_j),
+$$
+allows us to approximate $$\psi_{\underline{m}} = \mathbb{E}(f^{(\underline{m})})$$ with ([[Duong and Hazelton, 2005|https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9469.2005.00445.x]])
+$$
+\begin{aligned}
+\hat{\psi}_{\underline{m}}(\underline{\underline{H}}) &amp;= \frac{1}{n} \sum_{i=1}^n \hat{f}_{-i}(\underline{X}_i ; \underline{\underline{H}})\\
+&amp;= \frac{1}{n} \frac{1}{n - 1} \sum_{i=1}^n \sum_{j \neq i} K_{\underline{\underline{H}}}^{(\underline{m})}(\underline{X}_i - \underline{X}_j),
+\end{aligned}
+$$
+which are the coefficients of the associated $$\hat{\underline{\underline{\Psi}}}_{\mathcal{F}}(\underline{\underline{H}})$$ matrix.
+
+We now have an estimation
+$$
+\hat{\text{AMISE}}(\underline{\underline{H}})\{\hat{f}(\cdot ; \underline{\underline{H}})\} = \frac{1}{n} \left|\underline{\underline{H}}\right|^{-1/2}R(K) + \frac{1}{4} \mu_2(K)^2 \, \underline{\text{vech}}\left(\underline{\underline{H}}\right) \cdot \hat{\underline{\underline{\Psi}}}_{\mathcal{F}}(\underline{\underline{H}}) \underline{\text{vech}}\left(\underline{\underline{H}}\right)
+$$
+of our error criterion, which is a function of the bandwidth matrix $$\underline{\underline{H}}$$ and the data sample $$(\underline{X}_1, \ldots, \underline{X}_n)$$. We define our optimal bandwidth matrix as
+$$
+\underline{\underline{H}}_{\text{AMISE}} = \text{argmin}_{\underline{\underline{H}}}\left(\hat{\text{AMISE}}(\underline{\underline{H}})\{\hat{f}(\cdot ; \underline{\underline{H}})\}\right).
+$$
+This method relies on an estimation of AMISE and is thus biased for MISE, it is called biased cross-validation (BCV) ([[Duong and Hazelton, 2005|https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9469.2005.00445.x]]).
+
+!!! Gaussian kernel function
+
+We will consider the kernel function $$K$$ to be a Gaussian distribution, //i.e.//, with $$\phi$$ the standard normal distribution, we will take
+$$
+\begin{aligned}
+K(\underline{u}) &amp;= \prod_{i=1}^d \phi(u_i),\\
+K_{\underline{\underline{H}}}(\underline{u}) &amp;=  \prod_{i=1}^d \frac{1}{h_i} \phi\left(\frac{u_i}{h_i}\right),
+\end{aligned}
+$$
+such that
+$$
+R(K) = \int \text{d}^d\underline{x} \, \prod_{i=1}^d \phi(x_i)^2 = \left(\int \text{d}x \, \phi(x)^2\right)^d = \frac{1}{(2\sqrt{\pi})^d},
+$$
+and
+$$
+\mu_2(K) = \int \text{d}^d\underline{x} \, ||\underline{x}||^2 \, \prod_{i=1}^d \phi(x_i) = \left(\int \text{d}x \, x^2 \, \phi(x)\right)^d = 1.
+$$
+
+We then have
+$$
+\begin{aligned}
+\hat{\psi}_{\underline{m}}(\underline{\underline{H}}) &amp;= \frac{1}{n(n-1)} \sum_{i=1}^n \sum_{j \neq i} \frac{\partial^{\sum_k m_k}}{\partial x_1^{m_1} \ldots \partial x_d^{m_d}} \prod_{k=1}^d \frac{1}{h_k} \phi\left(\frac{X_{i, k} - X_{j, k}}{h_k}\right)\\
+&amp;= \frac{1}{n(n-1)} \frac{1}{h_1 \ldots h_d} \sum_{i=1}^n \sum_{j \neq i} \prod_{k=1}^d \frac{\partial^{m_k}}{\partial x_k^{m_k}} \phi\left(\frac{X_{i, k} - X_{j, k}}{h_k}\right)\\
+&amp;= \frac{1}{n(n-1)} \frac{1}{h_1 \ldots h_d} \sum_{i=1}^n \sum_{j \neq i} \prod_{k=1}^d \left(\frac{-1}{h_k}\right)^{m_k} \text{He}_{m_k}\left(\frac{X_{i, k} - X_{j, k}}{h_k}\right) \phi\left(\frac{X_{i, k} - X_{j, k}}{h_k}\right),
+\end{aligned}
+$$
+with $$\text{He}_l$$ the $$l$$th-[[probabilists' Hermite polynomial|https://en.wikipedia.org/wiki/Hermite_polynomials]]. We will denote $$\Delta_{ijk} = X_{i, k} - X_{j, k}$$ such that
+$$
+\hat{\psi}_{\underline{m}}(\underline{\underline{H}}) = \frac{1}{n(n-1)} \frac{1}{h_1 \ldots h_d} \sum_{i=1}^n \sum_{j \neq i} \prod_{k=1}^d \left(\frac{-1}{h_k}\right)^{m_k} \text{He}_{m_k}\left(\frac{\Delta_{ijk}}{h_k}\right) \phi\left(\frac{\Delta_{ijk}}{h_k}\right).
+$$
+
+!!! Diagonal bandwidth matrix
+
+As a matter of simplicity, we will consider diagonal bandwidth matrices $$\underline{\underline{H}} = \text{diag}(h_1^2, \ldots, h_d^2)$$ ([[Sain et al., 1994|https://www.tandfonline.com/doi/abs/10.1080/01621459.1994.10476814]]). Please refer to ([[Wand and Jones, 1993|https://www.tandfonline.com/doi/abs/10.1080/01621459.1993.10476303]]) for a comparison of efficiency between diagonal and full bandwidth matrices.
+
+Since $$\underline{\underline{H}}$$ is a diagonal matrix, we can show, by replacing all half-vectorisations of matrices by their diagonals, that
+$$
+\underline{\text{vech}}\left(\underline{\underline{H}}\right) \cdot \hat{\underline{\underline{\Psi}}}_{\mathcal{F}}(\underline{\underline{H}}) \underline{\text{vech}}\left(\underline{\underline{H}}\right) = \sum_{k=1}^d \sum_{l=1}^d h_k^2 h_l^2 \hat{\psi}_{(2\underline{e}_k + 2\underline{e}_l)}(\underline{\underline{H}}),
+$$
+where
+$$
+\begin{aligned}
+\hat{\psi}_{(2\underline{e}_k + 2\underline{e}_l)}(\underline{\underline{H}}) = \frac{1}{n (n - 1) h_1 \ldots h_d} &amp;\sum_{i = 1}^n \sum_{j \neq i} \left(\frac{-1}{h_k}\right)^2 \left(\frac{-1}{h_l}\right)^2\\
+&amp;\times \left\{\begin{aligned} &amp;\text{He}_2\left(\frac{\Delta_{ijk}}{h_k}\right)\text{He}_2\left(\frac{\Delta_{ijl}}{h_l}\right) &amp;\text{ if } k \neq l \\ &amp;\text{He}_4\left(\frac{\Delta_{ijk}}{h_k}\right)  &amp;\text{ if } k = l \end{aligned}\right\} \prod_{m=1}^d \phi\left(\frac{\Delta_{ijm}}{h_m}\right),
+\end{aligned}
+$$
+such that
+$$
+\begin{aligned}
+\underline{\text{vech}}\left(\underline{\underline{H}}\right) \cdot \hat{\underline{\underline{\Psi}}}_{\mathcal{F}}(\underline{\underline{H}}) \underline{\text{vech}}&amp;\left(\underline{\underline{H}}\right)\\
+= \frac{1}{n (n - 1) h_1 \ldots h_d}&amp; \Bigg(\sum_{k=1}^d h_k^4 \frac{1}{h_k^4} \sum_{i=1}^n \sum_{j \neq i} \text{He}_4\left(\frac{\Delta_{ijk}}{h_k}\right) \prod_{m=1}^d \phi\left(\frac{\Delta_{ijm}}{h_m}\right)\\
++&amp; \sum_{k=1}^d \sum_{l \neq k} k_k^2 h_l^2 \frac{1}{h_k^2} \frac{1}{h_l^2} \sum_{i=1}^n \sum_{j \neq i} \text{He}_2\left(\frac{\Delta_{ijk}}{h_k}\right) \text{He}_2\left(\frac{\Delta_{ijl}}{h_l}\right) \prod_{m=1}^d \phi\left(\frac{\Delta_{ijm}}{h_m}\right)\Bigg)\\
+= \frac{1}{n (n - 1) h_1 \ldots h_d}&amp; \sum_{i=1}^n \sum_{j \neq i} \Bigg(\sum_{k=1}^d \left(\left(\frac{\Delta_{ijk}}{h_k}\right)^4 - 6 \left(\frac{\Delta_{ijk}}{h_k}\right)^2 + 3\right)\\
++&amp; \sum_{k=1}^d \sum_{l \neq k} \left(\left(\frac{\Delta_{ijk}}{h_k}\right)^2 - 1\right)\left(\left(\frac{\Delta_{ijl}}{h_l}\right)^2 - 1\right)\Bigg) \prod_{m=1}^d \phi\left(\frac{\Delta_{ijm}}{h_m}\right)\\
+= \frac{1}{n (n - 1) h_1 \ldots h_d}&amp; \sum_{i=1}^n \sum_{j \neq i} \Bigg(\sum_{k=1}^d \left(\left(\frac{\Delta_{ijk}}{h_k}\right)^4 + \sum_{l \neq k} \left(\frac{\Delta_{ijk}}{h_k}\right)^2 \left(\frac{\Delta_{ijl}}{h_l}\right)^2\right)\\
+-&amp; 6 \sum_{k=1}^d \left(\frac{\Delta_{ijk}}{h_k}\right)^2 - \sum_{k=1}^d \sum_{l \neq k} \left(\frac{\Delta_{ijk}}{h_k}\right)^2 - \sum_{k=1}^d \sum_{l \neq k} \left(\frac{\Delta_{ijl}}{h_l}\right)^2\\
++&amp; \sum_{k=1}^d 3 + \sum_{k=1}^d \sum_{l \neq k} 1\Bigg) \prod_{m=1}^d \phi\left(\frac{\Delta_{ijm}}{h_m}\right)\\
+= \frac{1}{n (n - 1) h_1 \ldots h_d}&amp; \sum_{i=1}^n \sum_{j \neq i} \left(\left(\sum_{k=1}^n \left(\frac{\Delta_{ijk}}{h_k}\right)^2\right)^2 - (2d + 4) \sum_{k=1}^d  \left(\frac{\Delta_{ijk}}{h_k}\right)^2 + (d^2 + 2d)\right)\prod_{m=1}^d \phi\left(\frac{\Delta_{ijm}}{h_m}\right).
+\end{aligned}
+$$
+
+Under the assumptions of a Gaussian kernel function and a diagonal bandwidth matrix, we thus finally have the following expression for our error criterion ([[Sain et al., 1994|https://www.tandfonline.com/doi/abs/10.1080/01621459.1994.10476814]])
+$$
+\begin{aligned}
+\hat{\text{AMISE}}&amp;(\underline{\underline{H}})\{\hat{f}(\cdot ; \underline{\underline{H}})\} = \frac{1}{(2\sqrt{\pi})^d n h_1 \ldots h_d} + \frac{1}{4 n (n - 1) h_1 \ldots h_d}\\
+&amp;\times \sum_{i=1}^n \sum_{j \neq i} \left[\left(\sum_{k=1}^n \left(\frac{\Delta_{ijk}}{h_k}\right)^2\right)^2 - (2d + 4) \sum_{k=1}^d  \left(\frac{\Delta_{ijk}}{h_k}\right)^2 + (d^2 + 2d)\right] \prod_{m=1}^d \phi\left(\frac{\Delta_{ijm}}{h_m}\right).
+\end{aligned}
+$$
+
+! Implementation
+
+!! Bandwidth matrix
+
+[[scipy.optimise|https://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html]]
+
+!! KDE
 
 [[KDEpy Python package|https://kdepy.readthedocs.io/en/latest/]] implements various KDEs.</pre>
 </div>
