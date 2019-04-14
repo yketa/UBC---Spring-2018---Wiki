@@ -10104,7 +10104,7 @@ config.macros.bibliography = {
 <div created="20180417231441389" modified="20190408214731345" title="$:/state/toc/TableOfContents-Analysis--81657105">
 <pre>close</pre>
 </div>
-<div created="20180417005847401" modified="20190412231949598" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<div created="20180417005847401" modified="20190414223659787" title="$:/state/toc/TableOfContents-Measurements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180710220316722" modified="20180712224446152" title="$:/state/toc/TableOfContents-Measurements-1351528465">
@@ -11477,7 +11477,7 @@ $$
 &lt;&lt;toc-selective-expandable 'Model'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20190409214437629" modified="20190412231714292" tags="Measurements" title="Multivariate kernel density estimation">
+<div created="20190409214437629" modified="20190414223656624" tags="Measurements" title="Multivariate kernel density estimation">
 <pre>[[Kernel density estimation|https://en.wikipedia.org/wiki/Kernel_density_estimation]] (KDE) is a technique for estimating probability density functions from a data sample and can thus be viewed as a generalisation of histograms. [[Multivariate KDE|https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation]] (MKDE) is the generalisation to multivariate random vectors of its univariate counterpart.
 
 ! MKDE
@@ -11627,8 +11627,23 @@ $$
 = \frac{1}{n (n - 1) h_1 \ldots h_d}&amp; \sum_{i=1}^n \sum_{j \neq i} \Bigg(\sum_{k=1}^d \left(\left(\frac{\Delta_{ijk}}{h_k}\right)^4 + \sum_{l \neq k} \left(\frac{\Delta_{ijk}}{h_k}\right)^2 \left(\frac{\Delta_{ijl}}{h_l}\right)^2\right)\\
 -&amp; 6 \sum_{k=1}^d \left(\frac{\Delta_{ijk}}{h_k}\right)^2 - \sum_{k=1}^d \sum_{l \neq k} \left(\frac{\Delta_{ijk}}{h_k}\right)^2 - \sum_{k=1}^d \sum_{l \neq k} \left(\frac{\Delta_{ijl}}{h_l}\right)^2\\
 +&amp; \sum_{k=1}^d 3 + \sum_{k=1}^d \sum_{l \neq k} 1\Bigg) \prod_{m=1}^d \phi\left(\frac{\Delta_{ijm}}{h_m}\right)\\
-= \frac{1}{n (n - 1) h_1 \ldots h_d}&amp; \sum_{i=1}^n \sum_{j \neq i} \left(\left(\sum_{k=1}^n \left(\frac{\Delta_{ijk}}{h_k}\right)^2\right)^2 - (2d + 4) \sum_{k=1}^d  \left(\frac{\Delta_{ijk}}{h_k}\right)^2 + (d^2 + 2d)\right)\prod_{m=1}^d \phi\left(\frac{\Delta_{ijm}}{h_m}\right).
+= \frac{1}{n (n - 1) h_1 \ldots h_d}&amp; \sum_{i=1}^n \sum_{j \neq i} \left(\left(\sum_{k=1}^d \left(\frac{\Delta_{ijk}}{h_k}\right)^2\right)^2 - (2d + 4) \sum_{k=1}^d  \left(\frac{\Delta_{ijk}}{h_k}\right)^2 + (d^2 + 2d)\right)\prod_{m=1}^d \phi\left(\frac{\Delta_{ijm}}{h_m}\right).
 \end{aligned}
+$$
+We can notice that
+$$
+\begin{aligned}
+\left(\frac{\Delta_{ijk}}{h_k}\right)^2 = \left(\frac{-\Delta_{ijk}}{h_k}\right) = \left(\frac{\Delta_{jik}}{h_k}\right),\\
+\phi\left(\frac{\Delta_{ijm}}{h_m}\right) = \phi\left(\frac{-\Delta_{ijm}}{h_m}\right) = \phi\left(\frac{\Delta_{jim}}{h_m}\right),
+\end{aligned}
+$$
+such that the summation
+$$
+\sum_{i=1}^n \sum_{j \neq i}
+$$
+can be replaced by
+$$
+2 \sum_{i=1}^n \sum_{j &gt; i}.
 $$
 
 !!! Minimisation of the error criterion
@@ -11636,16 +11651,17 @@ $$
 Under the assumptions of a Gaussian kernel function and a diagonal bandwidth matrix, we thus finally have the following expression for our error criterion ([[Sain et al., 1994|https://www.tandfonline.com/doi/abs/10.1080/01621459.1994.10476814]])
 $$
 \begin{aligned}
-\hat{\text{AMISE}}&amp;(\underline{\underline{H}})\{\hat{f}(\cdot ; \underline{\underline{H}})\} = \frac{1}{(2\sqrt{\pi})^d n h_1 \ldots h_d} + \frac{1}{4 n (n - 1) h_1 \ldots h_d}\\
-&amp;\times \sum_{i=1}^n \sum_{j \neq i} \left[\left(\sum_{k=1}^n \left(\frac{\Delta_{ijk}}{h_k}\right)^2\right)^2 - (2d + 4) \sum_{k=1}^d  \left(\frac{\Delta_{ijk}}{h_k}\right)^2 + (d^2 + 2d)\right] \prod_{m=1}^d \phi\left(\frac{\Delta_{ijm}}{h_m}\right).
+\hat{\text{AMISE}}&amp;(\underline{\underline{H}})\{\hat{f}(\cdot ; \underline{\underline{H}})\} = \frac{1}{(2\sqrt{\pi})^d n h_1 \ldots h_d} + \frac{1}{2 n (n - 1) h_1 \ldots h_d}\\
+&amp;\times \sum_{i=1}^n \sum_{j &gt; i} \left[\left(\sum_{k=1}^d \left(\frac{\Delta_{ijk}}{h_k}\right)^2\right)^2 - (2d + 4) \sum_{k=1}^d  \left(\frac{\Delta_{ijk}}{h_k}\right)^2 + (d^2 + 2d)\right] \prod_{m=1}^d \phi\left(\frac{\Delta_{ijm}}{h_m}\right),
 \end{aligned}
 $$
+which has to be minimised with respect to the bandwidths $$(h_1, \ldots, h_d)$$.
 
 Optimisation algorithms (see [[scipy.optimise|https://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html]]) may require the gradient and the Hessian matrix of $$\hat{\text{AMISE}}(\underline{\underline{H}})\{\hat{f}(\cdot ; \underline{\underline{H}})\}$$, we thus have to derive its first derivatives and second cross-derivatives with respect to $$(h_1, \ldots, h_d)$$. As a matter of simplicity, we define the functions
 $$
 \begin{aligned}
 \mathcal{A}(\underline{\underline{H}}) &amp;= \frac{1}{h_1 \ldots h_d},\\
-\mathcal{B}_{ij}(\underline{\underline{H}}) &amp;= \left(\sum_{k=1}^n \left(\frac{\Delta_{ijk}}{h_k}\right)^2\right)^2 - (2d + 4) \sum_{k=1}^d  \left(\frac{\Delta_{ijk}}{h_k}\right)^2 + (d^2 + 2d),\\
+\mathcal{B}_{ij}(\underline{\underline{H}}) &amp;= \left(\sum_{k=1}^d \left(\frac{\Delta_{ijk}}{h_k}\right)^2\right)^2 - (2d + 4) \sum_{k=1}^d  \left(\frac{\Delta_{ijk}}{h_k}\right)^2 + (d^2 + 2d),\\
 \mathcal{C}_{ij}(\underline{\underline{H}}) &amp;= \prod_{m=1}^d \phi\left(\frac{\Delta_{ijm}}{h_m}\right),
 \end{aligned}
 $$
@@ -11653,25 +11669,25 @@ such that
 $$
 \begin{aligned}
 \hat{\text{AMISE}}&amp;(\underline{\underline{H}})\{\hat{f}(\cdot ; \underline{\underline{H}})\} = \frac{1}{(2\sqrt{\pi})^d n} \mathcal{A}(\underline{\underline{H}})\\
-&amp;+ \frac{1}{4 n (n - 1)} \mathcal{A}(\underline{\underline{H}}) \sum_{i=1}^n \sum_{j \neq i} \mathcal{B}_{ij}(\underline{\underline{H}}) \mathcal{C}_{ij}(\underline{\underline{H}}).
+&amp;+ \frac{1}{2 n (n - 1)} \mathcal{A}(\underline{\underline{H}}) \sum_{i=1}^n \sum_{j &gt; i} \mathcal{B}_{ij}(\underline{\underline{H}}) \mathcal{C}_{ij}(\underline{\underline{H}}).
 \end{aligned}
 $$
 We then have
 $$
 \begin{aligned}
 \frac{\partial}{\partial h_p} \hat{\text{AMISE}}&amp;(\underline{\underline{H}})\{\hat{f}(\cdot ; \underline{\underline{H}})\} = \frac{1}{(2\sqrt{\pi})^d n} \frac{\partial \mathcal{A}}{\partial h_p}(\underline{\underline{H}})\\
-&amp;+ \frac{1}{4n(n - 1)} \frac{\partial \mathcal{A}}{\partial h_p}(\underline{\underline{H}}) \sum_{i=1}^n \sum_{j \neq i} \mathcal{B}_{ij}(\underline{\underline{H}}) \mathcal{C}_{ij}(\underline{\underline{H}})\\
-&amp;+ \frac{1}{4n(n - 1)} \mathcal{A}(\underline{\underline{H}}) \sum_{i=1}^n \sum_{j \neq i} \left(\frac{\partial \mathcal{B}_{ij}}{\partial h_p}(\underline{\underline{H}}) \mathcal{C}_{ij}(\underline{\underline{H}}) + \mathcal{B}_{ij}(\underline{\underline{H}}) \frac{\partial \mathcal{C}_{ij}}{\partial h_p}(\underline{\underline{H}})\right),
+&amp;+ \frac{1}{2n(n - 1)} \frac{\partial \mathcal{A}}{\partial h_p}(\underline{\underline{H}}) \sum_{i=1}^n \sum_{j &gt; i} \mathcal{B}_{ij}(\underline{\underline{H}}) \mathcal{C}_{ij}(\underline{\underline{H}})\\
+&amp;+ \frac{1}{2n(n - 1)} \mathcal{A}(\underline{\underline{H}}) \sum_{i=1}^n \sum_{j &gt; i} \left(\frac{\partial \mathcal{B}_{ij}}{\partial h_p}(\underline{\underline{H}}) \mathcal{C}_{ij}(\underline{\underline{H}}) + \mathcal{B}_{ij}(\underline{\underline{H}}) \frac{\partial \mathcal{C}_{ij}}{\partial h_p}(\underline{\underline{H}})\right),
 \end{aligned}
 $$
 and
 $$
 \begin{aligned}
 \frac{\partial^2}{\partial h_p \partial h_q} \hat{\text{AMISE}}&amp;(\underline{\underline{H}})\{\hat{f}(\cdot ; \underline{\underline{H}})\} = \frac{1}{(2\sqrt{\pi})^d n} \frac{\partial^2 \mathcal{A}}{\partial h_p \partial h_q}(\underline{\underline{H}})\\
-&amp;+ \frac{1}{4n(n - 1)} \frac{\partial^2 \mathcal{A}}{\partial h_p \partial h_q}(\underline{\underline{H}}) \sum_{i=1}^n \sum_{j \neq i} \mathcal{B}_{ij}(\underline{\underline{H}}) \mathcal{C}_{ij}(\underline{\underline{H}})\\
-&amp;+ \frac{1}{4n(n - 1)} \frac{\partial \mathcal{A}}{\partial h_p}(\underline{\underline{H}}) \sum_{i=1}^n \sum_{j \neq i} \left(\frac{\partial \mathcal{B}_{ij}}{\partial h_q}(\underline{\underline{H}}) \mathcal{C}_{ij}(\underline{\underline{H}}) + \mathcal{B}_{ij}(\underline{\underline{H}}) \frac{\partial \mathcal{C}_{ij}}{\partial h_q}(\underline{\underline{H}})\right)\\
-&amp;+ \frac{1}{4n(n - 1)} \frac{\partial \mathcal{A}}{\partial h_q}(\underline{\underline{H}}) \sum_{i=1}^n \sum_{j \neq i} \left(\frac{\partial \mathcal{B}_{ij}}{\partial h_p}(\underline{\underline{H}}) \mathcal{C}_{ij}(\underline{\underline{H}}) + \mathcal{B}_{ij}(\underline{\underline{H}}) \frac{\partial \mathcal{C}_{ij}}{\partial h_p}(\underline{\underline{H}})\right)\\
-&amp;+ \frac{1}{4n(n - 1)} \mathcal{A}(\underline{\underline{H}}) \sum_{i=1}^n \sum_{j \neq i} \Bigg(\frac{\partial^2 \mathcal{B}_{ij}}{\partial h_p \partial h_q}(\underline{\underline{H}}) \mathcal{C}_{ij}(\underline{\underline{H}}) + \frac{\partial \mathcal{B}_{ij}}{\partial h_p}(\underline{\underline{H}}) \frac{\partial \mathcal{C}_{ij}}{\partial h_q}(\underline{\underline{H}})\\
+&amp;+ \frac{1}{2n(n - 1)} \frac{\partial^2 \mathcal{A}}{\partial h_p \partial h_q}(\underline{\underline{H}}) \sum_{i=1}^n \sum_{j &gt; i} \mathcal{B}_{ij}(\underline{\underline{H}}) \mathcal{C}_{ij}(\underline{\underline{H}})\\
+&amp;+ \frac{1}{2n(n - 1)} \frac{\partial \mathcal{A}}{\partial h_p}(\underline{\underline{H}}) \sum_{i=1}^n \sum_{j &gt; i} \left(\frac{\partial \mathcal{B}_{ij}}{\partial h_q}(\underline{\underline{H}}) \mathcal{C}_{ij}(\underline{\underline{H}}) + \mathcal{B}_{ij}(\underline{\underline{H}}) \frac{\partial \mathcal{C}_{ij}}{\partial h_q}(\underline{\underline{H}})\right)\\
+&amp;+ \frac{1}{2n(n - 1)} \frac{\partial \mathcal{A}}{\partial h_q}(\underline{\underline{H}}) \sum_{i=1}^n \sum_{j &gt; i} \left(\frac{\partial \mathcal{B}_{ij}}{\partial h_p}(\underline{\underline{H}}) \mathcal{C}_{ij}(\underline{\underline{H}}) + \mathcal{B}_{ij}(\underline{\underline{H}}) \frac{\partial \mathcal{C}_{ij}}{\partial h_p}(\underline{\underline{H}})\right)\\
+&amp;+ \frac{1}{2n(n - 1)} \mathcal{A}(\underline{\underline{H}}) \sum_{i=1}^n \sum_{j &gt; i} \Bigg(\frac{\partial^2 \mathcal{B}_{ij}}{\partial h_p \partial h_q}(\underline{\underline{H}}) \mathcal{C}_{ij}(\underline{\underline{H}}) + \frac{\partial \mathcal{B}_{ij}}{\partial h_p}(\underline{\underline{H}}) \frac{\partial \mathcal{C}_{ij}}{\partial h_q}(\underline{\underline{H}})\\
 &amp;\qquad+ \frac{\partial \mathcal{B}_{ij}}{\partial h_q}(\underline{\underline{H}}) \frac{\partial \mathcal{C}_{ij}}{\partial h_p}(\underline{\underline{H}}) + \mathcal{B}_{ij}(\underline{\underline{H}})\frac{\partial^2 \mathcal{C}_{ij}}{\partial h_p \partial h_q}(\underline{\underline{H}})\Bigg),
 \end{aligned}
 $$
@@ -11693,6 +11709,14 @@ $$
 !! Bandwidth matrix
 
 [[scipy.optimise|https://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html]] Trust-Region Constrained Algorithm
+
+As an initial guess for the bandwidths, we use [[Silverman's rule of thumb|https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation#Rule_of_thumb]]
+$$
+h_i = \left(\frac{4}{d + 2}\right)^{\frac{1}{d + 4}} n^{\frac{-1}{d + 4}} \sigma_i,
+$$
+where $$\sigma_i$$ is the standard deviation of $$(X_{1, i}, \ldots, X_{n, i})$$.
+
+Computation time of AMISE is quadratic in $$n$$, we thus use a C — rather than Python — library to speed up calculations.
 
 !! KDE
 
