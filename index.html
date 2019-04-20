@@ -10104,7 +10104,7 @@ config.macros.bibliography = {
 <div created="20180417231441389" modified="20190408214731345" title="$:/state/toc/TableOfContents-Analysis--81657105">
 <pre>close</pre>
 </div>
-<div created="20180417005847401" modified="20190414223659787" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<div created="20180417005847401" modified="20190420213303101" title="$:/state/toc/TableOfContents-Measurements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180710220316722" modified="20180712224446152" title="$:/state/toc/TableOfContents-Measurements-1351528465">
@@ -11477,7 +11477,7 @@ $$
 &lt;&lt;toc-selective-expandable 'Model'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20190409214437629" modified="20190414223656624" tags="Measurements" title="Multivariate kernel density estimation">
+<div created="20190409214437629" modified="20190420213226926" tags="Measurements" title="Multivariate kernel density estimation">
 <pre>[[Kernel density estimation|https://en.wikipedia.org/wiki/Kernel_density_estimation]] (KDE) is a technique for estimating probability density functions from a data sample and can thus be viewed as a generalisation of histograms. [[Multivariate KDE|https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation]] (MKDE) is the generalisation to multivariate random vectors of its univariate counterpart.
 
 ! MKDE
@@ -11708,7 +11708,9 @@ $$
 
 !! Bandwidth matrix
 
-[[scipy.optimise|https://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html]] Trust-Region Constrained Algorithm
+!!! Implementation of AMISE minimisation
+
+Computation time of AMISE is quadratic in $$n$$, we thus use a C library — rather than Python — to speed up calculations.
 
 As an initial guess for the bandwidths, we use [[Silverman's rule of thumb|https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation#Rule_of_thumb]]
 $$
@@ -11716,11 +11718,19 @@ h_i = \left(\frac{4}{d + 2}\right)^{\frac{1}{d + 4}} n^{\frac{-1}{d + 4}} \sigma
 $$
 where $$\sigma_i$$ is the standard deviation of $$(X_{1, i}, \ldots, X_{n, i})$$.
 
-Computation time of AMISE is quadratic in $$n$$, we thus use a C — rather than Python — library to speed up calculations.
+We use methods of [[scipy.optimise|https://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html]] to minimise AMISE with respect to the bandwidths.
 
-!! KDE
+!!! ~StatsModels
 
-[[KDEpy Python package|https://kdepy.readthedocs.io/en/latest/]] implements various KDEs.</pre>
+Since the computation time of the previous method is still quite high, we also implemented methods of the [[KDEMultivariate|https://www.statsmodels.org/stable/generated/statsmodels.nonparametric.kernel_density.KDEMultivariate.html]] class of the [[StatsModels|https://www.statsmodels.org/stable/index.html]] package.
+
+We do not have all the relevant theoretical information to confirm this implementation of the [[bandwidths optimisation|https://github.com/statsmodels/statsmodels/blob/master/statsmodels/nonparametric/_kernel_base.py]] would be better than another — especially the one we have described. Nonetheless we note that some references are given [[here|https://github.com/statsmodels/statsmodels/blob/master/statsmodels/nonparametric/kernel_density.py]].
+
+!! Probability density function
+
+We make use of the [[pdf method|https://www.statsmodels.org/stable/generated/statsmodels.nonparametric.kernel_density.KDEMultivariate.pdf.html]] of the KDEMulivariate class of ~StatsModels to compute the estimated probability density function.
+
+&lt;&lt;compuscript path:'mkde.py'&gt;&gt;</pre>
 </div>
 <div created="20190204003410285" modified="20190409215849089" tags="Measurements" title="Mutual information between displacements">
 <pre>We have defined [[displacement correlations|Displacement correlations]] as a [[Pearson correlation coefficient|https://en.wikipedia.org/wiki/Pearson_correlation_coefficient]] between the displacements over a lag time $$\Delta t$$ of particles separated by $$\Delta\vec{r}$$ . This correlation is a simple measure of the linear relationship between these displacements. This measure might be ineffective to quantify cooperative behaviours such as swirling swarms in which displacements of neighbouring particles are close to orthogonal with each other and might thus lessen the correlation despite being a typical example of coherently moving particles.
