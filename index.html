@@ -222,6 +222,8 @@ Error message and password prompt
 
 <li>$:/state/toc/TableOfContents/Measurements-Cooperativity--81657105</li>
 
+<li>$:/state/toc/TableOfContents/Measurements-Density estimation--81657105</li>
+
 <li>$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105</li>
 
 <li>$:/state/toc/TableOfContents/Measurements-Shear strain and vorticity fields--81657105</li>
@@ -448,6 +450,8 @@ Error message and password prompt
 
 <li>Cooperativity</li>
 
+<li>Density estimation</li>
+
 <li>Discrete field auto-correlation</li>
 
 <li>Displacement correlations</li>
@@ -497,6 +501,8 @@ Error message and password prompt
 <li>Project</li>
 
 <li>Report</li>
+
+<li>Self-consistent density estimation</li>
 
 <li>Shear strain and vorticity fields</li>
 
@@ -10104,7 +10110,7 @@ config.macros.bibliography = {
 <div created="20180417231441389" modified="20190408214731345" title="$:/state/toc/TableOfContents-Analysis--81657105">
 <pre>close</pre>
 </div>
-<div created="20180417005847401" modified="20190420213303101" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<div created="20180417005847401" modified="20190511133540920" title="$:/state/toc/TableOfContents-Measurements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180710220316722" modified="20180712224446152" title="$:/state/toc/TableOfContents-Measurements-1351528465">
@@ -10124,6 +10130,9 @@ config.macros.bibliography = {
 </div>
 <div created="20180417010842396" modified="20180417010842396" title="$:/state/toc/TableOfContents/Measurements-Cooperativity--81657105">
 <pre>open</pre>
+</div>
+<div created="20190428212902404" modified="20190511133539878" title="$:/state/toc/TableOfContents/Measurements-Density estimation--81657105">
+<pre>close</pre>
 </div>
 <div created="20180417013345743" modified="20181103180557513" title="$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105">
 <pre>close</pre>
@@ -10853,7 +10862,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20180620032354454" modified="20180620032356781" title="$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary">
 <pre>bibtex</pre>
 </div>
-<div created="20180416033117939" modified="20190409223116162" title="$:/temp/search">
+<div created="20180416033117939" modified="20190501223215963" title="$:/temp/search">
 <pre></pre>
 </div>
 <div created="20180620031722320" modified="20180620031722320" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.15/index.html" url="https://tiddlywiki.com/library/v5.1.15/index.html">
@@ -11132,6 +11141,12 @@ According to the authors of the aforementionned paper, $$\chi$$ can be interpret
 &lt;div class=&quot;tc-table-of-contents&quot;&gt;
 &lt;&lt;toc-selective-expandable 'Cooperativity'&gt;&gt;
 &lt;/div&gt;</pre>
+</div>
+<div created="20190428212249778" modified="20190428215807648" tags="Measurements" title="Density estimation">
+<pre>Density estimation aims at estimating the underlying distribution from a discrete data sample.
+
+* [[Multivariate kernel density estimation]] (MKDE) is a non-parametric method for which we need to define a kernel and a kernel bandwidth. The optimal choice of the latter is the more decisive and is a non-trivial problem which is computationally very demanding.
+* [[Self-consistent density estimation]] estimates a density in a self-consistent way from a finite sample. While this method is //a priori// not guaranteed to converge, it has a way better performande than MKDE for large data sets.</pre>
 </div>
 <div created="20180417005545385" modified="20180625231531454" tags="Measurements" title="Discrete field auto-correlation">
 <pre>Let $$\vec{v}(\vec{r})$$ be a vector — or scalar — field with $$\vec{r} \in \mathbb{R}^2$$, then we define its auto-correlation function as
@@ -11477,8 +11492,10 @@ $$
 &lt;&lt;toc-selective-expandable 'Model'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20190409214437629" modified="20190420213226926" tags="Measurements" title="Multivariate kernel density estimation">
-<pre>[[Kernel density estimation|https://en.wikipedia.org/wiki/Kernel_density_estimation]] (KDE) is a technique for estimating probability density functions from a data sample and can thus be viewed as a generalisation of histograms. [[Multivariate KDE|https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation]] (MKDE) is the generalisation to multivariate random vectors of its univariate counterpart.
+<div created="20190409214437629" modified="20190428232254880" tags="[[Density estimation]]" title="Multivariate kernel density estimation">
+<pre>[[Kernel density estimation|https://en.wikipedia.org/wiki/Kernel_density_estimation]] (KDE) is a technique for estimating a continuous probability density functions from a discrete data sample. [[Multivariate KDE|https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation]] (MKDE) is the generalisation to multivariate random vectors of its univariate counterpart.
+
+This method is non-parametric since it does not rely on any assumption about the form of the underlying distribution.
 
 ! MKDE
 
@@ -11503,7 +11520,7 @@ We stress that the choice of the bandwidth matrix $$\underline{\underline{H}}$$ 
 
 !! Optimal bandwidth matrix selection
 
-!!! General derivation
+!!! Biased cross-validation method
 
 We wish to choose $$\underline{\underline{H}}$$ so that it minimises the [[mean integrated squared error|https://en.wikipedia.org/wiki/Mean_integrated_squared_error]]  (MISE) given by
 $$
@@ -11720,6 +11737,8 @@ where $$\sigma_i$$ is the standard deviation of $$(X_{1, i}, \ldots, X_{n, i})$$
 
 We use methods of [[scipy.optimise|https://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html]] to minimise AMISE with respect to the bandwidths.
 
+We stress that the minimum of AMISE to be found could be a particular local minimum and not a global one.
+
 !!! ~StatsModels
 
 Since the computation time of the previous method is still quite high, we also implemented methods of the [[KDEMultivariate|https://www.statsmodels.org/stable/generated/statsmodels.nonparametric.kernel_density.KDEMultivariate.html]] class of the [[StatsModels|https://www.statsmodels.org/stable/index.html]] package.
@@ -11730,9 +11749,11 @@ We do not have all the relevant theoretical information to confirm this implemen
 
 We make use of the [[pdf method|https://www.statsmodels.org/stable/generated/statsmodels.nonparametric.kernel_density.KDEMultivariate.pdf.html]] of the KDEMulivariate class of ~StatsModels to compute the estimated probability density function.
 
+Computation via the [[FFTKDE class|https://github.com/tommyod/KDEpy/blob/master/KDEpy/FFTKDE.py]] is also possible and seems to be way faster, however probability density functions computed this way seem not to be normalised for multivariate variables which raises concerns over the exact output of this method.
+
 &lt;&lt;compuscript path:'mkde.py'&gt;&gt;</pre>
 </div>
-<div created="20190204003410285" modified="20190409215849089" tags="Measurements" title="Mutual information between displacements">
+<div created="20190204003410285" modified="20190428221455246" tags="Measurements" title="Mutual information between displacements">
 <pre>We have defined [[displacement correlations|Displacement correlations]] as a [[Pearson correlation coefficient|https://en.wikipedia.org/wiki/Pearson_correlation_coefficient]] between the displacements over a lag time $$\Delta t$$ of particles separated by $$\Delta\vec{r}$$ . This correlation is a simple measure of the linear relationship between these displacements. This measure might be ineffective to quantify cooperative behaviours such as swirling swarms in which displacements of neighbouring particles are close to orthogonal with each other and might thus lessen the correlation despite being a typical example of coherently moving particles.
 
 ! Mutual information
@@ -11911,7 +11932,7 @@ $$
 
 ! Implementation
 
-Probability density functions $$P^{(1)}_{t, t + \Delta t}(\vec{u})$$ and $$P^{(2)}_{t, t + \Delta t}(\vec{u}_1, \vec{u}_2, \Delta\vec{r})$$ can be approximated with [[multivariate kernel density estimations|Multivariate kernel density estimation]].</pre>
+Probability density functions $$P^{(1)}_{t, t + \Delta t}(\vec{u})$$ and $$P^{(2)}_{t, t + \Delta t}(\vec{u}_1, \vec{u}_2, \Delta\vec{r})$$ have to be [[estimated|Density estimation]].</pre>
 </div>
 <div created="20180626015736848" modified="20180626031313023" tags="Measurements" title="Neighbours grids">
 <pre>In order to speed up calculations, we implement neighbours grids to access more rapidly neighbouring particles of a given point in space, //i.e.// without looping through all particles.
@@ -12270,7 +12291,7 @@ As in the [[lower density case|phi = 0.80, v = 1e-2]], this last plot seems to i
 &lt;&lt;toc-selective-expandable 'Presentations'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20180619220822377" modified="20190420213640833" tags="TableOfContents" title="Project">
+<div created="20180619220822377" modified="20190504160551602" tags="TableOfContents" title="Project">
 <pre>&lt;div style=&quot;font-size:0.7em;text-align:center;margin-top:3em;margin-bottom:3em;&quot;&gt;
 [img [Images/header.png]] 
 &lt;/div&gt;
@@ -12297,20 +12318,37 @@ This project focuses on a model system of polydisperse active Brownian disks wit
 
 ---
 
-''Associated publication''
+!!! ''Associated publication''
 
 &quot;Cooperative motion and shear strain correlations in dense 2D systems of self-propelled soft disks&quot;, Yann-Edwin Keta and Jörg Rottler, //EPL//, ''125'' (2019) 58004. ([[doi: 10.1209/0295-5075/125/58004|https://doi.org/10.1209/0295-5075/125/58004]])
 
 ---
 
-''Contents''
+!!! ''Contents''
 
 &lt;div class=&quot;tc-table-of-contents&quot;&gt;
 &lt;&lt;toc-selective-expandable 'TableOfContents'&gt;&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;
+
+---
+
+!!! ''License''
+
+This work is made available under the terms of the [[Creative Commons Attribution 4.0 International|https://creativecommons.org/licenses/by/4.0/]] license. You are free to copy and redistribute this work in any medium or format, as well as to remix, transform, and build upon it for any purpose, as long as you give appropriate credit, provide a link to [[this license|https://raw.githubusercontent.com/yketa/UBC_2018_Wiki/master/LICENSE]], and indicate if changes were made.
+
+ &lt;div style=&quot;text-align:right;&quot;&gt;[img width=100 [Images/cc-by.png]]&lt;/div&gt;</pre>
 </div>
 <div _canonical_uri="report/report.pdf" created="20180825154934630" modified="20180825155009131" tags="TableOfContents" title="Report" type="application/pdf">
 <pre></pre>
+</div>
+<div created="20190428213420474" modified="20190428221654162" tags="[[Density estimation]]" title="Self-consistent density estimation">
+<pre>! Principle
+
+([[Bernacchia and Pigolotti, 2011|https://rss.onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9868.2011.00772.x]], [[O'Brien et al., 2014|https://www.sciencedirect.com/science/article/pii/S016794731400173X]], [[O'Brien et al., 2016|https://www.sciencedirect.com/science/article/pii/S0167947316300408]])
+
+! Implementation
+
+([[fastKDE|https://bitbucket.org/lbl-cascade/fastkde]])</pre>
 </div>
 <div created="20180424224046740" modified="20180719220913068" tags="Measurements" title="Shear strain and vorticity fields">
 <pre>!!! Strain tensor
