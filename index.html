@@ -140,8 +140,6 @@ Error message and password prompt
 
 <li>$:/DefaultTiddlers</li>
 
-<li>$:/Import</li>
-
 <li>$:/isEncrypted</li>
 
 <li>$:/plugins/BibTexPlugin</li>
@@ -9328,11 +9326,6 @@ As we have seen for displacement correlations and their cooperativities (see [[p
 <div created="20180416014849184" modified="20180619223605027" title="$:/DefaultTiddlers">
 <pre>Project</pre>
 </div>
-<div status="complete" title="$:/Import">
-<pre>The following tiddlers were imported:
-
-# [[presentation.pdf]]</pre>
-</div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
 </div>
@@ -10110,7 +10103,7 @@ config.macros.bibliography = {
 <div created="20180417231441389" modified="20190408214731345" title="$:/state/toc/TableOfContents-Analysis--81657105">
 <pre>close</pre>
 </div>
-<div created="20180417005847401" modified="20190511133540920" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<div created="20180417005847401" modified="20190519161606665" title="$:/state/toc/TableOfContents-Measurements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180710220316722" modified="20180712224446152" title="$:/state/toc/TableOfContents-Measurements-1351528465">
@@ -10131,7 +10124,7 @@ config.macros.bibliography = {
 <div created="20180417010842396" modified="20180417010842396" title="$:/state/toc/TableOfContents/Measurements-Cooperativity--81657105">
 <pre>open</pre>
 </div>
-<div created="20190428212902404" modified="20190511133539878" title="$:/state/toc/TableOfContents/Measurements-Density estimation--81657105">
+<div created="20190428212902404" modified="20190519161605236" title="$:/state/toc/TableOfContents/Measurements-Density estimation--81657105">
 <pre>close</pre>
 </div>
 <div created="20180417013345743" modified="20181103180557513" title="$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105">
@@ -10174,7 +10167,7 @@ config.macros.bibliography = {
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;file:///Users/yketa/Cours/ENS/M2/Stage/UBC/Wiki/index.html&quot;
+            &quot;text&quot;: &quot;file:///home/yketa/Research/UBC/Wiki/index.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
@@ -10194,7 +10187,7 @@ config.macros.bibliography = {
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/Users/yketa/Cours/ENS/M2/Stage/UBC/Wiki/index.html&quot;
+            &quot;text&quot;: &quot;/home/yketa/Research/UBC/Wiki/index.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -10862,7 +10855,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20180620032354454" modified="20180620032356781" title="$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary">
 <pre>bibtex</pre>
 </div>
-<div created="20180416033117939" modified="20190501223215963" title="$:/temp/search">
+<div created="20180416033117939" modified="20190518211253114" title="$:/temp/search">
 <pre></pre>
 </div>
 <div created="20180620031722320" modified="20180620031722320" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.15/index.html" url="https://tiddlywiki.com/library/v5.1.15/index.html">
@@ -11142,8 +11135,8 @@ According to the authors of the aforementionned paper, $$\chi$$ can be interpret
 &lt;&lt;toc-selective-expandable 'Cooperativity'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20190428212249778" modified="20190428215807648" tags="Measurements" title="Density estimation">
-<pre>Density estimation aims at estimating the underlying distribution from a discrete data sample.
+<div created="20190428212249778" modified="20190518181012638" tags="Measurements" title="Density estimation">
+<pre>Density estimation aims at estimating from a discrete data sample the underlying distribution.
 
 * [[Multivariate kernel density estimation]] (MKDE) is a non-parametric method for which we need to define a kernel and a kernel bandwidth. The optimal choice of the latter is the more decisive and is a non-trivial problem which is computationally very demanding.
 * [[Self-consistent density estimation]] estimates a density in a self-consistent way from a finite sample. While this method is //a priori// not guaranteed to converge, it has a way better performande than MKDE for large data sets.</pre>
@@ -11492,7 +11485,7 @@ $$
 &lt;&lt;toc-selective-expandable 'Model'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20190409214437629" modified="20190428232254880" tags="[[Density estimation]]" title="Multivariate kernel density estimation">
+<div created="20190409214437629" modified="20190518181833982" tags="[[Density estimation]]" title="Multivariate kernel density estimation">
 <pre>[[Kernel density estimation|https://en.wikipedia.org/wiki/Kernel_density_estimation]] (KDE) is a technique for estimating a continuous probability density functions from a discrete data sample. [[Multivariate KDE|https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation]] (MKDE) is the generalisation to multivariate random vectors of its univariate counterpart.
 
 This method is non-parametric since it does not rely on any assumption about the form of the underlying distribution.
@@ -11753,7 +11746,7 @@ Computation via the [[FFTKDE class|https://github.com/tommyod/KDEpy/blob/master/
 
 &lt;&lt;compuscript path:'mkde.py'&gt;&gt;</pre>
 </div>
-<div created="20190204003410285" modified="20190428221455246" tags="Measurements" title="Mutual information between displacements">
+<div created="20190204003410285" modified="20190519161548052" tags="Measurements" title="Mutual information between displacements">
 <pre>We have defined [[displacement correlations|Displacement correlations]] as a [[Pearson correlation coefficient|https://en.wikipedia.org/wiki/Pearson_correlation_coefficient]] between the displacements over a lag time $$\Delta t$$ of particles separated by $$\Delta\vec{r}$$ . This correlation is a simple measure of the linear relationship between these displacements. This measure might be ineffective to quantify cooperative behaviours such as swirling swarms in which displacements of neighbouring particles are close to orthogonal with each other and might thus lessen the correlation despite being a typical example of coherently moving particles.
 
 ! Mutual information
@@ -11911,6 +11904,8 @@ Therefore, in the hypothesis of ergodicity in space, we can infer the probabilit
 
 ! Mutual information between displacements
 
+!! Displacements
+
 We have now introduced the necessary notations and assumptions to define the mutual information $$\mathcal{I}_{t, t + \Delta t}(\Delta \vec{r})$$ between displacements between times $$t$$ and $$t + \Delta t$$ for particles separated by $$\Delta \vec{r}$$ in our system
 $$
 \begin{aligned}
@@ -11930,9 +11925,52 @@ $$
 C_{uu, MI}(\Delta \vec{r}, \Delta t) = \frac{\int \text{d}t \, \mathcal{I}_{t, t + \Delta t}(\Delta \vec{r})}{\int \text{d}t \, \mathcal{H}_{t, t + \Delta t}(\Delta \vec{r})}.
 $$
 
+!! Displacement directions
+
+We have that the probability density function $$P^{(2)}_{t, t + \Delta t}(\vec{u}_1, \vec{u}_2, \Delta\vec{r})$$ is quadrivariate. It may thus be excessively time-consuming to compute.
+
+We can bring down the number of variables by only considering the field of the directions of displacements between times $$t$$ and $$t + \Delta t$$, represented by the angles
+$$
+\theta(\vec{r}, t, t + \Delta t) \in [-\pi; \pi],
+$$
+and which can be seen as a sample function of a stochastic process
+$$
+\Theta_{t, t + \Delta t}(\vec{r}),
+$$
+where $$\vec{r}$$ is constained in a square box of dimensions $$L \times L$$.
+
+With the same hypotheses as before, we define for $$\Theta_{t, t + \Delta t}(\vec{r})$$ the following marginal probability density function
+$$
+\hat{P}^{(1)}_{t, t + \Delta t}(\cdot) : [-\pi; \pi] \rightarrow [0; 1]
+$$
+which does not depend on $$\vec{r}$$ due to stationarity, and the following joint probability density function
+$$
+\hat{P}^{(2)}_{t, t + \Delta t}(\cdot, \cdot, \Delta\vec{r}) : [-\pi; \pi] \times [-\pi; \pi] \rightarrow [0; 1]
+$$
+which is a function of the sole separation $$\Delta \vec{r}$$ between the points considered in space due to stationarity.
+
+We define the mutual information $$\hat{\mathcal{I}}_{t, t + \Delta t}(\Delta \vec{r})$$ between directions of displacement between times $$t$$ and $$t + \Delta t$$ for particles separated by $$\Delta \vec{r}$$ in our system
+$$
+\begin{aligned}
+\hat{\mathcal{I}}_{t, t + \Delta t}(\Delta \vec{r}) &amp;= I(\Theta_{t, t + \Delta t}(\vec{r}), \Theta_{t, t + \Delta t}(\vec{r} + \Delta \vec{r}))\\
+&amp;= \int_{-\pi}^{\pi} \text{d}\theta_1 \int_{-\pi}^{\pi} \text{d}\theta_2 \, \hat{P}^{(2)}_{t, t + \Delta t}(\theta_1, \theta_2, \Delta \vec{r}) \, \log\left(\frac{\hat{P}^{(2)}_{t, t + \Delta t}(\theta_1, \theta_2, \Delta \vec{r})}{\hat{P}^{(1)}_{t, t + \Delta t}(\theta_1) \, \hat{P}^{(1)}_{t, t + \Delta t}(\theta_2)}\right),
+\end{aligned}
+$$
+and the entropy of the joint distribution of displacements
+$$
+\begin{aligned}
+\hat{\mathcal{H}}_{t, t + \Delta t}(\Delta \vec{r}) &amp;= H(\Theta_{t, t + \Delta t}(\vec{r}), \Theta_{t, t + \Delta t}(\vec{r} + \Delta \vec{r}))\\
+&amp;= \int_{-\pi}^{\pi} \text{d}\theta_1 \int_{-\pi}^{\pi} \text{d}\theta_2 \, \hat{P}^{(2)}_{t, t + \Delta t}(\theta_1, \theta_2, \Delta \vec{r}) \, \log\left(\hat{P}^{(2)}_{t, t + \Delta t}(\theta_1, \theta_2, \Delta \vec{r})\right),
+\end{aligned}
+$$
+such that we define the direction of displacement correlation function as
+$$
+C_{\hat{u}\hat{u}, MI}(\Delta \vec{r}, \Delta t) = \frac{\int \text{d}t \, \hat{\mathcal{I}}_{t, t + \Delta t}(\Delta \vec{r})}{\int \text{d}t \, \hat{\mathcal{H}}_{t, t + \Delta t}(\Delta \vec{r})}.
+$$
+
 ! Implementation
 
-Probability density functions $$P^{(1)}_{t, t + \Delta t}(\vec{u})$$ and $$P^{(2)}_{t, t + \Delta t}(\vec{u}_1, \vec{u}_2, \Delta\vec{r})$$ have to be [[estimated|Density estimation]].</pre>
+Probability density functions have to be [[estimated|Density estimation]].</pre>
 </div>
 <div created="20180626015736848" modified="20180626031313023" tags="Measurements" title="Neighbours grids">
 <pre>In order to speed up calculations, we implement neighbours grids to access more rapidly neighbouring particles of a given point in space, //i.e.// without looping through all particles.
@@ -12341,14 +12379,318 @@ This work is made available under the terms of the [[Creative Commons Attributio
 <div _canonical_uri="report/report.pdf" created="20180825154934630" modified="20180825155009131" tags="TableOfContents" title="Report" type="application/pdf">
 <pre></pre>
 </div>
-<div created="20190428213420474" modified="20190428221654162" tags="[[Density estimation]]" title="Self-consistent density estimation">
-<pre>! Principle
+<div created="20190428213420474" modified="20190519151501376" tags="[[Density estimation]]" title="Self-consistent density estimation">
+<pre>Self-consistent density estimation was introduced by Bernacchia and Pigolotti ([[Bernacchia and Pigolotti, 2011|https://rss.onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9868.2011.00772.x]]) for distributions defined on $$\mathbb{R}$$ and augmented by O'Brien //et al.// ([[O'Brien et al., 2016|https://www.sciencedirect.com/science/article/pii/S0167947316300408]]) to consider distributions of arbitrary dimensions.
 
-([[Bernacchia and Pigolotti, 2011|https://rss.onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9868.2011.00772.x]], [[O'Brien et al., 2014|https://www.sciencedirect.com/science/article/pii/S016794731400173X]], [[O'Brien et al., 2016|https://www.sciencedirect.com/science/article/pii/S0167947316300408]])
+This method is non-parametric since it does not rely on any assumption about the form of the underlying distribution.
+
+! Principle
+
+!! Distributions on $$\mathbb{R}^d$$
+
+!!! Density estimator and error criterion
+
+Let $$(\underline{X}_1, \ldots, \underline{X}_n)$$ be a random sample of an $$\mathbb{R}^d$$-valued random vector with probability density function $$f$$. We wish to estimate this density function from the random sample.
+
+As for [[MKDE|Multivariate kernel density estimation]], we will estimate the unknown probability density function $$f$$ with a kernel density estimator
+$$
+\begin{aligned}
+\hat{f}(\underline{x}) &amp;= \frac{1}{n} \sum_{i=1}^n K(\underline{x} - \underline{X_i})\\
+&amp;= \int_{\mathbb{R}^d} \text{d}^d\underline{x}^{\prime} \, K(\underline{x}^{\prime}) \, \frac{1}{n} \sum_{i=1}^n \delta(\underline{x} - \underline{X}_i - \underline{x}^{\prime})\\
+&amp;= \int_{\mathbb{R}^d} \text{d}^d\underline{x}^{\prime} \, K(\underline{x}^{\prime}) \, D(\underline{x} - \underline{x}^{\prime}),
+\end{aligned}
+$$
+where $$K$$ is a normalised $$d$$-variate kernel function
+$$
+\int_{\mathbb{R}^d} \text{d}^d\underline{x} \, K(\underline{x}) = 1,
+$$
+and
+$$
+D(\underline{x} - \underline{x}^{\prime}) = \frac{1}{n} \sum_{i=1}^n \delta(\underline{x} - \underline{X}_i - \underline{x}^{\prime}).
+$$
+We wish to choose $$K$$ so that it minimises the [[mean integrated squared error|https://en.wikipedia.org/wiki/Mean_integrated_squared_error]]  (MISE) given by
+$$
+\text{MISE}\{\hat{f}\} = \mathbb{E}\left(\int_{\mathbb{R}^d} \text{d}^d\underline{x} \, (\hat{f}(\underline{x}) - f(\underline{x}))^2\right),
+$$
+where
+$$
+\mathbb{E} : g \mapsto \int_{\mathbb{R}^{nd}} \text{d}^d\underline{X}_1 \ldots \text{d}^d\underline{X}_n \, f(\underline{X}_1) \ldots f(\underline{X}_n) \, g(\underline{X}_1, \ldots, \underline{X}_n)
+$$
+denotes the expected value with respect to the sample $$(\underline{X}_1, \ldots, \underline{X}_n)$$.
+
+We note that $$f$$ and $$\hat{f}$$ are normalised on $$\mathbb{R}^d$$, //i.e.//
+$$
+\begin{aligned}
+\int_{\mathbb{R}^d} \text{d}^d\underline{x} \, f(\underline{x}) &amp;= 1,\\
+\int_{\mathbb{R}^d} \text{d}^d\underline{x} \, \hat{f}(\underline{x}) &amp;= 1.
+\end{aligned}
+$$
+
+!!! Minimisation of the error criterion
+
+We define the Fourier transform $$\mathcal{F}$$ of function $$g$$ as
+$$
+\mathcal{F}\{g\}(\underline{k}) = \int_{\mathbb{R}^d} \text{d}^d\underline{x} \, g(\underline{x}) \, e^{-\text{i} \underline{k} \cdot \underline{x}},
+$$
+such that
+$$
+g(\underline{x}) = \frac{1}{(2\pi)^d} \int_{\mathbb{R}^d} \text{d}^d\underline{k} \, \mathcal{F}\{g\}(\underline{k}) \, e^{\text{i} \underline{k} \cdot \underline{x}},
+$$
+and that the convolution theorem gives
+$$
+\mathcal{F}\{g \ast h\}(\underline{k}) = \mathcal{F}\{g\}(\underline{k}) \times \mathcal{F}\{h\}(\underline{k}).
+$$
+We will denote
+$$
+\begin{aligned}
+\Phi(\underline{k}) &amp;= \mathcal{F}\{f\}(\underline{k}),\\
+\hat{\Phi}(\underline{k}) &amp;= \mathcal{F}\{\hat{f}\}(\underline{k}) = \kappa(\underline{k}) \Delta(\underline{k}),
+\end{aligned}
+$$
+where $$\kappa = \mathcal{F}\{K\}$$, and
+$$
+\Delta(\underline{k}) = \mathcal{F}\{D\}(\underline{k}) =  \frac{1}{n} \sum_{i=1}^n e^{-\text{i} \underline{k} \cdot \underline{X}_i}
+$$
+is the empirical characteristic function.
+
+With [[Parseval's theorem|http://wwwf.imperial.ac.uk/~jdg/eeft3.pdf]], we can rewrite our error criterion
+$$
+\begin{aligned}
+\text{MISE}&amp;\{\hat{f}\} = \mathbb{E}\left(\int_{\mathbb{R}^d} \text{d}^d\underline{x} \, (\hat{f}(\underline{x}) - f(\underline{x}))^2\right) = \frac{1}{(2\pi)^d} \mathbb{E}\left(\int_{\mathbb{R}^d} \text{d}^d\underline{k} \, |\hat{\Phi}(\underline{k}) - \Phi(\underline{k})|^2\right)\\
+&amp;= \frac{1}{(2\pi)^d} \int_{\mathbb{R}^d} \text{d}^d\underline{k} \, \left(\mathbb{E}(|\hat{\Phi}(\underline{k})|^2) + \mathbb{E}(|\Phi(\underline{k})|^2) - \mathbb{E}(\hat{\Phi}(\underline{k})^*\Phi(\underline{k})) - \mathbb{E}(\hat{\Phi}(\underline{k})\Phi(\underline{k})^*)\right).
+\end{aligned}
+$$
+We have that $$\Phi(\underline{k})$$ does not depend on the $$\{\underline{X}_i\}$$ such that
+$$
+\mathbb{E}(|\Phi(\underline{k})|^2) = |\Phi(\underline{k})|^2,
+$$
+and $$\hat{\Phi}(\underline{k}) = \kappa(\underline{k}) \Delta(\underline{k})$$ where $$\kappa(\underline{k})$$ does not depend on the $$\{\underline{X}_i\}$$ such that
+$$
+\mathbb{E}(|\hat{\Phi}(\underline{k})|^2) = |\kappa(\underline{k})|^2 \mathbb{E}(|\Delta(\underline{k})|^2).
+$$
+We can note that
+$$
+\begin{aligned}
+|\Delta(\underline{k})|^2 &amp;= \Delta(\underline{k}) \Delta(\underline{k})^*\\
+&amp;= \frac{1}{n^2} \left(\sum_{i=1} e^{-\text{i} \underline{k} \cdot \underline{X}_i}\right) \left(\sum_{i=1} e^{\text{i} \underline{k} \cdot \underline{X}_j}\right)\\
+&amp;= \frac{1}{n^2} \left(n + \sum_{i=1}^n \sum_{j \neq i} e^{-\text{i} \underline{k} \cdot \underline{X}_i} e^{\text{i} \underline{k} \cdot \underline{X}_j}\right),
+\end{aligned}
+$$
+such that
+$$
+\begin{aligned}
+\mathbb{E}(|\Delta(\underline{k})|^2) &amp;= \int_{\mathbb{R}^{nd}} \text{d}^d\underline{X}_1 \ldots \text{d}^d\underline{X}_n \, f(\underline{X}_1) \ldots f(\underline{X}_n) \, |\Delta(\underline{k})|^2\\
+&amp;= \frac{1}{n} + \frac{1}{n^2} \sum_{i=1}^n \sum_{j \neq i} \left(\int_{\mathbb{R}^d} \text{d}^d\underline{X}_i \, f(\underline{X}_i) \, e^{-\text{i} \underline{k} \cdot \underline{X}_i}\right) \, \left(\int_{\mathbb{R}^d} \text{d}^d\underline{X}_j \, f(\underline{X}_j) \, e^{\text{i} \underline{k} \cdot \underline{X}_j}\right)\\
+&amp;\qquad \times \left(\prod_{k \neq i, j} \int_{\mathbb{R}^d} \text{d}^d\underline{X}_k \, f(\underline{X}_k)\right)\\
+&amp;= \frac{1}{n} + \frac{1}{n^2} \sum_{i=1}^n \sum_{j \neq i} \Phi(\underline{k}) \Phi(\underline{k})^*\\
+&amp;= \frac{1}{n} + \frac{1}{n^2} n (n - 1) |\Phi(\underline{k})|^2\\
+&amp;= |\Phi(\underline{k})|^2 + \frac{1}{n}\left(1 - |\Phi(\underline{k})|^2\right).
+\end{aligned}
+$$
+Moreover, we have
+$$
+\begin{aligned}
+\mathbb{E}(\hat{\Phi}(\underline{k})^* \Phi(\underline{k})) &amp;= \int_{\mathbb{R}^{nd}} \text{d}^d\underline{X}_1 \ldots \text{d}^d\underline{X}_n \, f(\underline{X}_1) \ldots f(\underline{X}_n) \, \hat{\Phi}(\underline{k})^* \Phi(\underline{k})\\
+&amp;= \kappa(\underline{k})^* \Phi(\underline{k}) \frac{1}{n} \int_{\mathbb{R}^{nd}} \text{d}^d\underline{X}_1 \ldots \text{d}^d\underline{X}_n \, f(\underline{X}_1) \ldots f(\underline{X}_n) \, \sum_{i=1}^n e^{\text{i} \underline{k} \cdot \underline{X}_i}\\
+&amp;= \kappa(\underline{k})^* \Phi(\underline{k}) \frac{1}{n} \sum_{i=1}^n \left(\int_{\mathbb{R}^d} \text{d}^d\underline{X}_i \, f(\underline{X}_i) \, e^{\text{i} \underline{k} \cdot \underline{X}_i}\right) \, \left(\prod_{j \neq i} \int_{\mathbb{R}^d} \text{d}^d\underline{X}_j \, f(\underline{X}_j)\right)\\
+&amp;= \kappa(\underline{k})^* \Phi(\underline{k}) \frac{1}{n} n \Phi(\underline{k})^*\\
+&amp;= \kappa(\underline{k})^* |\Phi(\underline{k})|^2,
+\end{aligned}
+$$
+and
+$$
+\mathbb{E}(\hat{\Phi}(\underline{k}) \Phi(\underline{k})^*) = \kappa(\underline{k}) |\Phi(\underline{k})|^2
+$$
+likewise.
+
+We therefore have our error criterion
+$$
+\text{MISE}\{\hat{f}\} = \frac{1}{(2\pi)^d} \int_{\mathbb{R}^d} \text{d}^d\underline{k} \, \left(\frac{1}{n} |\kappa(\underline{k})|^2 (1 - |\Phi(\underline{k})|^2) + |\Phi(\underline{k})|^2 |1 - \kappa(\underline{k})|^2\right),
+$$
+and look for the Fourier transform of the optimal kernel function $$\kappa_{\text{opt}}$$ which minimises it, //i.e.// such that
+$$
+\left. \frac{\delta}{\delta \kappa^*} \text{MISE}\{\hat{f}\} \right|_{\kappa_{\text{opt}}} = 0 \Leftrightarrow \frac{1}{n}
+ \kappa_{\text{opt}}(\underline{k}) (1 - |\Phi(\underline{k})|^2) - |\Phi(\underline{k})|^2(1 - \kappa_{\text{opt}}(\underline{k})) = 0,
+$$
+which has an unique solution
+$$
+\kappa_{\text{opt}}(\underline{k}) = \frac{n}{n - 1 + |\Phi(\underline{k})|^{-2}},
+$$
+which furthermore satisfies the normalisation condition
+$$
+\int_{\mathbb{R}^d} \text{d}^d\underline{x} \, K(\underline{x}) = 1 \Leftrightarrow \kappa(\underline{0}) = 1,
+$$
+since $$f$$ is also normalised and therefore $$\Phi(\underline{0}) = 1$$.
+
+!!! Self-consistent estimate
+
+With the above-defined Fourier transform of the optimal kernel function, we have the kernel density estimate in Fourier space
+$$
+\hat{\Phi}(\underline{k}) = \kappa_{\text{opt}}(\underline{k}) \Delta(\underline{k}) = \frac{n \Delta(\underline{k})}{n - 1 + |\Phi(\underline{k})|^{-2}},
+$$
+which also satisfies the normalisation condition
+$$
+\int_{\mathbb{R}^d} \text{d}^d\underline{x} \, \hat{f}(\underline{x}) = 1 \Leftrightarrow \hat{\Phi}(\underline{0}) = 1
+$$
+since $$\Delta(\underline{0}) = 1$$.
+
+Bernacchia and Pigolotti ([[Bernacchia and Pigolotti, 2011|https://rss.onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9868.2011.00772.x]]) note that
+$$
+\lim_{N \rightarrow +\infty} \hat{\Phi}(\underline{k}) = \Phi(\underline{k})
+$$
+since
+$$
+\lim_{N \rightarrow +\infty} \Delta(\underline{k}) = \Phi(\underline{k})
+$$
+because an infinite sample would itself reproduce the true probability density function.
+
+$$\hat{\Phi}$$ is still a function of the unknown characteristic function $$\Phi$$. Bernacchia and Pigolotti ([[Bernacchia and Pigolotti, 2011|https://rss.onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9868.2011.00772.x]]) proposed to iteratively define a sequence of density estimates in Fourier space
+$$
+\hat{\Phi}_{l + 1}(\underline{k}) = \frac{n \Delta(\underline{k})}{n - 1 + |\hat{\Phi}_l(\underline{k})|^{-2}},
+$$
+and determine the fixed point of this iteration $$\hat{\Phi}_{\text{sc}}$$ such that
+$$
+\hat{\Phi}_{\text{sc}}(\underline{k}) = \frac{n \Delta(\underline{k})}{n - 1 + |\hat{\Phi}_{\text{sc}}(\underline{k})|^{-2}}.
+$$
+We take the modulus of this expression and, in the hypothsesis of $$|\hat{\Phi}_{\text{sc}}(\underline{k})| \neq 0$$, thus get the following polynomial equation
+$$
+(n - 1) |\hat{\Phi}_{\text{sc}}(\underline{k})|^2 - n |\Delta(\underline{k})||\hat{\Phi}_{\text{sc}}(\underline{k})| + 1 = 0,
+$$
+of which
+$$
+\hat{\Phi}_{\pm}(\underline{k}) = \frac{n \Delta(\underline{k})}{2(n - 1)} \left(1 \pm \sqrt{1 - \frac{4(n - 1)}{n^2 |\Delta(\underline{k})|^2}}\right)
+$$
+are solutions, provided that $$|\Delta(\underline{k})|^2 \geq \frac{4(n - 1)}{n^2}$$.
+
+Only $$\hat{\Phi}_+$$ satisfies the normalisation condition. Moreover, $$\hat{\Phi}_+$$ is a stable solution of the iteration while $$\hat{\Phi}_-$$ is not ([[Bernacchia and Pigolotti, 2011|https://rss.onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9868.2011.00772.x]]). As a consequence, the density estimate in Fourier space is taken as
+$$
+\hat{\Phi}_{\text{sc}}(\underline{k}) = \frac{n \Delta(\underline{k})}{2(n - 1)} \left(1 + \sqrt{1 - \frac{4(n - 1)}{n^2 |\Delta(\underline{k})|^2}}\right) I_A(\underline{k}),
+$$
+where $$I_A$$ is the indicator function of set $$A$$, and $$A$$ is the set of accepted frequencies, //i.e.// the frequencies giving a non-zero contribution to the estimate ([[Bernacchia and Pigolotti, 2011|https://rss.onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9868.2011.00772.x]], [[O'Brien et al., 2016|https://www.sciencedirect.com/science/article/pii/S0167947316300408]]). Please refer to ([[O'Brien et al., 2016|https://www.sciencedirect.com/science/article/pii/S0167947316300408]]) for the construction of $$A$$ for $$d$$-dimensional data.
+
+!! Periodic distributions
+
+!!! Density estimator and error criterion
+
+Let $$(\underline{X}_1, \ldots, \underline{X}_n)$$ be a random sample of an $$[-p/2; p/2]^d$$-valued random vector with probability density function $$f$$, which is $$p$$-periodic in each of its variables. We wish to estimate this density function from the random sample.
+
+We introduce the [[wrapped|https://en.wikipedia.org/wiki/Wrapped_distribution]] $$p$$-periodic kernel function
+$$
+K^{\text{(w)}}_p(\underline{x}) = \sum_{\underline{m} \in \mathbb{Z}^d} K(\underline{x} + p\underline{m}),
+$$
+where $$K$$ is a normalised $$d$$-variate on $$\mathbb{R}^d$$, and will estimate the unknown density function $$f$$ with a kernel density estimator
+$$
+\hat{f}(\underline{x}) = \frac{1}{n} \sum_{i=1}^n K^{\text{(w)}}_p(\underline{x} - \underline{X}_i).
+$$
+We wish to choose $$K$$ so that it minimises the [[mean integrated squared error|https://en.wikipedia.org/wiki/Mean_integrated_squared_error]]  (MISE) given by
+$$
+\text{MISE}\{\hat{f}\} = \mathbb{E}\left(\int_{[-p/2; p/2]^d} \text{d}^d\underline{x} \, (\hat{f}(\underline{x}) - f(\underline{x}))^2\right),
+$$
+where
+$$
+\mathbb{E} : g \mapsto \int_{[-p/2;p/2]^{nd}} \text{d}^d\underline{X}_1 \ldots \text{d}^d\underline{X}_n \, f(\underline{X}_1) \ldots f(\underline{X}_n) \, g(\underline{X}_1, \ldots, \underline{X}_n)
+$$
+denotes the expected value with respect to the sample $$(\underline{X}_1, \ldots, \underline{X}_n)$$.
+
+We note that $$f$$ and $$\hat{f}$$ are normalised on $$[-p/2;p/2]^d$$, //i.e.//
+$$
+\begin{aligned}
+\int_{[-p/2;p/2]^d} \text{d}^d\underline{x} \, f(\underline{x}) &amp;= 1,\\
+\int_{[-p/2;p/2]^d} \text{d}^d\underline{x} \, \hat{f}(\underline{x}) &amp;= 1.
+\end{aligned}
+$$
+
+!!! Minimisation of the error criterion
+
+We define the $$\underline{q}$$^^th^^ Fourier coefficient $$\mathcal{F}_{\underline{q}}$$ of the $$p$$-periodic function $$g$$ as
+$$
+\mathcal{F}_{\underline{q}}\{g\} = \frac{1}{p^d} \int_{[-p/2;p/2]^d} \text{d}^d\underline{x} \, g(\underline{x}) \, e^{-\text{i} \frac{2\pi}{p} \underline{q} \cdot \underline{x}},
+$$
+such that
+$$
+g(\underline{x}) = \sum_{\underline{q} \in \mathbb{Z}^d} \mathcal{F}_{\underline{q}}\{g\} \, e^{\text{i} \frac{2\pi}{p} \underline{q} \cdot \underline{x}}.
+$$
+We will denote
+$$
+\Phi_{\underline{q}} = \mathcal{F}_{\underline{q}}\{f\},
+$$
+and
+$$
+\begin{aligned}
+\hat{\Phi}_{\underline{q}} &amp;= \mathcal{F}_{\underline{q}}\{\hat{f}\}\\
+&amp;= \int_{[-p/2; p/2]^d} \text{d}^d\underline{x} \, \frac{1}{n} \sum_{i=1}^n \sum_{\underline{m} \in \mathbb{Z}^d} K(\underline{x} + p \underline{m} - \underline{X}_i) e^{-\text{i} \frac{2\pi}{p} \underline{q} \cdot \underline{x}}\\
+&amp;= \sum_{\underline{m} \in \mathbb{Z}^d} \int_{[-p/2; p/2]^d} \text{d}^d\underline{x} \, \frac{1}{n} \sum_{i=1}^n K(\underline{x} + p \underline{m} - \underline{X}_i) e^{-\text{i} \frac{2\pi}{p} \underline{q} \cdot (\underline{x} + p\underline{m})}\\
+&amp;= \int_{\mathbb{R}^d} \text{d}^d\underline{x} \, \frac{1}{n} \sum_{i=1}^n K(\underline{x} - \underline{X}_i) e^{-\text{i} \frac{2\pi}{p} \underline{q} \cdot \underline{x}}\\
+&amp;= \kappa\left(\frac{2\pi}{p} \underline{q}\right) \Delta\left(\frac{2\pi}{p} \underline{q}\right),
+\end{aligned}
+$$
+with $$\kappa = \mathcal{F}\{K\}$$ and $$\Delta$$ the empirical characteristic function defined in the previous section.
+
+With [[Parseval's theorem|https://en.wikipedia.org/wiki/Parseval%27s_theorem]], we can rewrite our error criterion
+$$
+\begin{aligned}
+\text{MISE}&amp;\{\hat{f}\} = \mathbb{E}\left(\int_{[-p/2; p/2]^d} \text{d}^d\underline{x} \, (\hat{f}(\underline{x}) - f(\underline{x}))^2\right) = \frac{1}{p^d} \mathbb{E}\left(\sum_{\underline{q} \in \mathbb{Z}^d} |\hat{\Phi}_{\underline{q}} - \Phi_{\underline{q}}|^2\right)\\
+&amp;= \frac{1}{p^d} \sum_{\underline{q} \in \mathbb{Z}^d} \left(\mathbb{E}(|\hat{\Phi}_{\underline{q}}|^2) + \mathbb{E}(|\Phi_{\underline{q}}|^2) - \mathbb{E}(\hat{\Phi}_{\underline{q}}^*\Phi_{\underline{q}}) - \mathbb{E}(\hat{\Phi}_{\underline{q}}\Phi_{\underline{q}}^*)\right).
+\end{aligned}
+$$
+We have that $$\Phi_{\underline{q}}$$ does not depend on the $$\{\underline{X}_i\}$$ such that
+$$
+\mathbb{E}(|\Phi_{\underline{q}}|^2) = |\Phi_{\underline{q}}|^2,
+$$
+and $$\hat{\Phi}_{\underline{q}} = \kappa\left(\frac{2\pi}{p}\underline{q}\right) \Delta\left(\frac{2\pi}{p}\underline{q}\right)$$ where $$\kappa\left(\frac{2\pi}{p}\underline{q}\right)$$ does not depend on the $$\{\underline{X}_i\}$$ such that
+$$
+\mathbb{E}(|\hat{\Phi}_{\underline{q}}|^2) = |\kappa\left(\frac{2\pi}{p}\underline{q}\right)|^2 \, \mathbb{E}(|\Delta\left(\frac{2\pi}{p}\underline{q}\right)|^2).
+$$
+We had already noted that
+$$
+|\Delta\left(\frac{2\pi}{p}\underline{q}\right)|^2 = \frac{1}{n^2} \left(n + \sum_{i=1}^n \sum_{j \neq i} e^{-\text{i} \frac{2\pi}{p}\underline{q} \cdot \underline{X}_i} e^{\text{i} \frac{2\pi}{p}\underline{q} \cdot \underline{X}_j}\right),
+$$
+such that
+$$
+\begin{aligned}
+\mathbb{E}(|\Delta\left(\frac{2\pi}{p}\underline{q}\right)|^2) &amp;= \int_{[-p/2; p/2]^{nd}} \text{d}^d\underline{X}_1 \ldots \text{d}^d\underline{X}_n \, f(\underline{X}_1) \ldots f(\underline{X}_n) \, |\Delta\left(\frac{2\pi}{p}\underline{q}\right)|^2\\
+&amp;= \frac{1}{n} + \frac{1}{n^2} \sum_{i=1}^n \sum_{j \neq i} \left(\int_{[-p/2; p/2]^d} \text{d}^d\underline{X}_i \, f(\underline{X}_i) \, e^{-\text{i} \frac{2\pi}{p} \underline{q} \cdot \underline{X}_i}\right) \, \left(\int_{[-p/2; p/2]^d} \text{d}^d\underline{X}_j \, f(\underline{X}_j) \, e^{\text{i} \frac{2\pi}{p} \underline{q} \cdot \underline{X}_j}\right)\\
+&amp;\qquad \times \left(\prod_{k \neq i, j} \int_{[-p/2; p/2]^d} \text{d}^d\underline{X}_k \, f(\underline{X}_k)\right)\\
+&amp;= \frac{1}{n} + \frac{1}{n^2} \sum_{i=1}^n \sum_{j \neq i} \Phi_{\underline{q}} \Phi_{\underline{q}}^*\\
+&amp;= |\Phi_{\underline{q}}|^2 + \frac{1}{n}\left(1 - |\Phi_{\underline{q}}|^2\right).
+\end{aligned}
+$$
+Moreover, we have
+$$
+\begin{aligned}
+\mathbb{E}(\hat{\Phi}_{\underline{q}}^* \Phi_{\underline{q}}) &amp;= \int_{[-p/2; p/2]^{nd}} \text{d}^d\underline{X}_1 \ldots \text{d}^d\underline{X}_n \, f(\underline{X}_1) \ldots f(\underline{X}_n) \, \hat{\Phi}_{\underline{q}}^* \Phi_{\underline{k}}\\
+&amp;= \kappa\left(\frac{2\pi}{p}\underline{q}\right)^* \Phi_{\underline{q}} \frac{1}{n} \int_{[-p/2; p/2]^{nd}} \text{d}^d\underline{X}_1 \ldots \text{d}^d\underline{X}_n \, f(\underline{X}_1) \ldots f(\underline{X}_n) \, \sum_{i=1}^n e^{\text{i} \frac{2\pi}{p} \underline{q} \cdot \underline{X}_i}\\
+&amp;= \kappa\left(\frac{2\pi}{p} \underline{q}\right)^* \Phi_{\underline{q}} \frac{1}{n} \sum_{i=1}^n \left(\int_{[-p/2; p/2]^d} \text{d}^d\underline{X}_i \, f(\underline{X}_i) \, e^{\text{i} \frac{2\pi}{p} \underline{q} \cdot \underline{X}_i}\right) \, \left(\prod_{j \neq i} \int_{[-p/2; p/2]^d} \text{d}^d\underline{X}_j \, f(\underline{X}_j)\right)\\
+&amp;= \kappa\left(\frac{2\pi}{p} \underline{q}\right)^* |\Phi_{\underline{q}}|^2,
+\end{aligned}
+$$
+and
+$$
+\mathbb{E}(\hat{\Phi}_{\underline{q}} \Phi_{\underline{q}}^*) = \kappa\left(\frac{2\pi}{p} \underline{q}\right) |\Phi_{\underline{q}}|^2
+$$
+likewise.
+
+We therefore have our error criterion
+$$
+\text{MISE}\{\hat{f}\} = \frac{1}{p^d} \sum_{\underline{m} \in \mathbb{Z}^d} \left(\frac{1}{n} |\kappa\left(\frac{2\pi}{p} \underline{q}\right)|^2 (1 - |\Phi_{\underline{q}}|^2) + |\Phi_{\underline{q}}|^2 |1 - \kappa\left(\frac{2\pi}{p} \underline{q}\right)|^2\right),
+$$
+which is a sum of positive terms and is thus minimised if each individual term is minimised, which is done with the Fourier transform of the optimal kernel function
+$$
+\kappa_{\text{opt}}\left(\frac{2\pi}{p} \underline{q}\right) = \frac{n}{n - 1 + |\Phi_{\underline{q}}|^{-2}}.
+$$
+
+!!! Self-constent estimate
+
+We have obtained the same expression for the optimal kernel function in Fourier space, $$\kappa_{\text{opt}}$$, and the same relation between the density estimator and the kernel function and emprirical characteristic function in Fourier space, $$\Delta$$, in the $$p$$-periodic case as in the non-periodic case, with the Fourier transforms of the density functions being replaced by the corresponding Fourier coefficients.
+
+We thus concluse that, in the $$p$$-periodic case, we can derive the self-consistent estimate, $$\hat{f}_{\text{sc}}$$, with the same method as in the non-periodic case, and then wrap it to obtain the desired $$p$$-periodic estimate
+$$
+\hat{f}(\underline{x}) = \sum_{\underline{m} \in \mathbb{Z}^d} \hat{f}_{\text{sc}}(\underline{x} + p \underline{m}).
+$$
 
 ! Implementation
 
-([[fastKDE|https://bitbucket.org/lbl-cascade/fastkde]])</pre>
+O'Brien //et al.// ([[O'Brien et al., 2014|https://www.sciencedirect.com/science/article/pii/S016794731400173X]], [[O'Brien et al., 2016|https://www.sciencedirect.com/science/article/pii/S0167947316300408]]) have developped a [[Python-based implementation|https://bitbucket.org/lbl-cascade/fastkde]] of their fastKDE method.</pre>
 </div>
 <div created="20180424224046740" modified="20180719220913068" tags="Measurements" title="Shear strain and vorticity fields">
 <pre>!!! Strain tensor
