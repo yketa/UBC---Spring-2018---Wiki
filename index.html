@@ -10103,7 +10103,7 @@ config.macros.bibliography = {
 <div created="20180417231441389" modified="20190408214731345" title="$:/state/toc/TableOfContents-Analysis--81657105">
 <pre>close</pre>
 </div>
-<div created="20180417005847401" modified="20190519161606665" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<div created="20180417005847401" modified="20190524090559018" title="$:/state/toc/TableOfContents-Measurements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180710220316722" modified="20180712224446152" title="$:/state/toc/TableOfContents-Measurements-1351528465">
@@ -10124,7 +10124,7 @@ config.macros.bibliography = {
 <div created="20180417010842396" modified="20180417010842396" title="$:/state/toc/TableOfContents/Measurements-Cooperativity--81657105">
 <pre>open</pre>
 </div>
-<div created="20190428212902404" modified="20190519161605236" title="$:/state/toc/TableOfContents/Measurements-Density estimation--81657105">
+<div created="20190428212902404" modified="20190524090557766" title="$:/state/toc/TableOfContents/Measurements-Density estimation--81657105">
 <pre>close</pre>
 </div>
 <div created="20180417013345743" modified="20181103180557513" title="$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105">
@@ -10167,7 +10167,7 @@ config.macros.bibliography = {
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;file:///home/yketa/Research/UBC/Wiki/index.html&quot;
+            &quot;text&quot;: &quot;file:///Users/yketa/Cours/ENS/M2/Stage/UBC/Wiki/index.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
@@ -10187,7 +10187,7 @@ config.macros.bibliography = {
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/home/yketa/Research/UBC/Wiki/index.html&quot;
+            &quot;text&quot;: &quot;/Users/yketa/Cours/ENS/M2/Stage/UBC/Wiki/index.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -11746,7 +11746,7 @@ Computation via the [[FFTKDE class|https://github.com/tommyod/KDEpy/blob/master/
 
 &lt;&lt;compuscript path:'mkde.py'&gt;&gt;</pre>
 </div>
-<div created="20190204003410285" modified="20190519161548052" tags="Measurements" title="Mutual information between displacements">
+<div created="20190204003410285" modified="20190524085854364" tags="Measurements" title="Mutual information between displacements">
 <pre>We have defined [[displacement correlations|Displacement correlations]] as a [[Pearson correlation coefficient|https://en.wikipedia.org/wiki/Pearson_correlation_coefficient]] between the displacements over a lag time $$\Delta t$$ of particles separated by $$\Delta\vec{r}$$ . This correlation is a simple measure of the linear relationship between these displacements. This measure might be ineffective to quantify cooperative behaviours such as swirling swarms in which displacements of neighbouring particles are close to orthogonal with each other and might thus lessen the correlation despite being a typical example of coherently moving particles.
 
 ! Mutual information
@@ -11759,7 +11759,7 @@ I(X, Y) = \int_{\mathcal{X}} \int_{\mathcal{Y}} \text{d}x\,\text{d}y\, p(x,y)\, 
 $$
 Only in the case of independant random variables $$X$$ and $$Y$$ we have $$p(x, y) = p(x)\,p(y)$$ and thus $$\log\left(\frac{p(x, y)}{p(x)\,p(y)}\right) = 0$$, leading to $$I(X, Y) = 0$$.
 
-We recall the Shannon entropy of a random variable $$X$$
+We recall the [[differential entropy|https://en.wikipedia.org/wiki/Differential_entropy]] of a random variable $$X$$
 $$
 H(X) = -\int_{\mathcal{X}} \text{d}x\, p(x)\, \log(p(x)),
 $$
@@ -11910,19 +11910,27 @@ We have now introduced the necessary notations and assumptions to define the mut
 $$
 \begin{aligned}
 \mathcal{I}_{t, t + \Delta t}(\Delta \vec{r}) &amp;= I(\vec{U}_{t, t + \Delta t}(\vec{r}), \vec{U}_{t, t + \Delta t}(\vec{r} + \Delta \vec{r}))\\
-&amp;= \iint_{\mathbb{R}^2} \text{d}^2\vec{u}_1 \iint_{\mathbb{R}^2} \text{d}^2\vec{u}_2 \, P^{(2)}_{t, t + \Delta t}(\vec{u}_1, \vec{u}_2, \Delta \vec{r}) \, \log\left(\frac{P^{(2)}_{t, t + \Delta t}(\vec{u}_1, \vec{u}_2, \Delta \vec{r})}{P^{(1)}_{t, t + \Delta t}(\vec{u}_1) \, P^{(1)}_{t, t + \Delta t}(\vec{u}_2)}\right),
+&amp;= \iint_{\mathbb{R}^2} \text{d}^2\vec{u}_1 \iint_{\mathbb{R}^2} \text{d}^2\vec{u}_2 \, P^{(2)}_{t, t + \Delta t}(\vec{u}_1, \vec{u}_2, \Delta \vec{r}) \, \log\left(\frac{P^{(2)}_{t, t + \Delta t}(\vec{u}_1, \vec{u}_2, \Delta \vec{r})}{P^{(1)}_{t, t + \Delta t}(\vec{u}_1) \, P^{(1)}_{t, t + \Delta t}(\vec{u}_2)}\right)\\
+&amp;= 2\mathcal{H}^{(1)}_{t, t + \Delta t} - \mathcal{H}^{(2)}_{t, t + \Delta t}(\Delta \vec{r}),
 \end{aligned}
 $$
-and the entropy of the joint distribution of displacements
+with the differential entropy of the marginal distribution of displacements
 $$
 \begin{aligned}
-\mathcal{H}_{t, t + \Delta t}(\Delta \vec{r}) &amp;= H(\vec{U}_{t, t + \Delta t}(\vec{r}), \vec{U}_{t, t + \Delta t}(\vec{r} + \Delta \vec{r}))\\
-&amp;= \iint_{\mathbb{R}^2} \text{d}^2\vec{u}_1 \iint_{\mathbb{R}^2} \text{d}^2\vec{u}_2 \, P^{(2)}_{t, t + \Delta t}(\vec{u}_1, \vec{u}_2, \Delta \vec{r}) \, \log\left(P^{(2)}_{t, t + \Delta t}(\vec{u}_1, \vec{u}_2, \Delta \vec{r})\right),
+\mathcal{H}^{(1)}_{t, t + \Delta t} &amp;= H(\vec{U}_{t, t + \Delta t}(\vec{r}))\\
+&amp;= - \iint_{\mathbb{R}^2} \text{d}^2\vec{u} \, P^{(1)}_{t, t + \Delta t}(\vec{u}) \, \log\left(P^{(1)}_{t, t + \Delta t}(\vec{u})\right),
+\end{aligned}
+$$
+and the differential entropy of the joint distribution of displacements
+$$
+\begin{aligned}
+\mathcal{H}^{(2)}_{t, t + \Delta t}(\Delta \vec{r}) &amp;= H(\vec{U}_{t, t + \Delta t}(\vec{r}), \vec{U}_{t, t + \Delta t}(\vec{r} + \Delta \vec{r}))\\
+&amp;= - \iint_{\mathbb{R}^2} \text{d}^2\vec{u}_1 \iint_{\mathbb{R}^2} \text{d}^2\vec{u}_2 \, P^{(2)}_{t, t + \Delta t}(\vec{u}_1, \vec{u}_2, \Delta \vec{r}) \, \log\left(P^{(2)}_{t, t + \Delta t}(\vec{u}_1, \vec{u}_2, \Delta \vec{r})\right),
 \end{aligned}
 $$
 such that we define the displacement correlation function as
 $$
-C_{uu, MI}(\Delta \vec{r}, \Delta t) = \frac{\int \text{d}t \, \mathcal{I}_{t, t + \Delta t}(\Delta \vec{r})}{\int \text{d}t \, \mathcal{H}_{t, t + \Delta t}(\Delta \vec{r})}.
+C_{uu, MI}(\Delta \vec{r}, \Delta t) = \frac{\int \text{d}t \, \mathcal{I}_{t, t + \Delta t}(\Delta \vec{r})}{\int \text{d}t \, \mathcal{H}^{(2)}_{t, t + \Delta t}(\Delta \vec{r})} = 2\frac{\int \text{d}t \, \mathcal{H}^{(1)}_{t, t + \Delta t}}{\int \text{d}t \, \mathcal{H}^{(2)}_{t, t + \Delta t}(\Delta \vec{r})} - 1.
 $$
 
 !! Displacement directions
@@ -11949,23 +11957,34 @@ $$
 $$
 which is a function of the sole separation $$\Delta \vec{r}$$ between the points considered in space due to stationarity.
 
+We note that it is equivalent to consider that $$\hat{P}^{(1)}_{t, t + \Delta t}$$ and $$\hat{P}^{(2)}_{t, t + \Delta t}$$ are $$2\pi$$-periodic functions in all variables, defined on $$\mathbb{R}$$ and $$\mathbb{R}^2$$ respectively — especially considering the way these functions are estimated.
+
 We define the mutual information $$\hat{\mathcal{I}}_{t, t + \Delta t}(\Delta \vec{r})$$ between directions of displacement between times $$t$$ and $$t + \Delta t$$ for particles separated by $$\Delta \vec{r}$$ in our system
 $$
 \begin{aligned}
 \hat{\mathcal{I}}_{t, t + \Delta t}(\Delta \vec{r}) &amp;= I(\Theta_{t, t + \Delta t}(\vec{r}), \Theta_{t, t + \Delta t}(\vec{r} + \Delta \vec{r}))\\
-&amp;= \int_{-\pi}^{\pi} \text{d}\theta_1 \int_{-\pi}^{\pi} \text{d}\theta_2 \, \hat{P}^{(2)}_{t, t + \Delta t}(\theta_1, \theta_2, \Delta \vec{r}) \, \log\left(\frac{\hat{P}^{(2)}_{t, t + \Delta t}(\theta_1, \theta_2, \Delta \vec{r})}{\hat{P}^{(1)}_{t, t + \Delta t}(\theta_1) \, \hat{P}^{(1)}_{t, t + \Delta t}(\theta_2)}\right),
+&amp;= \int_{-\pi}^{\pi} \text{d}\theta_1 \int_{-\pi}^{\pi} \text{d}\theta_2 \, \hat{P}^{(2)}_{t, t + \Delta t}(\theta_1, \theta_2, \Delta \vec{r}) \, \log\left(\frac{\hat{P}^{(2)}_{t, t + \Delta t}(\theta_1, \theta_2, \Delta \vec{r})}{\hat{P}^{(1)}_{t, t + \Delta t}(\theta_1) \, \hat{P}^{(1)}_{t, t + \Delta t}(\theta_2)}\right)\\
+&amp;= 2 \hat{\mathcal{H}}^{(1)}_{t, t + \Delta t} - \hat{\mathcal{H}}^{(2)}_{t, t + \Delta t}(\Delta \vec{r}),
 \end{aligned}
 $$
-and the entropy of the joint distribution of displacements
+with the differential entropy of the marginal distribution directions of displacement
 $$
 \begin{aligned}
-\hat{\mathcal{H}}_{t, t + \Delta t}(\Delta \vec{r}) &amp;= H(\Theta_{t, t + \Delta t}(\vec{r}), \Theta_{t, t + \Delta t}(\vec{r} + \Delta \vec{r}))\\
-&amp;= \int_{-\pi}^{\pi} \text{d}\theta_1 \int_{-\pi}^{\pi} \text{d}\theta_2 \, \hat{P}^{(2)}_{t, t + \Delta t}(\theta_1, \theta_2, \Delta \vec{r}) \, \log\left(\hat{P}^{(2)}_{t, t + \Delta t}(\theta_1, \theta_2, \Delta \vec{r})\right),
+\hat{\mathcal{H}}^{(1)}_{t, t + \Delta t} &amp;= H(\Theta_{t, t + \Delta t}(\vec{r}))\\
+&amp;= - \int_{-\pi}^{\pi} \text{d}\theta \, \hat{P}^{(1)}_{t, t + \Delta t}(\theta) \, \log\left(\hat{P}^{(1)}_{t, t + \Delta t}(\theta)\right),
+\end{aligned}
+$$
+and the differential entropy of the joint distribution of directions of displacement
+$$
+\begin{aligned}
+\hat{\mathcal{H}}^{(2)}_{t, t + \Delta t}(\Delta \vec{r}) &amp;= H(\Theta_{t, t + \Delta t}(\vec{r}), \Theta_{t, t + \Delta t}(\vec{r} + \Delta \vec{r}))\\
+&amp;= - \int_{-\pi}^{\pi} \text{d}\theta_1 \int_{-\pi}^{\pi} \text{d}\theta_2 \, \hat{P}^{(2)}_{t, t + \Delta t}(\theta_1, \theta_2, \Delta \vec{r}) \, \log\left(\hat{P}^{(2)}_{t, t + \Delta t}(\theta_1, \theta_2, \Delta \vec{r})\right),
 \end{aligned}
 $$
 such that we define the direction of displacement correlation function as
 $$
-C_{\hat{u}\hat{u}, MI}(\Delta \vec{r}, \Delta t) = \frac{\int \text{d}t \, \hat{\mathcal{I}}_{t, t + \Delta t}(\Delta \vec{r})}{\int \text{d}t \, \hat{\mathcal{H}}_{t, t + \Delta t}(\Delta \vec{r})}.
+C_{\hat{u}\hat{u}, MI}(\Delta \vec{r}, \Delta t) = \frac{\int \text{d}t \, \hat{\mathcal{I}}_{t, t + \Delta t}(\Delta \vec{r})}{\int \text{d}t \, \hat{\mathcal{H}}^{(2)}_{t, t + \Delta t}(\Delta \vec{r})} = 2 \frac{\int \text{d}t \, \hat{\mathcal{H}}^{(1)}_{t, t + \Delta t}}{\int \text{d}t \, \hat{\mathcal{H}}^{(2)}_{t, t +
+ \Delta t}(\Delta \vec{r})} - 1.
 $$
 
 ! Implementation
@@ -12329,7 +12348,7 @@ As in the [[lower density case|phi = 0.80, v = 1e-2]], this last plot seems to i
 &lt;&lt;toc-selective-expandable 'Presentations'&gt;&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20180619220822377" modified="20190504160551602" tags="TableOfContents" title="Project">
+<div created="20180619220822377" modified="20190524090539272" tags="TableOfContents" title="Project">
 <pre>&lt;div style=&quot;font-size:0.7em;text-align:center;margin-top:3em;margin-bottom:3em;&quot;&gt;
 [img [Images/header.png]] 
 &lt;/div&gt;
@@ -12372,14 +12391,16 @@ This project focuses on a model system of polydisperse active Brownian disks wit
 
 !!! ''License''
 
-This work is made available under the terms of the [[Creative Commons Attribution 4.0 International|https://creativecommons.org/licenses/by/4.0/]] license. You are free to copy and redistribute this work in any medium or format, as well as to remix, transform, and build upon it for any purpose, as long as you give appropriate credit, provide a link to [[this license|https://raw.githubusercontent.com/yketa/UBC_2018_Wiki/master/LICENSE]], and indicate if changes were made.
+This work is made available under the terms of the [[Creative Commons Attribution 4.0 International|https://creativecommons.org/licenses/by/4.0/]] license, with the exception of all images in [[this folder|https://github.com/yketa/UBC_2018_Wiki/tree/master/Images]] (logos, figures) but `header.png` and `cc-by.png`.
+
+You are free to copy and redistribute this work in any medium or format, as well as to remix, transform, and build upon it for any purpose, as long as you give appropriate credit, provide a link to [[this license|https://raw.githubusercontent.com/yketa/UBC_2018_Wiki/master/LICENSE]], and indicate if changes were made.
 
  &lt;div style=&quot;text-align:right;&quot;&gt;[img width=100 [Images/cc-by.png]]&lt;/div&gt;</pre>
 </div>
 <div _canonical_uri="report/report.pdf" created="20180825154934630" modified="20180825155009131" tags="TableOfContents" title="Report" type="application/pdf">
 <pre></pre>
 </div>
-<div created="20190428213420474" modified="20190519151501376" tags="[[Density estimation]]" title="Self-consistent density estimation">
+<div created="20190428213420474" modified="20190524085957672" tags="[[Density estimation]]" title="Self-consistent density estimation">
 <pre>Self-consistent density estimation was introduced by Bernacchia and Pigolotti ([[Bernacchia and Pigolotti, 2011|https://rss.onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9868.2011.00772.x]]) for distributions defined on $$\mathbb{R}$$ and augmented by O'Brien //et al.// ([[O'Brien et al., 2016|https://www.sciencedirect.com/science/article/pii/S0167947316300408]]) to consider distributions of arbitrary dimensions.
 
 This method is non-parametric since it does not rely on any assumption about the form of the underlying distribution.
@@ -12690,7 +12711,9 @@ $$
 
 ! Implementation
 
-O'Brien //et al.// ([[O'Brien et al., 2014|https://www.sciencedirect.com/science/article/pii/S016794731400173X]], [[O'Brien et al., 2016|https://www.sciencedirect.com/science/article/pii/S0167947316300408]]) have developped a [[Python-based implementation|https://bitbucket.org/lbl-cascade/fastkde]] of their fastKDE method.</pre>
+O'Brien //et al.// ([[O'Brien et al., 2014|https://www.sciencedirect.com/science/article/pii/S016794731400173X]], [[O'Brien et al., 2016|https://www.sciencedirect.com/science/article/pii/S0167947316300408]]) have developped a [[Python-based implementation|https://bitbucket.org/lbl-cascade/fastkde]] of their fastKDE method.
+
+&lt;&lt;compuscript path:&quot;scde.py&quot;&gt;&gt;</pre>
 </div>
 <div created="20180424224046740" modified="20180719220913068" tags="Measurements" title="Shear strain and vorticity fields">
 <pre>!!! Strain tensor
