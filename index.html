@@ -10103,7 +10103,7 @@ config.macros.bibliography = {
 <div created="20180417231441389" modified="20190408214731345" title="$:/state/toc/TableOfContents-Analysis--81657105">
 <pre>close</pre>
 </div>
-<div created="20180417005847401" modified="20190524090559018" title="$:/state/toc/TableOfContents-Measurements--81657105">
+<div created="20180417005847401" modified="20190524125204341" title="$:/state/toc/TableOfContents-Measurements--81657105">
 <pre>close</pre>
 </div>
 <div created="20180710220316722" modified="20180712224446152" title="$:/state/toc/TableOfContents-Measurements-1351528465">
@@ -10124,7 +10124,7 @@ config.macros.bibliography = {
 <div created="20180417010842396" modified="20180417010842396" title="$:/state/toc/TableOfContents/Measurements-Cooperativity--81657105">
 <pre>open</pre>
 </div>
-<div created="20190428212902404" modified="20190524090557766" title="$:/state/toc/TableOfContents/Measurements-Density estimation--81657105">
+<div created="20190428212902404" modified="20190524125203027" title="$:/state/toc/TableOfContents/Measurements-Density estimation--81657105">
 <pre>close</pre>
 </div>
 <div created="20180417013345743" modified="20181103180557513" title="$:/state/toc/TableOfContents/Measurements-Displacement correlations--81657105">
@@ -11746,14 +11746,14 @@ Computation via the [[FFTKDE class|https://github.com/tommyod/KDEpy/blob/master/
 
 &lt;&lt;compuscript path:'mkde.py'&gt;&gt;</pre>
 </div>
-<div created="20190204003410285" modified="20190524085854364" tags="Measurements" title="Mutual information between displacements">
+<div created="20190204003410285" modified="20190524125007586" tags="Measurements" title="Mutual information between displacements">
 <pre>We have defined [[displacement correlations|Displacement correlations]] as a [[Pearson correlation coefficient|https://en.wikipedia.org/wiki/Pearson_correlation_coefficient]] between the displacements over a lag time $$\Delta t$$ of particles separated by $$\Delta\vec{r}$$ . This correlation is a simple measure of the linear relationship between these displacements. This measure might be ineffective to quantify cooperative behaviours such as swirling swarms in which displacements of neighbouring particles are close to orthogonal with each other and might thus lessen the correlation despite being a typical example of coherently moving particles.
 
 ! Mutual information
 
 [[Mutual information|https://en.wikipedia.org/wiki/Mutual_information]] is a measure of the mutual dependance between two variables as a measure of the information they share, and is used in computational biophysics and biochemistry (see [[Lange and Grubmüller, 2005|https://pure.mpg.de/rest/items/item_596514_3/component/file_596513/content]] and [[Rivalta et al., 2012|https://www.pnas.org/content/109/22/E1428.short]]).
 
-In the case of two random variables $$X$$ and $$Y$$, with joint probability function $$p(x, y)$$, and respective marginal probability functions $$p(x)$$ and $$p(y)$$, mutual information is defined by
+In the case of two random variables $$X$$ and $$Y$$, with joint probability density function $$p(x, y)$$, and respective marginal probability density functions $$p(x)$$ and $$p(y)$$, mutual information is defined by
 $$
 I(X, Y) = \int_{\mathcal{X}} \int_{\mathcal{Y}} \text{d}x\,\text{d}y\, p(x,y)\, \log\left(\frac{p(x, y)}{p(x)\,p(y)}\right).
 $$
@@ -11794,7 +11794,7 @@ where $$\vec{r}$$ is constained in a square box of dimensions $$L \times L$$.
 
 We define for $$U^{\alpha}_{t, t + \Delta t}(\vec{r})$$ the following marginal probability density function
 $$
-p^{\alpha}_{t, t  + \Delta t}(\cdot, \vec{r}) : \mathbb{R} \rightarrow [0; 1],
+p^{\alpha}_{t, t  + \Delta t}(\cdot, \vec{r}) : \mathbb{R} \rightarrow \mathbb{R}_+,
 $$
 which satisfies
 $$
@@ -11807,7 +11807,7 @@ $$
 
 We define for $$U^{\alpha}_{t, t + \Delta t}(\vec{r})$$ the following joint probability density function
 $$
-p^{\alpha \beta}_{t, t + \Delta t} (\cdot, \vec{r}_1 ; \cdot, \vec{r}_2) : \mathbb{R} \times \mathbb{R} \rightarrow [0; 1],
+p^{\alpha \beta}_{t, t + \Delta t} (\cdot, \vec{r}_1 ; \cdot, \vec{r}_2) : \mathbb{R} \times \mathbb{R} \rightarrow \mathbb{R}_+,
 $$
 which satisfies
 $$
@@ -11876,11 +11876,11 @@ $$
 
 We define for $$\vec{U}_{t, t + \Delta t}(\vec{r})$$ the following marginal probability density function
 $$
-P^{(1)}_{t, t + \Delta t}(\cdot) : \mathbb{R}^2 \rightarrow [0; 1]
+P^{(1)}_{t, t + \Delta t}(\cdot) : \mathbb{R}^2 \rightarrow \mathbb{R}_+
 $$
 which does not depend on $$\vec{r}$$ due to stationarity, and the following joint probability density function
 $$
-P^{(2)}_{t, t + \Delta t}(\cdot, \cdot, \Delta\vec{r}) : \mathbb{R}^2 \times \mathbb{R}^2 \rightarrow [0; 1]
+P^{(2)}_{t, t + \Delta t}(\cdot, \cdot, \Delta\vec{r}) : \mathbb{R}^2 \times \mathbb{R}^2 \rightarrow \mathbb{R}_+
 $$
 which is a function of the sole separation $$\Delta \vec{r}$$ between the points considered in space due to stationarity.
 
@@ -11949,11 +11949,11 @@ where $$\vec{r}$$ is constained in a square box of dimensions $$L \times L$$.
 
 With the same hypotheses as before, we define for $$\Theta_{t, t + \Delta t}(\vec{r})$$ the following marginal probability density function
 $$
-\hat{P}^{(1)}_{t, t + \Delta t}(\cdot) : [-\pi; \pi] \rightarrow [0; 1]
+\hat{P}^{(1)}_{t, t + \Delta t}(\cdot) : [-\pi; \pi] \rightarrow \mathbb{R}_+
 $$
 which does not depend on $$\vec{r}$$ due to stationarity, and the following joint probability density function
 $$
-\hat{P}^{(2)}_{t, t + \Delta t}(\cdot, \cdot, \Delta\vec{r}) : [-\pi; \pi] \times [-\pi; \pi] \rightarrow [0; 1]
+\hat{P}^{(2)}_{t, t + \Delta t}(\cdot, \cdot, \Delta\vec{r}) : [-\pi; \pi] \times [-\pi; \pi] \rightarrow \mathbb{R}_+
 $$
 which is a function of the sole separation $$\Delta \vec{r}$$ between the points considered in space due to stationarity.
 
