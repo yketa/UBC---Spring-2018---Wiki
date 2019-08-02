@@ -1,5 +1,7 @@
 *.DS_Store
 index.html_backup
+jupyter_notebook_config.py
+.ipynb_checkpoints
 presentation_7_30_18/aux
 presentation_7_30_18/**/*-eps-converted-to.pdf
 presentation_9_13_18/aux
